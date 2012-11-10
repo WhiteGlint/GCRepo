@@ -1,0 +1,30 @@
+Github setup for Ubuntu
+
+
+// 11/10/2012 Josh Galicic
+1. Created account and basic repository on Github.com
+2. Basing instructions from here, with some changes: https://github.com/GeoRemindMe/GeoRemindMe_Web/wiki/How-to-set-up-your-repository
+	2a. ssh-keygen -t rsa -C "your_email@youremail.com"
+	2b. go to https://github.com/account/ssh and clic "Add another public key"
+	2c. Paste in the contents of ~/.ssh/id_rsa.pub file on your local machine into the public key field on github.
+	2d. execute: ssh-add ~/.ssh/id_rsa
+	2e. execute: ssh git@github.com, make sure it returns back successfully with account name (GCRobotics for us)
+	2f. execute the following commands:
+			sudo aptitude install git-core git-gui git-doc
+			git config --global user.name "firstName lastName"
+			git config --global user.email "your_email@youremail.com"  // note that if you enter Geneva.robotics@gmail.com, github will resolve your name to GCRobotics for any commit. This can make tracking who made what change difficult.
+			git config --global github.user your_username
+3. Now create a new directory where ever you want the repo to go (I use ~/GCRepo)
+4. cd into that directory
+5. Execute: git init
+6. Execute: git remote add origin git@github.com:USERNAME/REPONAME.git	// where username = GCRobotics and reponame = GCRepo
+7. Execute: git pull origin master
+8. You should now have a local copy of the repository on your machine
+9. There are lots of git tutorials on the internet, but for basics: 
+		"git add 'filename'" will add a new file to be tracked by git 
+		"git commit -a" will create a commit for every file that has been changed
+		"git push" will push all your commits made since the last push up to github.
+		"git pull origin master" will pull all changes down from github.
+
+		
+		
