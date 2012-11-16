@@ -1,7 +1,7 @@
 
 #include <iostream>
-#include </home/josh/GCRepo/roboio/Include/roboard.h>
-//#include <unistd.h>
+#include </home/gcr/GCRepo/roboio/Include/roboard.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -9,20 +9,24 @@ int main(){
 
 roboio_SetRBVer(RB_100RD);
 
-unsigned char buf[3] = {0x01, 0x02, 0x03};
+unsigned char buf = 0x01;
 
-if (i2c_Init(I2CMODE_STANDARD,100000)){
-
-	i2c_Send(0x11, buf, 3);
-
-	i2c_Receive(0x11, buf, 3);
-
-	i2c_Close();
+if (i2c_Init(I2CMODE_STANDARD,10000) == false){
+	cout << "Error: " << roboio_GetErrMsg();
 }
 
+	i2c_Send(0x02, buf, 1);
+//	i2c_Receive(0x02, buf, 1);
+	sleep(1);
+	cout << endl<< "BUFFER: " << buf << endl;
+//	i2c_Receive(0x11, buf, 3);
+
+	i2c_Close();
 
 
 
-rcservo_Close();
+
+
+//rcservo_Close();
 return 0;
 }
