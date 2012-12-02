@@ -1,15 +1,14 @@
-﻿Build started 12/1/2012 7:54:00 PM.
-     1>Project "C:\Users\Yan Sleight\Documents\College\Fall 2012\EGR 481 SR Design\motor control library\motor_control_lib\motor_control_lib\motor_control_lib.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/1/2012 9:08:28 PM.
+     1>Project "C:\Users\Yan Sleight\Documents\GitHub\motor_control_lib\motor_control_lib\motor_control_lib\motor_control_lib.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt control_lib.cpp
+         control_lib.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Yan Sleight\Documents\College\Fall 2012\EGR 481 SR Design\motor control library\motor_control_lib\Debug\motor_control_lib.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Yan Sleight\Documents\College\Fall 2012\EGR 481 SR Design\motor control library\motor_control_lib\Debug\motor_control_lib.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Yan Sleight\Documents\College\Fall 2012\EGR 481 SR Design\motor control library\motor_control_lib\Debug\motor_control_lib.lib" /MACHINE:X86 Debug\control_lib.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Yan Sleight\Documents\GitHub\motor_control_lib\motor_control_lib\Debug\motor_control_lib.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Yan Sleight\Documents\GitHub\motor_control_lib\motor_control_lib\Debug\motor_control_lib.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Yan Sleight\Documents\GitHub\motor_control_lib\motor_control_lib\Debug\motor_control_lib.lib" /MACHINE:X86 Debug\control_lib.obj
          Debug\main.obj
-     1>main.obj : error LNK2019: unresolved external symbol "public: __thiscall control_lib::control_lib(void)" (??0control_lib@@QAE@XZ) referenced in function _main
-     1>C:\Users\Yan Sleight\Documents\College\Fall 2012\EGR 481 SR Design\motor control library\motor_control_lib\Debug\motor_control_lib.exe : fatal error LNK1120: 1 unresolved externals
-     1>Done Building Project "C:\Users\Yan Sleight\Documents\College\Fall 2012\EGR 481 SR Design\motor control library\motor_control_lib\motor_control_lib\motor_control_lib.vcxproj" (Build target(s)) -- FAILED.
+         motor_control_lib.vcxproj -> C:\Users\Yan Sleight\Documents\GitHub\motor_control_lib\motor_control_lib\Debug\motor_control_lib.exe
+     1>Done Building Project "C:\Users\Yan Sleight\Documents\GitHub\motor_control_lib\motor_control_lib\motor_control_lib\motor_control_lib.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.98
+Time Elapsed 00:00:01.09

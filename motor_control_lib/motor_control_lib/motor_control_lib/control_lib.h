@@ -15,8 +15,16 @@ private:
 		movement_direction, // overal direction of movement
 		travel_speed; // overall speed of movement
 
+	// top level inside jobs
 	void set_speed(int, int, int);
 	void goto_speed(int, int);
+
+	// low level controllers
+	void set_direction(int);
+	void slow_down(int);
+	void speed_up(int);
+	void set_all_motor_speeds();
+	void wait();
 
 public:
 	// constructor
