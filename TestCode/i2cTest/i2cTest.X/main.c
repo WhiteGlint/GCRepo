@@ -19,14 +19,14 @@ __CONFIG(FOSC_EXTRCCLK & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BO
 
 void delay();
 void i2c_init();
-int i2cBuffer = 99;
+int i2cBuffer = 1;
 
 int main(int argc, char** argv) {
 
     i2c_init();
     
     TRISD = 0b00000000;
-
+ 
    // for (int i = 0; i < 256; i++){
     while(1 == 1){
         PORTD = i2cBuffer;
