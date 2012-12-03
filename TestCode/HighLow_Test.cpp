@@ -1,9 +1,9 @@
 #include <iostream>
-#include </home/josh/GCRepo/roboio/Include/roboard.h>
+#include </home/gcr/GCRepo/roboio/Include/roboard.h>
 //#include <unistd.h>
 
 using namespace std;
-/*
+
 int main(){
 
 int val = 11;
@@ -43,4 +43,4 @@ else if (choice == 0){
 rcservo_Close();
 return 0;
 }
-*/
+
