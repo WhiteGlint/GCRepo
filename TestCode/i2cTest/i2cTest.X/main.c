@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
    // for (int i = 0; i < 256; i++){
     loop:
         PORTD = i2cBuffer;
-       // delay();
+        delay();
     goto loop;
     //}
 
@@ -47,11 +47,11 @@ void delay(){
 }
 
 void i2c_init(){
-        SSPCON = 0b00110110;
+        SSPCON = 0b00111110;
         SSPADD = 0x02;
 
         SSPSTAT = 0b00000000;
-        SSPIE = 1;
+        PIE1 = 0b00001000;
         PEIE = 1;
         GIE = 1;
         INTE = 1;

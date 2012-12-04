@@ -45,11 +45,11 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/i2cTest.obj
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/i2cTest.obj.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/i2cTest.obj
+OBJECTFILES=${OBJECTDIR}/main.p1
 
 
 CFLAGS=
@@ -72,23 +72,7 @@ MP_PROCESSOR_OPTION=16F917
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/i2cTest.obj: i2cTest.asm  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	${MP_AS} -C i2cTest.asm $(MP_EXTRA_AS_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@${MP_AS} -C i2cTest.asm --scandep $(MP_EXTRA_AS_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@echo ${OBJECTDIR}/i2cTest.obj: > ${OBJECTDIR}/i2cTest.obj.d
-	@cat ${OBJECTDIR}/i2cTest.dep >> ${OBJECTDIR}/i2cTest.obj.d
-	@${FIXDEPS} "${OBJECTDIR}/i2cTest.obj.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
-	
 else
-${OBJECTDIR}/i2cTest.obj: i2cTest.asm  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	${MP_AS} -C i2cTest.asm $(MP_EXTRA_AS_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@${MP_AS} -C i2cTest.asm --scandep $(MP_EXTRA_AS_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@echo ${OBJECTDIR}/i2cTest.obj: > ${OBJECTDIR}/i2cTest.obj.d
-	@cat ${OBJECTDIR}/i2cTest.dep >> ${OBJECTDIR}/i2cTest.obj.d
-	@${FIXDEPS} "${OBJECTDIR}/i2cTest.obj.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
-	
 endif
 
 # ------------------------------------------------------------------------------------
