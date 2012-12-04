@@ -54,6 +54,7 @@ void i2c_init(){
         SSPIE = 1;
         PEIE = 1;
         GIE = 1;
+        INTE = 1;
 
 }
 
