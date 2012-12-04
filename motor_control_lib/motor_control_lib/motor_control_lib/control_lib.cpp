@@ -18,6 +18,33 @@ control_lib::control_lib()
 	travel_speed = 0;
 }
 
+// test functions
+void control_lib::run_test()
+{
+	give_output();
+	system("pause");
+	move_forward(5);
+	give_output();
+	move_forward(2);
+	give_output();
+	cout << "\n***THE END***\n";
+	system("pause");	
+}
+
+void control_lib::give_output()
+{
+	cout << "motor1_speed = " << motor1_speed << endl
+		<< "motor2_speed = " << motor2_speed << endl
+		<< "motor3_speed = " << motor3_speed << endl
+		<< "motor4_speed = " << motor4_speed << endl
+		<< "motor1_direction = " << motor1_direction << endl
+		<< "motor2_direction = " << motor2_direction << endl
+		<< "motor3_direction = " << motor3_direction << endl
+		<< "motor4_direction = " << motor4_direction << endl
+		<< "movement_direction = " << movement_direction << endl
+		<< "travel_speed = " << travel_speed << endl;
+}
+
 // motion control functions
 void control_lib::move_forward(int speed)
 {

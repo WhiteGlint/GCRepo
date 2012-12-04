@@ -38,6 +38,10 @@ public:
 	// constructor
 	control_lib();
 
+	// test functions
+	void run_test();
+	void give_output();
+
 	// motion control functions
 	void move_forward(int);
 	void move_right(int);
