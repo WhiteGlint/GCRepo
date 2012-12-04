@@ -45,12 +45,10 @@ void control_lib::goto_speed(int speed, int direction)
 	set_direction(direction);
 
 	if (travel_speed > speed) // need to slow down
-		slow_down(direction);
+		slow_down();
 	
 	if (travel_speed < speed) // need to speed up
-		speed_up(direction);
-
-	set_all_motor_speeds();
+		speed_up();
 
 	wait();
 	goto_speed(speed, direction); // go again until the speed is reached
@@ -79,6 +77,9 @@ void control_lib::set_direction(int direction)
 }
 
 // set all direction variables
+// not sure if the right and left combos are correct
+// not sure if rotations are correct
+// not sure about wheel numbering scheme
 void control_lib::set_direction_forward()
 {
 	movement_direction = 0;
@@ -90,7 +91,11 @@ void control_lib::set_direction_forward()
 
 void control_lib::set_direction_right()
 {
-
+	movement_direction = 1;
+	motor1_direction = 1;
+	motor2_direction = 1;
+	motor3_direction = 0;
+	motor4_direction = 0;
 }
 
 void control_lib::set_direction_backward()
@@ -104,42 +109,57 @@ void control_lib::set_direction_backward()
 
 void control_lib::set_direction_left()
 {
-
+	movement_direction = 3;
+	motor1_direction = 0;
+	motor2_direction = 0;
+	motor3_direction = 1;
+	motor4_direction = 1;
 }
 
 void control_lib::set_direction_clockwise()
 {
-
+	movement_direction = 4;
+	motor1_direction = 1;
+	motor2_direction = 0;
+	motor3_direction = 1;
+	motor4_direction = 0;
 }
 
 void control_lib::set_direction_counterclockwise()
 {
-
+	movement_direction = 5;
+	motor1_direction = 0;
+	motor2_direction = 1;
+	motor3_direction = 0;
+	motor4_direction = 1;
 }
 
 void control_lib::set_direction_stop()
 {
 	movement_direction = 6;
-	motor1_direction = 6;
-	motor2_direction = 6;
-	motor3_direction = 6;
-	motor4_direction = 6;
+	motor1_direction = 0;
+	motor2_direction = 0;
+	motor3_direction = 0;
+	motor4_direction = 0;
 }
 
 // Speed controllers
-void control_lib::slow_down(int direction)
+void control_lib::slow_down()
 {
-
+	travel_speed--;
+	motor1_speed--;
+	motor2_speed--;
+	motor3_speed--;
+	motor4_speed--;
 }
 
-void control_lib::speed_up(int direction)
+void control_lib::speed_up()
 {
-
-}
-
-void control_lib::set_all_motor_speeds()
-{
-
+	travel_speed++;
+	motor1_speed++;
+	motor2_speed++;
+	motor3_speed++;
+	motor4_speed++;
 }
 
 void control_lib::wait()

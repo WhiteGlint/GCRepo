@@ -4,16 +4,16 @@ class control_lib
 {
 private:
 	static int const acceleration = 50; // wait time between motor speed steps in milleseconds
-	int motor1_speed,
+	int motor1_speed, // directionless, 0-10
 		motor2_speed,
 		motor3_speed,
 		motor4_speed;
-	bool motor1_direction,
+	bool motor1_direction, // 0 forward, 1 backward
 		motor2_direction,
 		motor3_direction,
 		motor4_direction;
 	int movement_direction, // overal direction of movement
-		travel_speed; // overall speed of movement
+		travel_speed; // directionless, 0-10
 
 	// top level inside jobs
 	void set_speed(int, int, int);
@@ -21,9 +21,8 @@ private:
 
 	// low level controllers
 	void set_direction(int);
-	void slow_down(int);
-	void speed_up(int);
-	void set_all_motor_speeds();
+	void slow_down();
+	void speed_up();
 	void wait();
 
 	// direction setters
