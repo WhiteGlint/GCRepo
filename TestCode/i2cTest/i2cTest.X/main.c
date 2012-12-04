@@ -26,12 +26,12 @@ int main(int argc, char** argv) {
     i2c_init();
     
     TRISD = 0b00000000;
- 
+    TRISC = 0b11111111;
    // for (int i = 0; i < 256; i++){
-    while(1 == 1){
+    loop:
         PORTD = i2cBuffer;
        // delay();
-    }
+    goto loop;
     //}
 
     return (EXIT_SUCCESS);
@@ -49,6 +49,7 @@ void delay(){
 void i2c_init(){
         SSPCON = 0b00110110;
         SSPADD = 0x02;
+
         SSPSTAT = 0b00000000;
         SSPIE = 1;
         PEIE = 1;
