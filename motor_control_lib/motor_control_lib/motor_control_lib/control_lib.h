@@ -34,6 +34,13 @@ private:
 	void set_direction_counterclockwise();
 	void set_direction_stop();
 
+	// I^2C functions
+	void send_message();
+	void send_motor1();
+	void send_motor2();
+	void send_motor3();
+	void send_motor4();
+
 public:
 	// constructor
 	control_lib();
@@ -48,7 +55,7 @@ public:
 	void move_backward(int);
 	void move_left(int);
 	void rotate_clockwise(int);
-	void rotate_couterclockwise(int);
+	void rotate_counterclockwise(int);
 	void stop();
 	void emergency_stop();
 

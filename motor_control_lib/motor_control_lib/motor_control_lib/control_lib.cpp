@@ -27,6 +27,13 @@ void control_lib::run_test()
 	give_output();
 	move_forward(2);
 	give_output();
+	stop();
+	give_output();
+	system("pause");
+	rotate_clockwise(8);
+	give_output();
+	rotate_counterclockwise(5);
+	give_output();
 	cout << "\n***THE END***\n";
 	system("pause");	
 }
@@ -56,6 +63,50 @@ void control_lib::move_forward(int speed)
 	goto_speed(speed, movement_direction);
 }
 
+void control_lib::move_right(int speed)
+{
+	if (movement_direction != 1)
+		stop();
+
+	movement_direction = 1;
+	goto_speed(speed, movement_direction);
+}
+
+void control_lib::move_backward(int speed)
+{
+	if (movement_direction != 2)
+		stop();
+
+	movement_direction = 2;
+	goto_speed(speed, movement_direction);
+}
+
+void control_lib::move_left(int speed)
+{
+	if (movement_direction != 3)
+		stop();
+
+	movement_direction = 3;
+	goto_speed(speed, movement_direction);
+}
+
+void control_lib::rotate_clockwise(int speed)
+{
+	if (movement_direction != 4)
+		stop();
+
+	movement_direction = 4;
+	goto_speed(speed, movement_direction);
+}
+
+void control_lib::rotate_counterclockwise(int speed)
+{
+	if (movement_direction != 5)
+		stop();
+
+	movement_direction = 5;
+	goto_speed(speed, movement_direction);
+}
 void control_lib::stop()
 {
 	goto_speed(0, 6);
@@ -77,6 +128,7 @@ void control_lib::goto_speed(int speed, int direction)
 	if (travel_speed < speed) // need to speed up
 		speed_up();
 
+	send_message();
 	wait();
 	goto_speed(speed, direction); // go again until the speed is reached
 }
@@ -190,6 +242,36 @@ void control_lib::speed_up()
 }
 
 void control_lib::wait()
+{
+	// wait for 50 ms
+}
+
+void control_lib::send_message()
+{
+	bool message[24];
+	cout << "\nmessage sent\n";
+	send_motor1();
+	send_motor2();
+	send_motor3();
+	send_motor4();
+}
+
+void control_lib::send_motor1()
+{
+
+}
+
+void control_lib::send_motor2()
+{
+
+}
+
+void control_lib::send_motor3()
+{
+
+}
+
+void control_lib::send_motor4()
 {
 
 }
