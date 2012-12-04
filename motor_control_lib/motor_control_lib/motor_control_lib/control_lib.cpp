@@ -59,9 +59,74 @@ void control_lib::goto_speed(int speed, int direction)
 // low level controllers
 void control_lib::set_direction(int direction)
 {
+	switch (direction)
+	{
+	case 0: set_direction_forward();
+		break;
+	case 1: set_direction_right();
+		break;
+	case 2: set_direction_backward();
+		break;
+	case 3: set_direction_left();
+		break;
+	case 4: set_direction_clockwise();
+		break;
+	case 5: set_direction_counterclockwise();
+		break;
+	case 6: set_direction_stop();
+		break;
+	}
+}
+
+// set all direction variables
+void control_lib::set_direction_forward()
+{
+	movement_direction = 0;
+	motor1_direction = 0;
+	motor2_direction = 0;
+	motor3_direction = 0;
+	motor4_direction = 0;
+}
+
+void control_lib::set_direction_right()
+{
 
 }
 
+void control_lib::set_direction_backward()
+{
+	movement_direction = 2;
+	motor1_direction = 1;
+	motor2_direction = 1;
+	motor3_direction = 1;
+	motor4_direction = 1;
+}
+
+void control_lib::set_direction_left()
+{
+
+}
+
+void control_lib::set_direction_clockwise()
+{
+
+}
+
+void control_lib::set_direction_counterclockwise()
+{
+
+}
+
+void control_lib::set_direction_stop()
+{
+	movement_direction = 6;
+	motor1_direction = 6;
+	motor2_direction = 6;
+	motor3_direction = 6;
+	motor4_direction = 6;
+}
+
+// Speed controllers
 void control_lib::slow_down(int direction)
 {
 

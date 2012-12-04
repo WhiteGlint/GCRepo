@@ -7,12 +7,12 @@ private:
 	int motor1_speed,
 		motor2_speed,
 		motor3_speed,
-		motor4_speed,
-		motor1_direction,
+		motor4_speed;
+	bool motor1_direction,
 		motor2_direction,
 		motor3_direction,
-		motor4_direction,
-		movement_direction, // overal direction of movement
+		motor4_direction;
+	int movement_direction, // overal direction of movement
 		travel_speed; // overall speed of movement
 
 	// top level inside jobs
@@ -25,6 +25,15 @@ private:
 	void speed_up(int);
 	void set_all_motor_speeds();
 	void wait();
+
+	// direction setters
+	void set_direction_forward();
+	void set_direction_right();
+	void set_direction_backward();
+	void set_direction_left();
+	void set_direction_clockwise();
+	void set_direction_counterclockwise();
+	void set_direction_stop();
 
 public:
 	// constructor
