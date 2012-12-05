@@ -3,7 +3,7 @@
 class control_lib
 {
 private:
-	static int const acceleration = 50; // wait time between motor speed steps in milleseconds
+	static int const wait_time = 50; // wait time between motor speed steps in milleseconds
 	int motor1_speed, // directionless, 0-10
 		motor2_speed,
 		motor3_speed,
@@ -14,7 +14,8 @@ private:
 		motor4_direction;
 	int movement_direction, // overal direction of movement
 		travel_speed; // directionless, 0-10
-	char message[24]; // will hold the literal I^2C message
+	char message[16]; // will hold the literal I^2C message
+	char message_address; // will hold the I^2C address
 
 	// top level inside jobs
 	void set_speed(int, int, int);

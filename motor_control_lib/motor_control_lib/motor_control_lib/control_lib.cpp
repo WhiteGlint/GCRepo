@@ -1,5 +1,6 @@
 // object for motor control library
 #include <iostream>
+#include <Windows.h>
 #include "control_lib.h"
 using namespace std;
 
@@ -183,9 +184,9 @@ void control_lib::set_direction_forward()
 void control_lib::set_direction_right()
 {
 	movement_direction = 1;
-	motor1_direction = 1;
+	motor1_direction = 0;
 	motor2_direction = 1;
-	motor3_direction = 0;
+	motor3_direction = 1;
 	motor4_direction = 0;
 }
 
@@ -201,9 +202,9 @@ void control_lib::set_direction_backward()
 void control_lib::set_direction_left()
 {
 	movement_direction = 3;
-	motor1_direction = 0;
+	motor1_direction = 1;
 	motor2_direction = 0;
-	motor3_direction = 1;
+	motor3_direction = 0;
 	motor4_direction = 1;
 }
 
@@ -256,8 +257,10 @@ void control_lib::speed_up()
 void control_lib::wait()
 {
 	// wait for 50 ms
+	Sleep(wait_time);
 }
 
+// I^2C messaging
 void control_lib::send_message()
 {
 	cout << "\nmessage sent\n";
@@ -322,36 +325,28 @@ void control_lib::create_message4()
 
 void control_lib::create_address(int address)
 {
-	for (int i = 8; i--; i >= 0)
-	{
-		if (address % 2 == 1)
-			message[i] = 1 + 48;
-		else
-			message[i] = 0 + 48;
-
-		address = address / 2;
-	}
+	message_address = address;
 }
 
 void control_lib::create_type(int type)
 {
 	// since this only uses on type of message
 	// i need to know what literal to put in here
-	message[8] = 0 + 48;
-	message[9] = 0 + 48;
-	message[10] = 0 + 48;
-	message[11] = 0 + 48;
-	message[12] = 0 + 48;
-	message[13] = 0 + 48;
-	message[14] = 0 + 48;
-	message[15] = 0 + 48;
+	message[0] = 0 + 48;
+	message[1] = 0 + 48;
+	message[2] = 0 + 48;
+	message[3] = 0 + 48;
+	message[4] = 0 + 48;
+	message[5] = 0 + 48;
+	message[6] = 0 + 48;
+	message[7] = 0 + 48;
 }
 
 void control_lib::create_data(int direction, int speed)
 {
-	for (int i = 24; i--; i >= 17)
+	for (int i = 16; i--; i >= 8)
 	{
-		if (i < 17) break;
+		if (i < 8) break;
 		if (speed % 2 == 1)
 			message[i] = 1 + 48;
 		else
@@ -359,11 +354,15 @@ void control_lib::create_data(int direction, int speed)
 
 		speed = speed / 2;
 	}
-	message[16] = direction + 48;
+	message[8] = direction + 48;
 }
 
 void control_lib::push_i2c()
 {
+	// actual message when we get it working
+	// i2c_Send(addr(char), buf(char[]), size(int);
+	// i2c_Send(message_address, message, 16);
+	cout << hex << (int) message_address << " | ";
 	cout << message[0]
 		<< message[1]
 		<< message[2]
@@ -379,21 +378,7 @@ void control_lib::push_i2c()
 		<< message[12]
 		<< message[13]
 		<< message[14]
-		<< message[15] << " | "
-		<< message[16]
-		<< message[17]
-		<< message[18]
-		<< message[19] << " "
-		<< message[20]
-		<< message[21]
-		<< message[22]
-		<< message[23];
-	// test message output
-		/*
-	for (int i = 0; i = i + 1; i < 24)
-	{
-		cout << "|";
-		cout << message[i];
-	}*/
+		<< message[15];
+	
 	cout << endl;
 }
