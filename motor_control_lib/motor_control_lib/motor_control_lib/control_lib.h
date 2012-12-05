@@ -14,6 +14,7 @@ private:
 		motor4_direction;
 	int movement_direction, // overal direction of movement
 		travel_speed; // directionless, 0-10
+	char message[24]; // will hold the literal I^2C message
 
 	// top level inside jobs
 	void set_speed(int, int, int);
@@ -40,6 +41,14 @@ private:
 	void send_motor2();
 	void send_motor3();
 	void send_motor4();
+	void create_message1();
+	void create_message2();
+	void create_message3();
+	void create_message4();
+	void create_address(int);
+	void create_type(int);
+	void create_data(int, int);
+	void push_i2c();
 
 public:
 	// constructor

@@ -21,6 +21,17 @@ control_lib::control_lib()
 // test functions
 void control_lib::run_test()
 {
+	message[0] = 'i';
+	message[1] = 'n';
+	message[2] = 'i';
+	message[3] = 't';
+	message[4] = 'i';
+	message[5] = 'a';
+	message[6] = 'l';
+	message[7] = 'i';
+	message[8] = 'z';
+	message[9] = 'e';
+	message[10] = 'd';
 	give_output();
 	system("pause");
 	move_forward(5);
@@ -109,7 +120,8 @@ void control_lib::rotate_counterclockwise(int speed)
 }
 void control_lib::stop()
 {
-	goto_speed(0, 6);
+	goto_speed(0, movement_direction);
+	movement_direction = 6;
 }
 
 // Inside jobs
@@ -248,7 +260,6 @@ void control_lib::wait()
 
 void control_lib::send_message()
 {
-	bool message[24];
 	cout << "\nmessage sent\n";
 	send_motor1();
 	send_motor2();
@@ -258,20 +269,131 @@ void control_lib::send_message()
 
 void control_lib::send_motor1()
 {
-
+	create_message1();
+	push_i2c();
 }
 
 void control_lib::send_motor2()
 {
-
+	create_message2();
+	push_i2c();
 }
 
 void control_lib::send_motor3()
 {
-
+	create_message3();
+	push_i2c();
 }
 
 void control_lib::send_motor4()
 {
+	create_message4();
+	push_i2c();
+}
 
+// Message creation
+void control_lib::create_message1()
+{
+	create_address(1);
+	create_type(0);
+	create_data(motor1_direction, motor1_speed);
+}
+
+void control_lib::create_message2()
+{
+	create_address(2);
+	create_type(0);
+	create_data(motor2_direction, motor2_speed);
+}
+
+void control_lib::create_message3()
+{
+	create_address(3);
+	create_type(0);
+	create_data(motor3_direction, motor3_speed);
+}
+
+void control_lib::create_message4()
+{
+	create_address(4);
+	create_type(0);
+	create_data(motor4_direction, motor4_speed);
+}
+
+void control_lib::create_address(int address)
+{
+	for (int i = 8; i--; i >= 0)
+	{
+		if (address % 2 == 1)
+			message[i] = 1 + 48;
+		else
+			message[i] = 0 + 48;
+
+		address = address / 2;
+	}
+}
+
+void control_lib::create_type(int type)
+{
+	// since this only uses on type of message
+	// i need to know what literal to put in here
+	message[8] = 0 + 48;
+	message[9] = 0 + 48;
+	message[10] = 0 + 48;
+	message[11] = 0 + 48;
+	message[12] = 0 + 48;
+	message[13] = 0 + 48;
+	message[14] = 0 + 48;
+	message[15] = 0 + 48;
+}
+
+void control_lib::create_data(int direction, int speed)
+{
+	for (int i = 24; i--; i >= 17)
+	{
+		if (i < 17) break;
+		if (speed % 2 == 1)
+			message[i] = 1 + 48;
+		else
+			message[i] = 0 + 48;
+
+		speed = speed / 2;
+	}
+	message[16] = direction + 48;
+}
+
+void control_lib::push_i2c()
+{
+	cout << message[0]
+		<< message[1]
+		<< message[2]
+		<< message[3] << " "
+		<< message[4]
+		<< message[5]
+		<< message[6]
+		<< message[7] << " | "
+		<< message[8]
+		<< message[9]
+		<< message[10]
+		<< message[11] << " "
+		<< message[12]
+		<< message[13]
+		<< message[14]
+		<< message[15] << " | "
+		<< message[16]
+		<< message[17]
+		<< message[18]
+		<< message[19] << " "
+		<< message[20]
+		<< message[21]
+		<< message[22]
+		<< message[23];
+	// test message output
+		/*
+	for (int i = 0; i = i + 1; i < 24)
+	{
+		cout << "|";
+		cout << message[i];
+	}*/
+	cout << endl;
 }
