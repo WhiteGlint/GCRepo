@@ -21,18 +21,16 @@ void delay();
 void i2c_init();
 int i2cBuffer = 1;
 
-int main(int argc, char** argv) {
 
+int main(int argc, char** argv) {
+    TRISD = 0;
     i2c_init();
-    
-    TRISD = 0b00000000;
-    TRISC = 0b11111111;
-   // for (int i = 0; i < 256; i++){
+    PORTD = 0;
     loop:
         PORTD = i2cBuffer;
-        delay();
+    delay();
     goto loop;
-    //}
+
 
     return (EXIT_SUCCESS);
 }
@@ -47,15 +45,24 @@ void delay(){
 }
 
 void i2c_init(){
-        SSPCON = 0b00111110;
-        SSPADD = 0x02;
+    TRISC6 = 1;
+    TRISC7 = 1;
+    SSPEN = 1;
+    CKE = 0;
+    SMP = 0;
+    CKP = 1;
 
-        SSPSTAT = 0b00000000;
-        PIE1 = 0b00001000;
-        PEIE = 1;
-        GIE = 1;
-        INTE = 1;
+    SSPM0 = 0;
+    SSPM1 = 1;
+    SSPM2 = 1;
+    SSPM3 = 0;
 
+    SSPIE =1;
+
+    SSPADD = 0b10100100;
+    PEIE = 1;
+    GIE = 1;
+    INTE = 1;
 }
 
 
@@ -89,78 +96,13 @@ SSP_Handler
  
 
     char ssptemp = SSPSTAT & 0b00101101;
-   /*
-    switch(ssptemp){
-        case 0b00001001:
-            // State 1, master write addr
-            SSPBUF = 0; // clear buffer without a care in the world.
-            break;
-        case 0b00101001:
-            // State 2, master write data byte
-            i2cBuffer = SSPBUF;
-            break;
-        case 0b00001100:
-            // State 3, master read addr
-            SSPBUF = 131; // HARDCODED TEST VALUE TO RETURN TO MASTER
-            break;
-        case 0b00001101:
-            // Also State 3
-            SSPBUF = 131; // HARDCODED TEST VALUE TO RETURN TO MASTER
-            break;
-        case 0b00101100:
-            // State 4, master read data
-            SSPBUF = 141; // HARDCODED TEST VALUE TO RETURN TO MASTER
-        case (0b00101000):
 
-            if (CKP == 1){
-            // State 5, master send NACK
-            }
-            break;
-        case (0b00101100):
+    if (SSPSTAT & 0b00100000 == 0b00100000) // D_A bit high, data in buffer
+        i2cBuffer = SSPBUF;
+    else // D_A bit clear, addr in buffer
+        SSPBUF = 0;
 
-            if (CKP == 1){
-            // Also State 5, master send NACK
-            }
-            break;
-        
-        default:
-            // ERROR STATE
-            while(1==1){
-            PORTD = SSPBUF;
-
-            }
-            break;
-    }
-*/
-  if (ssptemp == 0b00001001){ // State 1
-    // State 1, master write addr
-      i2cBuffer = SSPBUF;
-   // SSPBUF = 0; // clear buffer without a care in the world.
-  }
-  else if (ssptemp == 0b00101001){
-    // State 2, master write data byte
-    i2cBuffer = SSPBUF;
-  }
-  else if (ssptemp == 0b00001100){
-    // State 3, master read addr
-    SSPBUF = 131; // HARDCODED TEST VALUE TO RETURN TO MASTER
-  }
-  else if (ssptemp == 0b00101100){
-    // State 4, master read data
-    SSPBUF = 141; // HARDCODED TEST VALUE TO RETURN TO MASTER
-  }
-  else if (ssptemp == 0b00101000){
-    if (CKP == 1){
-        // State 5, master send NACK
-    }
-  }
-  else{
-   //ERROR CASE
-      NOP();
-
-  }
-
-  //SSPSTAT = 0;
+   SSPIF = 0;
 }
 
 
