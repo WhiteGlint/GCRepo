@@ -5,29 +5,42 @@
 
 using namespace std;
 
+
+void wait_ms(long);
+
 int main(){
 
 roboio_SetRBVer(RB_100RD);
 
-unsigned char buf[3] = {0x03, 0x04, 0x05};
+unsigned char buf[3];
+int test = 8;
 
-if (i2c_Init(I2CMODE_STANDARD,1000) == false){
+
+buf[0] =0x04 ;
+buf[1] = 0x05;
+buf[2] = 0x06;
+
+if (i2c_Init(I2CMODE_STANDARD,100000) == false){
 	cout << "Error: " << roboio_GetErrMsg();
 }
-	cout << endl<< "BUFFER: " << buf[1] << endl;
+		for (int i = 0; i < 100; i++){
 
-	i2c_Send(0x02, buf, 3);
-//	i2c_Receive(0x02, buf, 1);
-	sleep(1);
-	cout << endl<< "BUFFER: " << buf[0] << endl;
-//	i2c_Receive(0x11, buf, 3);
+		i2c_Send(0x52, buf,1);
+		buf[0]++;
+		wait_ms(2000);
+}
+		i2c_Close();
 
-	i2c_Close();
-
-
-
-
-
-//rcservo_Close();
 return 0;
+}
+
+
+
+void wait_ms(long t) {
+    // This's a function for t-millisecond delay; implement this according to your platform!
+    // The following is just a stupid (but simple) cross-platform implementation for the purpose of sample codes.
+
+    volatile long i, j;
+    for (i=0L; i<t; i++)
+    for (j=0L; j<66666L; j++);
 }
