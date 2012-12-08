@@ -1,5 +1,6 @@
 // header for motor control library
-
+#ifndef CONTROL_LIB
+#define CONTROL_LIB
 class control_lib
 {
 private:
@@ -70,3 +71,5 @@ public:
 	void emergency_stop();
 
 };
+
+#endif
