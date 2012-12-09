@@ -11,6 +11,9 @@
 #include <htc.h>  // htc.h necessary for PIC16F917 Configuration Bit Settings
 __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_OFF & IESO_ON & FCMEN_OFF);
 
+//User-defined libraries
+#include <pwmlib.h>  //allows for use of PWM commands
+
 /**********/
 
 

@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>pwmlib.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -15,6 +16,7 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>PWMmain.c</itemPath>
+    <itemPath>pwmlib.c</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
