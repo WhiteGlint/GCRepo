@@ -1,7 +1,9 @@
+
 // object for motor control library
 #include <iostream>
 #include <Windows.h>
 #include "control_lib.h"
+#include "roboard.h"
 using namespace std;
 
 // constructor
@@ -332,39 +334,28 @@ void control_lib::create_type(int type)
 {
 	// since this only uses on type of message
 	// i need to know what literal to put in here
-	message[0] = 0 + 48;
-	message[1] = 0 + 48;
-	message[2] = 0 + 48;
-	message[3] = 0 + 48;
-	message[4] = 0 + 48;
-	message[5] = 0 + 48;
-	message[6] = 0 + 48;
-	message[7] = 0 + 48;
+	message[0] = 0;
 }
 
 void control_lib::create_data(int direction, int speed)
 {
-	for (int i = 16; i--; i >= 8)
-	{
-		if (i < 8) break;
-		if (speed % 2 == 1)
-			message[i] = 1 + 48;
-		else
-			message[i] = 0 + 48;
-
-		speed = speed / 2;
-	}
-	message[8] = direction + 48;
+	if (direction == 1)
+		message[1] = speed + 128;
+	else
+		message[1] = speed;
 }
 
 void control_lib::push_i2c()
 {
+	i2c_Send(message_address, message, 2);
+	/*
 	// actual message when we get it working
 	// i2c_Send(addr(char), buf(char[]), size(int);
-	// i2c_Send(message_address, message, 16);
-	cout << hex << (int) message_address << " | ";
-	cout << message[0]
-		<< message[1]
+	// i2c_Send(message_address, message, 2);
+	//cout << (int) message_address << " | "
+	//	<< (int) message[0] << " | "
+	//	<< (int) message[1];
+	
 		<< message[2]
 		<< message[3] << " "
 		<< message[4]
@@ -381,4 +372,5 @@ void control_lib::push_i2c()
 		<< message[15];
 	
 	cout << endl;
+	*/
 }

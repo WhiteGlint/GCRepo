@@ -1,5 +1,6 @@
 // header for motor control library
-
+#ifndef CONTROL_LIB
+#define CONTROL_LIB
 class control_lib
 {
 private:
@@ -14,8 +15,8 @@ private:
 		motor4_direction;
 	int movement_direction, // overal direction of movement
 		travel_speed; // directionless, 0-10
-	char message[16]; // will hold the literal I^2C message
-	char message_address; // will hold the I^2C address
+	unsigned char message[2]; // will hold the literal I^2C message
+	unsigned char message_address; // will hold the I^2C address
 
 	// top level inside jobs
 	void set_speed(int, int, int);
@@ -70,3 +71,5 @@ public:
 	void emergency_stop();
 
 };
+
+#endif
