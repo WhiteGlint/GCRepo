@@ -1877,6 +1877,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _EECON1bits `VS193  1 e@396 ]
 "2475 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [v _EECON2 `Vuc  1 e@397 ]
+[; ;pwmlib.h: 18: void BeginPWM();
+[; ;pwmlib.h: 21: void SetPR2(int length);
+[; ;pwmlib.h: 25: void SetPulse(int length);
+[; ;pwmlib.h: 28: void StopPWM();
 [; ;pic16f917.h: 95: volatile unsigned char INDF @ 0x000;
 [; ;pic16f917.h: 99: volatile unsigned char TMR0 @ 0x001;
 [; ;pic16f917.h: 103: volatile unsigned char PCL @ 0x002;
@@ -3753,11 +3757,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f917.h: 2471: } EECON1bits @ 0x18C;
 [; ;pic16f917.h: 2475: volatile unsigned char EECON2 @ 0x18D;
 "41 pwmlib.c
-[v _beginPWM `(v  1 ef ]
+[v _BeginPWM `(v  1 ef ]
 {
-[; ;pwmlib.c: 40: void beginPWM()
+[; ;pwmlib.c: 40: void BeginPWM()
 [; ;pwmlib.c: 41: {
-[e :U _beginPWM ]
+[e :U _BeginPWM ]
 [f ]
 [; ;pwmlib.c: 44: TRISCbits.TRISC5 = 1;
 "44

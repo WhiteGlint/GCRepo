@@ -1,6 +1,19 @@
 
 # 1 "pwmlib.c"
 
+# 18 "pwmlib.h"
+void BeginPWM();
+
+
+void SetPR2(int length);
+
+
+
+void SetPulse(int length);
+
+
+void StopPWM();
+
 # 95 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h"
 volatile unsigned char INDF @ 0x000;
 
@@ -2262,7 +2275,7 @@ unsigned EEWR : 1;
 volatile unsigned char EECON2 @ 0x18D;
 
 # 40 "pwmlib.c"
-void beginPWM()
+void BeginPWM()
 {
 
 

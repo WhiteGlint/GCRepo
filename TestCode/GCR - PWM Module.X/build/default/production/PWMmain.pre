@@ -2423,10 +2423,34 @@ void StopPWM();
 
 # 18 "PWMmain.c"
 void Initialise();
+void CalcPulse(int speed);
+
+
+
+void delay(int length);
 
 
 void main()
 {
+unsigned char dc;
+Initialise();
+
+
+while(1)
+{
+
+# 39
+for(dc = 0 ; dc < 10 ; dc++)
+{
+CalcPulse(dc);
+delay(200) ;
+}
+for(dc = 10; dc > 0 ; dc--)
+{
+CalcPulse(dc);
+delay(200) ;
+}
+}
 
 
 
@@ -2434,7 +2458,28 @@ void main()
 }
 
 
+
+void delay(int length)
+{
+for (int x=0; x < length; x++)
+{
+x++;
+x--;
+}
+}
+
+
+
 void Initialise()
 {
 BeginPWM();
+}
+
+
+
+
+void CalcPulse(int speed)
+{
+int pulse = speed/10*255;
+SetPulse(pulse);
 }

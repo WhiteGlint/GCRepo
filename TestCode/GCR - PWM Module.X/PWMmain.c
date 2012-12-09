@@ -16,10 +16,37 @@ __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BO
 
 /**********/
 void Initialise();
+void CalcPulse(int speed);
+
+
+//Test Functions
+void delay(int length);
 
 
 void main()
 {
+    unsigned char dc;
+    Initialise();
+
+
+    while(1)                         // forever
+    {
+        /*
+         * PWM resolution is 10 bits
+         * don't use last 2 less significant bits CCPxCON,
+         * so only CCPRxL have to be touched to change duty cycle
+         */
+        for(dc = 0 ; dc < 10 ; dc++)
+        {
+            CalcPulse(dc);
+            delay(200) ;
+        }
+        for(dc = 10; dc > 0 ; dc--)
+        {
+            CalcPulse(dc);
+            delay(200) ;
+        }
+    }
 
 
 
@@ -27,7 +54,28 @@ void main()
 }
 
 
+
+void delay(int length)
+{
+    for (int x=0; x < length; x++)
+    {
+        x++;
+        x--;
+    }
+}
+
+
+//Any PIC initialization that is necessary goes here
 void Initialise()
 {
     BeginPWM();
+}
+
+
+//Function that converts 0-10 to PWM percentage in increments of 10%
+//  and then sets that PWM signal
+void CalcPulse(int speed)
+{
+    int pulse = speed/10*255;
+    SetPulse(pulse);
 }

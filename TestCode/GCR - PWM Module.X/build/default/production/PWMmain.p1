@@ -1878,8 +1878,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 "2475 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [v _EECON2 `Vuc  1 e@397 ]
 [p mainexit ]
+"18 PWMmain.c
+[v _Initialise `(v  0 ef ]
+"19 PWMmain.c
+[v _CalcPulse `(v  0 ef1`i ]
+"23 PWMmain.c
+[v _delay `(v  0 ef1`i ]
 "18 pwmlib.h
 [v _BeginPWM `(v  0 ef ]
+"25 pwmlib.h
+[v _SetPulse `(v  0 ef1`i ]
 [; ;stdio.h: 12: typedef int ptrdiff_t;
 [; ;stdio.h: 13: typedef unsigned size_t;
 [; ;stdio.h: 14: typedef unsigned short wchar_t;
@@ -3854,28 +3862,156 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pwmlib.h: 25: void SetPulse(int length);
 [; ;pwmlib.h: 28: void StopPWM();
 [; ;PWMmain.c: 18: void Initialise();
-"22
+[; ;PWMmain.c: 19: void CalcPulse(int speed);
+[; ;PWMmain.c: 23: void delay(int length);
+"27
 [v _main `(v  1 ef ]
 {
-[; ;PWMmain.c: 21: void main()
-[; ;PWMmain.c: 22: {
+[; ;PWMmain.c: 26: void main()
+[; ;PWMmain.c: 27: {
 [e :U _main ]
 [f ]
-[; ;PWMmain.c: 27: }
-"27
+"28
+[v _dc `uc  1 a ]
+[; ;PWMmain.c: 28: unsigned char dc;
+[; ;PWMmain.c: 29: Initialise();
+"29
+[e ( _Initialise ..  ]
+[; ;PWMmain.c: 32: while(1)
+"32
+[e :U 203 ]
+[; ;PWMmain.c: 33: {
+"33
+{
+[; ;PWMmain.c: 39: for(dc = 0 ; dc < 10 ; dc++)
+"39
+{
+[e = _dc -> -> 0 `i `uc ]
+[e $ < -> _dc `i -> 10 `i 205  ]
+[e $U 206  ]
+"40
+[e :U 205 ]
+[; ;PWMmain.c: 40: {
+{
+[; ;PWMmain.c: 41: CalcPulse(dc);
+"41
+[e ( _CalcPulse (1 -> _dc `i ]
+[; ;PWMmain.c: 42: delay(200) ;
+"42
+[e ( _delay (1 -> 200 `i ]
+"43
+}
+"39
+[e ++ _dc -> -> 1 `i `uc ]
+[e $ < -> _dc `i -> 10 `i 205  ]
+[e :U 206 ]
+"43
+}
+[; ;PWMmain.c: 43: }
+[; ;PWMmain.c: 44: for(dc = 10; dc > 0 ; dc--)
+"44
+{
+[e = _dc -> -> 10 `i `uc ]
+[e $ > -> _dc `i -> 0 `i 208  ]
+[e $U 209  ]
+"45
+[e :U 208 ]
+[; ;PWMmain.c: 45: {
+{
+[; ;PWMmain.c: 46: CalcPulse(dc);
+"46
+[e ( _CalcPulse (1 -> _dc `i ]
+[; ;PWMmain.c: 47: delay(200) ;
+"47
+[e ( _delay (1 -> 200 `i ]
+"48
+}
+"44
+[e -- _dc -> -> 1 `i `uc ]
+[e $ > -> _dc `i -> 0 `i 208  ]
+[e :U 209 ]
+"48
+}
+"49
+}
+[e :U 202 ]
+"32
+[e $U 203  ]
+[e :U 204 ]
+[; ;PWMmain.c: 48: }
+[; ;PWMmain.c: 49: }
+[; ;PWMmain.c: 54: }
+"54
 [e :UE 201 ]
 }
-"31
+"59
+[v _delay `(v  1 ef1`i ]
+{
+[; ;PWMmain.c: 58: void delay(int length)
+[; ;PWMmain.c: 59: {
+[e :U _delay ]
+[v _length `i  1 r1 ]
+[f ]
+[; ;PWMmain.c: 60: for (int x=0; x < length; x++)
+"60
+{
+[v _x `i  1 a ]
+[e = _x -> 0 `i ]
+[e $U 215  ]
+"61
+[e :U 212 ]
+[; ;PWMmain.c: 61: {
+{
+[; ;PWMmain.c: 62: x++;
+"62
+[e ++ _x -> 1 `i ]
+[; ;PWMmain.c: 63: x--;
+"63
+[e -- _x -> 1 `i ]
+"64
+}
+"60
+[e ++ _x -> 1 `i ]
+[e :U 215 ]
+[e $ < _x _length 212  ]
+[e :U 213 ]
+"64
+}
+[; ;PWMmain.c: 64: }
+[; ;PWMmain.c: 65: }
+"65
+[e :UE 211 ]
+}
+"70
 [v _Initialise `(v  1 ef ]
 {
-[; ;PWMmain.c: 30: void Initialise()
-[; ;PWMmain.c: 31: {
+[; ;PWMmain.c: 69: void Initialise()
+[; ;PWMmain.c: 70: {
 [e :U _Initialise ]
 [f ]
-[; ;PWMmain.c: 32: BeginPWM();
-"32
+[; ;PWMmain.c: 71: BeginPWM();
+"71
 [e ( _BeginPWM ..  ]
-[; ;PWMmain.c: 33: }
-"33
-[e :UE 202 ]
+[; ;PWMmain.c: 72: }
+"72
+[e :UE 216 ]
+}
+"78
+[v _CalcPulse `(v  1 ef1`i ]
+{
+[; ;PWMmain.c: 77: void CalcPulse(int speed)
+[; ;PWMmain.c: 78: {
+[e :U _CalcPulse ]
+[v _speed `i  1 r1 ]
+[f ]
+"79
+[v _pulse `i  1 a ]
+[; ;PWMmain.c: 79: int pulse = speed/10*255;
+[e = _pulse * / _speed -> 10 `i -> 255 `i ]
+[; ;PWMmain.c: 80: SetPulse(pulse);
+"80
+[e ( _SetPulse (1 _pulse ]
+[; ;PWMmain.c: 81: }
+"81
+[e :UE 217 ]
 }
