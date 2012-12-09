@@ -82,3 +82,41 @@ void BeginPWM()
         }
     }
 }
+
+
+//Function that sets the PWM period by loading PR2 with value
+void SetPR2(int length)
+{
+    int temp = length;  //set intermediate variable to length value
+    if (temp > 255)     //error test length
+        temp = 255;     //if greater than 255 (1 byte's worth), set to 255
+    PR2 = temp;         //load PR2 with new length value
+}
+
+
+//Function that sets PWM duty cycle by loading value into
+//CCPR1L and CCP1 bits (of CCP1CON register); 10-bit resolution
+//  NOTE:  for our purposes, we will only be using the 8 MSBs of the
+//   CCPR1L register and will always leave the 2 LSBs clear.
+//   If this does not give us the resolution we need, we will have to
+//   add a function that takes "length" and parses the 2 LSBs off in
+//   order to set them.  In other words, it would be harder to implement.
+void SetPulse(int length)
+{
+    int temp = length;  //set intermediate variable to length value
+    if (temp > 255)     //error test length
+        temp = 255;     //if greater than 255 (1 byte's worth), set to 255
+    CCPR1L = temp;      //load CCPR1L with new length value
+
+    //NOTE:  if CCPR1L > PR2 (duty cycle greater than period), it is the
+    //  same as the duty cycle being 100%
+}
+
+
+
+//Function that stops PWM by turning off Timer2
+void StopPWM()
+{
+    //Disable TMR2
+    T2CONbits.TMR2ON = 0;
+}
