@@ -15,7 +15,7 @@ Linker command line:
   -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 -AIDLOC=02000h-02003h \
   -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA \
   -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\Alan\AppData\Local\Temp\s1kk.obj \
+  C:\Users\Alan\AppData\Local\Temp\s4ek.obj \
   dist/default/production\GCR_-_PWM_Module.X.production.obj 
 
 Object code version is 3.10
@@ -25,7 +25,7 @@ Machine type is 16F917
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Alan\AppData\Local\Temp\s1kk.obj
+C:\Users\Alan\AppData\Local\Temp\s4ek.obj
                 end_init                              0        0        3        0       0
 dist/default/production\GCR_-_PWM_Module.X.production.obj
                 config                             2007     2007        1     400E       0
@@ -120,12 +120,22 @@ UNUSED ADDRESS RANGES
 ??_main               cstackCOMMON 0000
 ?_main                cstackCOMMON 0000
 _CARRY                (abs)        0018
+_CCP1CON              (abs)        0017
+_CCP1CONbits          (abs)        0017
+_CCPR1L               (abs)        0015
 _EEADR                (abs)        010D
 _EECON1               (abs)        018C
 _EECON2               (abs)        018D
 _EEDATA               (abs)        010C
 _GIE                  (abs)        005F
+_PIE1bits             (abs)        008C
+_PIR1bits             (abs)        000C
+_PR2                  (abs)        0092
 _RD                   (abs)        0C60
+_T2CON                (abs)        0012
+_T2CONbits            (abs)        0012
+_TMR2IF               (abs)        0061
+_TRISCbits            (abs)        0087
 _WR                   (abs)        0C61
 _WREN                 (abs)        0C62
 __Habs1               abs1         0000

@@ -12,10 +12,10 @@
 __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_OFF & IESO_ON & FCMEN_OFF);
 
 //User-defined libraries
-#include <pwmlib.h>  //allows for use of PWM commands
+#include "pwmlib.h"  //allows for use of PWM (use double quotes for user defined)
 
 /**********/
-
+void Initialise();
 
 
 void main()
@@ -24,4 +24,10 @@ void main()
 
 
 
+}
+
+
+void Initialise()
+{
+    BeginPWM();
 }
