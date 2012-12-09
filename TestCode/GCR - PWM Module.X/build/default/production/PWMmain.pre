@@ -2407,12 +2407,3 @@ extern void _delay(unsigned long);
 
 # 12 "PWMmain.c"
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
-
-# 18
-void main()
-{
-
-
-
-
-}
