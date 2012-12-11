@@ -20,17 +20,13 @@ buf[0] =0x04 ;
 buf[1] = 0x05;
 buf[2] = 0x06;
 
-if (i2c_Init(I2CMODE_STANDARD,100000) == false){
+
+if (i2c_Init(I2CMODE_AUTO,10000) == false){
 	cout << "Error: " << roboio_GetErrMsg();
 }
-		for (int i = 0; i < 100; i++){
 
-		i2c_Send(0x52, buf,1);
-		buf[0]++;
-		wait_ms(2000);
-}
-		i2c_Close();
-
+	i2c_Send(0x52, buf, 3);
+	i2c_Close();
 return 0;
 }
 
