@@ -347,7 +347,9 @@ void control_lib::create_data(int direction, int speed)
 
 void control_lib::push_i2c()
 {
-	i2c_Send(message_address, message, 2);
+	i2c_Init(I2CMODE_AUTO,10000);
+	i2c_Send(message_address >> 1, message, 2);
+	i2c_Close();
 	/*
 	// actual message when we get it working
 	// i2c_Send(addr(char), buf(char[]), size(int);
