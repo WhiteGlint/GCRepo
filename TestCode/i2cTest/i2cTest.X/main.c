@@ -55,11 +55,11 @@ void i2c_init(){
     SSPM0 = 0;
     SSPM1 = 1;
     SSPM2 = 1;
-    SSPM3 = 1;
+    SSPM3 = 0;
 
     SSPIE =1;
 
-    SSPADD = 0b10100100;
+    SSPADD = 0b00000010;
     PEIE = 1;
     GIE = 1;
     INTE = 1;
