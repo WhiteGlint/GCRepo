@@ -59,7 +59,7 @@ void i2c_init(){
 
     SSPIE =1;
 
-    SSPADD = 0b00000010;
+    SSPADD = 0b10100100;
     PEIE = 1;
     GIE = 1;
     INTE = 1;
