@@ -4,5 +4,5 @@ motor_control_test: main.o motor_control_lib.o
 main.o : main.cpp control_lib.h
 	gcc -c main.cpp
 motor_control_lib.o : control_lib.cpp control_lib.h
- 	gcc -c RB_i2cTest.cpp -I /home/gcr/GCRepo/roboio/Include
+ 	gcc -c control_lib.cpp -I /home/gcr/GCRepo/roboio/Include
 
