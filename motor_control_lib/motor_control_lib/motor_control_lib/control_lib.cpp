@@ -1,14 +1,16 @@
 
 // object for motor control library
 #include <iostream>
-#include <Windows.h>
+//#include <Windows.h>
+#include <unistd.h>
 #include "control_lib.h"
-#include "roboard.h"
+#include </home/gcr/GCRepo/roboio/Include/roboard.h>
 using namespace std;
 
 // constructor
 control_lib::control_lib()
 {
+	roboio_SetRBVer(RB_100RD);
 	motor1_speed = 0;
 	motor2_speed = 0;
 	motor3_speed = 0;
@@ -36,20 +38,23 @@ void control_lib::run_test()
 	message[9] = 'e';
 	message[10] = 'd';
 	give_output();
-	system("pause");
+//	system("pause");
+	cin.get();
 	move_forward(5);
 	give_output();
 	move_forward(2);
 	give_output();
 	stop();
 	give_output();
-	system("pause");
+//	system("pause");
+	cin.get();
 	rotate_clockwise(8);
 	give_output();
 	rotate_counterclockwise(5);
 	give_output();
 	cout << "\n***THE END***\n";
-	system("pause");	
+//	system("pause");	
+	cin.get();
 }
 
 void control_lib::give_output()
@@ -259,7 +264,8 @@ void control_lib::speed_up()
 void control_lib::wait()
 {
 	// wait for 50 ms
-	Sleep(wait_time);
+//	Sleep(wait_time);
+	usleep(1000*wait_time);
 }
 
 // I^2C messaging
@@ -347,8 +353,9 @@ void control_lib::create_data(int direction, int speed)
 
 void control_lib::push_i2c()
 {
-	i2c_Init(I2CMODE_AUTO,10000);
-	i2c_Send(message_address >> 1, message, 2);
+	if (i2c_Init(I2CMODE_AUTO,10000) == false) cout << "ERROR!!: " << roboio_GetErrMsg();
+	
+	i2c_Send(message_address, message, 2);
 	i2c_Close();
 	/*
 	// actual message when we get it working
