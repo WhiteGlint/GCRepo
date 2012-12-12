@@ -25,7 +25,7 @@ if (i2c_Init(I2CMODE_AUTO,10000) == false){
 	cout << "Error: " << roboio_GetErrMsg();
 }
 
-	if (i2c_Send(0x2<<1, buf, 3) == false) cout << roboio_GetErrMsg();
+	if (i2c_Send(0x52, buf, 3) == false) cout << roboio_GetErrMsg();
 	i2c_Close();
 return 0;
 }

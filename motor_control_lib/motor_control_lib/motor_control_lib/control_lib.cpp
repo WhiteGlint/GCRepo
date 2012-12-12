@@ -11,7 +11,6 @@ using namespace std;
 control_lib::control_lib()
 {
 	roboio_SetRBVer(RB_100RD);
-	cout << "CONSTRUCTOR\n";
 	motor1_speed = 0;
 	motor2_speed = 0;
 	motor3_speed = 0;
@@ -272,11 +271,13 @@ void control_lib::wait()
 // I^2C messaging
 void control_lib::send_message()
 {
+	i2c_Init(I2CMODE_AUTO, 100000);
 	cout << "\nmessage sent\n";
 	send_motor1();
 	send_motor2();
 	send_motor3();
 	send_motor4();
+	i2c_Close();
 }
 
 void control_lib::send_motor1()
@@ -313,7 +314,7 @@ void control_lib::create_message1()
 
 void control_lib::create_message2()
 {
-	create_address(2);
+	create_address(0x52);
 	create_type(0);
 	create_data(motor2_direction, motor2_speed);
 }
@@ -355,13 +356,9 @@ void control_lib::create_data(int direction, int speed)
 void control_lib::push_i2c()
 {
 
-	if (i2c_Init(I2CMODE_AUTO,10000) == false) cout << "ERROR!!: " << roboio_GetErrMsg();
-	unsigned char test[2];
-	test[0] = 0x05;
-	test[1] = 0x06;
-	if (i2c_Send(0x2 << 1, test, 2) == false) cout << roboio_GetErrMsg();
-//	i2c_Send(message_address << 1, message, 2);
-	i2c_Close();
+//	if (i2c_Init(I2CMODE_AUTO,100000) == false) cout << "ERROR!!: " << roboio_GetErrMsg();
+	i2c_Send(message_address, message, 2);
+//	i2c_Close();
 	/*
 	// actual message when we get it working
 	// i2c_Send(addr(char), buf(char[]), size(int);
