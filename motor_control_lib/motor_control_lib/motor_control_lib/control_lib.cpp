@@ -11,7 +11,7 @@ using namespace std;
 control_lib::control_lib()
 {
 	roboio_SetRBVer(RB_100RD);
-	if (i2c_Init(I2CMODE_AUTO,10000) == false) cout << "ERROR!!: " << roboio_GetErrMsg();
+	cout << "CONSTRUCTOR\n";
 	motor1_speed = 0;
 	motor2_speed = 0;
 	motor3_speed = 0;
@@ -354,8 +354,13 @@ void control_lib::create_data(int direction, int speed)
 
 void control_lib::push_i2c()
 {
-	
-	i2c_Send(message_address << 1, message, 2);
+
+	if (i2c_Init(I2CMODE_AUTO,10000) == false) cout << "ERROR!!: " << roboio_GetErrMsg();
+	unsigned char test[2];
+	test[0] = 0x05;
+	test[1] = 0x06;
+	if (i2c_Send(0x2 << 1, test, 2) == false) cout << roboio_GetErrMsg();
+//	i2c_Send(message_address << 1, message, 2);
 	i2c_Close();
 	/*
 	// actual message when we get it working
