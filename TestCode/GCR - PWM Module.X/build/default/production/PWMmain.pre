@@ -2426,8 +2426,12 @@ void Initialise();
 void CalcPulse(int speed);
 
 
-
 void delay(int length);
+void i2c_init();
+void interrupt isr();
+int i2cBuffer[10];
+int val = 0;
+int setSpeed = 0;
 
 
 void main()
@@ -2435,24 +2439,11 @@ void main()
 unsigned char dc;
 Initialise();
 
+# 54
+while (1)
+CalcPulse(setSpeed);
 
-while(1)
-{
 
-# 39
-for(dc = 8 ; dc <= 10 ; dc++)
-{
-CalcPulse(dc);
-delay(2000) ;
-}
-for(dc = 10; dc >= 8 ; dc--)
-{
-CalcPulse(dc);
-delay(2000) ;
-}
-}
-
-# 56
 }
 
 
@@ -2471,6 +2462,8 @@ x--;
 void Initialise()
 {
 BeginPWM();
+i2c_init();
+
 }
 
 
@@ -2478,6 +2471,56 @@ BeginPWM();
 
 void CalcPulse(int speed)
 {
-int pulse = speed/10*255;
+int pulse = speed*255/10;
 SetPulse(pulse);
+}
+
+
+
+
+void i2c_init(){
+TRISC6 = 1;
+TRISC7 = 1;
+SSPEN = 1;
+CKE = 0;
+SMP = 0;
+CKP = 1;
+
+SSPM0 = 0;
+SSPM1 = 1;
+SSPM2 = 1;
+SSPM3 = 0;
+
+SSPIE =1;
+
+SSPADD = 0b10100100;
+PEIE = 1;
+GIE = 1;
+INTE = 1;
+i2cBuffer[1] = 0;
+}
+
+# 118
+void interrupt isr(){
+
+# 143
+if (val == 2)
+val = 0;
+
+if ((SSPSTAT & 0b00100000) == 0b00100000){
+
+
+
+i2cBuffer[val] = SSPBUF;
+val++;
+setSpeed = i2cBuffer[1];
+}
+else{
+SSPBUF = 0;
+}
+
+
+SSPIF = 0;
+
+
 }

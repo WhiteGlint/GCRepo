@@ -18,9 +18,13 @@ __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BO
 void Initialise();
 void CalcPulse(int speed);
 
-
 //Test Functions
 void delay(int length);
+void i2c_init();            //for testing I2C
+void interrupt isr();       //for testing I2C interrupts
+int i2cBuffer[10];          //buffer for holding incoming data
+int val = 0;                //refers to i2cBuffer index
+int setSpeed = 0;              //register holding the currently desired speed
 
 
 void main()
@@ -28,14 +32,13 @@ void main()
     unsigned char dc;
     Initialise();
 
-
-    while(1)                         // forever
+/*    while(1)                         // forever
     {
         /*
          * PWM resolution is 10 bits
          * don't use last 2 less significant bits CCPxCON,
          * so only CCPRxL have to be touched to change duty cycle
-         */
+         /
         for(dc = 8 ; dc <= 10 ; dc++)
         {
             CalcPulse(dc);
@@ -48,9 +51,8 @@ void main()
         }
     }//*/
 
- //   while(1)
-   //     CalcPulse(10);
-
+    while (1)
+        CalcPulse(setSpeed);
 
 
 }
@@ -71,6 +73,8 @@ void delay(int length)
 void Initialise()
 {
     BeginPWM();
+    i2c_init();
+
 }
 
 
@@ -78,6 +82,81 @@ void Initialise()
 //  and then sets that PWM signal
 void CalcPulse(int speed)
 {
-    int pulse = speed/10*255;
+    int pulse = speed*255/10;
     SetPulse(pulse);
+}
+
+
+//Configures SSP registers for I2C operation
+// written by Josh G.
+void i2c_init(){
+    TRISC6 = 1;
+    TRISC7 = 1;
+    SSPEN = 1;
+    CKE = 0;
+    SMP = 0;
+    CKP = 1;
+
+    SSPM0 = 0;
+    SSPM1 = 1;
+    SSPM2 = 1;
+    SSPM3 = 0;
+
+    SSPIE =1;
+
+    SSPADD = 0b10100100;
+    PEIE = 1;
+    GIE = 1;
+    INTE = 1;
+    i2cBuffer[1] = 0;
+}
+
+
+
+//Interrupt Service Routine
+//  Currently configured to handle only I2C operations
+void interrupt isr(){
+
+/*
+;---------------------------------------------------------------------
+SSP_Handler
+;---------------------------------------------------------------------
+; The I2C code below checks for 5 states:
+;---------------------------------------------------------------------
+; State 1: I2C write operation, last byte was an address byte.
+; SSPSTAT bits: S = 1, D_A = 0, R_W = 0, BF = 1
+;
+; State 2: I2C write operation, last byte was a data byte.
+; SSPSTAT bits: S = 1, D_A = 1, R_W = 0, BF = 1
+;
+; State 3: I2C read operation, last byte was an address byte.
+; SSPSTAT bits: S = 1, D_A = 0, R_W = 1 (see Appendix C for more information)
+;
+; State 4: I2C read operation, last byte was a data byte.
+; SSPSTAT bits: S = 1, D_A = 1, R_W = 1, BF = 0
+;
+; State 5: Slave I2C logic reset by NACK from master.
+; SSPSTAT bits: S = 1, D_A = 1, BF = 0, CKP = 1 (see Appendix C for more information)
+;
+;----------------------------------------------------------------------
+*/
+    if (val == 2)
+       val = 0;
+
+    if ((SSPSTAT & 0b00100000) == 0b00100000){ // D_A bit high, data in buffer
+        //if (SSPBUF == SSPADD)
+        //    SSPBUF =0;
+        // else
+            i2cBuffer[val] = SSPBUF;
+            val++;
+            setSpeed = i2cBuffer[1];
+    }
+    else{ // D_A bit clear, addr in buffer
+        SSPBUF = 0;
+    }
+
+
+   SSPIF = 0;
+   //val++;
+   //PORTD = i2cBuffer[val];
 }
