@@ -1,7 +1,7 @@
 
 
 HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
-                                                                                               Sun Dec 09 18:13:31 2012
+                                                                                               Sun Dec 09 18:39:47 2012
 
 HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
      1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
@@ -98,20 +98,20 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
     92  0C61                     _WR	set	3169
     93                           	global	_WREN
     94  0C62                     _WREN	set	3170
-    95                           	file	"C:\Users\Alan\AppData\Local\Temp\srs."
+    95                           	file	"C:\Users\Alan\AppData\Local\Temp\s5fk."
     96                           	line	#
     97                           psect cinit,class=CODE,delta=2
     98                           global start_initialization
-    99  065B                     start_initialization:
+    99  0658                     start_initialization:
    100                           
    101                           psect cinit,class=CODE,delta=2
    102                           global end_of_initialization
    103                           
    104                           ;End of C runtime variable initialization code
    105                           
-   106  065B                     end_of_initialization:
-   107  065B  0183               clrf status
-   108  065C  120A  118A  2F28   ljmp _main	;jump to C main() function
+   106  0658                     end_of_initialization:
+   107  0658  0183               clrf status
+   108  0659  120A  118A  2F25   ljmp _main	;jump to C main() function
    109                           psect	cstackCOMMON,class=COMMON,space=1
    110                           global __pcstackCOMMON
    111  0070                     __pcstackCOMMON:
@@ -323,7 +323,7 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
    317                           	global	_main
    318                           psect	maintext,global,class=CODE,delta=2
    319                           global __pmaintext
-   320  0728                     __pmaintext:
+   320  0725                     __pmaintext:
    321                           
    322 ;; *************** function _main *****************
    323 ;; Defined at:
@@ -359,1187 +359,1187 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
    353                           	file	"PWMmain.c"
    354                           	line	27
    355                           	global	__size_of_main
-   356  0064                     	__size_of_main	equ	__end_of_main-_main
+   356  0067                     	__size_of_main	equ	__end_of_main-_main
    357                           	
-   358  0728                     _main:	
+   358  0725                     _main:	
    359                           	opt	stack 6
    360                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
    361                           	line	29
    362                           	
-   363  0728                     l5881:	
+   363  0725                     l5879:	
    364                           ;PWMmain.c: 28: unsigned char dc;
    365                           ;PWMmain.c: 29: Initialise();
-   366  0728  120A  118A  265F   	fcall	_Initialise
+   366  0725  120A  118A  265C   	fcall	_Initialise
               120A  118A         
-   367  072D  2F2E               	goto	l5883
+   367  072A  2F2B               	goto	l5881
    368                           	line	32
    369                           ;PWMmain.c: 32: while(1)
    370                           	
-   371  072E                     l1501:	
+   371  072B                     l1501:	
    372                           	line	39
    373                           	
-   374  072E                     l5883:	
+   374  072B                     l5881:	
    375                           ;PWMmain.c: 33: {
-   376                           ;PWMmain.c: 39: for(dc = 0 ; dc < 10 ; dc++)
-   377  072E  01FD               	clrf	(main@dc)
-   378                           	
-   379  072F                     l5885:	
-   380  072F  300A               	movlw	(0Ah)
-   381  0730  027D               	subwf	(main@dc),w
-   382  0731  1C03               	skipc
-   383  0732  2F34               	goto	u2471
-   384  0733  2F35               	goto	u2470
-   385  0734                     u2471:
-   386  0734  2F37               	goto	l5889
-   387  0735                     u2470:
-   388  0735  2F5B               	goto	l5897
-   389                           	
-   390  0736                     l5887:	
-   391  0736  2F5B               	goto	l5897
-   392                           	line	40
-   393                           	
-   394  0737                     l1502:	
-   395                           	line	41
-   396                           	
-   397  0737                     l5889:	
-   398                           ;PWMmain.c: 40: {
-   399                           ;PWMmain.c: 41: CalcPulse(dc);
-   400  0737  087D               	movf	(main@dc),w
-   401  0738  1283               	bcf	status, 5	;RP0=0, select bank0
-   402  0739  1303               	bcf	status, 6	;RP1=0, select bank0
-   403  073A  00A6               	movwf	(??_main+0)+0
-   404  073B  01A7               	clrf	(??_main+0)+0+1
-   405  073C  0826               	movf	0+(??_main+0)+0,w
-   406  073D  00A2               	movwf	(?_CalcPulse)
-   407  073E  0827               	movf	1+(??_main+0)+0,w
-   408  073F  00A3               	movwf	(?_CalcPulse+1)
-   409  0740  120A  118A  26F4   	fcall	_CalcPulse
+   376                           ;PWMmain.c: 39: for(dc = 8 ; dc <= 10 ; dc++)
+   377  072B  3008               	movlw	(08h)
+   378  072C  1283               	bcf	status, 5	;RP0=0, select bank0
+   379  072D  1303               	bcf	status, 6	;RP1=0, select bank0
+   380  072E  00A6               	movwf	(??_main+0)+0
+   381  072F  0826               	movf	(??_main+0)+0,w
+   382  0730  00FD               	movwf	(main@dc)
+   383                           	
+   384  0731                     l5883:	
+   385  0731  300B               	movlw	(0Bh)
+   386  0732  027D               	subwf	(main@dc),w
+   387  0733  1C03               	skipc
+   388  0734  2F36               	goto	u2471
+   389  0735  2F37               	goto	u2470
+   390  0736                     u2471:
+   391  0736  2F39               	goto	l5887
+   392  0737                     u2470:
+   393  0737  2F5B               	goto	l5895
+   394                           	
+   395  0738                     l5885:	
+   396  0738  2F5B               	goto	l5895
+   397                           	line	40
+   398                           	
+   399  0739                     l1502:	
+   400                           	line	41
+   401                           	
+   402  0739                     l5887:	
+   403                           ;PWMmain.c: 40: {
+   404                           ;PWMmain.c: 41: CalcPulse(dc);
+   405  0739  087D               	movf	(main@dc),w
+   406  073A  00A6               	movwf	(??_main+0)+0
+   407  073B  01A7               	clrf	(??_main+0)+0+1
+   408  073C  0826               	movf	0+(??_main+0)+0,w
+   409  073D  00A2               	movwf	(?_CalcPulse)
+   410  073E  0827               	movf	1+(??_main+0)+0,w
+   411  073F  00A3               	movwf	(?_CalcPulse+1)
+   412  0740  120A  118A  26F1   	fcall	_CalcPulse
               120A  118A         
-   410                           	line	42
-   411                           	
-   412  0745                     l5891:	
-   413                           ;PWMmain.c: 42: delay(200) ;
-   414  0745  30C8               	movlw	low(0C8h)
-   415  0746  00F0               	movwf	(?_delay)
-   416  0747  3000               	movlw	high(0C8h)
-   417  0748  00F1               	movwf	((?_delay))+1
-   418  0749  120A  118A  269F   	fcall	_delay
+   413                           	line	42
+   414                           	
+   415  0745                     l5889:	
+   416                           ;PWMmain.c: 42: delay(2000) ;
+   417  0745  30D0               	movlw	low(07D0h)
+   418  0746  00F0               	movwf	(?_delay)
+   419  0747  3007               	movlw	high(07D0h)
+   420  0748  00F1               	movwf	((?_delay))+1
+   421  0749  120A  118A  269C   	fcall	_delay
               120A  118A         
-   419                           	line	39
-   420                           	
-   421  074E                     l5893:	
-   422  074E  3001               	movlw	(01h)
-   423  074F  1283               	bcf	status, 5	;RP0=0, select bank0
-   424  0750  1303               	bcf	status, 6	;RP1=0, select bank0
-   425  0751  00A6               	movwf	(??_main+0)+0
-   426  0752  0826               	movf	(??_main+0)+0,w
-   427  0753  07FD               	addwf	(main@dc),f
-   428                           	
-   429  0754                     l5895:	
-   430  0754  300A               	movlw	(0Ah)
-   431  0755  027D               	subwf	(main@dc),w
-   432  0756  1C03               	skipc
-   433  0757  2F59               	goto	u2481
-   434  0758  2F5A               	goto	u2480
-   435  0759                     u2481:
-   436  0759  2F37               	goto	l5889
-   437  075A                     u2480:
-   438  075A  2F5B               	goto	l5897
-   439                           	
-   440  075B                     l1503:	
-   441                           	line	44
+   422                           	line	39
+   423                           	
+   424  074E                     l5891:	
+   425  074E  3001               	movlw	(01h)
+   426  074F  1283               	bcf	status, 5	;RP0=0, select bank0
+   427  0750  1303               	bcf	status, 6	;RP1=0, select bank0
+   428  0751  00A6               	movwf	(??_main+0)+0
+   429  0752  0826               	movf	(??_main+0)+0,w
+   430  0753  07FD               	addwf	(main@dc),f
+   431                           	
+   432  0754                     l5893:	
+   433  0754  300B               	movlw	(0Bh)
+   434  0755  027D               	subwf	(main@dc),w
+   435  0756  1C03               	skipc
+   436  0757  2F59               	goto	u2481
+   437  0758  2F5A               	goto	u2480
+   438  0759                     u2481:
+   439  0759  2F39               	goto	l5887
+   440  075A                     u2480:
+   441  075A  2F5B               	goto	l5895
    442                           	
-   443  075B                     l5897:	
-   444                           ;PWMmain.c: 43: }
-   445                           ;PWMmain.c: 44: for(dc = 10; dc > 0 ; dc--)
-   446  075B  300A               	movlw	(0Ah)
-   447  075C  1283               	bcf	status, 5	;RP0=0, select bank0
-   448  075D  1303               	bcf	status, 6	;RP1=0, select bank0
-   449  075E  00A6               	movwf	(??_main+0)+0
-   450  075F  0826               	movf	(??_main+0)+0,w
-   451  0760  00FD               	movwf	(main@dc)
-   452                           	
-   453  0761                     l5899:	
-   454  0761  08FD               	movf	(main@dc),f
-   455  0762  1D03               	skipz
-   456  0763  2F65               	goto	u2491
-   457  0764  2F66               	goto	u2490
-   458  0765                     u2491:
-   459  0765  2F68               	goto	l5903
-   460  0766                     u2490:
-   461  0766  2F2E               	goto	l5883
+   443  075B                     l1503:	
+   444                           	line	44
+   445                           	
+   446  075B                     l5895:	
+   447                           ;PWMmain.c: 43: }
+   448                           ;PWMmain.c: 44: for(dc = 10; dc >= 8 ; dc--)
+   449  075B  300A               	movlw	(0Ah)
+   450  075C  00A6               	movwf	(??_main+0)+0
+   451  075D  0826               	movf	(??_main+0)+0,w
+   452  075E  00FD               	movwf	(main@dc)
+   453  075F  3008               	movlw	(08h)
+   454  0760  027D               	subwf	(main@dc),w
+   455  0761  1803               	skipnc
+   456  0762  2F64               	goto	u2491
+   457  0763  2F65               	goto	u2490
+   458  0764                     u2491:
+   459  0764  2F67               	goto	l5899
+   460  0765                     u2490:
+   461  0765  2F2B               	goto	l5881
    462                           	
-   463  0767                     l5901:	
-   464  0767  2F2E               	goto	l5883
+   463  0766                     l5897:	
+   464  0766  2F2B               	goto	l5881
    465                           	line	45
    466                           	
-   467  0768                     l1504:	
+   467  0767                     l1504:	
    468                           	line	46
    469                           	
-   470  0768                     l5903:	
+   470  0767                     l5899:	
    471                           ;PWMmain.c: 45: {
    472                           ;PWMmain.c: 46: CalcPulse(dc);
-   473  0768  087D               	movf	(main@dc),w
-   474  0769  1283               	bcf	status, 5	;RP0=0, select bank0
-   475  076A  1303               	bcf	status, 6	;RP1=0, select bank0
-   476  076B  00A6               	movwf	(??_main+0)+0
-   477  076C  01A7               	clrf	(??_main+0)+0+1
-   478  076D  0826               	movf	0+(??_main+0)+0,w
-   479  076E  00A2               	movwf	(?_CalcPulse)
-   480  076F  0827               	movf	1+(??_main+0)+0,w
-   481  0770  00A3               	movwf	(?_CalcPulse+1)
-   482  0771  120A  118A  26F4   	fcall	_CalcPulse
+   473  0767  087D               	movf	(main@dc),w
+   474  0768  1283               	bcf	status, 5	;RP0=0, select bank0
+   475  0769  1303               	bcf	status, 6	;RP1=0, select bank0
+   476  076A  00A6               	movwf	(??_main+0)+0
+   477  076B  01A7               	clrf	(??_main+0)+0+1
+   478  076C  0826               	movf	0+(??_main+0)+0,w
+   479  076D  00A2               	movwf	(?_CalcPulse)
+   480  076E  0827               	movf	1+(??_main+0)+0,w
+   481  076F  00A3               	movwf	(?_CalcPulse+1)
+   482  0770  120A  118A  26F1   	fcall	_CalcPulse
               120A  118A         
    483                           	line	47
    484                           	
-   485  0776                     l5905:	
-   486                           ;PWMmain.c: 47: delay(200) ;
-   487  0776  30C8               	movlw	low(0C8h)
-   488  0777  00F0               	movwf	(?_delay)
-   489  0778  3000               	movlw	high(0C8h)
-   490  0779  00F1               	movwf	((?_delay))+1
-   491  077A  120A  118A  269F   	fcall	_delay
+   485  0775                     l5901:	
+   486                           ;PWMmain.c: 47: delay(2000) ;
+   487  0775  30D0               	movlw	low(07D0h)
+   488  0776  00F0               	movwf	(?_delay)
+   489  0777  3007               	movlw	high(07D0h)
+   490  0778  00F1               	movwf	((?_delay))+1
+   491  0779  120A  118A  269C   	fcall	_delay
               120A  118A         
    492                           	line	44
    493                           	
-   494  077F                     l5907:	
-   495  077F  3001               	movlw	low(01h)
-   496  0780  02FD               	subwf	(main@dc),f
+   494  077E                     l5903:	
+   495  077E  3001               	movlw	low(01h)
+   496  077F  02FD               	subwf	(main@dc),f
    497                           	
-   498  0781                     l5909:	
-   499  0781  08FD               	movf	(main@dc),f
-   500  0782  1D03               	skipz
-   501  0783  2F85               	goto	u2501
-   502  0784  2F86               	goto	u2500
-   503  0785                     u2501:
-   504  0785  2F68               	goto	l5903
-   505  0786                     u2500:
-   506  0786  2F2E               	goto	l5883
-   507                           	
-   508  0787                     l1505:	
-   509  0787  2F2E               	goto	l5883
-   510                           	line	49
-   511                           	
-   512  0788                     l1506:	
-   513                           	line	32
-   514  0788  2F2E               	goto	l5883
-   515                           	
-   516  0789                     l1507:	
-   517                           	line	54
-   518                           	
-   519  0789                     l1508:	
-   520                           	global	start
-   521  0789  120A  118A  2800   	ljmp	start
-   522                           	opt stack 0
-   523                           GLOBAL	__end_of_main
-   524  078C                     	__end_of_main:
-   525 ;; =============== function _main ends ============
-   526                           
-   527                           	signat	_main,88
-   528                           	global	_CalcPulse
-   529                           psect	text205,local,class=CODE,delta=2
-   530                           global __ptext205
-   531  06F4                     __ptext205:
-   532                           
-   533 ;; *************** function _CalcPulse *****************
-   534 ;; Defined at:
-   535 ;;		line 78 in file "PWMmain.c"
-   536 ;; Parameters:    Size  Location     Type
-   537 ;;  speed           2    2[BANK0 ] int 
-   538 ;; Auto vars:     Size  Location     Type
-   539 ;;  pulse           2    4[BANK0 ] int 
-   540 ;; Return value:  Size  Location     Type
-   541 ;;		None               void
-   542 ;; Registers used:
-   543 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
-   544 ;; Tracked objects:
-   545 ;;		On entry : 0/0
-   546 ;;		On exit  : 0/0
-   547 ;;		Unchanged: 0/0
-   548 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   549 ;;      Params:         0       2       0       0       0
-   550 ;;      Locals:         0       2       0       0       0
-   551 ;;      Temps:          0       0       0       0       0
-   552 ;;      Totals:         0       4       0       0       0
-   553 ;;Total ram usage:        4 bytes
-   554 ;; Hardware stack levels used:    1
-   555 ;; Hardware stack levels required when called:    1
-   556 ;; This function calls:
-   557 ;;		___awdiv
-   558 ;;		___wmul
-   559 ;;		_SetPulse
-   560 ;; This function is called by:
-   561 ;;		_main
-   562 ;; This function uses a non-reentrant model
-   563 ;;
-   564                           psect	text205
-   565                           	file	"PWMmain.c"
-   566                           	line	78
-   567                           	global	__size_of_CalcPulse
-   568  0034                     	__size_of_CalcPulse	equ	__end_of_CalcPulse-_CalcPulse
-   569                           	
-   570  06F4                     _CalcPulse:	
-   571                           	opt	stack 6
-   572                           ; Regs used in _CalcPulse: [wreg+status,2+status,0+btemp+1+pclath+cstack]
-   573                           	line	79
-   574                           	
-   575  06F4                     l5877:	
-   576                           ;PWMmain.c: 79: int pulse = speed/10*255;
-   577  06F4  300A               	movlw	low(0Ah)
-   578  06F5  00F0               	movwf	(?___awdiv)
-   579  06F6  3000               	movlw	high(0Ah)
-   580  06F7  00F1               	movwf	((?___awdiv))+1
-   581  06F8  1283               	bcf	status, 5	;RP0=0, select bank0
-   582  06F9  1303               	bcf	status, 6	;RP1=0, select bank0
-   583  06FA  0823               	movf	(CalcPulse@speed+1),w
-   584  06FB  01F3               	clrf	1+(?___awdiv)+02h
-   585  06FC  07F3               	addwf	1+(?___awdiv)+02h
-   586  06FD  0822               	movf	(CalcPulse@speed),w
-   587  06FE  01F2               	clrf	0+(?___awdiv)+02h
-   588  06FF  07F2               	addwf	0+(?___awdiv)+02h
-   589                           
-   590  0700  120A  118A  278C   	fcall	___awdiv
+   498  0780                     l5905:	
+   499  0780  3008               	movlw	(08h)
+   500  0781  027D               	subwf	(main@dc),w
+   501  0782  1803               	skipnc
+   502  0783  2F85               	goto	u2501
+   503  0784  2F86               	goto	u2500
+   504  0785                     u2501:
+   505  0785  2F67               	goto	l5899
+   506  0786                     u2500:
+   507  0786  2F2B               	goto	l5881
+   508                           	
+   509  0787                     l1505:	
+   510  0787  2F2B               	goto	l5881
+   511                           	line	49
+   512                           	
+   513  0788                     l1506:	
+   514                           	line	32
+   515  0788  2F2B               	goto	l5881
+   516                           	
+   517  0789                     l1507:	
+   518                           	line	56
+   519                           	
+   520  0789                     l1508:	
+   521                           	global	start
+   522  0789  120A  118A  2800   	ljmp	start
+   523                           	opt stack 0
+   524                           GLOBAL	__end_of_main
+   525  078C                     	__end_of_main:
+   526 ;; =============== function _main ends ============
+   527                           
+   528                           	signat	_main,88
+   529                           	global	_CalcPulse
+   530                           psect	text205,local,class=CODE,delta=2
+   531                           global __ptext205
+   532  06F1                     __ptext205:
+   533                           
+   534 ;; *************** function _CalcPulse *****************
+   535 ;; Defined at:
+   536 ;;		line 80 in file "PWMmain.c"
+   537 ;; Parameters:    Size  Location     Type
+   538 ;;  speed           2    2[BANK0 ] int 
+   539 ;; Auto vars:     Size  Location     Type
+   540 ;;  pulse           2    4[BANK0 ] int 
+   541 ;; Return value:  Size  Location     Type
+   542 ;;		None               void
+   543 ;; Registers used:
+   544 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   545 ;; Tracked objects:
+   546 ;;		On entry : 0/0
+   547 ;;		On exit  : 0/0
+   548 ;;		Unchanged: 0/0
+   549 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   550 ;;      Params:         0       2       0       0       0
+   551 ;;      Locals:         0       2       0       0       0
+   552 ;;      Temps:          0       0       0       0       0
+   553 ;;      Totals:         0       4       0       0       0
+   554 ;;Total ram usage:        4 bytes
+   555 ;; Hardware stack levels used:    1
+   556 ;; Hardware stack levels required when called:    1
+   557 ;; This function calls:
+   558 ;;		___awdiv
+   559 ;;		___wmul
+   560 ;;		_SetPulse
+   561 ;; This function is called by:
+   562 ;;		_main
+   563 ;; This function uses a non-reentrant model
+   564 ;;
+   565                           psect	text205
+   566                           	file	"PWMmain.c"
+   567                           	line	80
+   568                           	global	__size_of_CalcPulse
+   569  0034                     	__size_of_CalcPulse	equ	__end_of_CalcPulse-_CalcPulse
+   570                           	
+   571  06F1                     _CalcPulse:	
+   572                           	opt	stack 6
+   573                           ; Regs used in _CalcPulse: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   574                           	line	81
+   575                           	
+   576  06F1                     l5875:	
+   577                           ;PWMmain.c: 81: int pulse = speed/10*255;
+   578  06F1  300A               	movlw	low(0Ah)
+   579  06F2  00F0               	movwf	(?___awdiv)
+   580  06F3  3000               	movlw	high(0Ah)
+   581  06F4  00F1               	movwf	((?___awdiv))+1
+   582  06F5  1283               	bcf	status, 5	;RP0=0, select bank0
+   583  06F6  1303               	bcf	status, 6	;RP1=0, select bank0
+   584  06F7  0823               	movf	(CalcPulse@speed+1),w
+   585  06F8  01F3               	clrf	1+(?___awdiv)+02h
+   586  06F9  07F3               	addwf	1+(?___awdiv)+02h
+   587  06FA  0822               	movf	(CalcPulse@speed),w
+   588  06FB  01F2               	clrf	0+(?___awdiv)+02h
+   589  06FC  07F2               	addwf	0+(?___awdiv)+02h
+   590                           
+   591  06FD  120A  118A  278C   	fcall	___awdiv
               120A  118A         
-   591  0705  0871               	movf	(1+(?___awdiv)),w
-   592  0706  01FA               	clrf	(?___wmul+1)
-   593  0707  07FA               	addwf	(?___wmul+1)
-   594  0708  0870               	movf	(0+(?___awdiv)),w
-   595  0709  01F9               	clrf	(?___wmul)
-   596  070A  07F9               	addwf	(?___wmul)
-   597                           
-   598  070B  30FF               	movlw	low(0FFh)
-   599  070C  00FB               	movwf	0+(?___wmul)+02h
-   600  070D  3000               	movlw	high(0FFh)
-   601  070E  00FC               	movwf	(0+(?___wmul)+02h)+1
-   602  070F  120A  118A  26C4   	fcall	___wmul
+   592  0702  0871               	movf	(1+(?___awdiv)),w
+   593  0703  01FA               	clrf	(?___wmul+1)
+   594  0704  07FA               	addwf	(?___wmul+1)
+   595  0705  0870               	movf	(0+(?___awdiv)),w
+   596  0706  01F9               	clrf	(?___wmul)
+   597  0707  07F9               	addwf	(?___wmul)
+   598                           
+   599  0708  30FF               	movlw	low(0FFh)
+   600  0709  00FB               	movwf	0+(?___wmul)+02h
+   601  070A  3000               	movlw	high(0FFh)
+   602  070B  00FC               	movwf	(0+(?___wmul)+02h)+1
+   603  070C  120A  118A  26C1   	fcall	___wmul
               120A  118A         
-   603  0714  087A               	movf	(1+(?___wmul)),w
-   604  0715  1283               	bcf	status, 5	;RP0=0, select bank0
-   605  0716  1303               	bcf	status, 6	;RP1=0, select bank0
-   606  0717  01A5               	clrf	(CalcPulse@pulse+1)
-   607  0718  07A5               	addwf	(CalcPulse@pulse+1)
-   608  0719  0879               	movf	(0+(?___wmul)),w
-   609  071A  01A4               	clrf	(CalcPulse@pulse)
-   610  071B  07A4               	addwf	(CalcPulse@pulse)
-   611                           
-   612                           	line	80
-   613                           	
-   614  071C                     l5879:	
-   615                           ;PWMmain.c: 80: SetPulse(pulse);
-   616  071C  0825               	movf	(CalcPulse@pulse+1),w
-   617  071D  01F1               	clrf	(?_SetPulse+1)
-   618  071E  07F1               	addwf	(?_SetPulse+1)
-   619  071F  0824               	movf	(CalcPulse@pulse),w
-   620  0720  01F0               	clrf	(?_SetPulse)
-   621  0721  07F0               	addwf	(?_SetPulse)
-   622                           
-   623  0722  120A  118A  2665   	fcall	_SetPulse
+   604  0711  087A               	movf	(1+(?___wmul)),w
+   605  0712  1283               	bcf	status, 5	;RP0=0, select bank0
+   606  0713  1303               	bcf	status, 6	;RP1=0, select bank0
+   607  0714  01A5               	clrf	(CalcPulse@pulse+1)
+   608  0715  07A5               	addwf	(CalcPulse@pulse+1)
+   609  0716  0879               	movf	(0+(?___wmul)),w
+   610  0717  01A4               	clrf	(CalcPulse@pulse)
+   611  0718  07A4               	addwf	(CalcPulse@pulse)
+   612                           
+   613                           	line	82
+   614                           	
+   615  0719                     l5877:	
+   616                           ;PWMmain.c: 82: SetPulse(pulse);
+   617  0719  0825               	movf	(CalcPulse@pulse+1),w
+   618  071A  01F1               	clrf	(?_SetPulse+1)
+   619  071B  07F1               	addwf	(?_SetPulse+1)
+   620  071C  0824               	movf	(CalcPulse@pulse),w
+   621  071D  01F0               	clrf	(?_SetPulse)
+   622  071E  07F0               	addwf	(?_SetPulse)
+   623                           
+   624  071F  120A  118A  2662   	fcall	_SetPulse
               120A  118A         
-   624                           	line	81
-   625                           	
-   626  0727                     l1520:	
-   627  0727  0008               	return
-   628                           	opt stack 0
-   629                           GLOBAL	__end_of_CalcPulse
-   630  0728                     	__end_of_CalcPulse:
-   631 ;; =============== function _CalcPulse ends ============
-   632                           
-   633                           	signat	_CalcPulse,4216
-   634                           	global	_Initialise
-   635                           psect	text206,local,class=CODE,delta=2
-   636                           global __ptext206
-   637  065F                     __ptext206:
-   638                           
-   639 ;; *************** function _Initialise *****************
-   640 ;; Defined at:
-   641 ;;		line 70 in file "PWMmain.c"
-   642 ;; Parameters:    Size  Location     Type
-   643 ;;		None
-   644 ;; Auto vars:     Size  Location     Type
-   645 ;;		None
-   646 ;; Return value:  Size  Location     Type
-   647 ;;		None               void
-   648 ;; Registers used:
-   649 ;;		wreg, status,2, status,0, pclath, cstack
-   650 ;; Tracked objects:
-   651 ;;		On entry : 0/0
-   652 ;;		On exit  : 0/0
-   653 ;;		Unchanged: 0/0
-   654 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   655 ;;      Params:         0       0       0       0       0
-   656 ;;      Locals:         0       0       0       0       0
-   657 ;;      Temps:          0       0       0       0       0
-   658 ;;      Totals:         0       0       0       0       0
-   659 ;;Total ram usage:        0 bytes
-   660 ;; Hardware stack levels used:    1
-   661 ;; Hardware stack levels required when called:    1
-   662 ;; This function calls:
-   663 ;;		_BeginPWM
-   664 ;; This function is called by:
-   665 ;;		_main
-   666 ;; This function uses a non-reentrant model
-   667 ;;
-   668                           psect	text206
-   669                           	file	"PWMmain.c"
-   670                           	line	70
-   671                           	global	__size_of_Initialise
-   672  0006                     	__size_of_Initialise	equ	__end_of_Initialise-_Initialise
-   673                           	
-   674  065F                     _Initialise:	
-   675                           	opt	stack 6
-   676                           ; Regs used in _Initialise: [wreg+status,2+status,0+pclath+cstack]
-   677                           	line	71
-   678                           	
-   679  065F                     l5875:	
-   680                           ;PWMmain.c: 71: BeginPWM();
-   681  065F  120A  118A  2681   	fcall	_BeginPWM
+   625                           	line	83
+   626                           	
+   627  0724                     l1520:	
+   628  0724  0008               	return
+   629                           	opt stack 0
+   630                           GLOBAL	__end_of_CalcPulse
+   631  0725                     	__end_of_CalcPulse:
+   632 ;; =============== function _CalcPulse ends ============
+   633                           
+   634                           	signat	_CalcPulse,4216
+   635                           	global	_Initialise
+   636                           psect	text206,local,class=CODE,delta=2
+   637                           global __ptext206
+   638  065C                     __ptext206:
+   639                           
+   640 ;; *************** function _Initialise *****************
+   641 ;; Defined at:
+   642 ;;		line 72 in file "PWMmain.c"
+   643 ;; Parameters:    Size  Location     Type
+   644 ;;		None
+   645 ;; Auto vars:     Size  Location     Type
+   646 ;;		None
+   647 ;; Return value:  Size  Location     Type
+   648 ;;		None               void
+   649 ;; Registers used:
+   650 ;;		wreg, status,2, status,0, pclath, cstack
+   651 ;; Tracked objects:
+   652 ;;		On entry : 0/0
+   653 ;;		On exit  : 0/0
+   654 ;;		Unchanged: 0/0
+   655 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   656 ;;      Params:         0       0       0       0       0
+   657 ;;      Locals:         0       0       0       0       0
+   658 ;;      Temps:          0       0       0       0       0
+   659 ;;      Totals:         0       0       0       0       0
+   660 ;;Total ram usage:        0 bytes
+   661 ;; Hardware stack levels used:    1
+   662 ;; Hardware stack levels required when called:    1
+   663 ;; This function calls:
+   664 ;;		_BeginPWM
+   665 ;; This function is called by:
+   666 ;;		_main
+   667 ;; This function uses a non-reentrant model
+   668 ;;
+   669                           psect	text206
+   670                           	file	"PWMmain.c"
+   671                           	line	72
+   672                           	global	__size_of_Initialise
+   673  0006                     	__size_of_Initialise	equ	__end_of_Initialise-_Initialise
+   674                           	
+   675  065C                     _Initialise:	
+   676                           	opt	stack 6
+   677                           ; Regs used in _Initialise: [wreg+status,2+status,0+pclath+cstack]
+   678                           	line	73
+   679                           	
+   680  065C                     l5873:	
+   681                           ;PWMmain.c: 73: BeginPWM();
+   682  065C  120A  118A  267E   	fcall	_BeginPWM
               120A  118A         
-   682                           	line	72
-   683                           	
-   684  0664                     l1517:	
-   685  0664  0008               	return
-   686                           	opt stack 0
-   687                           GLOBAL	__end_of_Initialise
-   688  0665                     	__end_of_Initialise:
-   689 ;; =============== function _Initialise ends ============
-   690                           
-   691                           	signat	_Initialise,88
-   692                           	global	___awdiv
-   693                           psect	text207,local,class=CODE,delta=2
-   694                           global __ptext207
-   695  078C                     __ptext207:
-   696                           
-   697 ;; *************** function ___awdiv *****************
-   698 ;; Defined at:
-   699 ;;		line 5 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\awdiv.c"
-   700 ;; Parameters:    Size  Location     Type
-   701 ;;  divisor         2    0[COMMON] int 
-   702 ;;  dividend        2    2[COMMON] int 
-   703 ;; Auto vars:     Size  Location     Type
-   704 ;;  quotient        2    7[COMMON] int 
-   705 ;;  sign            1    6[COMMON] unsigned char 
-   706 ;;  counter         1    5[COMMON] unsigned char 
-   707 ;; Return value:  Size  Location     Type
-   708 ;;                  2    0[COMMON] int 
-   709 ;; Registers used:
-   710 ;;		wreg, status,2, status,0
-   711 ;; Tracked objects:
-   712 ;;		On entry : 0/0
-   713 ;;		On exit  : 0/0
-   714 ;;		Unchanged: 0/0
-   715 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   716 ;;      Params:         4       0       0       0       0
-   717 ;;      Locals:         4       0       0       0       0
-   718 ;;      Temps:          1       0       0       0       0
-   719 ;;      Totals:         9       0       0       0       0
-   720 ;;Total ram usage:        9 bytes
-   721 ;; Hardware stack levels used:    1
-   722 ;; This function calls:
-   723 ;;		Nothing
-   724 ;; This function is called by:
-   725 ;;		_CalcPulse
-   726 ;; This function uses a non-reentrant model
-   727 ;;
-   728                           psect	text207
-   729                           	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\awdiv.c"
-   730                           	line	5
-   731                           	global	__size_of___awdiv
-   732  0074                     	__size_of___awdiv	equ	__end_of___awdiv-___awdiv
-   733                           	
-   734  078C                     ___awdiv:	
-   735                           	opt	stack 6
-   736                           ; Regs used in ___awdiv: [wreg+status,2+status,0]
-   737                           	line	9
-   738                           	
-   739  078C                     l5835:	
-   740  078C  01F6               	clrf	(___awdiv@sign)
-   741                           	line	10
-   742  078D  1FF1               	btfss	(___awdiv@divisor+1),7
-   743  078E  2F90               	goto	u2371
-   744  078F  2F91               	goto	u2370
-   745  0790                     u2371:
-   746  0790  2F9A               	goto	l5839
-   747  0791                     u2370:
-   748                           	line	11
-   749                           	
-   750  0791                     l5837:	
-   751  0791  09F0               	comf	(___awdiv@divisor),f
-   752  0792  09F1               	comf	(___awdiv@divisor+1),f
-   753  0793  0AF0               	incf	(___awdiv@divisor),f
-   754  0794  1903               	skipnz
-   755  0795  0AF1               	incf	(___awdiv@divisor+1),f
-   756                           	line	12
-   757  0796  01F6               	clrf	(___awdiv@sign)
-   758  0797  1403               	bsf	status,0
-   759  0798  0DF6               	rlf	(___awdiv@sign),f
-   760  0799  2F9A               	goto	l5839
-   761                           	line	13
-   762                           	
-   763  079A                     l4603:	
-   764                           	line	14
-   765                           	
-   766  079A                     l5839:	
-   767  079A  1FF3               	btfss	(___awdiv@dividend+1),7
-   768  079B  2F9D               	goto	u2381
-   769  079C  2F9E               	goto	u2380
-   770  079D                     u2381:
-   771  079D  2FA8               	goto	l5845
-   772  079E                     u2380:
-   773                           	line	15
-   774                           	
-   775  079E                     l5841:	
-   776  079E  09F2               	comf	(___awdiv@dividend),f
-   777  079F  09F3               	comf	(___awdiv@dividend+1),f
-   778  07A0  0AF2               	incf	(___awdiv@dividend),f
-   779  07A1  1903               	skipnz
-   780  07A2  0AF3               	incf	(___awdiv@dividend+1),f
-   781                           	line	16
-   782                           	
-   783  07A3                     l5843:	
-   784  07A3  3001               	movlw	(01h)
-   785  07A4  00F4               	movwf	(??___awdiv+0)+0
-   786  07A5  0874               	movf	(??___awdiv+0)+0,w
-   787  07A6  06F6               	xorwf	(___awdiv@sign),f
-   788  07A7  2FA8               	goto	l5845
-   789                           	line	17
-   790                           	
-   791  07A8                     l4604:	
-   792                           	line	18
-   793                           	
-   794  07A8                     l5845:	
-   795  07A8  01F7               	clrf	(___awdiv@quotient)
-   796  07A9  01F8               	clrf	(___awdiv@quotient+1)
-   797                           	line	19
-   798                           	
-   799  07AA                     l5847:	
-   800  07AA  0871               	movf	(___awdiv@divisor+1),w
-   801  07AB  0470               	iorwf	(___awdiv@divisor),w
-   802  07AC  1903               	skipnz
-   803  07AD  2FAF               	goto	u2391
-   804  07AE  2FB0               	goto	u2390
-   805  07AF                     u2391:
-   806  07AF  2FEE               	goto	l5867
-   807  07B0                     u2390:
-   808                           	line	20
-   809                           	
-   810  07B0                     l5849:	
-   811  07B0  01F5               	clrf	(___awdiv@counter)
-   812  07B1  1403               	bsf	status,0
-   813  07B2  0DF5               	rlf	(___awdiv@counter),f
-   814                           	line	21
-   815  07B3  2FC0               	goto	l5855
-   816                           	
-   817  07B4                     l4607:	
-   818                           	line	22
-   819                           	
-   820  07B4                     l5851:	
-   821  07B4  3001               	movlw	01h
-   822                           	
-   823  07B5                     u2405:
-   824  07B5  1003               	clrc
-   825  07B6  0DF0               	rlf	(___awdiv@divisor),f
-   826  07B7  0DF1               	rlf	(___awdiv@divisor+1),f
-   827  07B8  3EFF               	addlw	-1
-   828  07B9  1D03               	skipz
-   829  07BA  2FB5               	goto	u2405
-   830                           	line	23
-   831                           	
-   832  07BB                     l5853:	
-   833  07BB  3001               	movlw	(01h)
-   834  07BC  00F4               	movwf	(??___awdiv+0)+0
-   835  07BD  0874               	movf	(??___awdiv+0)+0,w
-   836  07BE  07F5               	addwf	(___awdiv@counter),f
-   837  07BF  2FC0               	goto	l5855
-   838                           	line	24
-   839                           	
-   840  07C0                     l4606:	
-   841                           	line	21
-   842                           	
-   843  07C0                     l5855:	
-   844  07C0  1FF1               	btfss	(___awdiv@divisor+1),(15)&7
-   845  07C1  2FC3               	goto	u2411
-   846  07C2  2FC4               	goto	u2410
-   847  07C3                     u2411:
-   848  07C3  2FB4               	goto	l5851
-   849  07C4                     u2410:
-   850  07C4  2FC6               	goto	l5857
-   851                           	
-   852  07C5                     l4608:	
-   853  07C5  2FC6               	goto	l5857
-   854                           	line	25
-   855                           	
-   856  07C6                     l4609:	
-   857                           	line	26
-   858                           	
-   859  07C6                     l5857:	
-   860  07C6  3001               	movlw	01h
-   861                           	
-   862  07C7                     u2425:
-   863  07C7  1003               	clrc
-   864  07C8  0DF7               	rlf	(___awdiv@quotient),f
-   865  07C9  0DF8               	rlf	(___awdiv@quotient+1),f
-   866  07CA  3EFF               	addlw	-1
-   867  07CB  1D03               	skipz
-   868  07CC  2FC7               	goto	u2425
-   869                           	line	27
-   870  07CD  0871               	movf	(___awdiv@divisor+1),w
-   871  07CE  0273               	subwf	(___awdiv@dividend+1),w
-   872  07CF  1D03               	skipz
-   873  07D0  2FD3               	goto	u2435
-   874  07D1  0870               	movf	(___awdiv@divisor),w
-   875  07D2  0272               	subwf	(___awdiv@dividend),w
-   876  07D3                     u2435:
-   877  07D3  1C03               	skipc
-   878  07D4  2FD6               	goto	u2431
-   879  07D5  2FD7               	goto	u2430
-   880  07D6                     u2431:
-   881  07D6  2FDF               	goto	l5863
-   882  07D7                     u2430:
-   883                           	line	28
-   884                           	
-   885  07D7                     l5859:	
-   886  07D7  0870               	movf	(___awdiv@divisor),w
-   887  07D8  02F2               	subwf	(___awdiv@dividend),f
-   888  07D9  0871               	movf	(___awdiv@divisor+1),w
-   889  07DA  1C03               	skipc
-   890  07DB  03F3               	decf	(___awdiv@dividend+1),f
-   891  07DC  02F3               	subwf	(___awdiv@dividend+1),f
-   892                           	line	29
-   893                           	
-   894  07DD                     l5861:	
-   895  07DD  1477               	bsf	(___awdiv@quotient)+(0/8),(0)&7
-   896  07DE  2FDF               	goto	l5863
-   897                           	line	30
-   898                           	
-   899  07DF                     l4610:	
-   900                           	line	31
-   901                           	
-   902  07DF                     l5863:	
-   903  07DF  3001               	movlw	01h
-   904                           	
-   905  07E0                     u2445:
-   906  07E0  1003               	clrc
-   907  07E1  0CF1               	rrf	(___awdiv@divisor+1),f
-   908  07E2  0CF0               	rrf	(___awdiv@divisor),f
-   909  07E3  3EFF               	addlw	-1
-   910  07E4  1D03               	skipz
-   911  07E5  2FE0               	goto	u2445
-   912                           	line	32
-   913                           	
-   914  07E6                     l5865:	
-   915  07E6  3001               	movlw	low(01h)
-   916  07E7  02F5               	subwf	(___awdiv@counter),f
-   917  07E8  1D03               	btfss	status,2
-   918  07E9  2FEB               	goto	u2451
-   919  07EA  2FEC               	goto	u2450
-   920  07EB                     u2451:
-   921  07EB  2FC6               	goto	l5857
-   922  07EC                     u2450:
-   923  07EC  2FEE               	goto	l5867
-   924                           	
-   925  07ED                     l4611:	
-   926  07ED  2FEE               	goto	l5867
-   927                           	line	33
-   928                           	
-   929  07EE                     l4605:	
-   930                           	line	34
-   931                           	
-   932  07EE                     l5867:	
-   933  07EE  0876               	movf	(___awdiv@sign),w
-   934  07EF  1D03               	skipz
-   935  07F0  2FF2               	goto	u2460
-   936  07F1  2FF8               	goto	l5871
-   937  07F2                     u2460:
-   938                           	line	35
-   939                           	
-   940  07F2                     l5869:	
-   941  07F2  09F7               	comf	(___awdiv@quotient),f
-   942  07F3  09F8               	comf	(___awdiv@quotient+1),f
-   943  07F4  0AF7               	incf	(___awdiv@quotient),f
-   944  07F5  1903               	skipnz
-   945  07F6  0AF8               	incf	(___awdiv@quotient+1),f
-   946  07F7  2FF8               	goto	l5871
-   947                           	
-   948  07F8                     l4612:	
-   949                           	line	36
-   950                           	
-   951  07F8                     l5871:	
-   952  07F8  0878               	movf	(___awdiv@quotient+1),w
-   953  07F9  01F1               	clrf	(?___awdiv+1)
-   954  07FA  07F1               	addwf	(?___awdiv+1)
-   955  07FB  0877               	movf	(___awdiv@quotient),w
-   956  07FC  01F0               	clrf	(?___awdiv)
-   957  07FD  07F0               	addwf	(?___awdiv)
-   958                           
-   959  07FE  2FFF               	goto	l4613
-   960                           	
-   961  07FF                     l5873:	
-   962                           	line	37
-   963                           	
-   964  07FF                     l4613:	
-   965  07FF  0008               	return
-   966                           	opt stack 0
-   967                           GLOBAL	__end_of___awdiv
-   968  0800                     	__end_of___awdiv:
-   969 ;; =============== function ___awdiv ends ============
-   970                           
-   971                           	signat	___awdiv,8314
-   972                           	global	___wmul
-   973                           psect	text208,local,class=CODE,delta=2
-   974                           global __ptext208
-   975  06C4                     __ptext208:
-   976                           
-   977 ;; *************** function ___wmul *****************
-   978 ;; Defined at:
-   979 ;;		line 3 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\wmul.c"
-   980 ;; Parameters:    Size  Location     Type
-   981 ;;  multiplier      2    9[COMMON] unsigned int 
-   982 ;;  multiplicand    2   11[COMMON] unsigned int 
-   983 ;; Auto vars:     Size  Location     Type
-   984 ;;  product         2    0[BANK0 ] unsigned int 
-   985 ;; Return value:  Size  Location     Type
-   986 ;;                  2    9[COMMON] unsigned int 
-   987 ;; Registers used:
-   988 ;;		wreg, status,2, status,0
-   989 ;; Tracked objects:
-   990 ;;		On entry : 0/0
-   991 ;;		On exit  : 0/0
-   992 ;;		Unchanged: 0/0
-   993 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   994 ;;      Params:         4       0       0       0       0
-   995 ;;      Locals:         0       2       0       0       0
-   996 ;;      Temps:          0       0       0       0       0
-   997 ;;      Totals:         4       2       0       0       0
-   998 ;;Total ram usage:        6 bytes
-   999 ;; Hardware stack levels used:    1
-  1000 ;; This function calls:
-  1001 ;;		Nothing
-  1002 ;; This function is called by:
-  1003 ;;		_CalcPulse
-  1004 ;; This function uses a non-reentrant model
-  1005 ;;
-  1006                           psect	text208
-  1007                           	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\wmul.c"
-  1008                           	line	3
-  1009                           	global	__size_of___wmul
-  1010  0030                     	__size_of___wmul	equ	__end_of___wmul-___wmul
-  1011                           	
-  1012  06C4                     ___wmul:	
-  1013                           	opt	stack 6
-  1014                           ; Regs used in ___wmul: [wreg+status,2+status,0]
-  1015                           	line	4
-  1016                           	
-  1017  06C4                     l5823:	
-  1018  06C4  1283               	bcf	status, 5	;RP0=0, select bank0
-  1019  06C5  1303               	bcf	status, 6	;RP1=0, select bank0
-  1020  06C6  01A0               	clrf	(___wmul@product)
-  1021  06C7  01A1               	clrf	(___wmul@product+1)
-  1022  06C8  2EC9               	goto	l5825
-  1023                           	line	6
-  1024                           	
-  1025  06C9                     l4463:	
-  1026                           	line	7
-  1027                           	
-  1028  06C9                     l5825:	
-  1029  06C9  1C79               	btfss	(___wmul@multiplier),(0)&7
-  1030  06CA  2ECC               	goto	u2331
-  1031  06CB  2ECD               	goto	u2330
-  1032  06CC                     u2331:
-  1033  06CC  2ED5               	goto	l4464
-  1034  06CD                     u2330:
-  1035                           	line	8
-  1036                           	
-  1037  06CD                     l5827:	
-  1038  06CD  087B               	movf	(___wmul@multiplicand),w
-  1039  06CE  1283               	bcf	status, 5	;RP0=0, select bank0
-  1040  06CF  1303               	bcf	status, 6	;RP1=0, select bank0
-  1041  06D0  07A0               	addwf	(___wmul@product),f
-  1042  06D1  1803               	skipnc
-  1043  06D2  0AA1               	incf	(___wmul@product+1),f
-  1044  06D3  087C               	movf	(___wmul@multiplicand+1),w
-  1045  06D4  07A1               	addwf	(___wmul@product+1),f
-  1046                           	
-  1047  06D5                     l4464:	
-  1048                           	line	9
-  1049  06D5  3001               	movlw	01h
-  1050                           	
-  1051  06D6                     u2345:
-  1052  06D6  1003               	clrc
-  1053  06D7  0DFB               	rlf	(___wmul@multiplicand),f
-  1054  06D8  0DFC               	rlf	(___wmul@multiplicand+1),f
-  1055  06D9  3EFF               	addlw	-1
-  1056  06DA  1D03               	skipz
-  1057  06DB  2ED6               	goto	u2345
-  1058                           	line	10
-  1059                           	
-  1060  06DC                     l5829:	
-  1061  06DC  3001               	movlw	01h
-  1062                           	
-  1063  06DD                     u2355:
-  1064  06DD  1003               	clrc
-  1065  06DE  0CFA               	rrf	(___wmul@multiplier+1),f
-  1066  06DF  0CF9               	rrf	(___wmul@multiplier),f
-  1067  06E0  3EFF               	addlw	-1
-  1068  06E1  1D03               	skipz
-  1069  06E2  2EDD               	goto	u2355
-  1070                           	line	11
-  1071  06E3  087A               	movf	((___wmul@multiplier+1)),w
-  1072  06E4  0479               	iorwf	((___wmul@multiplier)),w
-  1073  06E5  1D03               	skipz
-  1074  06E6  2EE8               	goto	u2361
-  1075  06E7  2EE9               	goto	u2360
-  1076  06E8                     u2361:
-  1077  06E8  2EC9               	goto	l5825
-  1078  06E9                     u2360:
-  1079  06E9  2EEA               	goto	l5831
-  1080                           	
-  1081  06EA                     l4465:	
-  1082                           	line	12
-  1083                           	
-  1084  06EA                     l5831:	
-  1085  06EA  1283               	bcf	status, 5	;RP0=0, select bank0
-  1086  06EB  1303               	bcf	status, 6	;RP1=0, select bank0
-  1087  06EC  0821               	movf	(___wmul@product+1),w
-  1088  06ED  01FA               	clrf	(?___wmul+1)
-  1089  06EE  07FA               	addwf	(?___wmul+1)
-  1090  06EF  0820               	movf	(___wmul@product),w
-  1091  06F0  01F9               	clrf	(?___wmul)
-  1092  06F1  07F9               	addwf	(?___wmul)
-  1093                           
-  1094  06F2  2EF3               	goto	l4466
-  1095                           	
-  1096  06F3                     l5833:	
-  1097                           	line	13
-  1098                           	
-  1099  06F3                     l4466:	
-  1100  06F3  0008               	return
-  1101                           	opt stack 0
-  1102                           GLOBAL	__end_of___wmul
-  1103  06F4                     	__end_of___wmul:
-  1104 ;; =============== function ___wmul ends ============
-  1105                           
-  1106                           	signat	___wmul,8314
-  1107                           	global	_SetPulse
-  1108                           psect	text209,local,class=CODE,delta=2
-  1109                           global __ptext209
-  1110  0665                     __ptext209:
-  1111                           
-  1112 ;; *************** function _SetPulse *****************
-  1113 ;; Defined at:
-  1114 ;;		line 105 in file "pwmlib.c"
-  1115 ;; Parameters:    Size  Location     Type
-  1116 ;;  length          2    0[COMMON] int 
-  1117 ;; Auto vars:     Size  Location     Type
-  1118 ;;  temp            2    2[COMMON] int 
-  1119 ;; Return value:  Size  Location     Type
-  1120 ;;		None               void
-  1121 ;; Registers used:
-  1122 ;;		wreg, status,2, status,0, btemp+1
-  1123 ;; Tracked objects:
-  1124 ;;		On entry : 0/0
-  1125 ;;		On exit  : 0/0
-  1126 ;;		Unchanged: 0/0
-  1127 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1128 ;;      Params:         2       0       0       0       0
-  1129 ;;      Locals:         2       0       0       0       0
-  1130 ;;      Temps:          0       0       0       0       0
-  1131 ;;      Totals:         4       0       0       0       0
-  1132 ;;Total ram usage:        4 bytes
-  1133 ;; Hardware stack levels used:    1
-  1134 ;; This function calls:
-  1135 ;;		Nothing
-  1136 ;; This function is called by:
-  1137 ;;		_CalcPulse
-  1138 ;; This function uses a non-reentrant model
-  1139 ;;
-  1140                           psect	text209
-  1141                           	file	"pwmlib.c"
-  1142                           	line	105
-  1143                           	global	__size_of_SetPulse
-  1144  001C                     	__size_of_SetPulse	equ	__end_of_SetPulse-_SetPulse
-  1145                           	
-  1146  0665                     _SetPulse:	
-  1147                           	opt	stack 6
-  1148                           ; Regs used in _SetPulse: [wreg+status,2+status,0+btemp+1]
-  1149                           	line	106
-  1150                           	
-  1151  0665                     l5817:	
-  1152                           ;pwmlib.c: 106: int temp = length;
-  1153  0665  0871               	movf	(SetPulse@length+1),w
-  1154  0666  01F3               	clrf	(SetPulse@temp+1)
-  1155  0667  07F3               	addwf	(SetPulse@temp+1)
-  1156  0668  0870               	movf	(SetPulse@length),w
-  1157  0669  01F2               	clrf	(SetPulse@temp)
-  1158  066A  07F2               	addwf	(SetPulse@temp)
-  1159                           
-  1160                           	line	107
-  1161                           	
-  1162  066B                     l5819:	
-  1163                           ;pwmlib.c: 107: if (temp > 255)
-  1164  066B  0873               	movf	(SetPulse@temp+1),w
-  1165  066C  3A80               	xorlw	80h
-  1166  066D  00FF               	movwf	btemp+1
-  1167  066E  3081               	movlw	(high(0100h))^80h
-  1168  066F  027F               	subwf	btemp+1,w
-  1169  0670  1D03               	skipz
-  1170  0671  2E74               	goto	u2325
-  1171  0672  3000               	movlw	low(0100h)
-  1172  0673  0272               	subwf	(SetPulse@temp),w
-  1173  0674                     u2325:
-  1174                           
-  1175  0674  1C03               	skipc
-  1176  0675  2E77               	goto	u2321
-  1177  0676  2E78               	goto	u2320
-  1178  0677                     u2321:
-  1179  0677  2E7C               	goto	l3022
-  1180  0678                     u2320:
-  1181                           	line	108
-  1182                           	
-  1183  0678                     l5821:	
-  1184                           ;pwmlib.c: 108: temp = 255;
-  1185  0678  30FF               	movlw	low(0FFh)
-  1186  0679  00F2               	movwf	(SetPulse@temp)
-  1187  067A  3000               	movlw	high(0FFh)
-  1188  067B  00F3               	movwf	((SetPulse@temp))+1
-  1189                           	
-  1190  067C                     l3022:	
-  1191                           	line	109
-  1192                           ;pwmlib.c: 109: CCPR1L = temp;
-  1193  067C  0872               	movf	(SetPulse@temp),w
-  1194  067D  1283               	bcf	status, 5	;RP0=0, select bank0
-  1195  067E  1303               	bcf	status, 6	;RP1=0, select bank0
-  1196  067F  0095               	movwf	(21)	;volatile
-  1197                           	line	113
-  1198                           	
-  1199  0680                     l3023:	
-  1200  0680  0008               	return
-  1201                           	opt stack 0
-  1202                           GLOBAL	__end_of_SetPulse
-  1203  0681                     	__end_of_SetPulse:
-  1204 ;; =============== function _SetPulse ends ============
-  1205                           
-  1206                           	signat	_SetPulse,4216
-  1207                           	global	_BeginPWM
-  1208                           psect	text210,local,class=CODE,delta=2
-  1209                           global __ptext210
-  1210  0681                     __ptext210:
-  1211                           
-  1212 ;; *************** function _BeginPWM *****************
-  1213 ;; Defined at:
-  1214 ;;		line 41 in file "pwmlib.c"
-  1215 ;; Parameters:    Size  Location     Type
-  1216 ;;		None
-  1217 ;; Auto vars:     Size  Location     Type
-  1218 ;;		None
-  1219 ;; Return value:  Size  Location     Type
-  1220 ;;		None               void
-  1221 ;; Registers used:
-  1222 ;;		wreg, status,2
-  1223 ;; Tracked objects:
-  1224 ;;		On entry : 0/0
-  1225 ;;		On exit  : 0/0
-  1226 ;;		Unchanged: 0/0
-  1227 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1228 ;;      Params:         0       0       0       0       0
-  1229 ;;      Locals:         0       0       0       0       0
-  1230 ;;      Temps:          0       0       0       0       0
-  1231 ;;      Totals:         0       0       0       0       0
-  1232 ;;Total ram usage:        0 bytes
-  1233 ;; Hardware stack levels used:    1
-  1234 ;; This function calls:
-  1235 ;;		Nothing
-  1236 ;; This function is called by:
-  1237 ;;		_Initialise
-  1238 ;; This function uses a non-reentrant model
-  1239 ;;
-  1240                           psect	text210
-  1241                           	file	"pwmlib.c"
-  1242                           	line	41
-  1243                           	global	__size_of_BeginPWM
-  1244  001E                     	__size_of_BeginPWM	equ	__end_of_BeginPWM-_BeginPWM
-  1245                           	
-  1246  0681                     _BeginPWM:	
-  1247                           	opt	stack 6
-  1248                           ; Regs used in _BeginPWM: [wreg+status,2]
-  1249                           	line	44
-  1250                           	
-  1251  0681                     l5799:	
-  1252                           ;pwmlib.c: 44: TRISCbits.TRISC5 = 1;
-  1253  0681  1683               	bsf	status, 5	;RP0=1, select bank1
-  1254  0682  1303               	bcf	status, 6	;RP1=0, select bank1
-  1255  0683  1687               	bsf	(135)^080h,5	;volatile
-  1256                           	line	47
-  1257                           ;pwmlib.c: 47: PIE1bits.TMR2IE = 0;
-  1258  0684  108C               	bcf	(140)^080h,1	;volatile
-  1259                           	line	51
-  1260                           	
-  1261  0685                     l5801:	
-  1262                           ;pwmlib.c: 51: PR2 = 0xFF;
-  1263  0685  30FF               	movlw	(0FFh)
-  1264  0686  0092               	movwf	(146)^080h	;volatile
-  1265                           	line	55
-  1266                           ;pwmlib.c: 55: CCP1CON = 0b00001100;
-  1267  0687  300C               	movlw	(0Ch)
-  1268  0688  1283               	bcf	status, 5	;RP0=0, select bank0
-  1269  0689  1303               	bcf	status, 6	;RP1=0, select bank0
-  1270  068A  0097               	movwf	(23)	;volatile
-  1271                           	line	59
-  1272                           	
-  1273  068B                     l5803:	
-  1274                           ;pwmlib.c: 59: CCPR1L = 0;
-  1275  068B  0195               	clrf	(21)	;volatile
-  1276                           	line	60
-  1277                           	
-  1278  068C                     l5805:	
-  1279                           ;pwmlib.c: 60: CCP1CONbits.CCP1X = 0;
-  1280  068C  1297               	bcf	(23),5	;volatile
-  1281                           	line	61
-  1282                           	
-  1283  068D                     l5807:	
-  1284                           ;pwmlib.c: 61: CCP1CONbits.CCP1Y = 0;
-  1285  068D  1217               	bcf	(23),4	;volatile
-  1286                           	line	66
-  1287                           	
-  1288  068E                     l5809:	
-  1289                           ;pwmlib.c: 66: PIR1bits.TMR2IF = 0;
-  1290  068E  108C               	bcf	(12),1	;volatile
-  1291                           	line	70
-  1292                           	
-  1293  068F                     l5811:	
-  1294                           ;pwmlib.c: 70: T2CON = 0b00000100;
-  1295  068F  3004               	movlw	(04h)
-  1296  0690  0092               	movwf	(18)	;volatile
-  1297  0691  2E92               	goto	l5813
-  1298                           	line	75
-  1299                           ;pwmlib.c: 75: while(1)
-  1300                           	
-  1301  0692                     l3011:	
-  1302                           	line	77
-  1303                           	
-  1304  0692                     l5813:	
-  1305                           ;pwmlib.c: 76: {
-  1306                           ;pwmlib.c: 77: if(PIR1bits.TMR2IF == 1)
-  1307  0692  1283               	bcf	status, 5	;RP0=0, select bank0
-  1308  0693  1C8C               	btfss	(12),1	;volatile
-  1309  0694  2E96               	goto	u2311
-  1310  0695  2E97               	goto	u2310
-  1311  0696                     u2311:
-  1312  0696  2E92               	goto	l5813
-  1313  0697                     u2310:
-  1314                           	line	79
-  1315                           	
-  1316  0697                     l5815:	
-  1317                           ;pwmlib.c: 78: {
-  1318                           ;pwmlib.c: 79: TMR2IF = 0;
-  1319  0697  108C               	bcf	(97/8),(97)&7
-  1320                           	line	80
-  1321                           ;pwmlib.c: 80: TRISCbits.TRISC5 = 0;
-  1322  0698  1683               	bsf	status, 5	;RP0=1, select bank1
-  1323  0699  1303               	bcf	status, 6	;RP1=0, select bank1
-  1324  069A  1287               	bcf	(135)^080h,5	;volatile
-  1325                           	line	81
-  1326                           ;pwmlib.c: 81: break;
-  1327  069B  2E9E               	goto	l3015
-  1328                           	line	82
-  1329                           	
-  1330  069C                     l3012:	
-  1331  069C  2E92               	goto	l5813
-  1332                           	line	83
-  1333                           	
-  1334  069D                     l3014:	
-  1335                           	line	75
-  1336  069D  2E92               	goto	l5813
-  1337                           	
-  1338  069E                     l3013:	
-  1339                           	line	84
-  1340                           	
-  1341  069E                     l3015:	
-  1342  069E  0008               	return
-  1343                           	opt stack 0
-  1344                           GLOBAL	__end_of_BeginPWM
-  1345  069F                     	__end_of_BeginPWM:
-  1346 ;; =============== function _BeginPWM ends ============
-  1347                           
-  1348                           	signat	_BeginPWM,88
-  1349                           	global	_delay
-  1350                           psect	text211,local,class=CODE,delta=2
-  1351                           global __ptext211
-  1352  069F                     __ptext211:
-  1353                           
-  1354 ;; *************** function _delay *****************
-  1355 ;; Defined at:
-  1356 ;;		line 59 in file "PWMmain.c"
-  1357 ;; Parameters:    Size  Location     Type
-  1358 ;;  length          2    0[COMMON] int 
-  1359 ;; Auto vars:     Size  Location     Type
-  1360 ;;  x               2    3[COMMON] int 
-  1361 ;; Return value:  Size  Location     Type
-  1362 ;;		None               void
-  1363 ;; Registers used:
-  1364 ;;		wreg, status,2
-  1365 ;; Tracked objects:
-  1366 ;;		On entry : 0/0
-  1367 ;;		On exit  : 0/0
-  1368 ;;		Unchanged: 0/0
-  1369 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1370 ;;      Params:         2       0       0       0       0
-  1371 ;;      Locals:         2       0       0       0       0
-  1372 ;;      Temps:          1       0       0       0       0
-  1373 ;;      Totals:         5       0       0       0       0
-  1374 ;;Total ram usage:        5 bytes
-  1375 ;; Hardware stack levels used:    1
-  1376 ;; This function calls:
-  1377 ;;		Nothing
-  1378 ;; This function is called by:
-  1379 ;;		_main
-  1380 ;; This function uses a non-reentrant model
-  1381 ;;
-  1382                           psect	text211
-  1383                           	file	"PWMmain.c"
-  1384                           	line	59
-  1385                           	global	__size_of_delay
-  1386  0025                     	__size_of_delay	equ	__end_of_delay-_delay
-  1387                           	
-  1388  069F                     _delay:	
-  1389                           	opt	stack 7
-  1390                           ; Regs used in _delay: [wreg+status,2]
-  1391                           	line	60
-  1392                           	
-  1393  069F                     l5795:	
-  1394                           ;PWMmain.c: 60: for (int x=0; x < length; x++)
-  1395  069F  01F3               	clrf	(delay@x)
-  1396  06A0  01F4               	clrf	(delay@x+1)
-  1397  06A1  2EB4               	goto	l1511
-  1398                           	line	61
-  1399                           	
-  1400  06A2                     l1512:	
-  1401                           	line	62
-  1402                           	
-  1403  06A2                     l5797:	
-  1404                           ;PWMmain.c: 61: {
-  1405                           ;PWMmain.c: 62: x++;
-  1406  06A2  3001               	movlw	low(01h)
-  1407  06A3  07F3               	addwf	(delay@x),f
-  1408  06A4  1803               	skipnc
-  1409  06A5  0AF4               	incf	(delay@x+1),f
-  1410  06A6  3000               	movlw	high(01h)
-  1411  06A7  07F4               	addwf	(delay@x+1),f
-  1412                           	line	63
-  1413                           ;PWMmain.c: 63: x--;
-  1414  06A8  30FF               	movlw	low(-1)
-  1415  06A9  07F3               	addwf	(delay@x),f
-  1416  06AA  1803               	skipnc
-  1417  06AB  0AF4               	incf	(delay@x+1),f
-  1418  06AC  30FF               	movlw	high(-1)
-  1419  06AD  07F4               	addwf	(delay@x+1),f
-  1420                           	line	60
-  1421  06AE  3001               	movlw	low(01h)
-  1422  06AF  07F3               	addwf	(delay@x),f
-  1423  06B0  1803               	skipnc
-  1424  06B1  0AF4               	incf	(delay@x+1),f
-  1425  06B2  3000               	movlw	high(01h)
-  1426  06B3  07F4               	addwf	(delay@x+1),f
-  1427                           	
-  1428  06B4                     l1511:	
-  1429  06B4  0874               	movf	(delay@x+1),w
-  1430  06B5  3A80               	xorlw	80h
-  1431  06B6  00F2               	movwf	(??_delay+0)+0
-  1432  06B7  0871               	movf	(delay@length+1),w
-  1433  06B8  3A80               	xorlw	80h
-  1434  06B9  0272               	subwf	(??_delay+0)+0,w
-  1435  06BA  1D03               	skipz
-  1436  06BB  2EBE               	goto	u2305
-  1437  06BC  0870               	movf	(delay@length),w
-  1438  06BD  0273               	subwf	(delay@x),w
-  1439  06BE                     u2305:
-  1440                           
-  1441  06BE  1C03               	skipc
-  1442  06BF  2EC1               	goto	u2301
-  1443  06C0  2EC2               	goto	u2300
-  1444  06C1                     u2301:
-  1445  06C1  2EA2               	goto	l5797
-  1446  06C2                     u2300:
-  1447  06C2  2EC3               	goto	l1514
-  1448                           	
-  1449  06C3                     l1513:	
-  1450                           	line	65
-  1451                           	
-  1452  06C3                     l1514:	
-  1453  06C3  0008               	return
-  1454                           	opt stack 0
-  1455                           GLOBAL	__end_of_delay
-  1456  06C4                     	__end_of_delay:
-  1457 ;; =============== function _delay ends ============
-  1458                           
-  1459                           	signat	_delay,4216
-  1460                           psect	text212,local,class=CODE,delta=2
-  1461                           global __ptext212
-  1462  0000                     __ptext212:
-  1463                           	global	btemp
-  1464  007E                     	btemp set 07Eh
-  1465                           
-  1466                           	DABS	1,126,2	;btemp
-  1467                           	global	wtemp0
-  1468  007E                     	wtemp0 set btemp
+   683                           	line	74
+   684                           	
+   685  0661                     l1517:	
+   686  0661  0008               	return
+   687                           	opt stack 0
+   688                           GLOBAL	__end_of_Initialise
+   689  0662                     	__end_of_Initialise:
+   690 ;; =============== function _Initialise ends ============
+   691                           
+   692                           	signat	_Initialise,88
+   693                           	global	___awdiv
+   694                           psect	text207,local,class=CODE,delta=2
+   695                           global __ptext207
+   696  078C                     __ptext207:
+   697                           
+   698 ;; *************** function ___awdiv *****************
+   699 ;; Defined at:
+   700 ;;		line 5 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\awdiv.c"
+   701 ;; Parameters:    Size  Location     Type
+   702 ;;  divisor         2    0[COMMON] int 
+   703 ;;  dividend        2    2[COMMON] int 
+   704 ;; Auto vars:     Size  Location     Type
+   705 ;;  quotient        2    7[COMMON] int 
+   706 ;;  sign            1    6[COMMON] unsigned char 
+   707 ;;  counter         1    5[COMMON] unsigned char 
+   708 ;; Return value:  Size  Location     Type
+   709 ;;                  2    0[COMMON] int 
+   710 ;; Registers used:
+   711 ;;		wreg, status,2, status,0
+   712 ;; Tracked objects:
+   713 ;;		On entry : 0/0
+   714 ;;		On exit  : 0/0
+   715 ;;		Unchanged: 0/0
+   716 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   717 ;;      Params:         4       0       0       0       0
+   718 ;;      Locals:         4       0       0       0       0
+   719 ;;      Temps:          1       0       0       0       0
+   720 ;;      Totals:         9       0       0       0       0
+   721 ;;Total ram usage:        9 bytes
+   722 ;; Hardware stack levels used:    1
+   723 ;; This function calls:
+   724 ;;		Nothing
+   725 ;; This function is called by:
+   726 ;;		_CalcPulse
+   727 ;; This function uses a non-reentrant model
+   728 ;;
+   729                           psect	text207
+   730                           	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\awdiv.c"
+   731                           	line	5
+   732                           	global	__size_of___awdiv
+   733  0074                     	__size_of___awdiv	equ	__end_of___awdiv-___awdiv
+   734                           	
+   735  078C                     ___awdiv:	
+   736                           	opt	stack 6
+   737                           ; Regs used in ___awdiv: [wreg+status,2+status,0]
+   738                           	line	9
+   739                           	
+   740  078C                     l5833:	
+   741  078C  01F6               	clrf	(___awdiv@sign)
+   742                           	line	10
+   743  078D  1FF1               	btfss	(___awdiv@divisor+1),7
+   744  078E  2F90               	goto	u2371
+   745  078F  2F91               	goto	u2370
+   746  0790                     u2371:
+   747  0790  2F9A               	goto	l5837
+   748  0791                     u2370:
+   749                           	line	11
+   750                           	
+   751  0791                     l5835:	
+   752  0791  09F0               	comf	(___awdiv@divisor),f
+   753  0792  09F1               	comf	(___awdiv@divisor+1),f
+   754  0793  0AF0               	incf	(___awdiv@divisor),f
+   755  0794  1903               	skipnz
+   756  0795  0AF1               	incf	(___awdiv@divisor+1),f
+   757                           	line	12
+   758  0796  01F6               	clrf	(___awdiv@sign)
+   759  0797  1403               	bsf	status,0
+   760  0798  0DF6               	rlf	(___awdiv@sign),f
+   761  0799  2F9A               	goto	l5837
+   762                           	line	13
+   763                           	
+   764  079A                     l4603:	
+   765                           	line	14
+   766                           	
+   767  079A                     l5837:	
+   768  079A  1FF3               	btfss	(___awdiv@dividend+1),7
+   769  079B  2F9D               	goto	u2381
+   770  079C  2F9E               	goto	u2380
+   771  079D                     u2381:
+   772  079D  2FA8               	goto	l5843
+   773  079E                     u2380:
+   774                           	line	15
+   775                           	
+   776  079E                     l5839:	
+   777  079E  09F2               	comf	(___awdiv@dividend),f
+   778  079F  09F3               	comf	(___awdiv@dividend+1),f
+   779  07A0  0AF2               	incf	(___awdiv@dividend),f
+   780  07A1  1903               	skipnz
+   781  07A2  0AF3               	incf	(___awdiv@dividend+1),f
+   782                           	line	16
+   783                           	
+   784  07A3                     l5841:	
+   785  07A3  3001               	movlw	(01h)
+   786  07A4  00F4               	movwf	(??___awdiv+0)+0
+   787  07A5  0874               	movf	(??___awdiv+0)+0,w
+   788  07A6  06F6               	xorwf	(___awdiv@sign),f
+   789  07A7  2FA8               	goto	l5843
+   790                           	line	17
+   791                           	
+   792  07A8                     l4604:	
+   793                           	line	18
+   794                           	
+   795  07A8                     l5843:	
+   796  07A8  01F7               	clrf	(___awdiv@quotient)
+   797  07A9  01F8               	clrf	(___awdiv@quotient+1)
+   798                           	line	19
+   799                           	
+   800  07AA                     l5845:	
+   801  07AA  0871               	movf	(___awdiv@divisor+1),w
+   802  07AB  0470               	iorwf	(___awdiv@divisor),w
+   803  07AC  1903               	skipnz
+   804  07AD  2FAF               	goto	u2391
+   805  07AE  2FB0               	goto	u2390
+   806  07AF                     u2391:
+   807  07AF  2FEE               	goto	l5865
+   808  07B0                     u2390:
+   809                           	line	20
+   810                           	
+   811  07B0                     l5847:	
+   812  07B0  01F5               	clrf	(___awdiv@counter)
+   813  07B1  1403               	bsf	status,0
+   814  07B2  0DF5               	rlf	(___awdiv@counter),f
+   815                           	line	21
+   816  07B3  2FC0               	goto	l5853
+   817                           	
+   818  07B4                     l4607:	
+   819                           	line	22
+   820                           	
+   821  07B4                     l5849:	
+   822  07B4  3001               	movlw	01h
+   823                           	
+   824  07B5                     u2405:
+   825  07B5  1003               	clrc
+   826  07B6  0DF0               	rlf	(___awdiv@divisor),f
+   827  07B7  0DF1               	rlf	(___awdiv@divisor+1),f
+   828  07B8  3EFF               	addlw	-1
+   829  07B9  1D03               	skipz
+   830  07BA  2FB5               	goto	u2405
+   831                           	line	23
+   832                           	
+   833  07BB                     l5851:	
+   834  07BB  3001               	movlw	(01h)
+   835  07BC  00F4               	movwf	(??___awdiv+0)+0
+   836  07BD  0874               	movf	(??___awdiv+0)+0,w
+   837  07BE  07F5               	addwf	(___awdiv@counter),f
+   838  07BF  2FC0               	goto	l5853
+   839                           	line	24
+   840                           	
+   841  07C0                     l4606:	
+   842                           	line	21
+   843                           	
+   844  07C0                     l5853:	
+   845  07C0  1FF1               	btfss	(___awdiv@divisor+1),(15)&7
+   846  07C1  2FC3               	goto	u2411
+   847  07C2  2FC4               	goto	u2410
+   848  07C3                     u2411:
+   849  07C3  2FB4               	goto	l5849
+   850  07C4                     u2410:
+   851  07C4  2FC6               	goto	l5855
+   852                           	
+   853  07C5                     l4608:	
+   854  07C5  2FC6               	goto	l5855
+   855                           	line	25
+   856                           	
+   857  07C6                     l4609:	
+   858                           	line	26
+   859                           	
+   860  07C6                     l5855:	
+   861  07C6  3001               	movlw	01h
+   862                           	
+   863  07C7                     u2425:
+   864  07C7  1003               	clrc
+   865  07C8  0DF7               	rlf	(___awdiv@quotient),f
+   866  07C9  0DF8               	rlf	(___awdiv@quotient+1),f
+   867  07CA  3EFF               	addlw	-1
+   868  07CB  1D03               	skipz
+   869  07CC  2FC7               	goto	u2425
+   870                           	line	27
+   871  07CD  0871               	movf	(___awdiv@divisor+1),w
+   872  07CE  0273               	subwf	(___awdiv@dividend+1),w
+   873  07CF  1D03               	skipz
+   874  07D0  2FD3               	goto	u2435
+   875  07D1  0870               	movf	(___awdiv@divisor),w
+   876  07D2  0272               	subwf	(___awdiv@dividend),w
+   877  07D3                     u2435:
+   878  07D3  1C03               	skipc
+   879  07D4  2FD6               	goto	u2431
+   880  07D5  2FD7               	goto	u2430
+   881  07D6                     u2431:
+   882  07D6  2FDF               	goto	l5861
+   883  07D7                     u2430:
+   884                           	line	28
+   885                           	
+   886  07D7                     l5857:	
+   887  07D7  0870               	movf	(___awdiv@divisor),w
+   888  07D8  02F2               	subwf	(___awdiv@dividend),f
+   889  07D9  0871               	movf	(___awdiv@divisor+1),w
+   890  07DA  1C03               	skipc
+   891  07DB  03F3               	decf	(___awdiv@dividend+1),f
+   892  07DC  02F3               	subwf	(___awdiv@dividend+1),f
+   893                           	line	29
+   894                           	
+   895  07DD                     l5859:	
+   896  07DD  1477               	bsf	(___awdiv@quotient)+(0/8),(0)&7
+   897  07DE  2FDF               	goto	l5861
+   898                           	line	30
+   899                           	
+   900  07DF                     l4610:	
+   901                           	line	31
+   902                           	
+   903  07DF                     l5861:	
+   904  07DF  3001               	movlw	01h
+   905                           	
+   906  07E0                     u2445:
+   907  07E0  1003               	clrc
+   908  07E1  0CF1               	rrf	(___awdiv@divisor+1),f
+   909  07E2  0CF0               	rrf	(___awdiv@divisor),f
+   910  07E3  3EFF               	addlw	-1
+   911  07E4  1D03               	skipz
+   912  07E5  2FE0               	goto	u2445
+   913                           	line	32
+   914                           	
+   915  07E6                     l5863:	
+   916  07E6  3001               	movlw	low(01h)
+   917  07E7  02F5               	subwf	(___awdiv@counter),f
+   918  07E8  1D03               	btfss	status,2
+   919  07E9  2FEB               	goto	u2451
+   920  07EA  2FEC               	goto	u2450
+   921  07EB                     u2451:
+   922  07EB  2FC6               	goto	l5855
+   923  07EC                     u2450:
+   924  07EC  2FEE               	goto	l5865
+   925                           	
+   926  07ED                     l4611:	
+   927  07ED  2FEE               	goto	l5865
+   928                           	line	33
+   929                           	
+   930  07EE                     l4605:	
+   931                           	line	34
+   932                           	
+   933  07EE                     l5865:	
+   934  07EE  0876               	movf	(___awdiv@sign),w
+   935  07EF  1D03               	skipz
+   936  07F0  2FF2               	goto	u2460
+   937  07F1  2FF8               	goto	l5869
+   938  07F2                     u2460:
+   939                           	line	35
+   940                           	
+   941  07F2                     l5867:	
+   942  07F2  09F7               	comf	(___awdiv@quotient),f
+   943  07F3  09F8               	comf	(___awdiv@quotient+1),f
+   944  07F4  0AF7               	incf	(___awdiv@quotient),f
+   945  07F5  1903               	skipnz
+   946  07F6  0AF8               	incf	(___awdiv@quotient+1),f
+   947  07F7  2FF8               	goto	l5869
+   948                           	
+   949  07F8                     l4612:	
+   950                           	line	36
+   951                           	
+   952  07F8                     l5869:	
+   953  07F8  0878               	movf	(___awdiv@quotient+1),w
+   954  07F9  01F1               	clrf	(?___awdiv+1)
+   955  07FA  07F1               	addwf	(?___awdiv+1)
+   956  07FB  0877               	movf	(___awdiv@quotient),w
+   957  07FC  01F0               	clrf	(?___awdiv)
+   958  07FD  07F0               	addwf	(?___awdiv)
+   959                           
+   960  07FE  2FFF               	goto	l4613
+   961                           	
+   962  07FF                     l5871:	
+   963                           	line	37
+   964                           	
+   965  07FF                     l4613:	
+   966  07FF  0008               	return
+   967                           	opt stack 0
+   968                           GLOBAL	__end_of___awdiv
+   969  0800                     	__end_of___awdiv:
+   970 ;; =============== function ___awdiv ends ============
+   971                           
+   972                           	signat	___awdiv,8314
+   973                           	global	___wmul
+   974                           psect	text208,local,class=CODE,delta=2
+   975                           global __ptext208
+   976  06C1                     __ptext208:
+   977                           
+   978 ;; *************** function ___wmul *****************
+   979 ;; Defined at:
+   980 ;;		line 3 in file "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\wmul.c"
+   981 ;; Parameters:    Size  Location     Type
+   982 ;;  multiplier      2    9[COMMON] unsigned int 
+   983 ;;  multiplicand    2   11[COMMON] unsigned int 
+   984 ;; Auto vars:     Size  Location     Type
+   985 ;;  product         2    0[BANK0 ] unsigned int 
+   986 ;; Return value:  Size  Location     Type
+   987 ;;                  2    9[COMMON] unsigned int 
+   988 ;; Registers used:
+   989 ;;		wreg, status,2, status,0
+   990 ;; Tracked objects:
+   991 ;;		On entry : 0/0
+   992 ;;		On exit  : 0/0
+   993 ;;		Unchanged: 0/0
+   994 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   995 ;;      Params:         4       0       0       0       0
+   996 ;;      Locals:         0       2       0       0       0
+   997 ;;      Temps:          0       0       0       0       0
+   998 ;;      Totals:         4       2       0       0       0
+   999 ;;Total ram usage:        6 bytes
+  1000 ;; Hardware stack levels used:    1
+  1001 ;; This function calls:
+  1002 ;;		Nothing
+  1003 ;; This function is called by:
+  1004 ;;		_CalcPulse
+  1005 ;; This function uses a non-reentrant model
+  1006 ;;
+  1007                           psect	text208
+  1008                           	file	"C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\wmul.c"
+  1009                           	line	3
+  1010                           	global	__size_of___wmul
+  1011  0030                     	__size_of___wmul	equ	__end_of___wmul-___wmul
+  1012                           	
+  1013  06C1                     ___wmul:	
+  1014                           	opt	stack 6
+  1015                           ; Regs used in ___wmul: [wreg+status,2+status,0]
+  1016                           	line	4
+  1017                           	
+  1018  06C1                     l5821:	
+  1019  06C1  1283               	bcf	status, 5	;RP0=0, select bank0
+  1020  06C2  1303               	bcf	status, 6	;RP1=0, select bank0
+  1021  06C3  01A0               	clrf	(___wmul@product)
+  1022  06C4  01A1               	clrf	(___wmul@product+1)
+  1023  06C5  2EC6               	goto	l5823
+  1024                           	line	6
+  1025                           	
+  1026  06C6                     l4463:	
+  1027                           	line	7
+  1028                           	
+  1029  06C6                     l5823:	
+  1030  06C6  1C79               	btfss	(___wmul@multiplier),(0)&7
+  1031  06C7  2EC9               	goto	u2331
+  1032  06C8  2ECA               	goto	u2330
+  1033  06C9                     u2331:
+  1034  06C9  2ED2               	goto	l4464
+  1035  06CA                     u2330:
+  1036                           	line	8
+  1037                           	
+  1038  06CA                     l5825:	
+  1039  06CA  087B               	movf	(___wmul@multiplicand),w
+  1040  06CB  1283               	bcf	status, 5	;RP0=0, select bank0
+  1041  06CC  1303               	bcf	status, 6	;RP1=0, select bank0
+  1042  06CD  07A0               	addwf	(___wmul@product),f
+  1043  06CE  1803               	skipnc
+  1044  06CF  0AA1               	incf	(___wmul@product+1),f
+  1045  06D0  087C               	movf	(___wmul@multiplicand+1),w
+  1046  06D1  07A1               	addwf	(___wmul@product+1),f
+  1047                           	
+  1048  06D2                     l4464:	
+  1049                           	line	9
+  1050  06D2  3001               	movlw	01h
+  1051                           	
+  1052  06D3                     u2345:
+  1053  06D3  1003               	clrc
+  1054  06D4  0DFB               	rlf	(___wmul@multiplicand),f
+  1055  06D5  0DFC               	rlf	(___wmul@multiplicand+1),f
+  1056  06D6  3EFF               	addlw	-1
+  1057  06D7  1D03               	skipz
+  1058  06D8  2ED3               	goto	u2345
+  1059                           	line	10
+  1060                           	
+  1061  06D9                     l5827:	
+  1062  06D9  3001               	movlw	01h
+  1063                           	
+  1064  06DA                     u2355:
+  1065  06DA  1003               	clrc
+  1066  06DB  0CFA               	rrf	(___wmul@multiplier+1),f
+  1067  06DC  0CF9               	rrf	(___wmul@multiplier),f
+  1068  06DD  3EFF               	addlw	-1
+  1069  06DE  1D03               	skipz
+  1070  06DF  2EDA               	goto	u2355
+  1071                           	line	11
+  1072  06E0  087A               	movf	((___wmul@multiplier+1)),w
+  1073  06E1  0479               	iorwf	((___wmul@multiplier)),w
+  1074  06E2  1D03               	skipz
+  1075  06E3  2EE5               	goto	u2361
+  1076  06E4  2EE6               	goto	u2360
+  1077  06E5                     u2361:
+  1078  06E5  2EC6               	goto	l5823
+  1079  06E6                     u2360:
+  1080  06E6  2EE7               	goto	l5829
+  1081                           	
+  1082  06E7                     l4465:	
+  1083                           	line	12
+  1084                           	
+  1085  06E7                     l5829:	
+  1086  06E7  1283               	bcf	status, 5	;RP0=0, select bank0
+  1087  06E8  1303               	bcf	status, 6	;RP1=0, select bank0
+  1088  06E9  0821               	movf	(___wmul@product+1),w
+  1089  06EA  01FA               	clrf	(?___wmul+1)
+  1090  06EB  07FA               	addwf	(?___wmul+1)
+  1091  06EC  0820               	movf	(___wmul@product),w
+  1092  06ED  01F9               	clrf	(?___wmul)
+  1093  06EE  07F9               	addwf	(?___wmul)
+  1094                           
+  1095  06EF  2EF0               	goto	l4466
+  1096                           	
+  1097  06F0                     l5831:	
+  1098                           	line	13
+  1099                           	
+  1100  06F0                     l4466:	
+  1101  06F0  0008               	return
+  1102                           	opt stack 0
+  1103                           GLOBAL	__end_of___wmul
+  1104  06F1                     	__end_of___wmul:
+  1105 ;; =============== function ___wmul ends ============
+  1106                           
+  1107                           	signat	___wmul,8314
+  1108                           	global	_SetPulse
+  1109                           psect	text209,local,class=CODE,delta=2
+  1110                           global __ptext209
+  1111  0662                     __ptext209:
+  1112                           
+  1113 ;; *************** function _SetPulse *****************
+  1114 ;; Defined at:
+  1115 ;;		line 105 in file "pwmlib.c"
+  1116 ;; Parameters:    Size  Location     Type
+  1117 ;;  length          2    0[COMMON] int 
+  1118 ;; Auto vars:     Size  Location     Type
+  1119 ;;  temp            2    2[COMMON] int 
+  1120 ;; Return value:  Size  Location     Type
+  1121 ;;		None               void
+  1122 ;; Registers used:
+  1123 ;;		wreg, status,2, status,0, btemp+1
+  1124 ;; Tracked objects:
+  1125 ;;		On entry : 0/0
+  1126 ;;		On exit  : 0/0
+  1127 ;;		Unchanged: 0/0
+  1128 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1129 ;;      Params:         2       0       0       0       0
+  1130 ;;      Locals:         2       0       0       0       0
+  1131 ;;      Temps:          0       0       0       0       0
+  1132 ;;      Totals:         4       0       0       0       0
+  1133 ;;Total ram usage:        4 bytes
+  1134 ;; Hardware stack levels used:    1
+  1135 ;; This function calls:
+  1136 ;;		Nothing
+  1137 ;; This function is called by:
+  1138 ;;		_CalcPulse
+  1139 ;; This function uses a non-reentrant model
+  1140 ;;
+  1141                           psect	text209
+  1142                           	file	"pwmlib.c"
+  1143                           	line	105
+  1144                           	global	__size_of_SetPulse
+  1145  001C                     	__size_of_SetPulse	equ	__end_of_SetPulse-_SetPulse
+  1146                           	
+  1147  0662                     _SetPulse:	
+  1148                           	opt	stack 6
+  1149                           ; Regs used in _SetPulse: [wreg+status,2+status,0+btemp+1]
+  1150                           	line	106
+  1151                           	
+  1152  0662                     l5815:	
+  1153                           ;pwmlib.c: 106: int temp = length;
+  1154  0662  0871               	movf	(SetPulse@length+1),w
+  1155  0663  01F3               	clrf	(SetPulse@temp+1)
+  1156  0664  07F3               	addwf	(SetPulse@temp+1)
+  1157  0665  0870               	movf	(SetPulse@length),w
+  1158  0666  01F2               	clrf	(SetPulse@temp)
+  1159  0667  07F2               	addwf	(SetPulse@temp)
+  1160                           
+  1161                           	line	107
+  1162                           	
+  1163  0668                     l5817:	
+  1164                           ;pwmlib.c: 107: if (temp > 255)
+  1165  0668  0873               	movf	(SetPulse@temp+1),w
+  1166  0669  3A80               	xorlw	80h
+  1167  066A  00FF               	movwf	btemp+1
+  1168  066B  3081               	movlw	(high(0100h))^80h
+  1169  066C  027F               	subwf	btemp+1,w
+  1170  066D  1D03               	skipz
+  1171  066E  2E71               	goto	u2325
+  1172  066F  3000               	movlw	low(0100h)
+  1173  0670  0272               	subwf	(SetPulse@temp),w
+  1174  0671                     u2325:
+  1175                           
+  1176  0671  1C03               	skipc
+  1177  0672  2E74               	goto	u2321
+  1178  0673  2E75               	goto	u2320
+  1179  0674                     u2321:
+  1180  0674  2E79               	goto	l3022
+  1181  0675                     u2320:
+  1182                           	line	108
+  1183                           	
+  1184  0675                     l5819:	
+  1185                           ;pwmlib.c: 108: temp = 255;
+  1186  0675  30FF               	movlw	low(0FFh)
+  1187  0676  00F2               	movwf	(SetPulse@temp)
+  1188  0677  3000               	movlw	high(0FFh)
+  1189  0678  00F3               	movwf	((SetPulse@temp))+1
+  1190                           	
+  1191  0679                     l3022:	
+  1192                           	line	109
+  1193                           ;pwmlib.c: 109: CCPR1L = temp;
+  1194  0679  0872               	movf	(SetPulse@temp),w
+  1195  067A  1283               	bcf	status, 5	;RP0=0, select bank0
+  1196  067B  1303               	bcf	status, 6	;RP1=0, select bank0
+  1197  067C  0095               	movwf	(21)	;volatile
+  1198                           	line	113
+  1199                           	
+  1200  067D                     l3023:	
+  1201  067D  0008               	return
+  1202                           	opt stack 0
+  1203                           GLOBAL	__end_of_SetPulse
+  1204  067E                     	__end_of_SetPulse:
+  1205 ;; =============== function _SetPulse ends ============
+  1206                           
+  1207                           	signat	_SetPulse,4216
+  1208                           	global	_BeginPWM
+  1209                           psect	text210,local,class=CODE,delta=2
+  1210                           global __ptext210
+  1211  067E                     __ptext210:
+  1212                           
+  1213 ;; *************** function _BeginPWM *****************
+  1214 ;; Defined at:
+  1215 ;;		line 41 in file "pwmlib.c"
+  1216 ;; Parameters:    Size  Location     Type
+  1217 ;;		None
+  1218 ;; Auto vars:     Size  Location     Type
+  1219 ;;		None
+  1220 ;; Return value:  Size  Location     Type
+  1221 ;;		None               void
+  1222 ;; Registers used:
+  1223 ;;		wreg, status,2
+  1224 ;; Tracked objects:
+  1225 ;;		On entry : 0/0
+  1226 ;;		On exit  : 0/0
+  1227 ;;		Unchanged: 0/0
+  1228 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1229 ;;      Params:         0       0       0       0       0
+  1230 ;;      Locals:         0       0       0       0       0
+  1231 ;;      Temps:          0       0       0       0       0
+  1232 ;;      Totals:         0       0       0       0       0
+  1233 ;;Total ram usage:        0 bytes
+  1234 ;; Hardware stack levels used:    1
+  1235 ;; This function calls:
+  1236 ;;		Nothing
+  1237 ;; This function is called by:
+  1238 ;;		_Initialise
+  1239 ;; This function uses a non-reentrant model
+  1240 ;;
+  1241                           psect	text210
+  1242                           	file	"pwmlib.c"
+  1243                           	line	41
+  1244                           	global	__size_of_BeginPWM
+  1245  001E                     	__size_of_BeginPWM	equ	__end_of_BeginPWM-_BeginPWM
+  1246                           	
+  1247  067E                     _BeginPWM:	
+  1248                           	opt	stack 6
+  1249                           ; Regs used in _BeginPWM: [wreg+status,2]
+  1250                           	line	44
+  1251                           	
+  1252  067E                     l5797:	
+  1253                           ;pwmlib.c: 44: TRISCbits.TRISC5 = 1;
+  1254  067E  1683               	bsf	status, 5	;RP0=1, select bank1
+  1255  067F  1303               	bcf	status, 6	;RP1=0, select bank1
+  1256  0680  1687               	bsf	(135)^080h,5	;volatile
+  1257                           	line	47
+  1258                           ;pwmlib.c: 47: PIE1bits.TMR2IE = 0;
+  1259  0681  108C               	bcf	(140)^080h,1	;volatile
+  1260                           	line	51
+  1261                           	
+  1262  0682                     l5799:	
+  1263                           ;pwmlib.c: 51: PR2 = 0xFF;
+  1264  0682  30FF               	movlw	(0FFh)
+  1265  0683  0092               	movwf	(146)^080h	;volatile
+  1266                           	line	55
+  1267                           ;pwmlib.c: 55: CCP1CON = 0b00001100;
+  1268  0684  300C               	movlw	(0Ch)
+  1269  0685  1283               	bcf	status, 5	;RP0=0, select bank0
+  1270  0686  1303               	bcf	status, 6	;RP1=0, select bank0
+  1271  0687  0097               	movwf	(23)	;volatile
+  1272                           	line	59
+  1273                           	
+  1274  0688                     l5801:	
+  1275                           ;pwmlib.c: 59: CCPR1L = 0;
+  1276  0688  0195               	clrf	(21)	;volatile
+  1277                           	line	60
+  1278                           	
+  1279  0689                     l5803:	
+  1280                           ;pwmlib.c: 60: CCP1CONbits.CCP1X = 0;
+  1281  0689  1297               	bcf	(23),5	;volatile
+  1282                           	line	61
+  1283                           	
+  1284  068A                     l5805:	
+  1285                           ;pwmlib.c: 61: CCP1CONbits.CCP1Y = 0;
+  1286  068A  1217               	bcf	(23),4	;volatile
+  1287                           	line	66
+  1288                           	
+  1289  068B                     l5807:	
+  1290                           ;pwmlib.c: 66: PIR1bits.TMR2IF = 0;
+  1291  068B  108C               	bcf	(12),1	;volatile
+  1292                           	line	70
+  1293                           	
+  1294  068C                     l5809:	
+  1295                           ;pwmlib.c: 70: T2CON = 0b00000100;
+  1296  068C  3004               	movlw	(04h)
+  1297  068D  0092               	movwf	(18)	;volatile
+  1298  068E  2E8F               	goto	l5811
+  1299                           	line	75
+  1300                           ;pwmlib.c: 75: while(1)
+  1301                           	
+  1302  068F                     l3011:	
+  1303                           	line	77
+  1304                           	
+  1305  068F                     l5811:	
+  1306                           ;pwmlib.c: 76: {
+  1307                           ;pwmlib.c: 77: if(PIR1bits.TMR2IF == 1)
+  1308  068F  1283               	bcf	status, 5	;RP0=0, select bank0
+  1309  0690  1C8C               	btfss	(12),1	;volatile
+  1310  0691  2E93               	goto	u2311
+  1311  0692  2E94               	goto	u2310
+  1312  0693                     u2311:
+  1313  0693  2E8F               	goto	l5811
+  1314  0694                     u2310:
+  1315                           	line	79
+  1316                           	
+  1317  0694                     l5813:	
+  1318                           ;pwmlib.c: 78: {
+  1319                           ;pwmlib.c: 79: TMR2IF = 0;
+  1320  0694  108C               	bcf	(97/8),(97)&7
+  1321                           	line	80
+  1322                           ;pwmlib.c: 80: TRISCbits.TRISC5 = 0;
+  1323  0695  1683               	bsf	status, 5	;RP0=1, select bank1
+  1324  0696  1303               	bcf	status, 6	;RP1=0, select bank1
+  1325  0697  1287               	bcf	(135)^080h,5	;volatile
+  1326                           	line	81
+  1327                           ;pwmlib.c: 81: break;
+  1328  0698  2E9B               	goto	l3015
+  1329                           	line	82
+  1330                           	
+  1331  0699                     l3012:	
+  1332  0699  2E8F               	goto	l5811
+  1333                           	line	83
+  1334                           	
+  1335  069A                     l3014:	
+  1336                           	line	75
+  1337  069A  2E8F               	goto	l5811
+  1338                           	
+  1339  069B                     l3013:	
+  1340                           	line	84
+  1341                           	
+  1342  069B                     l3015:	
+  1343  069B  0008               	return
+  1344                           	opt stack 0
+  1345                           GLOBAL	__end_of_BeginPWM
+  1346  069C                     	__end_of_BeginPWM:
+  1347 ;; =============== function _BeginPWM ends ============
+  1348                           
+  1349                           	signat	_BeginPWM,88
+  1350                           	global	_delay
+  1351                           psect	text211,local,class=CODE,delta=2
+  1352                           global __ptext211
+  1353  069C                     __ptext211:
+  1354                           
+  1355 ;; *************** function _delay *****************
+  1356 ;; Defined at:
+  1357 ;;		line 61 in file "PWMmain.c"
+  1358 ;; Parameters:    Size  Location     Type
+  1359 ;;  length          2    0[COMMON] int 
+  1360 ;; Auto vars:     Size  Location     Type
+  1361 ;;  x               2    3[COMMON] int 
+  1362 ;; Return value:  Size  Location     Type
+  1363 ;;		None               void
+  1364 ;; Registers used:
+  1365 ;;		wreg, status,2
+  1366 ;; Tracked objects:
+  1367 ;;		On entry : 0/0
+  1368 ;;		On exit  : 0/0
+  1369 ;;		Unchanged: 0/0
+  1370 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1371 ;;      Params:         2       0       0       0       0
+  1372 ;;      Locals:         2       0       0       0       0
+  1373 ;;      Temps:          1       0       0       0       0
+  1374 ;;      Totals:         5       0       0       0       0
+  1375 ;;Total ram usage:        5 bytes
+  1376 ;; Hardware stack levels used:    1
+  1377 ;; This function calls:
+  1378 ;;		Nothing
+  1379 ;; This function is called by:
+  1380 ;;		_main
+  1381 ;; This function uses a non-reentrant model
+  1382 ;;
+  1383                           psect	text211
+  1384                           	file	"PWMmain.c"
+  1385                           	line	61
+  1386                           	global	__size_of_delay
+  1387  0025                     	__size_of_delay	equ	__end_of_delay-_delay
+  1388                           	
+  1389  069C                     _delay:	
+  1390                           	opt	stack 7
+  1391                           ; Regs used in _delay: [wreg+status,2]
+  1392                           	line	62
+  1393                           	
+  1394  069C                     l5793:	
+  1395                           ;PWMmain.c: 62: for (int x=0; x < length; x++)
+  1396  069C  01F3               	clrf	(delay@x)
+  1397  069D  01F4               	clrf	(delay@x+1)
+  1398  069E  2EB1               	goto	l1511
+  1399                           	line	63
+  1400                           	
+  1401  069F                     l1512:	
+  1402                           	line	64
+  1403                           	
+  1404  069F                     l5795:	
+  1405                           ;PWMmain.c: 63: {
+  1406                           ;PWMmain.c: 64: x++;
+  1407  069F  3001               	movlw	low(01h)
+  1408  06A0  07F3               	addwf	(delay@x),f
+  1409  06A1  1803               	skipnc
+  1410  06A2  0AF4               	incf	(delay@x+1),f
+  1411  06A3  3000               	movlw	high(01h)
+  1412  06A4  07F4               	addwf	(delay@x+1),f
+  1413                           	line	65
+  1414                           ;PWMmain.c: 65: x--;
+  1415  06A5  30FF               	movlw	low(-1)
+  1416  06A6  07F3               	addwf	(delay@x),f
+  1417  06A7  1803               	skipnc
+  1418  06A8  0AF4               	incf	(delay@x+1),f
+  1419  06A9  30FF               	movlw	high(-1)
+  1420  06AA  07F4               	addwf	(delay@x+1),f
+  1421                           	line	62
+  1422  06AB  3001               	movlw	low(01h)
+  1423  06AC  07F3               	addwf	(delay@x),f
+  1424  06AD  1803               	skipnc
+  1425  06AE  0AF4               	incf	(delay@x+1),f
+  1426  06AF  3000               	movlw	high(01h)
+  1427  06B0  07F4               	addwf	(delay@x+1),f
+  1428                           	
+  1429  06B1                     l1511:	
+  1430  06B1  0874               	movf	(delay@x+1),w
+  1431  06B2  3A80               	xorlw	80h
+  1432  06B3  00F2               	movwf	(??_delay+0)+0
+  1433  06B4  0871               	movf	(delay@length+1),w
+  1434  06B5  3A80               	xorlw	80h
+  1435  06B6  0272               	subwf	(??_delay+0)+0,w
+  1436  06B7  1D03               	skipz
+  1437  06B8  2EBB               	goto	u2305
+  1438  06B9  0870               	movf	(delay@length),w
+  1439  06BA  0273               	subwf	(delay@x),w
+  1440  06BB                     u2305:
+  1441                           
+  1442  06BB  1C03               	skipc
+  1443  06BC  2EBE               	goto	u2301
+  1444  06BD  2EBF               	goto	u2300
+  1445  06BE                     u2301:
+  1446  06BE  2E9F               	goto	l5795
+  1447  06BF                     u2300:
+  1448  06BF  2EC0               	goto	l1514
+  1449                           	
+  1450  06C0                     l1513:	
+  1451                           	line	67
+  1452                           	
+  1453  06C0                     l1514:	
+  1454  06C0  0008               	return
+  1455                           	opt stack 0
+  1456                           GLOBAL	__end_of_delay
+  1457  06C1                     	__end_of_delay:
+  1458 ;; =============== function _delay ends ============
+  1459                           
+  1460                           	signat	_delay,4216
+  1461                           psect	text212,local,class=CODE,delta=2
+  1462                           global __ptext212
+  1463  0000                     __ptext212:
+  1464                           	global	btemp
+  1465  007E                     	btemp set 07Eh
+  1466                           
+  1467                           	DABS	1,126,2	;btemp
+  1468                           	global	wtemp0
+  1469  007E                     	wtemp0 set btemp
 
 
 HI-TECH Software PICC Macro Assembler V9.83 build 10920 
-Symbol Table                                                                                   Sun Dec 09 18:13:31 2012
+Symbol Table                                                                                   Sun Dec 09 18:39:47 2012
 
                   _RD 0C60                    _WR 0C61          ___awdiv@sign 0076   ___wmul@multiplicand 007B  
-                 _GIE 005F                   _PR2 0092                  l3011 0692                  l3012 069C  
-                l3013 069E                  l1501 072E                  l3014 069D                  l3022 067C  
-                l1502 0737                  l1511 06B4                  l3015 069E                  l3023 0680  
-                l1503 075B                  l1512 06A2                  l1520 0727                  l1504 0768  
-                l1513 06C3                  l1505 0787                  l1514 06C3                  l1506 0788  
-                l1507 0789                  l1508 0789                  l1517 0664                  l4610 07DF  
+                 _GIE 005F                   _PR2 0092                  l3011 068F                  l3012 0699  
+                l3013 069B                  l1501 072B                  l3014 069A                  l3022 0679  
+                l1502 0739                  l1511 06B1                  l3015 069B                  l3023 067D  
+                l1503 075B                  l1512 069F                  l1520 0724                  l1504 0767  
+                l1513 06C0                  l1505 0787                  l1514 06C0                  l1506 0788  
+                l1507 0789                  l1508 0789                  l1517 0661                  l4610 07DF  
                 l4611 07ED                  l4603 079A                  l4612 07F8                  l4604 07A8  
-                l4613 07FF                  l4605 07EE                  l4606 07C0                  l4463 06C9  
-                l4607 07B4                  l4464 06D5                  l4608 07C5                  l4465 06EA  
-                l4609 07C6                  l4466 06F3                  l5801 0685                  l5811 068F  
-                l5803 068B                  l5813 0692                  l5805 068C                  l5821 0678  
-                l5901 0767                  l5815 0697                  l5807 068D                  l5831 06EA  
-                l5823 06C4                  l5903 0768                  l5809 068E                  l5817 0665  
-                l5833 06F3                  l5825 06C9                  l5841 079E                  l5905 0776  
-                l5819 066B                  l5827 06CD                  l5851 07B4                  l5843 07A3  
-                l5835 078C                  l5907 077F                  l5829 06DC                  l5861 07DD  
-                l5853 07BB                  l5845 07A8                  l5837 0791                  l5909 0781  
-                l5871 07F8                  l5863 07DF                  l5855 07C0                  l5847 07AA  
-                l5839 079A                  l5873 07FF                  l5865 07E6                  l5857 07C6  
-                l5849 07B0                  l5881 0728                  l5795 069F                  l5859 07D7  
-                l5867 07EE                  l5875 065F                  l5891 0745                  l5883 072E  
-                l5797 06A2                  l5869 07F2                  l5877 06F4                  l5893 074E  
-                l5885 072F                  l5799 0681                  l5879 071C                  l5895 0754  
-                l5887 0736                  l5897 075B                  l5889 0737                  l5899 0761  
-                u2300 06C2                  u2301 06C1                  u2310 0697                  u2311 0696  
-                u2320 0678                  u2305 06BE                  u2321 0677                  u2330 06CD  
-                u2410 07C4                  u2331 06CC                  u2411 07C3                  u2500 0786  
-                u2325 0674                  u2405 07B5                  u2501 0785                  u2430 07D7  
-                u2431 07D6                  u2360 06E9                  u2361 06E8                  u2345 06D6  
-                u2425 07C7                  u2450 07EC                  u2370 0791                  u2355 06DD  
-                u2451 07EB                  u2435 07D3                  u2371 0790                  u2460 07F2  
-                u2380 079E                  u2445 07E0                  u2381 079D                  u2390 07B0  
-                u2470 0735                  u2391 07AF                  u2471 0734                  u2480 075A  
-                u2481 0759                  u2490 0766                  u2491 0765                  _WREN 0C62  
-                _main 0728                  btemp 007E                  start 0000                 ?_main 0070  
-     __end_of___awdiv 0800                 _EEADR 010D                 _CARRY 0018       ___awdiv@divisor 0070  
-               _T2CON 0012       ___awdiv@counter 0075                 _delay 069F      __end_of_BeginPWM 069F  
-               status 0003                 wtemp0 007E    __size_of_CalcPulse 0034          __end_of_main 078C  
-          _Initialise 065F                ??_main 0026      __end_of_SetPulse 0681                ?_delay 0070  
-              _EEDATA 010C                _CCPR1L 0015                _EECON1 018C                _EECON2 018D  
-    ___awdiv@dividend 0072                _TMR2IF 0061        CalcPulse@speed 0022        CalcPulse@pulse 0024  
-              ___wmul 06C4             ??___awdiv 0074                delay@x 0073      ___awdiv@quotient 0077  
-              main@dc 007D     __end_of_CalcPulse 0728        __pcstackCOMMON 0070         __end_of_delay 06C4  
-         ?_Initialise 0070             ?_BeginPWM 0070               ??_delay 0072             ?_SetPulse 0070  
-          __pmaintext 0728               ?___wmul 0079               _CCP1CON 0017            ??_BeginPWM 0070  
- __size_of_Initialise 0006            ??_SetPulse 0072               ___awdiv 078C       __size_of___wmul 0030  
-           _T2CONbits 0012  end_of_initialization 065B        SetPulse@length 0070             _TRISCbits 0087  
-           _CalcPulse 06F4           _CCP1CONbits 0017          ??_Initialise 0070        __end_of___wmul 06F4  
- start_initialization 065B     __size_of_BeginPWM 001E            ?_CalcPulse 0022    __end_of_Initialise 0665  
-            ??___wmul 007D     __size_of_SetPulse 001C          SetPulse@temp 0072         __pcstackBANK0 0020  
-            ?___awdiv 0070             __ptext210 0681             __ptext211 069F             __ptext212 0000  
-           __ptext204 0000             __ptext205 06F4             __ptext206 065F             __ptext207 078C  
-           __ptext208 06C4             __ptext209 0665        __size_of_delay 0025           ??_CalcPulse 007D  
-      ___wmul@product 0020              _PIE1bits 008C              _PIR1bits 000C     ___wmul@multiplier 0079  
-            _BeginPWM 0681              _SetPulse 0665      __size_of___awdiv 0074         __size_of_main 0064  
-         delay@length 0070  
+                l4613 07FF                  l4605 07EE                  l4606 07C0                  l4463 06C6  
+                l4607 07B4                  l4464 06D2                  l4608 07C5                  l4465 06E7  
+                l4609 07C6                  l4466 06F0                  l5801 0688                  l5811 068F  
+                l5803 0689                  l5813 0694                  l5805 068A                  l5821 06C1  
+                l5901 0775                  l5807 068B                  l5815 0662                  l5831 06F0  
+                l5823 06C6                  l5903 077E                  l5809 068C                  l5817 0668  
+                l5825 06CA                  l5841 07A3                  l5833 078C                  l5905 0780  
+                l5819 0675                  l5827 06D9                  l5851 07BB                  l5843 07A8  
+                l5835 0791                  l5829 06E7                  l5861 07DF                  l5853 07C0  
+                l5845 07AA                  l5837 079A                  l5871 07FF                  l5863 07E6  
+                l5855 07C6                  l5847 07B0                  l5839 079E                  l5793 069C  
+                l5857 07D7                  l5849 07B4                  l5865 07EE                  l5873 065C  
+                l5881 072B                  l5795 069F                  l5867 07F2                  l5859 07DD  
+                l5875 06F1                  l5891 074E                  l5883 0731                  l5797 067E  
+                l5869 07F8                  l5877 0719                  l5893 0754                  l5885 0738  
+                l5799 0682                  l5895 075B                  l5887 0739                  l5879 0725  
+                l5897 0766                  l5889 0745                  l5899 0767                  u2300 06BF  
+                u2301 06BE                  u2310 0694                  u2311 0693                  u2320 0675  
+                u2305 06BB                  u2321 0674                  u2330 06CA                  u2410 07C4  
+                u2331 06C9                  u2411 07C3                  u2500 0786                  u2325 0671  
+                u2405 07B5                  u2501 0785                  u2430 07D7                  u2431 07D6  
+                u2360 06E6                  u2361 06E5                  u2345 06D3                  u2425 07C7  
+                u2450 07EC                  u2370 0791                  u2355 06DA                  u2451 07EB  
+                u2435 07D3                  u2371 0790                  u2460 07F2                  u2380 079E  
+                u2445 07E0                  u2381 079D                  u2390 07B0                  u2470 0737  
+                u2391 07AF                  u2471 0736                  u2480 075A                  u2481 0759  
+                u2490 0765                  u2491 0764                  _WREN 0C62                  _main 0725  
+                btemp 007E                  start 0000                 ?_main 0070       __end_of___awdiv 0800  
+               _EEADR 010D                 _CARRY 0018       ___awdiv@divisor 0070                 _T2CON 0012  
+     ___awdiv@counter 0075                 _delay 069C      __end_of_BeginPWM 069C                 status 0003  
+               wtemp0 007E    __size_of_CalcPulse 0034          __end_of_main 078C            _Initialise 065C  
+              ??_main 0026      __end_of_SetPulse 067E                ?_delay 0070                _EEDATA 010C  
+              _CCPR1L 0015                _EECON1 018C                _EECON2 018D      ___awdiv@dividend 0072  
+              _TMR2IF 0061        CalcPulse@speed 0022        CalcPulse@pulse 0024                ___wmul 06C1  
+           ??___awdiv 0074                delay@x 0073      ___awdiv@quotient 0077                main@dc 007D  
+   __end_of_CalcPulse 0725        __pcstackCOMMON 0070         __end_of_delay 06C1           ?_Initialise 0070  
+           ?_BeginPWM 0070               ??_delay 0072             ?_SetPulse 0070            __pmaintext 0725  
+             ?___wmul 0079               _CCP1CON 0017            ??_BeginPWM 0070   __size_of_Initialise 0006  
+          ??_SetPulse 0072               ___awdiv 078C       __size_of___wmul 0030             _T2CONbits 0012  
+end_of_initialization 0658        SetPulse@length 0070             _TRISCbits 0087             _CalcPulse 06F1  
+         _CCP1CONbits 0017          ??_Initialise 0070        __end_of___wmul 06F1   start_initialization 0658  
+   __size_of_BeginPWM 001E            ?_CalcPulse 0022    __end_of_Initialise 0662              ??___wmul 007D  
+   __size_of_SetPulse 001C          SetPulse@temp 0072         __pcstackBANK0 0020              ?___awdiv 0070  
+           __ptext210 067E             __ptext211 069C             __ptext212 0000             __ptext204 0000  
+           __ptext205 06F1             __ptext206 065C             __ptext207 078C             __ptext208 06C1  
+           __ptext209 0662        __size_of_delay 0025           ??_CalcPulse 007D        ___wmul@product 0020  
+            _PIE1bits 008C              _PIR1bits 000C     ___wmul@multiplier 0079              _BeginPWM 067E  
+            _SetPulse 0662      __size_of___awdiv 0074         __size_of_main 0067           delay@length 0070  

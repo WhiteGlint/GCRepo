@@ -2226,11 +2226,11 @@
 [v _StopPWM `(v  1 e 0 0 ]
 "27 PWMmain.c
 [v _main `(v  1 e 0 0 ]
-"59
+"61
 [v _delay `(v  1 e 0 0 ]
-"70
+"72
 [v _Initialise `(v  1 e 0 0 ]
-"78
+"80
 [v _CalcPulse `(v  1 e 0 0 ]
 "95 /hitech/products/compilers/pic/pro/9.83/dist/linux/include/pic16f917.h
 [v _INDF `VEuc  1 e 1 @0 ]
@@ -3725,21 +3725,21 @@
 {
 "28
 [v main@dc `uc  1 a 1 13 ]
-"54
+"56
 } 0
-"78
+"80
 [v _CalcPulse `(v  1 e 0 0 ]
 {
-"79
-[v CalcPulse@pulse `i  1 a 2 4 ]
-"78
-[v CalcPulse@speed `i  1 p 2 2 ]
 "81
+[v CalcPulse@pulse `i  1 a 2 4 ]
+"80
+[v CalcPulse@speed `i  1 p 2 2 ]
+"83
 } 0
-"70
+"72
 [v _Initialise `(v  1 e 0 0 ]
 {
-"72
+"74
 } 0
 "5 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\awdiv.c
 [v ___awdiv `(i  1 e 2 0 ]
@@ -3778,12 +3778,12 @@
 {
 "84
 } 0
-"59 PWMmain.c
+"61 PWMmain.c
 [v _delay `(v  1 e 0 0 ]
 {
-"60
+"62
 [v delay@x `i  1 a 2 3 ]
-"59
+"61
 [v delay@length `i  1 p 2 0 ]
-"65
+"67
 } 0

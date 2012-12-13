@@ -36,18 +36,20 @@ void main()
          * don't use last 2 less significant bits CCPxCON,
          * so only CCPRxL have to be touched to change duty cycle
          */
-        for(dc = 0 ; dc < 10 ; dc++)
+        for(dc = 8 ; dc <= 10 ; dc++)
         {
             CalcPulse(dc);
-            delay(200) ;
+            delay(2000) ;
         }
-        for(dc = 10; dc > 0 ; dc--)
+        for(dc = 10; dc >= 8 ; dc--)
         {
             CalcPulse(dc);
-            delay(200) ;
+            delay(2000) ;
         }
-    }
+    }//*/
 
+ //   while(1)
+   //     CalcPulse(10);
 
 
 

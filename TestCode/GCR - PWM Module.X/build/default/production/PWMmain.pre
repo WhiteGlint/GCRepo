@@ -2440,21 +2440,19 @@ while(1)
 {
 
 # 39
-for(dc = 0 ; dc < 10 ; dc++)
+for(dc = 8 ; dc <= 10 ; dc++)
 {
 CalcPulse(dc);
-delay(200) ;
+delay(2000) ;
 }
-for(dc = 10; dc > 0 ; dc--)
+for(dc = 10; dc >= 8 ; dc--)
 {
 CalcPulse(dc);
-delay(200) ;
+delay(2000) ;
 }
 }
 
-
-
-
+# 56
 }
 
 
