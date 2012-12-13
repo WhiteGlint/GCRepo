@@ -16,10 +16,10 @@
 __CONFIG(FOSC_EXTRCCLK & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_ON & IESO_ON & FCMEN_ON);
 
 
-
+int val = 0;
 void delay();
 void i2c_init();
-int i2cBuffer = 1;
+int i2cBuffer[10];
 
 
 int main(int argc, char** argv) {
@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     i2c_init();
     PORTD = 0;
     loop:
-        PORTD = i2cBuffer;
+       PORTD = i2cBuffer[0];
     delay();
     goto loop;
 
@@ -95,14 +95,25 @@ SSP_Handler
 
  
 
-    char ssptemp = SSPSTAT & 0b00101101;
+    char ssptemp = SSPSTAT & 0b00100000;
+    if (val == 10)
+        val = 0;
 
-    if (SSPSTAT & 0b00100000 == 0b00100000) // D_A bit high, data in buffer
-        i2cBuffer = SSPBUF;
-    else // D_A bit clear, addr in buffer
+    if ((SSPSTAT & 0b00100000) == 0b00100000){ // D_A bit high, data in buffer
+        //if (SSPBUF == SSPADD)
+        //    SSPBUF =0;
+       // else
+            i2cBuffer[val] = SSPBUF;
+            val++;
+    }
+    else{ // D_A bit clear, addr in buffer
         SSPBUF = 0;
+    }
 
+    
    SSPIF = 0;
+   //val++;
+   //PORTD = i2cBuffer[val];
 }
 
 
