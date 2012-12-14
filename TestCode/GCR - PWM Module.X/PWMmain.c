@@ -18,7 +18,8 @@ __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BO
 void Initialise();
 void CalcPulse(int speed);
 void directionInit();
-unsigned char parseDirectionPWM();
+int parseDirectionPWM();
+void setDirection(int dir);
 
 //Test Functions
 void delay(int length);
@@ -34,7 +35,7 @@ int setSpeed = 0;              //register holding the currently desired speed
 void main()
 {
    // unsigned char dc;
-    unsigned char direction;
+    int direction;
     Initialise();
 
 /*    while(1)                         // forever
@@ -59,6 +60,7 @@ void main()
     while (1)
     {
         direction = parseDirectionPWM();
+        setDirection(direction);
         CalcPulse(setSpeed);
         PORTD = setSpeed;
     }
@@ -186,7 +188,7 @@ void directionInit()
 
 //Sets the direction bit equal to 0 or 1 and sets the
 //  global variable "setSpeed" equal to proper speed
-unsigned char parseDirectionPWM()
+int parseDirectionPWM()
 {
     setSpeed = i2cBuffer[1]&01111111;
 
@@ -196,6 +198,18 @@ unsigned char parseDirectionPWM()
     }
     else
         return 0;
+}
 
 
+
+//Sets the direction according to the direction value
+//  0 is forward, 1 is reverse
+void setDirection(int dir)
+{
+    if (dir == 0)
+        PORTBbits.RB3 = 0;  //if 0, set to 0 so that motor is forward
+    else if (dir == 1)
+        PORTBbits.RB3 = 1;  //if 1, set to 1 so motor is reverse
+    else
+        PORTBbits.RB3 = 0;  //default to motor forward
 }
