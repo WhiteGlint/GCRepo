@@ -113,7 +113,6 @@ void SetPulse(int length)
 }
 
 
-
 //Function that stops PWM by turning off Timer2
 void StopPWM()
 {

@@ -3878,17 +3878,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 "113
 [e :UE 203 ]
 }
-"119
+"118
 [v _StopPWM `(v  1 ef ]
 {
-[; ;pwmlib.c: 118: void StopPWM()
-[; ;pwmlib.c: 119: {
+[; ;pwmlib.c: 117: void StopPWM()
+[; ;pwmlib.c: 118: {
 [e :U _StopPWM ]
 [f ]
-[; ;pwmlib.c: 121: T2CONbits.TMR2ON = 0;
-"121
+[; ;pwmlib.c: 120: T2CONbits.TMR2ON = 0;
+"120
 [e = . . _T2CONbits 0 1 -> -> 0 `i `uc ]
-[; ;pwmlib.c: 122: }
-"122
+[; ;pwmlib.c: 121: }
+"121
 [e :UE 205 ]
 }

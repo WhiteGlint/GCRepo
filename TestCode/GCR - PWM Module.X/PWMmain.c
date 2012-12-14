@@ -17,11 +17,15 @@ __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BO
 /**********/
 void Initialise();
 void CalcPulse(int speed);
+void directionInit();
+unsigned char parseDirectionPWM();
 
 //Test Functions
 void delay(int length);
 void i2c_init();            //for testing I2C
 void interrupt isr();       //for testing I2C interrupts
+
+//Global Variables
 int i2cBuffer[10];          //buffer for holding incoming data
 int val = 0;                //refers to i2cBuffer index
 int setSpeed = 0;              //register holding the currently desired speed
@@ -29,7 +33,8 @@ int setSpeed = 0;              //register holding the currently desired speed
 
 void main()
 {
-    unsigned char dc;
+   // unsigned char dc;
+    unsigned char direction;
     Initialise();
 
 /*    while(1)                         // forever
@@ -52,7 +57,11 @@ void main()
     }//*/
 
     while (1)
+    {
+        direction = parseDirectionPWM();
         CalcPulse(setSpeed);
+        PORTD = setSpeed;
+    }
 
 
 }
@@ -74,7 +83,10 @@ void Initialise()
 {
     BeginPWM();
     i2c_init();
+    directionInit();
 
+    TRISD = 0;  //set up onboard LEDs as
+    PORTD = 0;  //  output for testing
 }
 
 
@@ -104,7 +116,7 @@ void i2c_init(){
 
     SSPIE =1;
 
-    SSPADD = 0b10100100;
+    SSPADD = 0b00001110;
     PEIE = 1;
     GIE = 1;
     INTE = 1;
@@ -140,8 +152,8 @@ SSP_Handler
 ;
 ;----------------------------------------------------------------------
 */
-    if (val == 2)
-       val = 0;
+    if (val == 2)  //FOR TESTING:  want to use only every other data bit
+       val = 0;    //  since we are not concerned with read/write at this point
 
     if ((SSPSTAT & 0b00100000) == 0b00100000){ // D_A bit high, data in buffer
         //if (SSPBUF == SSPADD)
@@ -149,7 +161,6 @@ SSP_Handler
         // else
             i2cBuffer[val] = SSPBUF;
             val++;
-            setSpeed = i2cBuffer[1];
     }
     else{ // D_A bit clear, addr in buffer
         SSPBUF = 0;
@@ -159,4 +170,32 @@ SSP_Handler
    SSPIF = 0;
    //val++;
    //PORTD = i2cBuffer[val];
+}
+
+
+
+//Configures the bit that controls the direction of the
+//  rotation of the motor; 0 is forward, 1 is reverse
+void directionInit()
+{
+    TRISB3 = 0; //set as output
+    PORTBbits.RB3 = 0; //default to forward
+}
+
+
+
+//Sets the direction bit equal to 0 or 1 and sets the
+//  global variable "setSpeed" equal to proper speed
+unsigned char parseDirectionPWM()
+{
+    setSpeed = i2cBuffer[1]&01111111;
+
+    if (i2cBuffer[1] > 0)
+    {
+        return 1;  //value negative, means go in reverse
+    }
+    else
+        return 0;
+
+
 }

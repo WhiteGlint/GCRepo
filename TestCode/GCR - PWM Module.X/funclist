@@ -1,10 +1,12 @@
 ___awdiv: CODE, 21 0 118
-_main: CODE, 390 0 24
-_CalcPulse: CODE, 199 0 54
-_SetPulse: CODE, 297 0 32
-_Initialise: CODE, 429 0 11
-_isr: CODE, 139 0 60
-_BeginPWM: CODE, 360 0 30
-_i2c_init: CODE, 329 0 31
-___wmul: CODE, 253 0 44
-Total: 404
+_main: CODE, 291 0 36
+_directionInit: CODE, 494 0 7
+_CalcPulse: CODE, 139 0 54
+_SetPulse: CODE, 327 0 32
+_Initialise: CODE, 449 0 22
+_isr: CODE, 193 0 54
+_BeginPWM: CODE, 390 0 30
+_i2c_init: CODE, 359 0 31
+___wmul: CODE, 247 0 44
+_parseDirectionPWM: CODE, 420 0 29
+Total: 457
