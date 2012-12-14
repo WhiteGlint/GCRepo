@@ -60,8 +60,10 @@ void main()
     while (1)
     {
         direction = parseDirectionPWM();
-        setDirection(direction);
-        CalcPulse(setSpeed);
+        //setDirection(direction);
+        //setSpeed = i2cBuffer[1];
+        SetPulse(setSpeed);
+        //CalcPulse(setSpeed);
         PORTD = setSpeed;
     }
 
@@ -118,7 +120,7 @@ void i2c_init(){
 
     SSPIE =1;
 
-    SSPADD = 0b00001110;
+    SSPADD = 0b10101100;
     PEIE = 1;
     GIE = 1;
     INTE = 1;
@@ -190,7 +192,7 @@ void directionInit()
 //  global variable "setSpeed" equal to proper speed
 int parseDirectionPWM()
 {
-    setSpeed = i2cBuffer[1]&01111111;
+    setSpeed = i2cBuffer[1]&0b01111111;
 
     if (i2cBuffer[1] > 0)
     {
