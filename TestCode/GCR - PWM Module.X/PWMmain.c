@@ -13,7 +13,7 @@ __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BO
 
 //User-defined libraries
 #include "pwmlib.h"  //allows for use of PWM (use double quotes for user defined)
-
+#include "i2cSlave.h"
 /**********/
 void Initialise();
 void CalcPulse(int speed);
@@ -27,8 +27,8 @@ void i2c_init();            //for testing I2C
 void interrupt isr();       //for testing I2C interrupts
 
 //Global Variables
-int i2cBuffer[10];          //buffer for holding incoming data
-int val = 0;                //refers to i2cBuffer index
+//int i2cBuffer[10];          //buffer for holding incoming data
+//int val = 0;                //refers to i2cBuffer index
 int setSpeed = 0;              //register holding the currently desired speed
 
 
@@ -37,7 +37,7 @@ void main()
    // unsigned char dc;
     int direction;
     Initialise();
-
+    i2cInit(0x010);
 /*    while(1)                         // forever
     {
         /*
@@ -105,75 +105,15 @@ void CalcPulse(int speed)
 
 //Configures SSP registers for I2C operation
 // written by Josh G.
-void i2c_init(){
-    TRISC6 = 1;
-    TRISC7 = 1;
-    SSPEN = 1;
-    CKE = 0;
-    SMP = 0;
-    CKP = 1;
 
-    SSPM0 = 0;
-    SSPM1 = 1;
-    SSPM2 = 1;
-    SSPM3 = 0;
-
-    SSPIE =1;
-
-    SSPADD = 0b10101100;
-    PEIE = 1;
-    GIE = 1;
-    INTE = 1;
-    i2cBuffer[1] = 0;
-}
 
 
 
 //Interrupt Service Routine
 //  Currently configured to handle only I2C operations
 void interrupt isr(){
-
-/*
-;---------------------------------------------------------------------
-SSP_Handler
-;---------------------------------------------------------------------
-; The I2C code below checks for 5 states:
-;---------------------------------------------------------------------
-; State 1: I2C write operation, last byte was an address byte.
-; SSPSTAT bits: S = 1, D_A = 0, R_W = 0, BF = 1
-;
-; State 2: I2C write operation, last byte was a data byte.
-; SSPSTAT bits: S = 1, D_A = 1, R_W = 0, BF = 1
-;
-; State 3: I2C read operation, last byte was an address byte.
-; SSPSTAT bits: S = 1, D_A = 0, R_W = 1 (see Appendix C for more information)
-;
-; State 4: I2C read operation, last byte was a data byte.
-; SSPSTAT bits: S = 1, D_A = 1, R_W = 1, BF = 0
-;
-; State 5: Slave I2C logic reset by NACK from master.
-; SSPSTAT bits: S = 1, D_A = 1, BF = 0, CKP = 1 (see Appendix C for more information)
-;
-;----------------------------------------------------------------------
-*/
-    if (val == 2)  //FOR TESTING:  want to use only every other data bit
-       val = 0;    //  since we are not concerned with read/write at this point
-
-    if ((SSPSTAT & 0b00100000) == 0b00100000){ // D_A bit high, data in buffer
-        //if (SSPBUF == SSPADD)
-        //    SSPBUF =0;
-        // else
-            i2cBuffer[val] = SSPBUF;
-            val++;
-    }
-    else{ // D_A bit clear, addr in buffer
-        SSPBUF = 0;
-    }
-
-
-   SSPIF = 0;
-   //val++;
-   //PORTD = i2cBuffer[val];
+    i2cIsrHandler();
+    
 }
 
 

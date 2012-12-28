@@ -1,0 +1,68 @@
+#include "i2cSlave.h"
+#include <pic16f917.h>
+
+
+
+
+void i2c_init(char address){
+
+    TRISC6 = 1;
+    TRISC7 = 1;
+    SSPEN = 1;
+    CKE = 0;
+    SMP = 0;
+    CKP = 1;
+
+    SSPM0 = 0;
+    SSPM1 = 1;
+    SSPM2 = 1;
+    SSPM3 = 0;
+
+    SSPIE =1;
+
+    SSPADD = address;
+    PEIE = 1;
+    GIE = 1;
+    INTE = 1;
+    i2cBuffer[1] = 0;
+}
+
+void i2cIsrHandler(){
+
+//SSP_Handler
+
+   /* setting up for 3 byte messages as follows:
+    | type byte | msg data |
+    Address is handled by the pic, so is ignored by our isr code.
+   */
+
+
+    if ((SSPSTAT & 0b00100100) == 0b00100000){ // D_A high, R_W low, write w/ data in buffer
+        i2cBuffer[val] = SSPBUF;
+
+    } else if ((SSPSTAT & 0b00100100) == 0b0000000){ // D_A low,R_W low, write w/ addr in buffer
+        // Empty the buffer and carry on, this shouldn't happen since the pic does addr matching.
+        SSPBUF = 0;
+
+    } else if ((SSPSTAT & 0b00100100) == 0b0000100){ // D_A low,R_W high, read w/ addr in buffer
+        // Again shoulnt happen, just here in case we ever need it.
+
+    } else if ((SSPSTAT & 0b00100100) == 0b0010100){ // D_A high,R_W high, read w/ data in buffer
+
+        i2cRequest = SSPBUF;
+
+        if (i2cRequest == 1){ // requesting velocity
+            i2cSend();
+        } else if (i2cRequest == 2){ // requesting errors
+            i2cSend();
+        }
+    }
+        
+    val++;
+    SSPIF = 0;
+
+    if (val == 1){
+
+    }
+
+}

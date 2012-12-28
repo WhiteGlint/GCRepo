@@ -2421,6 +2421,10 @@ void SetPulse(int length);
 
 void StopPWM();
 
+# 12 "i2cSlave.h"
+int val = 0;
+int i2cBuffer[3];
+
 # 18 "PWMmain.c"
 void Initialise();
 void CalcPulse(int speed);
@@ -2434,8 +2438,8 @@ void i2c_init();
 void interrupt isr();
 
 
-int i2cBuffer[10];
-int val = 0;
+
+
 int setSpeed = 0;
 
 
@@ -2519,35 +2523,35 @@ i2cBuffer[1] = 0;
 # 134
 void interrupt isr(){
 
-# 159
-if (val == 2)
-val = 0;
-
-if ((SSPSTAT & 0b00100000) == 0b00100000){
-
-
-
+# 144
+if ((SSPSTAT & 0b00100100) == 0b00100000){
 i2cBuffer[val] = SSPBUF;
-val++;
-}
-else{
+
+} else if ((SSPSTAT & 0b00100100) == 0b0000000){
+
 SSPBUF = 0;
+
+} else if ((SSPSTAT & 0b00100100) == 0b0000100){
+
+
+} else if ((SSPSTAT & 0b00100100) == 0b0010100){
+
+
 }
 
-
+val++;
 SSPIF = 0;
 
-
 }
 
-# 183
+# 168
 void directionInit()
 {
 TRISB3 = 0;
 PORTBbits.RB3 = 0;
 }
 
-# 193
+# 178
 int parseDirectionPWM()
 {
 setSpeed = i2cBuffer[1]&0b01111111;
@@ -2560,7 +2564,7 @@ else
 return 0;
 }
 
-# 209
+# 194
 void setDirection(int dir)
 {
 if (dir == 0)

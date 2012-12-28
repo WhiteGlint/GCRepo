@@ -1060,7 +1060,7 @@
 ]
 [u S2813 . 1 `S2803 1 . 1 0 `S2810 1 . 1 0 ]
 "27 PWMmain.c
-[v F2689 `(v  1 t 0 ]
+[v F2691 `(v  1 t 0 ]
 "116 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [s S2892 . 1 `uc 1 C 1 0 :1:0 
 `uc 1 DC 1 0 :1:1 
@@ -2238,11 +2238,11 @@
 [v _i2c_init `(v  1 e 0 0 ]
 "134
 [v _isr `I(v  1 e 0 0 ]
-"184
+"169
 [v _directionInit `(v  1 e 0 0 ]
-"194
+"179
 [v _parseDirectionPWM `(i  1 e 2 0 ]
-"210
+"195
 [v _setDirection `(v  1 e 0 0 ]
 "95 /hitech/products/compilers/pic/pro/9.83/dist/linux/include/pic16f917.h
 [v _INDF `VEuc  1 e 1 @0 ]
@@ -3732,11 +3732,11 @@
 [v _LCDSE2bits `VES1699  1 e 1 @286 ]
 "2471
 [v _EECON1bits `VES2813  1 e 1 @396 ]
-"30 PWMmain.c
-[v _i2cBuffer `[10]i  1 e 20 0 ]
-"31
+"12 i2cSlave.h
 [v _val `i  1 e 2 0 ]
-"32
+"13
+[v _i2cBuffer `[3]i  1 e 6 0 ]
+"32 PWMmain.c
 [v _setSpeed `i  1 e 2 0 ]
 "36
 [v _main `(v  1 e 0 0 ]
@@ -3750,10 +3750,10 @@
 {
 "94
 } 0
-"184
+"169
 [v _directionInit `(v  1 e 0 0 ]
 {
-"187
+"172
 } 0
 "108
 [v _i2c_init `(v  1 e 0 0 ]
@@ -3774,13 +3774,13 @@
 [v SetPulse@length `i  1 p 2 0 ]
 "113
 } 0
-"194 PWMmain.c
+"179 PWMmain.c
 [v _parseDirectionPWM `(i  1 e 2 0 ]
 {
-"203
+"188
 } 0
 "134
 [v _isr `I(v  1 e 0 0 ]
 {
-"177
+"162
 } 0
