@@ -24,17 +24,17 @@ void i2c_init(char address){
     PEIE = 1;
     GIE = 1;
     INTE = 1;
-    i2cBuffer[1] = 0;
+   // i2cBuffer[1] = 0;
 }
 
 void i2cIsrHandler(){
 
 //SSP_Handler
 
-   /* setting up for 3 byte messages as follows:
-    | type byte | msg data |
-    Address is handled by the pic, so is ignored by our isr code.
-   */
+   // setting up for 3 byte messages as follows:
+   // | type byte | msg data |
+   // Address is handled by the pic, so is ignored by our isr code.
+   
 
 
     if ((SSPSTAT & 0b00100100) == 0b00100000){ // D_A high, R_W low, write w/ data in buffer
@@ -51,10 +51,10 @@ void i2cIsrHandler(){
 
         i2cRequest = SSPBUF;
 
-        if (i2cRequest == 1){ // requesting velocity
-            i2cSend();
+        if (i2cRequest == 1){ // requesting velocity       // SETUP THIS STUFF
+            i2cSend(0x00);
         } else if (i2cRequest == 2){ // requesting errors
-            i2cSend();
+            i2cSend(0x00);
         }
     }
         
@@ -62,7 +62,19 @@ void i2cIsrHandler(){
     SSPIF = 0;
 
     if (val == 1){
+        i2cDataUpdate();
+    }
+}
 
+
+void i2cDataUpdate(){
+    switch (i2cBuffer) { // Check message type
+        case 0 : // Velocity
+            i2cVelocity = i2cBuffer[1] & 0b01111111;
+            i2cDirection = i2cBuffer[1] >> 7;
+            break;
+
+        // case 1 :
     }
 
 }

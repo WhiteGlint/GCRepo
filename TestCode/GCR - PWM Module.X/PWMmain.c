@@ -37,7 +37,7 @@ void main()
    // unsigned char dc;
     int direction;
     Initialise();
-    i2cInit(0x010);
+   // i2cInit(0x010);
 /*    while(1)                         // forever
     {
         /*
@@ -86,7 +86,7 @@ void delay(int length)
 void Initialise()
 {
     BeginPWM();
-    i2c_init();
+  //  i2c_init();
     directionInit();
 
     TRISD = 0;  //set up onboard LEDs as
@@ -112,7 +112,7 @@ void CalcPulse(int speed)
 //Interrupt Service Routine
 //  Currently configured to handle only I2C operations
 void interrupt isr(){
-    i2cIsrHandler();
+//    i2cIsrHandler();
     
 }
 
@@ -132,7 +132,7 @@ void directionInit()
 //  global variable "setSpeed" equal to proper speed
 int parseDirectionPWM()
 {
-    setSpeed = i2cBuffer[1]&0b01111111;
+    setSpeed = i2cBuffer[1] & 0b01111111;
 
     if (i2cBuffer[1] > 0)
     {

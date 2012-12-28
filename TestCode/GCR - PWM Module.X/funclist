@@ -1,9 +1,8 @@
-_main: CODE, 94 0 39
-_directionInit: CODE, 299 0 7
-_SetPulse: CODE, 170 0 32
-_Initialise: CODE, 263 0 22
-_isr: CODE, 21 0 73
-_BeginPWM: CODE, 233 0 30
-_i2c_init: CODE, 202 0 31
-_parseDirectionPWM: CODE, 133 0 37
-Total: 271
+_main: CODE, 21 0 38
+_directionInit: CODE, 188 0 7
+_SetPulse: CODE, 59 0 32
+_Initialise: CODE, 147 0 17
+_isr: CODE, 177 0 11
+_BeginPWM: CODE, 91 0 30
+_parseDirectionPWM: CODE, 121 0 26
+Total: 161

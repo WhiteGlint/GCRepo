@@ -12,9 +12,15 @@
 int val = 0;
 char i2cBuffer[2];
 char i2cRequest;
+char i2cVelocity; // First 7 bits of message data.
+char i2cDirection; // either 0 or 1 from MSB of message data.
+
+
+
 void i2cInit(char address);
 void i2cIsrHandler();
 void i2cSend(char msg);
+void i2cDataUpdate();
 
 
 
