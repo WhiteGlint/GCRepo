@@ -307,28 +307,28 @@ void control_lib::send_motor4()
 // Message creation
 void control_lib::create_message1()
 {
-	create_address(1);
+	create_address(0x10);
 	create_type(0);
 	create_data(motor1_direction, motor1_speed);
 }
 
 void control_lib::create_message2()
 {
-	create_address(0x52);
+	create_address(0x12);
 	create_type(0);
 	create_data(motor2_direction, motor2_speed);
 }
 
 void control_lib::create_message3()
 {
-	create_address(3);
+	create_address(0x14);
 	create_type(0);
 	create_data(motor3_direction, motor3_speed);
 }
 
 void control_lib::create_message4()
 {
-	create_address(4);
+	create_address(0x16);
 	create_type(0);
 	create_data(motor4_direction, motor4_speed);
 }
