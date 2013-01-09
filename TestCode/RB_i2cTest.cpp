@@ -9,25 +9,32 @@ using namespace std;
 void wait_ms(long);
 
 int main(){
+	char addr;
+	char data[1];
 
-roboio_SetRBVer(RB_100RD);
+	roboio_SetRBVer(RB_100RD);
+	
+	while(1){
+	
+	
+		if (i2c_Init(I2CMODE_AUTO,10000) == false)
+		{
+			cout << "Error: " << roboio_GetErrMsg();
+			return 0;
+		}
 
-unsigned char buf[3];
-int test = 8;
-
-
-buf[0] =0x04 ;
-buf[1] = 0x05;
-buf[2] = 0x06;
-
-
-if (i2c_Init(I2CMODE_AUTO,10000) == false){
-	cout << "Error: " << roboio_GetErrMsg();
-}
-
-	if (i2c_Send(0x52, buf, 3) == false) cout << roboio_GetErrMsg();
-	i2c_Close();
-return 0;
+		cout << "Enter destination address: ";
+		cin >> addr;
+		cout <<"\nEnter message byte: "
+		cin >> data[0];
+		
+		if (i2c_Send(addr, data, 1) == false) cout << roboio_GetErrMsg();
+		
+		i2c_Close();
+	
+	
+	}
+	return 0;
 }
 
 
