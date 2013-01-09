@@ -10,29 +10,32 @@ void wait_ms(long);
 
 int main(){
 	char addr;
-	char data[1];
-
+	unsigned char data[2];
+	data[0] = 0;
+	data[1] = 10;
 	roboio_SetRBVer(RB_100RD);
 	
 	while(1){
 	
 	
-		if (i2c_Init(I2CMODE_AUTO,10000) == false)
+		if (i2c_Init(I2CMODE_AUTO,1000) == false)
 		{
 			cout << "Error: " << roboio_GetErrMsg();
 			return 0;
 		}
 
-		cout << "Enter destination address: ";
-		cin >> addr;
-		cout <<"\nEnter message byte: "
-		cin >> data[0];
+//		cout << "Enter destination address: ";
+//		cin >> addr;
+//		cout <<"\nEnter message byte: ";
+//		cin >> data[0];
 		
-		if (i2c_Send(addr, data, 1) == false) cout << roboio_GetErrMsg();
+		data[1]++;
+		if (i2c_Send(0x10>>1, data, 2) == false) cout << roboio_GetErrMsg();
 		
 		i2c_Close();
-	
-	
+		cout << "Sent!\n";	
+//		cin.get();	
+		wait_ms(10);
 	}
 	return 0;
 }
