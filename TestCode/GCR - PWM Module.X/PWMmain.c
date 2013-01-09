@@ -5,16 +5,18 @@
  *Pulse Width Modulation:  Module for testing
  */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pic16f917.h>  //Include 16F917 header file, for all processor-specific declarations
 #include <htc.h>  // htc.h necessary for PIC16F917 Configuration Bit Settings
-__CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_OFF & IESO_ON & FCMEN_OFF);
 
 //User-defined libraries
 #include "pwmlib.h"  //allows for use of PWM (use double quotes for user defined)
 #include "i2cSlave.h"
-/**********/
+
+__CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_OFF & IESO_ON & FCMEN_OFF);
+
 void Initialise();
 void CalcPulse(int speed);
 void directionInit();
@@ -59,11 +61,8 @@ void main()
 
     while (1)
     {
-        direction = parseDirectionPWM();
-        //setDirection(direction);
-        //setSpeed = i2cBuffer[1];
-        SetPulse(setSpeed);
-        //CalcPulse(setSpeed);
+        setDirection(i2cDirection);
+        SetPulse(i2cSpeed);
         PORTD = setSpeed;
     }
 
@@ -112,7 +111,7 @@ void CalcPulse(int speed)
 //Interrupt Service Routine
 //  Currently configured to handle only I2C operations
 void interrupt isr(){
-//    i2cIsrHandler();
+    i2cIsrHandler();
     
 }
 

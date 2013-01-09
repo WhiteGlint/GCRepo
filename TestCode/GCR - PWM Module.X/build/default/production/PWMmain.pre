@@ -2405,9 +2405,6 @@ extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsign
 #pragma inline(_delay)
 extern void _delay(unsigned long);
 
-# 12 "PWMmain.c"
-asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
-
 # 18 "pwmlib.h"
 void BeginPWM();
 
@@ -2425,7 +2422,7 @@ void StopPWM();
 int val = 0;
 char i2cBuffer[2];
 char i2cRequest;
-char i2cVelocity;
+char i2cSpeed;
 char i2cDirection;
 
 
@@ -2436,6 +2433,8 @@ void i2cSend(char msg);
 void i2cDataUpdate();
 
 # 18 "PWMmain.c"
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
+
 void Initialise();
 void CalcPulse(int speed);
 void directionInit();
@@ -2459,14 +2458,11 @@ void main()
 int direction;
 Initialise();
 
-# 60
+# 62
 while (1)
 {
-direction = parseDirectionPWM();
-
-
-SetPulse(setSpeed);
-
+setDirection(i2cDirection);
+SetPulse(i2cSpeed);
 PORTD = setSpeed;
 }
 
@@ -2505,20 +2501,20 @@ int pulse = speed*255/10;
 SetPulse(pulse);
 }
 
-# 114
+# 113
 void interrupt isr(){
-
+i2cIsrHandler();
 
 }
 
-# 123
+# 122
 void directionInit()
 {
 TRISB3 = 0;
 PORTBbits.RB3 = 0;
 }
 
-# 133
+# 132
 int parseDirectionPWM()
 {
 setSpeed = i2cBuffer[1] & 0b01111111;
@@ -2531,7 +2527,7 @@ else
 return 0;
 }
 
-# 149
+# 148
 void setDirection(int dir)
 {
 if (dir == 0)

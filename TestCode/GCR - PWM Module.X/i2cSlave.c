@@ -61,20 +61,26 @@ void i2cIsrHandler(){
     val++;
     SSPIF = 0;
 
-    if (val == 1){
+    if (val == 2){
         i2cDataUpdate();
+        val = 0;
     }
 }
 
 
 void i2cDataUpdate(){
-    switch (i2cBuffer) { // Check message type
+    switch (i2cBuffer[0]) { // Check message type
         case 0 : // Velocity
-            i2cVelocity = i2cBuffer[1] & 0b01111111;
+            i2cSpeed = i2cBuffer[1] & 0b01111111;
             i2cDirection = i2cBuffer[1] >> 7;
             break;
 
         // case 1 :
     }
 
+}
+
+void i2cSend(char msg){
+
+    return;
 }
