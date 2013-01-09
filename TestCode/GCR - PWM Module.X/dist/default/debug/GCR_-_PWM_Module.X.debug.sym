@@ -2,7 +2,7 @@ _RD C60 0 ABS
 _WR C61 0 ABS
 _PR2 92 0 ABS
 __S0 2008 0 ABS
-__S1 7A 0 ABS
+__S1 7E 0 ABS
 __S2 0 0 ABS
 _CKE 4A6 0 ABS
 _GIE 5F 0 ABS
@@ -11,18 +11,20 @@ _SMP 4A7 0 ABS
 __Hintentry 12 0 CODE
 __Lintentry 4 0 CODE
 __pintentry 4 0 CODE
-_val 78 0 COMMON
-_isr 7CA 0 CODE
+_isr 6AD 0 CODE
 _PEIE 5E 0 ABS
 _INTE 5C 0 ABS
 _WREN C62 0 ABS
-_main 7A8 0 CODE
+_main 76A 0 CODE
 ?_Initialise 71 0 COMMON
+??_i2cIsrHandler 73 0 COMMON
 btemp 7E 0 ABS
 ?_isr 71 0 COMMON
 _exit 12 0 CODE
 start 12 0 CODE
-_setSpeed 34 0 BANK0
+_i2cSpeed 27 0 BANK0
+?_i2cSend 71 0 COMMON
+_setSpeed 7A 0 COMMON
 _SSPM0 A0 0 ABS
 _SSPM1 A1 0 ABS
 _SSPM2 A2 0 ABS
@@ -41,15 +43,18 @@ _CARRY 18 0 ABS
 __Hconfig 2008 0 CONFIG
 __Lconfig 2007 0 CONFIG
 __size_of_directionInit 0 0 ABS
-clear_ram 71E 0 CODE
-_SetPulse 788 0 CODE
+i2cInit@address 20 0 BANK0
+_SetPulse 727 0 CODE
 __Hram 0 0 ABS
 __Lram 0 0 ABS
 ?_main 71 0 COMMON
-??_Initialise 36 0 BANK0
+__end_of_setDirection 6D6 0 CODE
+??_Initialise 21 0 BANK0
 __size_of_isr 0 0 ABS
-??_isr 71 0 COMMON
+??_isr 74 0 COMMON
+?_i2cInit 71 0 COMMON
 __Hfunctab 0 0 CODE
+??_i2cSend 71 0 COMMON
 __Lfunctab 0 0 CODE
 _TRISB3 433 0 ABS
 _EECON1 18C 0 ABS
@@ -62,15 +67,14 @@ _PIE1bits 8C 0 ABS
 __Heeprom_data 0 0 EEDATA
 __Leeprom_data 0 0 EEDATA
 _PIR1bits C 0 ABS
-_i2c_init 769 0 CODE
 _SSPADD 93 0 ABS
 _TMR2IF 61 0 ABS
 _CCPR1L 15 0 ABS
 _EEDATA 10C 0 ABS
 _SSPBUF 13 0 ABS
-__size_of_i2c_init 0 0 ABS
 __Habs1 0 0 ABS
 __Labs1 0 0 ABS
+__size_of_i2cDataUpdate 0 0 ABS
 __Hsfr0 0 0 ABS
 __Lsfr0 0 0 ABS
 __Hsfr1 0 0 ABS
@@ -79,39 +83,46 @@ __Hsfr2 0 0 ABS
 __Lsfr2 0 0 ABS
 __Hsfr3 0 0 ABS
 __Lsfr3 0 0 ABS
-__ptext231 0 0 CODE
-__ptext232 735 0 CODE
-__ptext233 717 0 CODE
+__ptext310 727 0 CODE
+__ptext311 6BF 0 CODE
+__ptext312 6AD 0 CODE
+__ptext313 794 0 CODE
+__ptext314 6ED 0 CODE
 ?_directionInit 71 0 COMMON
+_i2cIsrHandler 794 0 CODE
 __Hcode 0 0 ABS
 __Lcode 0 0 ABS
-__ptext234 769 0 CODE
-?_SetPulse 36 0 BANK0
-??_main 3A 0 BANK0
+__ptext305 0 0 CODE
+?_SetPulse 20 0 BANK0
+__ptext315 699 0 CODE
+__ptext306 6D6 0 CODE
+??_main 24 0 BANK0
 __HcstackBANK0 0 0 ABS
-__ptext235 74B 0 CODE
 __LcstackBANK0 0 0 ABS
-__pcstackBANK0 36 0 BANK0
+__ptext316 0 0 CODE
+__pcstackBANK0 20 0 BANK0
 saved_w 7E 0 ABS
+__ptext307 69A 0 CODE
+??_setDirection 22 0 BANK0
 __Hinit 12 0 CODE
 __Linit 12 0 CODE
-__ptext236 788 0 CODE
-__end_of_main 7CA 0 CODE
-__end_of_directionInit 71E 0 CODE
+__end_of_main 794 0 CODE
+__end_of_directionInit 6A1 0 CODE
 __Htext 0 0 ABS
 __Ltext 0 0 ABS
-__ptext237 7CA 0 CODE
+__ptext308 747 0 CODE
 __size_of_Initialise 0 0 ABS
-_i2cBuffer 20 0 BANK0
-__ptext238 0 0 CODE
-end_of_initialization 731 0 CODE
-?_i2c_init 71 0 COMMON
+_i2cBuffer 78 0 COMMON
+__ptext309 709 0 CODE
+end_of_initialization 6A9 0 CODE
+??_i2cInit 20 0 BANK0
+__size_of_setDirection 0 0 ABS
 _TRISCbits 87 0 ABS
 _PORTBbits 6 0 ABS
 __Hstrings 0 0 ABS
 _T2CONbits 12 0 ABS
 __Lstrings 0 0 ABS
-__end_of_SetPulse 7A8 0 CODE
+__end_of_SetPulse 747 0 CODE
 _CCP1CON 17 0 ABS
 __Hbank0 0 0 ABS
 __Lbank0 0 0 ABS
@@ -124,153 +135,195 @@ __Lbank3 0 0 ABS
 __Hpowerup 0 0 CODE
 _SSPSTAT 94 0 ABS
 __Lpowerup 0 0 CODE
-__end_of_Initialise 74B 0 CODE
+??_i2cDataUpdate 71 0 COMMON
+__end_of_Initialise 6ED 0 CODE
 __Hclrtext 0 0 ABS
 __Lclrtext 0 0 ABS
+__end_of_i2cIsrHandler 800 0 CODE
 _CCP1CONbits 17 0 ABS
-??_directionInit 36 0 BANK0
-_Initialise 735 0 CODE
-??_SetPulse 38 0 BANK0
+??_directionInit 20 0 BANK0
+_Initialise 6D6 0 CODE
+?_i2cIsrHandler 71 0 COMMON
+_i2cSend 699 0 CODE
+??_SetPulse 22 0 BANK0
 __Hidloc 0 0 IDLOC
 __Lidloc 0 0 IDLOC
 __size_of_SetPulse 0 0 ABS
-SetPulse@length 36 0 BANK0
-__end_of_isr 800 0 CODE
-??_BeginPWM 36 0 BANK0
+SetPulse@length 20 0 BANK0
+__end_of_isr 6BF 0 CODE
+_i2cInit 747 0 CODE
+??_BeginPWM 20 0 BANK0
 __Hcinit 0 0 ABS
 __Lcinit 0 0 ABS
 __size_of_main 0 0 ABS
-_directionInit 717 0 CODE
-SetPulse@temp 38 0 BANK0
+_i2cBufferVal 7C 0 COMMON
+_directionInit 69A 0 CODE
+?_setDirection 20 0 BANK0
+__end_of_i2cInit 76A 0 CODE
+SetPulse@temp 22 0 BANK0
+setDirection@dir 20 0 BANK0
 __HbssBANK0 0 0 ABS
 __LbssBANK0 0 0 ABS
-__pbssBANK0 20 0 BANK0
-__end_of_BeginPWM 769 0 CODE
+__pbssBANK0 26 0 BANK0
+__end_of_i2cSend 69A 0 CODE
+__size_of_i2cInit 0 0 ABS
+__end_of_BeginPWM 727 0 CODE
 __size_of_BeginPWM 0 0 ABS
-??_i2c_init 36 0 BANK0
+?_i2cDataUpdate 71 0 COMMON
 __HbssCOMMON 0 0 ABS
 __LbssCOMMON 0 0 ABS
 __pbssCOMMON 78 0 COMMON
 __Hend_init 15 0 CODE
 __Lend_init 12 0 CODE
+__size_of_i2cSend 0 0 ABS
 ?_BeginPWM 71 0 COMMON
 __Hreset_vec 4 0 CODE
 __Lreset_vec 0 0 CODE
+_i2cDirection 26 0 BANK0
+_setDirection 6BF 0 CODE
 intlevel0 0 0 CODE
-__end_of_i2c_init 788 0 CODE
+__end_of_i2cDataUpdate 709 0 CODE
 intlevel1 0 0 CODE
 intlevel2 0 0 CODE
 intlevel3 0 0 CODE
 intlevel4 0 0 CODE
 intlevel5 0 0 CODE
+_i2cDataUpdate 6ED 0 CODE
+_i2cRequest 7D 0 COMMON
 __HcstackCOMMON 0 0 ABS
 __LcstackCOMMON 0 0 ABS
 __pcstackCOMMON 71 0 COMMON
-_BeginPWM 74B 0 CODE
-start_initialization 726 0 CODE
+__size_of_i2cIsrHandler 0 0 ABS
+_BeginPWM 709 0 CODE
+start_initialization 6A1 0 CODE
 __Hmaintext 0 0 ABS
 __Lmaintext 0 0 ABS
-__pmaintext 7A8 0 CODE
+__pmaintext 76A 0 CODE
 %segments
 reset_vec 0 7 CODE 0
 intentry 8 29 CODE 8
 config 400E 400F CONFIG 400E
-cstackCOMMON 71 79 COMMON 71
-bssBANK0 20 39 BANK0 20
-text237 F94 FFF CODE F94
-maintext F50 F93 CODE F50
-text236 F10 F4F CODE F10
-text234 ED2 F0F CODE ED2
-text235 E96 ED1 CODE E96
-text232 E6A E95 CODE E6A
-cinit E4C E69 CODE E4C
-clrtext E3C E4B CODE E3C
-text233 E2E E3B CODE E2E
+cstackCOMMON 71 7D COMMON 71
+cstackBANK0 20 27 BANK0 20
+text313 F28 FFF CODE F28
+maintext ED4 F27 CODE ED4
+text308 E8E ED3 CODE E8E
+text310 E4E E8D CODE E4E
+text309 E12 E4D CODE E12
+text314 DDA E11 CODE DDA
+text306 DAC DD9 CODE DAC
+text311 D7E DAB CODE D7E
+text312 D5A D7D CODE D5A
+cinit D42 D59 CODE D42
+text307 D34 D41 CODE D34
+text315 D32 D33 CODE D32
 %locals
 dist/default/debug\GCR_-_PWM_Module.X.debug.obj
 PWMmain.c
-12 2007 0 CONFIG
-C:\Users\josh\AppData\Local\Temp\s50k.
-179 726 0 CODE
-180 727 0 CODE
-183 728 0 CODE
-184 729 0 CODE
-185 72A 0 CODE
-186 72B 0 CODE
-187 72C 0 CODE
-194 731 0 CODE
-195 732 0 CODE
-167 71E 0 CODE
-169 71F 0 CODE
-170 720 0 CODE
-171 721 0 CODE
-172 722 0 CODE
-173 723 0 CODE
-174 724 0 CODE
-175 725 0 CODE
+18 2007 0 CONFIG
+C:\Users\Josh\AppData\Local\Temp\s3vc.
+180 6A1 0 CODE
+181 6A2 0 CODE
+182 6A3 0 CODE
+183 6A4 0 CODE
+184 6A5 0 CODE
+185 6A6 0 CODE
+188 6A7 0 CODE
+189 6A8 0 CODE
+196 6A9 0 CODE
+197 6AA 0 CODE
 PWMmain.c
-39 7A8 0 CODE
-64 7AE 0 CODE
-65 7B6 0 CODE
-67 7C1 0 CODE
-60 7C6 0 CODE
-71 7C7 0 CODE
-88 735 0 CODE
-89 73A 0 CODE
-90 73F 0 CODE
-92 744 0 CODE
-93 747 0 CODE
-94 74A 0 CODE
-185 717 0 CODE
-186 71A 0 CODE
-187 71D 0 CODE
-109 769 0 CODE
-110 76C 0 CODE
-111 76D 0 CODE
-112 770 0 CODE
-113 773 0 CODE
-114 774 0 CODE
-116 777 0 CODE
-117 778 0 CODE
-118 779 0 CODE
-119 77A 0 CODE
-121 77B 0 CODE
-123 77E 0 CODE
-124 780 0 CODE
-125 781 0 CODE
-126 782 0 CODE
-127 783 0 CODE
-128 787 0 CODE
+41 76A 0 CODE
+64 76F 0 CODE
+65 77D 0 CODE
+66 78B 0 CODE
+62 790 0 CODE
+70 791 0 CODE
+87 6D6 0 CODE
+88 6DB 0 CODE
+89 6E1 0 CODE
+91 6E6 0 CODE
+92 6E9 0 CODE
+93 6EC 0 CODE
+124 69A 0 CODE
+125 69D 0 CODE
+126 6A0 0 CODE
+i2cSlave.c
+9 747 0 CODE
+10 74D 0 CODE
+11 74E 0 CODE
+12 751 0 CODE
+13 754 0 CODE
+14 755 0 CODE
+16 758 0 CODE
+17 759 0 CODE
+18 75A 0 CODE
+19 75B 0 CODE
+21 75C 0 CODE
+23 75F 0 CODE
+24 765 0 CODE
+25 766 0 CODE
+26 767 0 CODE
+29 768 0 CODE
+30 769 0 CODE
 pwmlib.c
-44 74B 0 CODE
-47 74E 0 CODE
-51 74F 0 CODE
-55 751 0 CODE
-59 755 0 CODE
-60 756 0 CODE
-61 757 0 CODE
-66 758 0 CODE
-70 759 0 CODE
-77 75C 0 CODE
-79 761 0 CODE
-80 762 0 CODE
-81 765 0 CODE
-82 766 0 CODE
-75 767 0 CODE
-84 768 0 CODE
-106 788 0 CODE
-107 790 0 CODE
-108 79D 0 CODE
-109 7A3 0 CODE
-113 7A7 0 CODE
+44 709 0 CODE
+47 70C 0 CODE
+51 70D 0 CODE
+55 70F 0 CODE
+59 713 0 CODE
+60 714 0 CODE
+61 715 0 CODE
+66 716 0 CODE
+70 717 0 CODE
+77 71A 0 CODE
+79 71F 0 CODE
+80 720 0 CODE
+81 723 0 CODE
+82 724 0 CODE
+75 725 0 CODE
+84 726 0 CODE
+106 727 0 CODE
+107 72F 0 CODE
+108 73C 0 CODE
+109 742 0 CODE
+113 746 0 CODE
 PWMmain.c
-159 7CA 0 CODE
-160 7D1 0 CODE
-162 7D4 0 CODE
-166 7DA 0 CODE
-167 7EA 0 CODE
-168 7F0 0 CODE
-170 7F1 0 CODE
-174 7F4 0 CODE
-177 7F5 0 CODE
-134 4 0 CODE
+150 6BF 0 CODE
+151 6C7 0 CODE
+152 6C9 0 CODE
+153 6D0 0 CODE
+155 6D2 0 CODE
+156 6D5 0 CODE
+114 6AD 0 CODE
+116 6B2 0 CODE
+113 4 0 CODE
+i2cSlave.c
+42 794 0 CODE
+43 79D 0 CODE
+44 7A6 0 CODE
+46 7AA 0 CODE
+48 7B3 0 CODE
+50 7B6 0 CODE
+53 7C1 0 CODE
+55 7C9 0 CODE
+57 7CF 0 CODE
+58 7D5 0 CODE
+59 7DB 0 CODE
+60 7E2 0 CODE
+61 7E9 0 CODE
+62 7EA 0 CODE
+65 7EC 0 CODE
+67 7F1 0 CODE
+68 7F7 0 CODE
+69 7F8 0 CODE
+70 7FE 0 CODE
+72 7FF 0 CODE
+76 6ED 0 CODE
+78 6EE 0 CODE
+79 6F5 0 CODE
+80 701 0 CODE
+83 702 0 CODE
+76 703 0 CODE
+85 708 0 CODE
+90 699 0 CODE

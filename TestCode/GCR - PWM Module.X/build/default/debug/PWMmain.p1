@@ -1877,23 +1877,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _EECON1bits `VS198  1 e@396 ]
 "2475 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [v _EECON2 `Vuc  1 e@397 ]
-"30 PWMmain.c
-[v _i2cBuffer `i  -> 10 `i e ]
-"31 PWMmain.c
-[v _val `i  1 e ]
-"32 PWMmain.c
+"12 i2cSlave.h
+[v _i2cBufferVal `uc  1 e ]
+"13 i2cSlave.h
+[v _i2cBuffer `uc  -> 2 `i e ]
+"14 i2cSlave.h
+[v _i2cRequest `uc  1 e ]
+"15 i2cSlave.h
+[v _i2cSpeed `uc  1 e ]
+"16 i2cSlave.h
+[v _i2cDirection `uc  1 e ]
+"34 PWMmain.c
 [v _setSpeed `i  1 e ]
 [p mainexit ]
-"18 PWMmain.c
+"20 PWMmain.c
 [v _Initialise `(v  0 ef ]
+"24 PWMmain.c
+[v _setDirection `(v  0 ef1`i ]
 "25 pwmlib.h
 [v _SetPulse `(v  0 ef1`i ]
 "18 pwmlib.h
 [v _BeginPWM `(v  0 ef ]
-"26 PWMmain.c
-[v _i2c_init `(v  0 ef ]
-"20 PWMmain.c
+"20 i2cSlave.h
+[v _i2cInit `(v  0 ef1`uc ]
+"22 PWMmain.c
 [v _directionInit `(v  0 ef ]
+"21 i2cSlave.h
+[v _i2cIsrHandler `(v  0 ef ]
 [; ;stdio.h: 12: typedef int ptrdiff_t;
 [; ;stdio.h: 13: typedef unsigned size_t;
 [; ;stdio.h: 14: typedef unsigned short wchar_t;
@@ -3859,345 +3869,257 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, eeprom unsigned char *from, unsigned char size);
 [; ;eeprom_routines.h: 44: extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 [; ;pic.h: 154: extern void _delay(unsigned long);
-"12 PWMmain.c
-[; ;PWMmain.c: 12: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
-[; 	psect config,class=CONFIG,delta=2 ;#
-[; 	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF ;#
 [; ;pwmlib.h: 18: void BeginPWM();
 [; ;pwmlib.h: 21: void SetPR2(int length);
 [; ;pwmlib.h: 25: void SetPulse(int length);
 [; ;pwmlib.h: 28: void StopPWM();
-[; ;PWMmain.c: 18: void Initialise();
-[; ;PWMmain.c: 19: void CalcPulse(int speed);
-[; ;PWMmain.c: 20: void directionInit();
-[; ;PWMmain.c: 21: int parseDirectionPWM();
-[; ;PWMmain.c: 22: void setDirection(int dir);
-[; ;PWMmain.c: 25: void delay(int length);
-[; ;PWMmain.c: 26: void i2c_init();
-[; ;PWMmain.c: 27: void interrupt isr();
-[; ;PWMmain.c: 30: int i2cBuffer[10];
-"31
-[i _val
--> 0 `i
-]
-[; ;PWMmain.c: 31: int val = 0;
-"32
+[; ;i2cSlave.h: 12: char i2cBufferVal;
+[; ;i2cSlave.h: 13: char i2cBuffer[2];
+[; ;i2cSlave.h: 14: char i2cRequest;
+[; ;i2cSlave.h: 15: char i2cSpeed;
+[; ;i2cSlave.h: 16: char i2cDirection;
+[; ;i2cSlave.h: 20: void i2cInit(char address);
+[; ;i2cSlave.h: 21: void i2cIsrHandler();
+[; ;i2cSlave.h: 22: void i2cSend(char msg);
+[; ;i2cSlave.h: 23: void i2cDataUpdate();
+"18 PWMmain.c
+[; ;PWMmain.c: 18: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
+[; 	psect config,class=CONFIG,delta=2 ;#
+[; 	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF ;#
+[; ;PWMmain.c: 20: void Initialise();
+[; ;PWMmain.c: 21: void CalcPulse(int speed);
+[; ;PWMmain.c: 22: void directionInit();
+[; ;PWMmain.c: 23: int parseDirectionPWM();
+[; ;PWMmain.c: 24: void setDirection(int dir);
+[; ;PWMmain.c: 27: void delay(int length);
+[; ;PWMmain.c: 29: void interrupt isr();
+"34
 [i _setSpeed
 -> 0 `i
 ]
-[; ;PWMmain.c: 32: int setSpeed = 0;
-"36
+[; ;PWMmain.c: 34: int setSpeed = 0;
+"38
 [v _main `(v  1 ef ]
 {
-[; ;PWMmain.c: 35: void main()
-[; ;PWMmain.c: 36: {
+[; ;PWMmain.c: 37: void main()
+[; ;PWMmain.c: 38: {
 [e :U _main ]
 [f ]
-"38
+"40
 [v _direction `i  1 a ]
-[; ;PWMmain.c: 38: int direction;
-[; ;PWMmain.c: 39: Initialise();
-"39
+[; ;PWMmain.c: 40: int direction;
+[; ;PWMmain.c: 41: Initialise();
+"41
 [e ( _Initialise ..  ]
-[; ;PWMmain.c: 60: while (1)
-"60
+[; ;PWMmain.c: 62: while (1)
+"62
 [e :U 203 ]
-[; ;PWMmain.c: 61: {
-"61
+[; ;PWMmain.c: 63: {
+"63
 {
-[; ;PWMmain.c: 64: setSpeed = i2cBuffer[1];
+[; ;PWMmain.c: 64: setDirection(i2cDirection);
 "64
-[e = _setSpeed *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux ]
-[; ;PWMmain.c: 65: SetPulse(setSpeed);
+[e ( _setDirection (1 -> _i2cDirection `i ]
+[; ;PWMmain.c: 65: SetPulse(i2cSpeed);
 "65
-[e ( _SetPulse (1 _setSpeed ]
-[; ;PWMmain.c: 67: PORTD = setSpeed;
+[e ( _SetPulse (1 -> _i2cSpeed `i ]
+[; ;PWMmain.c: 66: PORTD = i2cSpeed;
+"66
+[e = _PORTD _i2cSpeed ]
 "67
-[e = _PORTD -> _setSpeed `uc ]
-"68
 }
 [e :U 202 ]
-"60
+"62
 [e $U 203  ]
 [e :U 204 ]
-[; ;PWMmain.c: 68: }
-[; ;PWMmain.c: 71: }
-"71
+[; ;PWMmain.c: 67: }
+[; ;PWMmain.c: 70: }
+"70
 [e :UE 201 ]
 }
-"76
+"75
 [v _delay `(v  1 ef1`i ]
 {
-[; ;PWMmain.c: 75: void delay(int length)
-[; ;PWMmain.c: 76: {
+[; ;PWMmain.c: 74: void delay(int length)
+[; ;PWMmain.c: 75: {
 [e :U _delay ]
 [v _length `i  1 r1 ]
 [f ]
-[; ;PWMmain.c: 77: for (int x=0; x < length; x++)
-"77
+[; ;PWMmain.c: 76: for (int x=0; x < length; x++)
+"76
 {
 [v _x `i  1 a ]
 [e = _x -> 0 `i ]
 [e $U 209  ]
-"78
-[e :U 206 ]
-[; ;PWMmain.c: 78: {
-{
-[; ;PWMmain.c: 79: x++;
-"79
-[e ++ _x -> 1 `i ]
-[; ;PWMmain.c: 80: x--;
-"80
-[e -- _x -> 1 `i ]
-"81
-}
 "77
+[e :U 206 ]
+[; ;PWMmain.c: 77: {
+{
+[; ;PWMmain.c: 78: x++;
+"78
+[e ++ _x -> 1 `i ]
+[; ;PWMmain.c: 79: x--;
+"79
+[e -- _x -> 1 `i ]
+"80
+}
+"76
 [e ++ _x -> 1 `i ]
 [e :U 209 ]
 [e $ < _x _length 206  ]
 [e :U 207 ]
-"81
+"80
 }
+[; ;PWMmain.c: 80: }
 [; ;PWMmain.c: 81: }
-[; ;PWMmain.c: 82: }
-"82
+"81
 [e :UE 205 ]
 }
-"87
+"86
 [v _Initialise `(v  1 ef ]
 {
-[; ;PWMmain.c: 86: void Initialise()
-[; ;PWMmain.c: 87: {
+[; ;PWMmain.c: 85: void Initialise()
+[; ;PWMmain.c: 86: {
 [e :U _Initialise ]
 [f ]
-[; ;PWMmain.c: 88: BeginPWM();
-"88
+[; ;PWMmain.c: 87: BeginPWM();
+"87
 [e ( _BeginPWM ..  ]
-[; ;PWMmain.c: 89: i2c_init();
+[; ;PWMmain.c: 88: i2cInit(0x10);
+"88
+[e ( _i2cInit (1 -> -> 16 `i `uc ]
+[; ;PWMmain.c: 89: directionInit();
 "89
-[e ( _i2c_init ..  ]
-[; ;PWMmain.c: 90: directionInit();
-"90
 [e ( _directionInit ..  ]
-[; ;PWMmain.c: 92: TRISD = 0;
-"92
+[; ;PWMmain.c: 91: TRISD = 0;
+"91
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;PWMmain.c: 93: PORTD = 0;
-"93
+[; ;PWMmain.c: 92: PORTD = 0;
+"92
 [e = _PORTD -> -> 0 `i `uc ]
-[; ;PWMmain.c: 94: }
-"94
+[; ;PWMmain.c: 93: }
+"93
 [e :UE 210 ]
 }
-"100
+"99
 [v _CalcPulse `(v  1 ef1`i ]
 {
-[; ;PWMmain.c: 99: void CalcPulse(int speed)
-[; ;PWMmain.c: 100: {
+[; ;PWMmain.c: 98: void CalcPulse(int speed)
+[; ;PWMmain.c: 99: {
 [e :U _CalcPulse ]
 [v _speed `i  1 r1 ]
 [f ]
-"101
+"100
 [v _pulse `i  1 a ]
-[; ;PWMmain.c: 101: int pulse = speed*255/10;
+[; ;PWMmain.c: 100: int pulse = speed*255/10;
 [e = _pulse / * _speed -> 255 `i -> 10 `i ]
-[; ;PWMmain.c: 102: SetPulse(pulse);
-"102
+[; ;PWMmain.c: 101: SetPulse(pulse);
+"101
 [e ( _SetPulse (1 _pulse ]
-[; ;PWMmain.c: 103: }
-"103
+[; ;PWMmain.c: 102: }
+"102
 [e :UE 211 ]
 }
-"108
-[v _i2c_init `(v  1 ef ]
-{
-[; ;PWMmain.c: 108: void i2c_init(){
-[e :U _i2c_init ]
-[f ]
-[; ;PWMmain.c: 109: TRISC6 = 1;
-"109
-[e = _TRISC6 -> -> 1 `i `b ]
-[; ;PWMmain.c: 110: TRISC7 = 1;
-"110
-[e = _TRISC7 -> -> 1 `i `b ]
-[; ;PWMmain.c: 111: SSPEN = 1;
-"111
-[e = _SSPEN -> -> 1 `i `b ]
-[; ;PWMmain.c: 112: CKE = 0;
-"112
-[e = _CKE -> -> 0 `i `b ]
-[; ;PWMmain.c: 113: SMP = 0;
+"29
+[v F2699 `(v  1 tf ]
 "113
-[e = _SMP -> -> 0 `i `b ]
-[; ;PWMmain.c: 114: CKP = 1;
-"114
-[e = _CKP -> -> 1 `i `b ]
-[; ;PWMmain.c: 116: SSPM0 = 0;
-"116
-[e = _SSPM0 -> -> 0 `i `b ]
-[; ;PWMmain.c: 117: SSPM1 = 1;
-"117
-[e = _SSPM1 -> -> 1 `i `b ]
-[; ;PWMmain.c: 118: SSPM2 = 1;
-"118
-[e = _SSPM2 -> -> 1 `i `b ]
-[; ;PWMmain.c: 119: SSPM3 = 0;
-"119
-[e = _SSPM3 -> -> 0 `i `b ]
-[; ;PWMmain.c: 121: SSPIE =1;
-"121
-[e = _SSPIE -> -> 1 `i `b ]
-[; ;PWMmain.c: 123: SSPADD = 0b10100100;
-"123
-[e = _SSPADD -> -> 164 `i `uc ]
-[; ;PWMmain.c: 124: PEIE = 1;
-"124
-[e = _PEIE -> -> 1 `i `b ]
-[; ;PWMmain.c: 125: GIE = 1;
-"125
-[e = _GIE -> -> 1 `i `b ]
-[; ;PWMmain.c: 126: INTE = 1;
-"126
-[e = _INTE -> -> 1 `i `b ]
-[; ;PWMmain.c: 127: i2cBuffer[1] = 0;
-"127
-[e = *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux -> 0 `i ]
-[; ;PWMmain.c: 128: }
-"128
-[e :UE 212 ]
-}
-"27
-[v F2689 `(v  1 tf ]
-"134
-[v _isr `IF2689  1 e ]
+[v _isr `IF2699  1 e ]
 {
-[; ;PWMmain.c: 134: void interrupt isr(){
+[; ;PWMmain.c: 113: void interrupt isr(){
 [e :U _isr ]
 [f ]
-[; ;PWMmain.c: 159: if (val == 2)
-"159
-[e $ ! == _val -> 2 `i 214  ]
-[; ;PWMmain.c: 160: val = 0;
-"160
-[e = _val -> 0 `i ]
-[e :U 214 ]
-[; ;PWMmain.c: 162: if ((SSPSTAT & 0b00100000) == 0b00100000){
-"162
-[e $ ! == & -> _SSPSTAT `i -> 32 `i -> 32 `i 215  ]
-{
-[; ;PWMmain.c: 166: i2cBuffer[val] = SSPBUF;
-"166
-[e = *U + &U _i2cBuffer * -> -> _val `ui `ux -> -> # *U &U _i2cBuffer `ui `ux -> _SSPBUF `i ]
-[; ;PWMmain.c: 167: val++;
-"167
-[e ++ _val -> 1 `i ]
-"168
+[; ;PWMmain.c: 114: i2cIsrHandler();
+"114
+[e ( _i2cIsrHandler ..  ]
+[; ;PWMmain.c: 116: }
+"116
+[e :UE 212 ]
 }
-[; ;PWMmain.c: 168: }
-[e $U 216  ]
-"169
-[e :U 215 ]
-[; ;PWMmain.c: 169: else{
-{
-[; ;PWMmain.c: 170: SSPBUF = 0;
-"170
-[e = _SSPBUF -> -> 0 `i `uc ]
-"171
-}
-[e :U 216 ]
-[; ;PWMmain.c: 171: }
-[; ;PWMmain.c: 174: SSPIF = 0;
-"174
-[e = _SSPIF -> -> 0 `i `b ]
-[; ;PWMmain.c: 177: }
-"177
-[e :UE 213 ]
-}
-"184
+"123
 [v _directionInit `(v  1 ef ]
 {
-[; ;PWMmain.c: 183: void directionInit()
-[; ;PWMmain.c: 184: {
+[; ;PWMmain.c: 122: void directionInit()
+[; ;PWMmain.c: 123: {
 [e :U _directionInit ]
 [f ]
-[; ;PWMmain.c: 185: TRISB3 = 0;
-"185
+[; ;PWMmain.c: 124: TRISB3 = 0;
+"124
 [e = _TRISB3 -> -> 0 `i `b ]
-[; ;PWMmain.c: 186: PORTBbits.RB3 = 0;
-"186
+[; ;PWMmain.c: 125: PORTBbits.RB3 = 0;
+"125
 [e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[; ;PWMmain.c: 187: }
-"187
-[e :UE 217 ]
+[; ;PWMmain.c: 126: }
+"126
+[e :UE 213 ]
 }
-"194
+"133
 [v _parseDirectionPWM `(i  1 ef ]
 {
-[; ;PWMmain.c: 193: int parseDirectionPWM()
-[; ;PWMmain.c: 194: {
+[; ;PWMmain.c: 132: int parseDirectionPWM()
+[; ;PWMmain.c: 133: {
 [e :U _parseDirectionPWM ]
 [f ]
-[; ;PWMmain.c: 195: setSpeed = i2cBuffer[1]&01111111;
-"195
-[e = _setSpeed -> & -> *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux `l -> 299593 `l `i ]
-[; ;PWMmain.c: 197: if (i2cBuffer[1] > 0)
-"197
-[e $ ! > *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux -> 0 `i 219  ]
-[; ;PWMmain.c: 198: {
-"198
+[; ;PWMmain.c: 134: setSpeed = i2cBuffer[1] & 0b01111111;
+"134
+[e = _setSpeed & -> *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux `i -> 127 `i ]
+[; ;PWMmain.c: 136: if (i2cBuffer[1] > 0)
+"136
+[e $ ! > -> *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux `i -> 0 `i 215  ]
+[; ;PWMmain.c: 137: {
+"137
 {
-[; ;PWMmain.c: 199: return 1;
-"199
+[; ;PWMmain.c: 138: return 1;
+"138
 [e ) -> 1 `i ]
-[e $UE 218  ]
-"200
+[e $UE 214  ]
+"139
 }
-[; ;PWMmain.c: 200: }
-[e $U 220  ]
-"201
-[e :U 219 ]
-[; ;PWMmain.c: 201: else
-[; ;PWMmain.c: 202: return 0;
-"202
+[; ;PWMmain.c: 139: }
+[e $U 216  ]
+"140
+[e :U 215 ]
+[; ;PWMmain.c: 140: else
+[; ;PWMmain.c: 141: return 0;
+"141
 [e ) -> 0 `i ]
-[e $UE 218  ]
-[e :U 220 ]
-[; ;PWMmain.c: 203: }
-"203
-[e :UE 218 ]
+[e $UE 214  ]
+[e :U 216 ]
+[; ;PWMmain.c: 142: }
+"142
+[e :UE 214 ]
 }
-"210
+"149
 [v _setDirection `(v  1 ef1`i ]
 {
-[; ;PWMmain.c: 209: void setDirection(int dir)
-[; ;PWMmain.c: 210: {
+[; ;PWMmain.c: 148: void setDirection(int dir)
+[; ;PWMmain.c: 149: {
 [e :U _setDirection ]
 [v _dir `i  1 r1 ]
 [f ]
-[; ;PWMmain.c: 211: if (dir == 0)
-"211
-[e $ ! == _dir -> 0 `i 222  ]
-[; ;PWMmain.c: 212: PORTBbits.RB3 = 0;
-"212
+[; ;PWMmain.c: 150: if (dir == 0)
+"150
+[e $ ! == _dir -> 0 `i 218  ]
+[; ;PWMmain.c: 151: PORTBbits.RB3 = 0;
+"151
 [e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[e $U 223  ]
-"213
-[e :U 222 ]
-[; ;PWMmain.c: 213: else if (dir == 1)
-[e $ ! == _dir -> 1 `i 224  ]
-[; ;PWMmain.c: 214: PORTBbits.RB3 = 1;
-"214
+[e $U 219  ]
+"152
+[e :U 218 ]
+[; ;PWMmain.c: 152: else if (dir == 1)
+[e $ ! == _dir -> 1 `i 220  ]
+[; ;PWMmain.c: 153: PORTBbits.RB3 = 1;
+"153
 [e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
-[e $U 225  ]
-"215
-[e :U 224 ]
-[; ;PWMmain.c: 215: else
-[; ;PWMmain.c: 216: PORTBbits.RB3 = 0;
-"216
+[e $U 221  ]
+"154
+[e :U 220 ]
+[; ;PWMmain.c: 154: else
+[; ;PWMmain.c: 155: PORTBbits.RB3 = 0;
+"155
 [e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[e :U 225 ]
-[e :U 223 ]
-[; ;PWMmain.c: 217: }
-"217
-[e :UE 221 ]
+[e :U 221 ]
+[e :U 219 ]
+[; ;PWMmain.c: 156: }
+"156
+[e :UE 217 ]
 }

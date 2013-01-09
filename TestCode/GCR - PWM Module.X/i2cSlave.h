@@ -9,7 +9,7 @@
 #define	I2CSLAVE_H
 
 
-int val = 0;
+char i2cBufferVal;
 char i2cBuffer[2];
 char i2cRequest;
 char i2cSpeed; // First 7 bits of message data.

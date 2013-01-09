@@ -1,7 +1,7 @@
 
 
 HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
-                                                                                               Fri Dec 14 15:34:06 2012
+                                                                                               Wed Jan 09 13:30:27 2013
 
 HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
      1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
@@ -45,1192 +45,1741 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
     39  0001                     c	equ	1
     40  0000                     z	equ	0
     41  000A                     pclath	equ	10
-    42                           # 12 "PWMmain.c"
+    42                           # 18 "PWMmain.c"
     43                           	psect config,class=CONFIG,delta=2 ;#
-    44                           # 12 "PWMmain.c"
+    44                           # 18 "PWMmain.c"
     45  2007  F4F4               	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF ;#
     46                           	FNCALL	_main,_Initialise
-    47                           	FNCALL	_main,_SetPulse
-    48                           	FNCALL	_Initialise,_BeginPWM
-    49                           	FNCALL	_Initialise,_i2c_init
-    50                           	FNCALL	_Initialise,_directionInit
-    51                           	FNROOT	_main
-    52                           	FNCALL	intlevel1,_isr
-    53                           	global	intlevel1
-    54                           	FNROOT	intlevel1
-    55                           	global	_i2cBuffer
-    56                           	global	_setSpeed
-    57                           	global	_val
-    58                           	global	_CCP1CON
-    59                           psect	text231,local,class=CODE,delta=2
-    60                           global __ptext231
-    61  0000                     __ptext231:
-    62  0017                     _CCP1CON	set	23
-    63                           	global	_CCP1CONbits
-    64  0017                     _CCP1CONbits	set	23
-    65                           	global	_CCPR1L
-    66  0015                     _CCPR1L	set	21
-    67                           	global	_PIR1bits
-    68  000C                     _PIR1bits	set	12
-    69                           	global	_PORTBbits
-    70  0006                     _PORTBbits	set	6
-    71                           	global	_PORTD
-    72  0008                     _PORTD	set	8
-    73                           	global	_SSPBUF
-    74  0013                     _SSPBUF	set	19
-    75                           	global	_T2CON
-    76  0012                     _T2CON	set	18
-    77                           	global	_T2CONbits
-    78  0012                     _T2CONbits	set	18
-    79                           	global	_CARRY
-    80  0018                     _CARRY	set	24
-    81                           	global	_CKP
-    82  00A4                     _CKP	set	164
-    83                           	global	_GIE
-    84  005F                     _GIE	set	95
-    85                           	global	_INTE
-    86  005C                     _INTE	set	92
-    87                           	global	_PEIE
-    88  005E                     _PEIE	set	94
-    89                           	global	_SSPEN
-    90  00A5                     _SSPEN	set	165
-    91                           	global	_SSPIF
-    92  0063                     _SSPIF	set	99
-    93                           	global	_SSPM0
-    94  00A0                     _SSPM0	set	160
-    95                           	global	_SSPM1
-    96  00A1                     _SSPM1	set	161
-    97                           	global	_SSPM2
-    98  00A2                     _SSPM2	set	162
-    99                           	global	_SSPM3
-   100  00A3                     _SSPM3	set	163
-   101                           	global	_TMR2IF
-   102  0061                     _TMR2IF	set	97
-   103                           	global	_PIE1bits
-   104  008C                     _PIE1bits	set	140
-   105                           	global	_PR2
-   106  0092                     _PR2	set	146
-   107                           	global	_SSPADD
-   108  0093                     _SSPADD	set	147
-   109                           	global	_SSPSTAT
-   110  0094                     _SSPSTAT	set	148
-   111                           	global	_TRISCbits
-   112  0087                     _TRISCbits	set	135
-   113                           	global	_TRISD
-   114  0088                     _TRISD	set	136
-   115                           	global	_CKE
-   116  04A6                     _CKE	set	1190
-   117                           	global	_SMP
-   118  04A7                     _SMP	set	1191
-   119                           	global	_SSPIE
-   120  0463                     _SSPIE	set	1123
-   121                           	global	_TRISB3
-   122  0433                     _TRISB3	set	1075
-   123                           	global	_TRISC6
-   124  043E                     _TRISC6	set	1086
-   125                           	global	_TRISC7
-   126  043F                     _TRISC7	set	1087
-   127                           	global	_EEADR
-   128  010D                     _EEADR	set	269
-   129                           	global	_EEDATA
-   130  010C                     _EEDATA	set	268
-   131                           	global	_EECON1
-   132  018C                     _EECON1	set	396
-   133                           	global	_EECON2
-   134  018D                     _EECON2	set	397
-   135                           	global	_RD
-   136  0C60                     _RD	set	3168
-   137                           	global	_WR
-   138  0C61                     _WR	set	3169
-   139                           	global	_WREN
-   140  0C62                     _WREN	set	3170
-   141                           	file	"C:\Users\josh\AppData\Local\Temp\s50k."
-   142                           	line	#
-   143                           psect cinit,class=CODE,delta=2
-   144                           global start_initialization
-   145  0726                     start_initialization:
-   146                           
-   147                           psect	bssCOMMON,class=COMMON,space=1
-   148                           global __pbssCOMMON
-   149  0078                     __pbssCOMMON:
-   150  0078                     _val:
-   151  0078                            ds      2
-   152                           
-   153                           psect	bssBANK0,class=BANK0,space=1
-   154                           global __pbssBANK0
-   155  0020                     __pbssBANK0:
-   156  0020                     _i2cBuffer:
-   157  0020                            ds      20
-   158                           
-   159  0034                     _setSpeed:
-   160  0034                            ds      2
-   161                           
-   162                           psect clrtext,class=CODE,delta=2
-   163                           global clear_ram
-   164                           ;	Called with FSR containing the base address, and
-   165                           ;	W with the last address+1
-   166  071E                     clear_ram:
-   167  071E  0064               	clrwdt			;clear the watchdog before getting into this loop
-   168  071F                     clrloop:
-   169  071F  0180               	clrf	indf		;clear RAM location pointed to by FSR
-   170  0720  0A84               	incf	fsr,f		;increment pointer
-   171  0721  0604               	xorwf	fsr,w		;XOR with final address
-   172  0722  1903               	btfsc	status,2	;have we reached the end yet?
-   173  0723  3400               	retlw	0		;all done for this memory range, return
-   174  0724  0604               	xorwf	fsr,w		;XOR again to restore value
-   175  0725  2F1F               	goto	clrloop		;do the next byte
-   176                           
-   177                           ; Clear objects allocated to COMMON
-   178                           psect cinit,class=CODE,delta=2
-   179  0726  01F8               	clrf	((__pbssCOMMON)+0)&07Fh
-   180  0727  01F9               	clrf	((__pbssCOMMON)+1)&07Fh
-   181                           ; Clear objects allocated to BANK0
-   182                           psect cinit,class=CODE,delta=2
-   183  0728  1383               	bcf	status, 7	;select IRP bank0
-   184  0729  3020               	movlw	low(__pbssBANK0)
-   185  072A  0084               	movwf	fsr
-   186  072B  3036               	movlw	low((__pbssBANK0)+016h)
-   187  072C  120A  118A  271E   	fcall	clear_ram
-              120A  118A         
-   188                           psect cinit,class=CODE,delta=2
-   189                           global end_of_initialization
-   190                           
-   191                           ;End of C runtime variable initialization code
+    47                           	FNCALL	_main,_setDirection
+    48                           	FNCALL	_main,_SetPulse
+    49                           	FNCALL	_Initialise,_BeginPWM
+    50                           	FNCALL	_Initialise,_i2cInit
+    51                           	FNCALL	_Initialise,_directionInit
+    52                           	FNROOT	_main
+    53                           	FNCALL	_isr,_i2cIsrHandler
+    54                           	FNCALL	_i2cIsrHandler,_i2cSend
+    55                           	FNCALL	_i2cIsrHandler,_i2cDataUpdate
+    56                           	FNCALL	intlevel1,_isr
+    57                           	global	intlevel1
+    58                           	FNROOT	intlevel1
+    59                           	global	_i2cDirection
+    60                           	global	_i2cSpeed
+    61                           	global	_i2cBuffer
+    62                           	global	_setSpeed
+    63                           	global	_i2cBufferVal
+    64                           	global	_i2cRequest
+    65                           	global	_CCP1CON
+    66                           psect	text305,local,class=CODE,delta=2
+    67                           global __ptext305
+    68  0000                     __ptext305:
+    69  0017                     _CCP1CON	set	23
+    70                           	global	_CCP1CONbits
+    71  0017                     _CCP1CONbits	set	23
+    72                           	global	_CCPR1L
+    73  0015                     _CCPR1L	set	21
+    74                           	global	_PIR1bits
+    75  000C                     _PIR1bits	set	12
+    76                           	global	_PORTBbits
+    77  0006                     _PORTBbits	set	6
+    78                           	global	_PORTD
+    79  0008                     _PORTD	set	8
+    80                           	global	_SSPBUF
+    81  0013                     _SSPBUF	set	19
+    82                           	global	_T2CON
+    83  0012                     _T2CON	set	18
+    84                           	global	_T2CONbits
+    85  0012                     _T2CONbits	set	18
+    86                           	global	_CARRY
+    87  0018                     _CARRY	set	24
+    88                           	global	_CKP
+    89  00A4                     _CKP	set	164
+    90                           	global	_GIE
+    91  005F                     _GIE	set	95
+    92                           	global	_INTE
+    93  005C                     _INTE	set	92
+    94                           	global	_PEIE
+    95  005E                     _PEIE	set	94
+    96                           	global	_SSPEN
+    97  00A5                     _SSPEN	set	165
+    98                           	global	_SSPIF
+    99  0063                     _SSPIF	set	99
+   100                           	global	_SSPM0
+   101  00A0                     _SSPM0	set	160
+   102                           	global	_SSPM1
+   103  00A1                     _SSPM1	set	161
+   104                           	global	_SSPM2
+   105  00A2                     _SSPM2	set	162
+   106                           	global	_SSPM3
+   107  00A3                     _SSPM3	set	163
+   108                           	global	_TMR2IF
+   109  0061                     _TMR2IF	set	97
+   110                           	global	_PIE1bits
+   111  008C                     _PIE1bits	set	140
+   112                           	global	_PR2
+   113  0092                     _PR2	set	146
+   114                           	global	_SSPADD
+   115  0093                     _SSPADD	set	147
+   116                           	global	_SSPSTAT
+   117  0094                     _SSPSTAT	set	148
+   118                           	global	_TRISCbits
+   119  0087                     _TRISCbits	set	135
+   120                           	global	_TRISD
+   121  0088                     _TRISD	set	136
+   122                           	global	_CKE
+   123  04A6                     _CKE	set	1190
+   124                           	global	_SMP
+   125  04A7                     _SMP	set	1191
+   126                           	global	_SSPIE
+   127  0463                     _SSPIE	set	1123
+   128                           	global	_TRISB3
+   129  0433                     _TRISB3	set	1075
+   130                           	global	_TRISC6
+   131  043E                     _TRISC6	set	1086
+   132                           	global	_TRISC7
+   133  043F                     _TRISC7	set	1087
+   134                           	global	_EEADR
+   135  010D                     _EEADR	set	269
+   136                           	global	_EEDATA
+   137  010C                     _EEDATA	set	268
+   138                           	global	_EECON1
+   139  018C                     _EECON1	set	396
+   140                           	global	_EECON2
+   141  018D                     _EECON2	set	397
+   142                           	global	_RD
+   143  0C60                     _RD	set	3168
+   144                           	global	_WR
+   145  0C61                     _WR	set	3169
+   146                           	global	_WREN
+   147  0C62                     _WREN	set	3170
+   148                           	file	"C:\Users\Josh\AppData\Local\Temp\s3vc."
+   149                           	line	#
+   150                           psect cinit,class=CODE,delta=2
+   151                           global start_initialization
+   152  06A1                     start_initialization:
+   153                           
+   154                           psect	bssCOMMON,class=COMMON,space=1
+   155                           global __pbssCOMMON
+   156  0078                     __pbssCOMMON:
+   157  0078                     _i2cBuffer:
+   158  0078                            ds      2
+   159                           
+   160  007A                     _setSpeed:
+   161  007A                            ds      2
+   162                           
+   163  007C                     _i2cBufferVal:
+   164  007C                            ds      1
+   165                           
+   166  007D                     _i2cRequest:
+   167  007D                            ds      1
+   168                           
+   169                           psect	bssBANK0,class=BANK0,space=1
+   170                           global __pbssBANK0
+   171  0026                     __pbssBANK0:
+   172  0026                     _i2cDirection:
+   173  0026                            ds      1
+   174                           
+   175  0027                     _i2cSpeed:
+   176  0027                            ds      1
+   177                           
+   178                           ; Clear objects allocated to COMMON
+   179                           psect cinit,class=CODE,delta=2
+   180  06A1  01F8               	clrf	((__pbssCOMMON)+0)&07Fh
+   181  06A2  01F9               	clrf	((__pbssCOMMON)+1)&07Fh
+   182  06A3  01FA               	clrf	((__pbssCOMMON)+2)&07Fh
+   183  06A4  01FB               	clrf	((__pbssCOMMON)+3)&07Fh
+   184  06A5  01FC               	clrf	((__pbssCOMMON)+4)&07Fh
+   185  06A6  01FD               	clrf	((__pbssCOMMON)+5)&07Fh
+   186                           ; Clear objects allocated to BANK0
+   187                           psect cinit,class=CODE,delta=2
+   188  06A7  01A6               	clrf	((__pbssBANK0)+0)&07Fh
+   189  06A8  01A7               	clrf	((__pbssBANK0)+1)&07Fh
+   190                           psect cinit,class=CODE,delta=2
+   191                           global end_of_initialization
    192                           
-   193  0731                     end_of_initialization:
-   194  0731  0183               clrf status
-   195  0732  120A  118A  2FA8   ljmp _main	;jump to C main() function
-   196                           psect	cstackCOMMON,class=COMMON,space=1
-   197                           global __pcstackCOMMON
-   198  0071                     __pcstackCOMMON:
-   199                           	global	?_Initialise
-   200  0071                     ?_Initialise:	; 0 bytes @ 0x0
-   201                           	global	?_BeginPWM
-   202  0071                     ?_BeginPWM:	; 0 bytes @ 0x0
-   203                           	global	?_i2c_init
-   204  0071                     ?_i2c_init:	; 0 bytes @ 0x0
-   205                           	global	?_directionInit
-   206  0071                     ?_directionInit:	; 0 bytes @ 0x0
-   207                           	global	?_main
-   208  0071                     ?_main:	; 0 bytes @ 0x0
-   209                           	global	?_isr
-   210  0071                     ?_isr:	; 0 bytes @ 0x0
-   211                           	global	??_isr
-   212  0071                     ??_isr:	; 0 bytes @ 0x0
-   213  0071                     	ds	7
-   214                           psect	cstackBANK0,class=BANK0,space=1
-   215                           global __pcstackBANK0
-   216  0036                     __pcstackBANK0:
-   217                           	global	??_Initialise
-   218  0036                     ??_Initialise:	; 0 bytes @ 0x0
-   219                           	global	?_SetPulse
-   220  0036                     ?_SetPulse:	; 0 bytes @ 0x0
-   221                           	global	??_BeginPWM
-   222  0036                     ??_BeginPWM:	; 0 bytes @ 0x0
-   223                           	global	??_i2c_init
-   224  0036                     ??_i2c_init:	; 0 bytes @ 0x0
-   225                           	global	??_directionInit
-   226  0036                     ??_directionInit:	; 0 bytes @ 0x0
-   227                           	global	SetPulse@length
-   228  0036                     SetPulse@length:	; 2 bytes @ 0x0
-   229  0036                     	ds	2
-   230                           	global	??_SetPulse
-   231  0038                     ??_SetPulse:	; 0 bytes @ 0x2
-   232                           	global	SetPulse@temp
-   233  0038                     SetPulse@temp:	; 2 bytes @ 0x2
-   234  0038                     	ds	2
-   235                           	global	??_main
-   236  003A                     ??_main:	; 0 bytes @ 0x4
-   237 ;;Data sizes: Strings 0, constant 0, data 0, bss 24, persistent 0 stack 0
-   238 ;;Auto spaces:   Size  Autos    Used
-   239 ;; COMMON          13      7       9
-   240 ;; BANK0           80      4      26
-   241 ;; BANK1           80      0       0
-   242 ;; BANK3           96      0       0
-   243 ;; BANK2           69      0       0
-   244                           
-   245 ;;
-   246 ;; Pointer list with targets:
-   247                           
-   248                           
-   249                           
-   250 ;;
-   251 ;; Critical Paths under _main in COMMON
-   252 ;;
-   253 ;;   None.
-   254 ;;
-   255 ;; Critical Paths under _isr in COMMON
-   256 ;;
-   257 ;;   None.
-   258 ;;
-   259 ;; Critical Paths under _main in BANK0
-   260 ;;
-   261 ;;   _main->_SetPulse
-   262 ;;
-   263 ;; Critical Paths under _isr in BANK0
-   264 ;;
-   265 ;;   None.
-   266 ;;
-   267 ;; Critical Paths under _main in BANK1
-   268 ;;
-   269 ;;   None.
-   270 ;;
-   271 ;; Critical Paths under _isr in BANK1
-   272 ;;
-   273 ;;   None.
-   274 ;;
-   275 ;; Critical Paths under _main in BANK3
+   193                           ;End of C runtime variable initialization code
+   194                           
+   195  06A9                     end_of_initialization:
+   196  06A9  0183               clrf status
+   197  06AA  120A  118A  2F6A   ljmp _main	;jump to C main() function
+   198                           psect	cstackCOMMON,class=COMMON,space=1
+   199                           global __pcstackCOMMON
+   200  0071                     __pcstackCOMMON:
+   201                           	global	?_Initialise
+   202  0071                     ?_Initialise:	; 0 bytes @ 0x0
+   203                           	global	?_BeginPWM
+   204  0071                     ?_BeginPWM:	; 0 bytes @ 0x0
+   205                           	global	?_i2cInit
+   206  0071                     ?_i2cInit:	; 0 bytes @ 0x0
+   207                           	global	?_directionInit
+   208  0071                     ?_directionInit:	; 0 bytes @ 0x0
+   209                           	global	?_i2cIsrHandler
+   210  0071                     ?_i2cIsrHandler:	; 0 bytes @ 0x0
+   211                           	global	?_i2cSend
+   212  0071                     ?_i2cSend:	; 0 bytes @ 0x0
+   213                           	global	??_i2cSend
+   214  0071                     ??_i2cSend:	; 0 bytes @ 0x0
+   215                           	global	?_i2cDataUpdate
+   216  0071                     ?_i2cDataUpdate:	; 0 bytes @ 0x0
+   217                           	global	??_i2cDataUpdate
+   218  0071                     ??_i2cDataUpdate:	; 0 bytes @ 0x0
+   219                           	global	?_main
+   220  0071                     ?_main:	; 0 bytes @ 0x0
+   221                           	global	?_isr
+   222  0071                     ?_isr:	; 0 bytes @ 0x0
+   223  0071                     	ds	2
+   224                           	global	??_i2cIsrHandler
+   225  0073                     ??_i2cIsrHandler:	; 0 bytes @ 0x2
+   226  0073                     	ds	1
+   227                           	global	??_isr
+   228  0074                     ??_isr:	; 0 bytes @ 0x3
+   229  0074                     	ds	4
+   230                           psect	cstackBANK0,class=BANK0,space=1
+   231                           global __pcstackBANK0
+   232  0020                     __pcstackBANK0:
+   233                           	global	?_setDirection
+   234  0020                     ?_setDirection:	; 0 bytes @ 0x0
+   235                           	global	?_SetPulse
+   236  0020                     ?_SetPulse:	; 0 bytes @ 0x0
+   237                           	global	??_BeginPWM
+   238  0020                     ??_BeginPWM:	; 0 bytes @ 0x0
+   239                           	global	??_i2cInit
+   240  0020                     ??_i2cInit:	; 0 bytes @ 0x0
+   241                           	global	??_directionInit
+   242  0020                     ??_directionInit:	; 0 bytes @ 0x0
+   243                           	global	i2cInit@address
+   244  0020                     i2cInit@address:	; 1 bytes @ 0x0
+   245                           	global	setDirection@dir
+   246  0020                     setDirection@dir:	; 2 bytes @ 0x0
+   247                           	global	SetPulse@length
+   248  0020                     SetPulse@length:	; 2 bytes @ 0x0
+   249  0020                     	ds	1
+   250                           	global	??_Initialise
+   251  0021                     ??_Initialise:	; 0 bytes @ 0x1
+   252  0021                     	ds	1
+   253                           	global	??_setDirection
+   254  0022                     ??_setDirection:	; 0 bytes @ 0x2
+   255                           	global	??_SetPulse
+   256  0022                     ??_SetPulse:	; 0 bytes @ 0x2
+   257                           	global	SetPulse@temp
+   258  0022                     SetPulse@temp:	; 2 bytes @ 0x2
+   259  0022                     	ds	2
+   260                           	global	??_main
+   261  0024                     ??_main:	; 0 bytes @ 0x4
+   262  0024                     	ds	2
+   263 ;;Data sizes: Strings 0, constant 0, data 0, bss 8, persistent 0 stack 0
+   264 ;;Auto spaces:   Size  Autos    Used
+   265 ;; COMMON          13      7      13
+   266 ;; BANK0           80      6       8
+   267 ;; BANK1           80      0       0
+   268 ;; BANK3           96      0       0
+   269 ;; BANK2           69      0       0
+   270                           
+   271 ;;
+   272 ;; Pointer list with targets:
+   273                           
+   274                           
+   275                           
    276 ;;
-   277 ;;   None.
+   277 ;; Critical Paths under _main in COMMON
    278 ;;
-   279 ;; Critical Paths under _isr in BANK3
+   279 ;;   None.
    280 ;;
-   281 ;;   None.
+   281 ;; Critical Paths under _isr in COMMON
    282 ;;
-   283 ;; Critical Paths under _main in BANK2
-   284 ;;
-   285 ;;   None.
-   286 ;;
-   287 ;; Critical Paths under _isr in BANK2
-   288 ;;
-   289 ;;   None.
-   290                           
-   291 ;;
-   292 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   293 ;;
-   294                           
-   295 ;;
-   296 ;;Call Graph Tables:
-   297 ;;
-   298 ;; ---------------------------------------------------------------------------------
-   299 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
-   300 ;; ---------------------------------------------------------------------------------
-   301 ;; (0) _main                                                 2     2      0      68
-   302 ;;                         _Initialise
-   303 ;;                           _SetPulse
-   304 ;; ---------------------------------------------------------------------------------
-   305 ;; (1) _Initialise                                           0     0      0       0
-   306 ;;                           _BeginPWM
-   307 ;;                           _i2c_init
-   308 ;;                      _directionInit
-   309 ;; ---------------------------------------------------------------------------------
-   310 ;; (2) _directionInit                                        0     0      0       0
-   311 ;; ---------------------------------------------------------------------------------
-   312 ;; (2) _i2c_init                                             0     0      0       0
-   313 ;; ---------------------------------------------------------------------------------
-   314 ;; (2) _BeginPWM                                             0     0      0       0
-   315 ;; ---------------------------------------------------------------------------------
-   316 ;; (1) _SetPulse                                             4     2      2      68
-   317 ;;                                              0 BANK0      4     2      2
-   318 ;; ---------------------------------------------------------------------------------
-   319 ;; Estimated maximum stack depth 2
-   320 ;; ---------------------------------------------------------------------------------
-   321 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
-   322 ;; ---------------------------------------------------------------------------------
-   323 ;; (3) _isr                                                  7     7      0       0
-   324 ;;                                              0 COMMON     7     7      0
-   325 ;; ---------------------------------------------------------------------------------
-   326 ;; Estimated maximum stack depth 3
-   327 ;; ---------------------------------------------------------------------------------
-   328                           
-   329 ;; Call Graph Graphs:
-   330                           
-   331 ;; _main (ROOT)
-   332 ;;   _Initialise
-   333 ;;     _BeginPWM
-   334 ;;     _i2c_init
-   335 ;;     _directionInit
-   336 ;;   _SetPulse
-   337 ;;
-   338 ;; _isr (ROOT)
-   339 ;;
-   340                           
-   341 ;; Address spaces:
-   342                           
-   343 ;;Name               Size   Autos  Total    Cost      Usage
-   344 ;;BITCOMMON            D      0       0       0        0.0%
-   345 ;;EEDATA             100      0       0       0        0.0%
-   346 ;;NULL                 0      0       0       0        0.0%
-   347 ;;CODE                 0      0       0       0        0.0%
-   348 ;;COMMON               D      7       9       1       69.2%
-   349 ;;BITSFR0              0      0       0       1        0.0%
-   350 ;;SFR0                 0      0       0       1        0.0%
-   351 ;;BITSFR1              0      0       0       2        0.0%
-   352 ;;SFR1                 0      0       0       2        0.0%
-   353 ;;STACK                0      0       2       2        0.0%
-   354 ;;BITBANK0            50      0       0       3        0.0%
-   355 ;;BANK0               50      4      1A       4       32.5%
-   356 ;;BITSFR3              0      0       0       4        0.0%
-   357 ;;SFR3                 0      0       0       4        0.0%
-   358 ;;BITBANK1            50      0       0       5        0.0%
-   359 ;;BITSFR2              0      0       0       5        0.0%
-   360 ;;SFR2                 0      0       0       5        0.0%
-   361 ;;BANK1               50      0       0       6        0.0%
-   362 ;;BITBANK3            60      0       0       7        0.0%
-   363 ;;BANK3               60      0       0       8        0.0%
-   364 ;;BANK2               45      0       0       9        0.0%
-   365 ;;ABS                  0      0      23      10        0.0%
-   366 ;;BITBANK2            45      0       0      11        0.0%
-   367 ;;DATA                 0      0      25      12        0.0%
-   368                           
-   369                           	global	_main
-   370                           psect	maintext,global,class=CODE,delta=2
-   371                           global __pmaintext
-   372  07A8                     __pmaintext:
+   283 ;;   _isr->_i2cIsrHandler
+   284 ;;   _i2cIsrHandler->_i2cDataUpdate
+   285 ;;
+   286 ;; Critical Paths under _main in BANK0
+   287 ;;
+   288 ;;   _main->_SetPulse
+   289 ;;   _Initialise->_i2cInit
+   290 ;;
+   291 ;; Critical Paths under _isr in BANK0
+   292 ;;
+   293 ;;   None.
+   294 ;;
+   295 ;; Critical Paths under _main in BANK1
+   296 ;;
+   297 ;;   None.
+   298 ;;
+   299 ;; Critical Paths under _isr in BANK1
+   300 ;;
+   301 ;;   None.
+   302 ;;
+   303 ;; Critical Paths under _main in BANK3
+   304 ;;
+   305 ;;   None.
+   306 ;;
+   307 ;; Critical Paths under _isr in BANK3
+   308 ;;
+   309 ;;   None.
+   310 ;;
+   311 ;; Critical Paths under _main in BANK2
+   312 ;;
+   313 ;;   None.
+   314 ;;
+   315 ;; Critical Paths under _isr in BANK2
+   316 ;;
+   317 ;;   None.
+   318                           
+   319 ;;
+   320 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+   321 ;;
+   322                           
+   323 ;;
+   324 ;;Call Graph Tables:
+   325 ;;
+   326 ;; ---------------------------------------------------------------------------------
+   327 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   328 ;; ---------------------------------------------------------------------------------
+   329 ;; (0) _main                                                 4     4      0     134
+   330 ;;                                              4 BANK0      2     2      0
+   331 ;;                         _Initialise
+   332 ;;                       _setDirection
+   333 ;;                           _SetPulse
+   334 ;; ---------------------------------------------------------------------------------
+   335 ;; (1) _Initialise                                           0     0      0      22
+   336 ;;                           _BeginPWM
+   337 ;;                            _i2cInit
+   338 ;;                      _directionInit
+   339 ;; ---------------------------------------------------------------------------------
+   340 ;; (2) _directionInit                                        0     0      0       0
+   341 ;; ---------------------------------------------------------------------------------
+   342 ;; (2) _i2cInit                                              1     1      0      22
+   343 ;;                                              0 BANK0      1     1      0
+   344 ;; ---------------------------------------------------------------------------------
+   345 ;; (2) _BeginPWM                                             0     0      0       0
+   346 ;; ---------------------------------------------------------------------------------
+   347 ;; (1) _SetPulse                                             4     2      2      68
+   348 ;;                                              0 BANK0      4     2      2
+   349 ;; ---------------------------------------------------------------------------------
+   350 ;; (1) _setDirection                                         2     0      2      44
+   351 ;;                                              0 BANK0      2     0      2
+   352 ;; ---------------------------------------------------------------------------------
+   353 ;; Estimated maximum stack depth 2
+   354 ;; ---------------------------------------------------------------------------------
+   355 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   356 ;; ---------------------------------------------------------------------------------
+   357 ;; (3) _isr                                                  4     4      0       0
+   358 ;;                                              3 COMMON     4     4      0
+   359 ;;                      _i2cIsrHandler
+   360 ;; ---------------------------------------------------------------------------------
+   361 ;; (4) _i2cIsrHandler                                        1     1      0       0
+   362 ;;                                              2 COMMON     1     1      0
+   363 ;;                            _i2cSend
+   364 ;;                      _i2cDataUpdate
+   365 ;; ---------------------------------------------------------------------------------
+   366 ;; (5) _i2cDataUpdate                                        2     2      0       0
+   367 ;;                                              0 COMMON     2     2      0
+   368 ;; ---------------------------------------------------------------------------------
+   369 ;; (5) _i2cSend                                              0     0      0       0
+   370 ;; ---------------------------------------------------------------------------------
+   371 ;; Estimated maximum stack depth 5
+   372 ;; ---------------------------------------------------------------------------------
    373                           
-   374 ;; *************** function _main *****************
-   375 ;; Defined at:
-   376 ;;		line 36 in file "PWMmain.c"
-   377 ;; Parameters:    Size  Location     Type
-   378 ;;		None
-   379 ;; Auto vars:     Size  Location     Type
-   380 ;;  direction       2    0        int 
-   381 ;; Return value:  Size  Location     Type
-   382 ;;		None               void
-   383 ;; Registers used:
-   384 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
-   385 ;; Tracked objects:
-   386 ;;		On entry : 17F/0
-   387 ;;		On exit  : 0/0
-   388 ;;		Unchanged: 0/0
-   389 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   390 ;;      Params:         0       0       0       0       0
-   391 ;;      Locals:         0       0       0       0       0
-   392 ;;      Temps:          0       0       0       0       0
-   393 ;;      Totals:         0       0       0       0       0
-   394 ;;Total ram usage:        0 bytes
-   395 ;; Hardware stack levels required when called:    3
-   396 ;; This function calls:
-   397 ;;		_Initialise
-   398 ;;		_SetPulse
-   399 ;; This function is called by:
-   400 ;;		Startup code after reset
-   401 ;; This function uses a non-reentrant model
-   402 ;;
-   403                           psect	maintext
-   404                           	file	"PWMmain.c"
-   405                           	line	36
-   406                           	global	__size_of_main
-   407  0022                     	__size_of_main	equ	__end_of_main-_main
-   408                           	
-   409  07A8                     _main:	
-   410                           	opt	stack 5
-   411                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
-   412                           	line	39
-   413                           	
-   414  07A8                     l5907:	
-   415                           ;PWMmain.c: 38: int direction;
-   416                           ;PWMmain.c: 39: Initialise();
-   417  07A8  120A  118A  2735   	fcall	_Initialise
-              120A  118A         
-   418  07AD  2FAE               	goto	l5909
-   419                           	line	60
-   420                           ;PWMmain.c: 60: while (1)
-   421                           	
-   422  07AE                     l1507:	
-   423                           	line	64
-   424                           	
-   425  07AE                     l5909:	
-   426                           ;PWMmain.c: 61: {
-   427                           ;PWMmain.c: 64: setSpeed = i2cBuffer[1];
-   428  07AE  1283               	bcf	status, 5	;RP0=0, select bank0
-   429  07AF  1303               	bcf	status, 6	;RP1=0, select bank0
-   430  07B0  0823               	movf	1+(_i2cBuffer)+02h,w
-   431  07B1  01B5               	clrf	(_setSpeed+1)
-   432  07B2  07B5               	addwf	(_setSpeed+1)
-   433  07B3  0822               	movf	0+(_i2cBuffer)+02h,w
-   434  07B4  01B4               	clrf	(_setSpeed)
-   435  07B5  07B4               	addwf	(_setSpeed)
-   436                           
-   437                           	line	65
-   438                           	
-   439  07B6                     l5911:	
-   440                           ;PWMmain.c: 65: SetPulse(setSpeed);
-   441  07B6  0835               	movf	(_setSpeed+1),w
-   442  07B7  01B7               	clrf	(?_SetPulse+1)
-   443  07B8  07B7               	addwf	(?_SetPulse+1)
-   444  07B9  0834               	movf	(_setSpeed),w
-   445  07BA  01B6               	clrf	(?_SetPulse)
-   446  07BB  07B6               	addwf	(?_SetPulse)
-   447                           
-   448  07BC  120A  118A  2788   	fcall	_SetPulse
-              120A  118A         
-   449                           	line	67
-   450                           	
-   451  07C1                     l5913:	
-   452                           ;PWMmain.c: 67: PORTD = setSpeed;
-   453  07C1  1283               	bcf	status, 5	;RP0=0, select bank0
-   454  07C2  1303               	bcf	status, 6	;RP1=0, select bank0
-   455  07C3  0834               	movf	(_setSpeed),w
-   456  07C4  0088               	movwf	(8)	;volatile
-   457  07C5  2FAE               	goto	l5909
-   458                           	line	68
-   459                           	
-   460  07C6                     l1508:	
-   461                           	line	60
-   462  07C6  2FAE               	goto	l5909
+   374 ;; Call Graph Graphs:
+   375                           
+   376 ;; _main (ROOT)
+   377 ;;   _Initialise
+   378 ;;     _BeginPWM
+   379 ;;     _i2cInit
+   380 ;;     _directionInit
+   381 ;;   _setDirection
+   382 ;;   _SetPulse
+   383 ;;
+   384 ;; _isr (ROOT)
+   385 ;;   _i2cIsrHandler
+   386 ;;     _i2cSend
+   387 ;;     _i2cDataUpdate
+   388 ;;
+   389                           
+   390 ;; Address spaces:
+   391                           
+   392 ;;Name               Size   Autos  Total    Cost      Usage
+   393 ;;BITCOMMON            D      0       0       0        0.0%
+   394 ;;EEDATA             100      0       0       0        0.0%
+   395 ;;NULL                 0      0       0       0        0.0%
+   396 ;;CODE                 0      0       0       0        0.0%
+   397 ;;COMMON               D      7       D       1      100.0%
+   398 ;;BITSFR0              0      0       0       1        0.0%
+   399 ;;SFR0                 0      0       0       1        0.0%
+   400 ;;BITSFR1              0      0       0       2        0.0%
+   401 ;;SFR1                 0      0       0       2        0.0%
+   402 ;;STACK                0      0       8       2        0.0%
+   403 ;;BITBANK0            50      0       0       3        0.0%
+   404 ;;BANK0               50      6       8       4       10.0%
+   405 ;;BITSFR3              0      0       0       4        0.0%
+   406 ;;SFR3                 0      0       0       4        0.0%
+   407 ;;BITBANK1            50      0       0       5        0.0%
+   408 ;;BITSFR2              0      0       0       5        0.0%
+   409 ;;SFR2                 0      0       0       5        0.0%
+   410 ;;BANK1               50      0       0       6        0.0%
+   411 ;;BITBANK3            60      0       0       7        0.0%
+   412 ;;BANK3               60      0       0       8        0.0%
+   413 ;;BANK2               45      0       0       9        0.0%
+   414 ;;ABS                  0      0      15      10        0.0%
+   415 ;;BITBANK2            45      0       0      11        0.0%
+   416 ;;DATA                 0      0      1D      12        0.0%
+   417                           
+   418                           	global	_main
+   419                           psect	maintext,global,class=CODE,delta=2
+   420                           global __pmaintext
+   421  076A                     __pmaintext:
+   422                           
+   423 ;; *************** function _main *****************
+   424 ;; Defined at:
+   425 ;;		line 38 in file "PWMmain.c"
+   426 ;; Parameters:    Size  Location     Type
+   427 ;;		None
+   428 ;; Auto vars:     Size  Location     Type
+   429 ;;  direction       2    0        int 
+   430 ;; Return value:  Size  Location     Type
+   431 ;;		None               void
+   432 ;; Registers used:
+   433 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   434 ;; Tracked objects:
+   435 ;;		On entry : 17F/0
+   436 ;;		On exit  : 0/0
+   437 ;;		Unchanged: 0/0
+   438 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   439 ;;      Params:         0       0       0       0       0
+   440 ;;      Locals:         0       0       0       0       0
+   441 ;;      Temps:          0       2       0       0       0
+   442 ;;      Totals:         0       2       0       0       0
+   443 ;;Total ram usage:        2 bytes
+   444 ;; Hardware stack levels required when called:    5
+   445 ;; This function calls:
+   446 ;;		_Initialise
+   447 ;;		_setDirection
+   448 ;;		_SetPulse
+   449 ;; This function is called by:
+   450 ;;		Startup code after reset
+   451 ;; This function uses a non-reentrant model
+   452 ;;
+   453                           psect	maintext
+   454                           	file	"PWMmain.c"
+   455                           	line	38
+   456                           	global	__size_of_main
+   457  002A                     	__size_of_main	equ	__end_of_main-_main
+   458                           	
+   459  076A                     _main:	
+   460                           	opt	stack 3
+   461                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   462                           	line	41
    463                           	
-   464  07C7                     l1509:	
-   465                           	line	71
-   466                           	
-   467  07C7                     l1510:	
-   468                           	global	start
-   469  07C7  120A  118A  2812   	ljmp	start
-   470                           	opt stack 0
-   471                           GLOBAL	__end_of_main
-   472  07CA                     	__end_of_main:
-   473 ;; =============== function _main ends ============
-   474                           
-   475                           	signat	_main,88
-   476                           	global	_Initialise
-   477                           psect	text232,local,class=CODE,delta=2
-   478                           global __ptext232
-   479  0735                     __ptext232:
-   480                           
-   481 ;; *************** function _Initialise *****************
-   482 ;; Defined at:
-   483 ;;		line 87 in file "PWMmain.c"
-   484 ;; Parameters:    Size  Location     Type
-   485 ;;		None
-   486 ;; Auto vars:     Size  Location     Type
-   487 ;;		None
-   488 ;; Return value:  Size  Location     Type
-   489 ;;		None               void
-   490 ;; Registers used:
-   491 ;;		wreg, status,2, status,0, pclath, cstack
-   492 ;; Tracked objects:
-   493 ;;		On entry : 0/0
-   494 ;;		On exit  : 0/0
-   495 ;;		Unchanged: 0/0
-   496 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   497 ;;      Params:         0       0       0       0       0
-   498 ;;      Locals:         0       0       0       0       0
-   499 ;;      Temps:          0       0       0       0       0
-   500 ;;      Totals:         0       0       0       0       0
-   501 ;;Total ram usage:        0 bytes
-   502 ;; Hardware stack levels used:    1
-   503 ;; Hardware stack levels required when called:    2
-   504 ;; This function calls:
-   505 ;;		_BeginPWM
-   506 ;;		_i2c_init
-   507 ;;		_directionInit
-   508 ;; This function is called by:
-   509 ;;		_main
-   510 ;; This function uses a non-reentrant model
-   511 ;;
-   512                           psect	text232
-   513                           	file	"PWMmain.c"
-   514                           	line	87
-   515                           	global	__size_of_Initialise
-   516  0016                     	__size_of_Initialise	equ	__end_of_Initialise-_Initialise
-   517                           	
-   518  0735                     _Initialise:	
-   519                           	opt	stack 5
-   520                           ; Regs used in _Initialise: [wreg+status,2+status,0+pclath+cstack]
-   521                           	line	88
-   522                           	
-   523  0735                     l5899:	
-   524                           ;PWMmain.c: 88: BeginPWM();
-   525  0735  120A  118A  274B   	fcall	_BeginPWM
+   464  076A                     l7517:	
+   465                           ;PWMmain.c: 40: int direction;
+   466                           ;PWMmain.c: 41: Initialise();
+   467  076A  120A  118A  26D6   	fcall	_Initialise
               120A  118A         
-   526                           	line	89
-   527                           ;PWMmain.c: 89: i2c_init();
-   528  073A  120A  118A  2769   	fcall	_i2c_init
+   468                           	line	62
+   469                           ;PWMmain.c: 62: while (1)
+   470                           	
+   471  076F                     l1517:	
+   472                           	line	64
+   473                           ;PWMmain.c: 63: {
+   474                           ;PWMmain.c: 64: setDirection(i2cDirection);
+   475  076F  1283               	bcf	status, 5	;RP0=0, select bank0
+   476  0770  1303               	bcf	status, 6	;RP1=0, select bank0
+   477  0771  0826               	movf	(_i2cDirection),w
+   478  0772  00A4               	movwf	(??_main+0)+0
+   479  0773  01A5               	clrf	(??_main+0)+0+1
+   480  0774  0824               	movf	0+(??_main+0)+0,w
+   481  0775  00A0               	movwf	(?_setDirection)
+   482  0776  0825               	movf	1+(??_main+0)+0,w
+   483  0777  00A1               	movwf	(?_setDirection+1)
+   484  0778  120A  118A  26BF   	fcall	_setDirection
               120A  118A         
-   529                           	line	90
-   530                           	
-   531  073F                     l5901:	
-   532                           ;PWMmain.c: 90: directionInit();
-   533  073F  120A  118A  2717   	fcall	_directionInit
+   485                           	line	65
+   486                           	
+   487  077D                     l7519:	
+   488                           ;PWMmain.c: 65: SetPulse(i2cSpeed);
+   489  077D  1283               	bcf	status, 5	;RP0=0, select bank0
+   490  077E  1303               	bcf	status, 6	;RP1=0, select bank0
+   491  077F  0827               	movf	(_i2cSpeed),w
+   492  0780  00A4               	movwf	(??_main+0)+0
+   493  0781  01A5               	clrf	(??_main+0)+0+1
+   494  0782  0824               	movf	0+(??_main+0)+0,w
+   495  0783  00A0               	movwf	(?_SetPulse)
+   496  0784  0825               	movf	1+(??_main+0)+0,w
+   497  0785  00A1               	movwf	(?_SetPulse+1)
+   498  0786  120A  118A  2727   	fcall	_SetPulse
               120A  118A         
-   534                           	line	92
-   535                           	
-   536  0744                     l5903:	
-   537                           ;PWMmain.c: 92: TRISD = 0;
-   538  0744  1683               	bsf	status, 5	;RP0=1, select bank1
-   539  0745  1303               	bcf	status, 6	;RP1=0, select bank1
-   540  0746  0188               	clrf	(136)^080h	;volatile
-   541                           	line	93
-   542                           	
-   543  0747                     l5905:	
-   544                           ;PWMmain.c: 93: PORTD = 0;
-   545  0747  1283               	bcf	status, 5	;RP0=0, select bank0
-   546  0748  1303               	bcf	status, 6	;RP1=0, select bank0
-   547  0749  0188               	clrf	(8)	;volatile
-   548                           	line	94
-   549                           	
-   550  074A                     l1519:	
-   551  074A  0008               	return
-   552                           	opt stack 0
-   553                           GLOBAL	__end_of_Initialise
-   554  074B                     	__end_of_Initialise:
-   555 ;; =============== function _Initialise ends ============
-   556                           
-   557                           	signat	_Initialise,88
-   558                           	global	_directionInit
-   559                           psect	text233,local,class=CODE,delta=2
-   560                           global __ptext233
-   561  0717                     __ptext233:
-   562                           
-   563 ;; *************** function _directionInit *****************
-   564 ;; Defined at:
-   565 ;;		line 184 in file "PWMmain.c"
-   566 ;; Parameters:    Size  Location     Type
-   567 ;;		None
-   568 ;; Auto vars:     Size  Location     Type
-   569 ;;		None
-   570 ;; Return value:  Size  Location     Type
-   571 ;;		None               void
-   572 ;; Registers used:
-   573 ;;		None
-   574 ;; Tracked objects:
-   575 ;;		On entry : 0/0
-   576 ;;		On exit  : 0/0
-   577 ;;		Unchanged: 0/0
-   578 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   579 ;;      Params:         0       0       0       0       0
-   580 ;;      Locals:         0       0       0       0       0
-   581 ;;      Temps:          0       0       0       0       0
-   582 ;;      Totals:         0       0       0       0       0
-   583 ;;Total ram usage:        0 bytes
-   584 ;; Hardware stack levels used:    1
-   585 ;; Hardware stack levels required when called:    1
-   586 ;; This function calls:
-   587 ;;		Nothing
-   588 ;; This function is called by:
-   589 ;;		_Initialise
-   590 ;; This function uses a non-reentrant model
-   591 ;;
-   592                           psect	text233
-   593                           	file	"PWMmain.c"
-   594                           	line	184
-   595                           	global	__size_of_directionInit
-   596  0007                     	__size_of_directionInit	equ	__end_of_directionInit-_directionInit
-   597                           	
-   598  0717                     _directionInit:	
-   599                           	opt	stack 5
-   600                           ; Regs used in _directionInit: []
-   601                           	line	185
-   602                           	
-   603  0717                     l5885:	
-   604                           ;PWMmain.c: 185: TRISB3 = 0;
-   605  0717  1683               	bsf	status, 5	;RP0=1, select bank1
-   606  0718  1303               	bcf	status, 6	;RP1=0, select bank1
-   607  0719  1186               	bcf	(1075/8)^080h,(1075)&7
-   608                           	line	186
-   609                           ;PWMmain.c: 186: PORTBbits.RB3 = 0;
-   610  071A  1283               	bcf	status, 5	;RP0=0, select bank0
-   611  071B  1303               	bcf	status, 6	;RP1=0, select bank0
-   612  071C  1186               	bcf	(6),3	;volatile
-   613                           	line	187
-   614                           	
-   615  071D                     l1534:	
-   616  071D  0008               	return
-   617                           	opt stack 0
-   618                           GLOBAL	__end_of_directionInit
-   619  071E                     	__end_of_directionInit:
-   620 ;; =============== function _directionInit ends ============
-   621                           
-   622                           	signat	_directionInit,88
-   623                           	global	_i2c_init
-   624                           psect	text234,local,class=CODE,delta=2
-   625                           global __ptext234
-   626  0769                     __ptext234:
-   627                           
-   628 ;; *************** function _i2c_init *****************
-   629 ;; Defined at:
-   630 ;;		line 108 in file "PWMmain.c"
-   631 ;; Parameters:    Size  Location     Type
-   632 ;;		None
-   633 ;; Auto vars:     Size  Location     Type
-   634 ;;		None
-   635 ;; Return value:  Size  Location     Type
-   636 ;;		None               void
-   637 ;; Registers used:
-   638 ;;		wreg, status,2
-   639 ;; Tracked objects:
-   640 ;;		On entry : 0/0
-   641 ;;		On exit  : 0/0
-   642 ;;		Unchanged: 0/0
-   643 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   644 ;;      Params:         0       0       0       0       0
-   645 ;;      Locals:         0       0       0       0       0
-   646 ;;      Temps:          0       0       0       0       0
-   647 ;;      Totals:         0       0       0       0       0
-   648 ;;Total ram usage:        0 bytes
-   649 ;; Hardware stack levels used:    1
-   650 ;; Hardware stack levels required when called:    1
-   651 ;; This function calls:
-   652 ;;		Nothing
-   653 ;; This function is called by:
-   654 ;;		_Initialise
-   655 ;; This function uses a non-reentrant model
-   656 ;;
-   657                           psect	text234
-   658                           	file	"PWMmain.c"
-   659                           	line	108
-   660                           	global	__size_of_i2c_init
-   661  001F                     	__size_of_i2c_init	equ	__end_of_i2c_init-_i2c_init
-   662                           	
-   663  0769                     _i2c_init:	
-   664                           	opt	stack 5
-   665                           ; Regs used in _i2c_init: [wreg+status,2]
-   666                           	line	109
-   667                           	
-   668  0769                     l5873:	
-   669                           ;PWMmain.c: 109: TRISC6 = 1;
-   670  0769  1683               	bsf	status, 5	;RP0=1, select bank1
-   671  076A  1303               	bcf	status, 6	;RP1=0, select bank1
-   672  076B  1707               	bsf	(1086/8)^080h,(1086)&7
-   673                           	line	110
-   674                           ;PWMmain.c: 110: TRISC7 = 1;
-   675  076C  1787               	bsf	(1087/8)^080h,(1087)&7
-   676                           	line	111
-   677                           ;PWMmain.c: 111: SSPEN = 1;
-   678  076D  1283               	bcf	status, 5	;RP0=0, select bank0
-   679  076E  1303               	bcf	status, 6	;RP1=0, select bank0
-   680  076F  1694               	bsf	(165/8),(165)&7
-   681                           	line	112
-   682                           ;PWMmain.c: 112: CKE = 0;
-   683  0770  1683               	bsf	status, 5	;RP0=1, select bank1
-   684  0771  1303               	bcf	status, 6	;RP1=0, select bank1
-   685  0772  1314               	bcf	(1190/8)^080h,(1190)&7
-   686                           	line	113
-   687                           ;PWMmain.c: 113: SMP = 0;
-   688  0773  1394               	bcf	(1191/8)^080h,(1191)&7
-   689                           	line	114
-   690                           ;PWMmain.c: 114: CKP = 1;
-   691  0774  1283               	bcf	status, 5	;RP0=0, select bank0
-   692  0775  1303               	bcf	status, 6	;RP1=0, select bank0
-   693  0776  1614               	bsf	(164/8),(164)&7
-   694                           	line	116
-   695                           ;PWMmain.c: 116: SSPM0 = 0;
-   696  0777  1014               	bcf	(160/8),(160)&7
-   697                           	line	117
-   698                           ;PWMmain.c: 117: SSPM1 = 1;
-   699  0778  1494               	bsf	(161/8),(161)&7
-   700                           	line	118
-   701                           ;PWMmain.c: 118: SSPM2 = 1;
-   702  0779  1514               	bsf	(162/8),(162)&7
-   703                           	line	119
-   704                           ;PWMmain.c: 119: SSPM3 = 0;
-   705  077A  1194               	bcf	(163/8),(163)&7
-   706                           	line	121
-   707                           ;PWMmain.c: 121: SSPIE =1;
-   708  077B  1683               	bsf	status, 5	;RP0=1, select bank1
-   709  077C  1303               	bcf	status, 6	;RP1=0, select bank1
-   710  077D  158C               	bsf	(1123/8)^080h,(1123)&7
-   711                           	line	123
-   712                           	
-   713  077E                     l5875:	
-   714                           ;PWMmain.c: 123: SSPADD = 0b10100100;
-   715  077E  30A4               	movlw	(0A4h)
-   716  077F  0093               	movwf	(147)^080h	;volatile
-   717                           	line	124
-   718                           	
-   719  0780                     l5877:	
-   720                           ;PWMmain.c: 124: PEIE = 1;
-   721  0780  170B               	bsf	(94/8),(94)&7
-   722                           	line	125
-   723                           	
-   724  0781                     l5879:	
-   725                           ;PWMmain.c: 125: GIE = 1;
-   726  0781  178B               	bsf	(95/8),(95)&7
-   727                           	line	126
-   728                           	
-   729  0782                     l5881:	
-   730                           ;PWMmain.c: 126: INTE = 1;
-   731  0782  160B               	bsf	(92/8),(92)&7
-   732                           	line	127
-   733                           	
-   734  0783                     l5883:	
-   735                           ;PWMmain.c: 127: i2cBuffer[1] = 0;
-   736  0783  1283               	bcf	status, 5	;RP0=0, select bank0
-   737  0784  1303               	bcf	status, 6	;RP1=0, select bank0
-   738  0785  01A2               	clrf	0+(_i2cBuffer)+02h
-   739  0786  01A3               	clrf	1+(_i2cBuffer)+02h
-   740                           	line	128
-   741                           	
-   742  0787                     l1525:	
-   743  0787  0008               	return
-   744                           	opt stack 0
-   745                           GLOBAL	__end_of_i2c_init
-   746  0788                     	__end_of_i2c_init:
-   747 ;; =============== function _i2c_init ends ============
-   748                           
-   749                           	signat	_i2c_init,88
-   750                           	global	_BeginPWM
-   751                           psect	text235,local,class=CODE,delta=2
-   752                           global __ptext235
-   753  074B                     __ptext235:
-   754                           
-   755 ;; *************** function _BeginPWM *****************
-   756 ;; Defined at:
-   757 ;;		line 41 in file "pwmlib.c"
-   758 ;; Parameters:    Size  Location     Type
-   759 ;;		None
-   760 ;; Auto vars:     Size  Location     Type
-   761 ;;		None
-   762 ;; Return value:  Size  Location     Type
-   763 ;;		None               void
-   764 ;; Registers used:
-   765 ;;		wreg, status,2
-   766 ;; Tracked objects:
-   767 ;;		On entry : 0/0
-   768 ;;		On exit  : 0/0
-   769 ;;		Unchanged: 0/0
-   770 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   771 ;;      Params:         0       0       0       0       0
-   772 ;;      Locals:         0       0       0       0       0
-   773 ;;      Temps:          0       0       0       0       0
-   774 ;;      Totals:         0       0       0       0       0
-   775 ;;Total ram usage:        0 bytes
-   776 ;; Hardware stack levels used:    1
-   777 ;; Hardware stack levels required when called:    1
-   778 ;; This function calls:
-   779 ;;		Nothing
-   780 ;; This function is called by:
-   781 ;;		_Initialise
-   782 ;; This function uses a non-reentrant model
-   783 ;;
-   784                           psect	text235
-   785                           	file	"pwmlib.c"
-   786                           	line	41
-   787                           	global	__size_of_BeginPWM
-   788  001E                     	__size_of_BeginPWM	equ	__end_of_BeginPWM-_BeginPWM
-   789                           	
-   790  074B                     _BeginPWM:	
-   791                           	opt	stack 5
-   792                           ; Regs used in _BeginPWM: [wreg+status,2]
-   793                           	line	44
-   794                           	
-   795  074B                     l5855:	
-   796                           ;pwmlib.c: 44: TRISCbits.TRISC5 = 1;
-   797  074B  1683               	bsf	status, 5	;RP0=1, select bank1
-   798  074C  1303               	bcf	status, 6	;RP1=0, select bank1
-   799  074D  1687               	bsf	(135)^080h,5	;volatile
-   800                           	line	47
-   801                           ;pwmlib.c: 47: PIE1bits.TMR2IE = 0;
-   802  074E  108C               	bcf	(140)^080h,1	;volatile
-   803                           	line	51
-   804                           	
-   805  074F                     l5857:	
-   806                           ;pwmlib.c: 51: PR2 = 0xFF;
-   807  074F  30FF               	movlw	(0FFh)
-   808  0750  0092               	movwf	(146)^080h	;volatile
-   809                           	line	55
-   810                           ;pwmlib.c: 55: CCP1CON = 0b00001100;
-   811  0751  300C               	movlw	(0Ch)
-   812  0752  1283               	bcf	status, 5	;RP0=0, select bank0
-   813  0753  1303               	bcf	status, 6	;RP1=0, select bank0
-   814  0754  0097               	movwf	(23)	;volatile
-   815                           	line	59
-   816                           	
-   817  0755                     l5859:	
-   818                           ;pwmlib.c: 59: CCPR1L = 0;
-   819  0755  0195               	clrf	(21)	;volatile
-   820                           	line	60
-   821                           	
-   822  0756                     l5861:	
-   823                           ;pwmlib.c: 60: CCP1CONbits.CCP1X = 0;
-   824  0756  1297               	bcf	(23),5	;volatile
-   825                           	line	61
-   826                           	
-   827  0757                     l5863:	
-   828                           ;pwmlib.c: 61: CCP1CONbits.CCP1Y = 0;
-   829  0757  1217               	bcf	(23),4	;volatile
-   830                           	line	66
-   831                           	
-   832  0758                     l5865:	
-   833                           ;pwmlib.c: 66: PIR1bits.TMR2IF = 0;
-   834  0758  108C               	bcf	(12),1	;volatile
-   835                           	line	70
-   836                           	
-   837  0759                     l5867:	
-   838                           ;pwmlib.c: 70: T2CON = 0b00000100;
-   839  0759  3004               	movlw	(04h)
-   840  075A  0092               	movwf	(18)	;volatile
-   841  075B  2F5C               	goto	l5869
-   842                           	line	75
-   843                           ;pwmlib.c: 75: while(1)
-   844                           	
-   845  075C                     l3037:	
-   846                           	line	77
-   847                           	
-   848  075C                     l5869:	
-   849                           ;pwmlib.c: 76: {
-   850                           ;pwmlib.c: 77: if(PIR1bits.TMR2IF == 1)
-   851  075C  1283               	bcf	status, 5	;RP0=0, select bank0
-   852  075D  1C8C               	btfss	(12),1	;volatile
-   853  075E  2F60               	goto	u2311
-   854  075F  2F61               	goto	u2310
-   855  0760                     u2311:
-   856  0760  2F5C               	goto	l5869
-   857  0761                     u2310:
-   858                           	line	79
-   859                           	
-   860  0761                     l5871:	
-   861                           ;pwmlib.c: 78: {
-   862                           ;pwmlib.c: 79: TMR2IF = 0;
-   863  0761  108C               	bcf	(97/8),(97)&7
-   864                           	line	80
-   865                           ;pwmlib.c: 80: TRISCbits.TRISC5 = 0;
-   866  0762  1683               	bsf	status, 5	;RP0=1, select bank1
-   867  0763  1303               	bcf	status, 6	;RP1=0, select bank1
-   868  0764  1287               	bcf	(135)^080h,5	;volatile
-   869                           	line	81
-   870                           ;pwmlib.c: 81: break;
-   871  0765  2F68               	goto	l3041
-   872                           	line	82
-   873                           	
-   874  0766                     l3038:	
-   875  0766  2F5C               	goto	l5869
-   876                           	line	83
+   499                           	line	66
+   500                           	
+   501  078B                     l7521:	
+   502                           ;PWMmain.c: 66: PORTD = i2cSpeed;
+   503  078B  1283               	bcf	status, 5	;RP0=0, select bank0
+   504  078C  1303               	bcf	status, 6	;RP1=0, select bank0
+   505  078D  0827               	movf	(_i2cSpeed),w
+   506  078E  0088               	movwf	(8)	;volatile
+   507  078F  2F6F               	goto	l1517
+   508                           	line	67
+   509                           	
+   510  0790                     l1518:	
+   511                           	line	62
+   512  0790  2F6F               	goto	l1517
+   513                           	
+   514  0791                     l1519:	
+   515                           	line	70
+   516                           	
+   517  0791                     l1520:	
+   518                           	global	start
+   519  0791  120A  118A  2812   	ljmp	start
+   520                           	opt stack 0
+   521                           GLOBAL	__end_of_main
+   522  0794                     	__end_of_main:
+   523 ;; =============== function _main ends ============
+   524                           
+   525                           	signat	_main,88
+   526                           	global	_Initialise
+   527                           psect	text306,local,class=CODE,delta=2
+   528                           global __ptext306
+   529  06D6                     __ptext306:
+   530                           
+   531 ;; *************** function _Initialise *****************
+   532 ;; Defined at:
+   533 ;;		line 86 in file "PWMmain.c"
+   534 ;; Parameters:    Size  Location     Type
+   535 ;;		None
+   536 ;; Auto vars:     Size  Location     Type
+   537 ;;		None
+   538 ;; Return value:  Size  Location     Type
+   539 ;;		None               void
+   540 ;; Registers used:
+   541 ;;		wreg, status,2, status,0, pclath, cstack
+   542 ;; Tracked objects:
+   543 ;;		On entry : 0/0
+   544 ;;		On exit  : 0/0
+   545 ;;		Unchanged: 0/0
+   546 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   547 ;;      Params:         0       0       0       0       0
+   548 ;;      Locals:         0       0       0       0       0
+   549 ;;      Temps:          0       0       0       0       0
+   550 ;;      Totals:         0       0       0       0       0
+   551 ;;Total ram usage:        0 bytes
+   552 ;; Hardware stack levels used:    1
+   553 ;; Hardware stack levels required when called:    4
+   554 ;; This function calls:
+   555 ;;		_BeginPWM
+   556 ;;		_i2cInit
+   557 ;;		_directionInit
+   558 ;; This function is called by:
+   559 ;;		_main
+   560 ;; This function uses a non-reentrant model
+   561 ;;
+   562                           psect	text306
+   563                           	file	"PWMmain.c"
+   564                           	line	86
+   565                           	global	__size_of_Initialise
+   566  0017                     	__size_of_Initialise	equ	__end_of_Initialise-_Initialise
+   567                           	
+   568  06D6                     _Initialise:	
+   569                           	opt	stack 3
+   570                           ; Regs used in _Initialise: [wreg+status,2+status,0+pclath+cstack]
+   571                           	line	87
+   572                           	
+   573  06D6                     l7509:	
+   574                           ;PWMmain.c: 87: BeginPWM();
+   575  06D6  120A  118A  2709   	fcall	_BeginPWM
+              120A  118A         
+   576                           	line	88
+   577                           ;PWMmain.c: 88: i2cInit(0x10);
+   578  06DB  3010               	movlw	(010h)
+   579  06DC  120A  118A  2747   	fcall	_i2cInit
+              120A  118A         
+   580                           	line	89
+   581                           	
+   582  06E1                     l7511:	
+   583                           ;PWMmain.c: 89: directionInit();
+   584  06E1  120A  118A  269A   	fcall	_directionInit
+              120A  118A         
+   585                           	line	91
+   586                           	
+   587  06E6                     l7513:	
+   588                           ;PWMmain.c: 91: TRISD = 0;
+   589  06E6  1683               	bsf	status, 5	;RP0=1, select bank1
+   590  06E7  1303               	bcf	status, 6	;RP1=0, select bank1
+   591  06E8  0188               	clrf	(136)^080h	;volatile
+   592                           	line	92
+   593                           	
+   594  06E9                     l7515:	
+   595                           ;PWMmain.c: 92: PORTD = 0;
+   596  06E9  1283               	bcf	status, 5	;RP0=0, select bank0
+   597  06EA  1303               	bcf	status, 6	;RP1=0, select bank0
+   598  06EB  0188               	clrf	(8)	;volatile
+   599                           	line	93
+   600                           	
+   601  06EC                     l1529:	
+   602  06EC  0008               	return
+   603                           	opt stack 0
+   604                           GLOBAL	__end_of_Initialise
+   605  06ED                     	__end_of_Initialise:
+   606 ;; =============== function _Initialise ends ============
+   607                           
+   608                           	signat	_Initialise,88
+   609                           	global	_directionInit
+   610                           psect	text307,local,class=CODE,delta=2
+   611                           global __ptext307
+   612  069A                     __ptext307:
+   613                           
+   614 ;; *************** function _directionInit *****************
+   615 ;; Defined at:
+   616 ;;		line 123 in file "PWMmain.c"
+   617 ;; Parameters:    Size  Location     Type
+   618 ;;		None
+   619 ;; Auto vars:     Size  Location     Type
+   620 ;;		None
+   621 ;; Return value:  Size  Location     Type
+   622 ;;		None               void
+   623 ;; Registers used:
+   624 ;;		None
+   625 ;; Tracked objects:
+   626 ;;		On entry : 0/0
+   627 ;;		On exit  : 0/0
+   628 ;;		Unchanged: 0/0
+   629 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   630 ;;      Params:         0       0       0       0       0
+   631 ;;      Locals:         0       0       0       0       0
+   632 ;;      Temps:          0       0       0       0       0
+   633 ;;      Totals:         0       0       0       0       0
+   634 ;;Total ram usage:        0 bytes
+   635 ;; Hardware stack levels used:    1
+   636 ;; Hardware stack levels required when called:    3
+   637 ;; This function calls:
+   638 ;;		Nothing
+   639 ;; This function is called by:
+   640 ;;		_Initialise
+   641 ;; This function uses a non-reentrant model
+   642 ;;
+   643                           psect	text307
+   644                           	file	"PWMmain.c"
+   645                           	line	123
+   646                           	global	__size_of_directionInit
+   647  0007                     	__size_of_directionInit	equ	__end_of_directionInit-_directionInit
+   648                           	
+   649  069A                     _directionInit:	
+   650                           	opt	stack 3
+   651                           ; Regs used in _directionInit: []
+   652                           	line	124
+   653                           	
+   654  069A                     l7457:	
+   655                           ;PWMmain.c: 124: TRISB3 = 0;
+   656  069A  1683               	bsf	status, 5	;RP0=1, select bank1
+   657  069B  1303               	bcf	status, 6	;RP1=0, select bank1
+   658  069C  1186               	bcf	(1075/8)^080h,(1075)&7
+   659                           	line	125
+   660                           ;PWMmain.c: 125: PORTBbits.RB3 = 0;
+   661  069D  1283               	bcf	status, 5	;RP0=0, select bank0
+   662  069E  1303               	bcf	status, 6	;RP1=0, select bank0
+   663  069F  1186               	bcf	(6),3	;volatile
+   664                           	line	126
+   665                           	
+   666  06A0                     l1538:	
+   667  06A0  0008               	return
+   668                           	opt stack 0
+   669                           GLOBAL	__end_of_directionInit
+   670  06A1                     	__end_of_directionInit:
+   671 ;; =============== function _directionInit ends ============
+   672                           
+   673                           	signat	_directionInit,88
+   674                           	global	_i2cInit
+   675                           psect	text308,local,class=CODE,delta=2
+   676                           global __ptext308
+   677  0747                     __ptext308:
+   678                           
+   679 ;; *************** function _i2cInit *****************
+   680 ;; Defined at:
+   681 ;;		line 7 in file "i2cSlave.c"
+   682 ;; Parameters:    Size  Location     Type
+   683 ;;  address         1    wreg     unsigned char 
+   684 ;; Auto vars:     Size  Location     Type
+   685 ;;  address         1    0[BANK0 ] unsigned char 
+   686 ;; Return value:  Size  Location     Type
+   687 ;;		None               void
+   688 ;; Registers used:
+   689 ;;		wreg
+   690 ;; Tracked objects:
+   691 ;;		On entry : 0/0
+   692 ;;		On exit  : 0/0
+   693 ;;		Unchanged: 0/0
+   694 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   695 ;;      Params:         0       0       0       0       0
+   696 ;;      Locals:         0       1       0       0       0
+   697 ;;      Temps:          0       0       0       0       0
+   698 ;;      Totals:         0       1       0       0       0
+   699 ;;Total ram usage:        1 bytes
+   700 ;; Hardware stack levels used:    1
+   701 ;; Hardware stack levels required when called:    3
+   702 ;; This function calls:
+   703 ;;		Nothing
+   704 ;; This function is called by:
+   705 ;;		_Initialise
+   706 ;; This function uses a non-reentrant model
+   707 ;;
+   708                           psect	text308
+   709                           	file	"i2cSlave.c"
+   710                           	line	7
+   711                           	global	__size_of_i2cInit
+   712  0023                     	__size_of_i2cInit	equ	__end_of_i2cInit-_i2cInit
+   713                           	
+   714  0747                     _i2cInit:	
+   715                           	opt	stack 3
+   716                           ; Regs used in _i2cInit: [wreg]
+   717                           ;i2cInit@address stored from wreg
+   718                           	line	9
+   719  0747  1283               	bcf	status, 5	;RP0=0, select bank0
+   720  0748  1303               	bcf	status, 6	;RP1=0, select bank0
+   721  0749  00A0               	movwf	(i2cInit@address)
+   722                           	
+   723  074A                     l7445:	
+   724                           ;i2cSlave.c: 9: TRISC6 = 1;
+   725  074A  1683               	bsf	status, 5	;RP0=1, select bank1
+   726  074B  1303               	bcf	status, 6	;RP1=0, select bank1
+   727  074C  1707               	bsf	(1086/8)^080h,(1086)&7
+   728                           	line	10
+   729                           ;i2cSlave.c: 10: TRISC7 = 1;
+   730  074D  1787               	bsf	(1087/8)^080h,(1087)&7
+   731                           	line	11
+   732                           ;i2cSlave.c: 11: SSPEN = 1;
+   733  074E  1283               	bcf	status, 5	;RP0=0, select bank0
+   734  074F  1303               	bcf	status, 6	;RP1=0, select bank0
+   735  0750  1694               	bsf	(165/8),(165)&7
+   736                           	line	12
+   737                           ;i2cSlave.c: 12: CKE = 0;
+   738  0751  1683               	bsf	status, 5	;RP0=1, select bank1
+   739  0752  1303               	bcf	status, 6	;RP1=0, select bank1
+   740  0753  1314               	bcf	(1190/8)^080h,(1190)&7
+   741                           	line	13
+   742                           ;i2cSlave.c: 13: SMP = 0;
+   743  0754  1394               	bcf	(1191/8)^080h,(1191)&7
+   744                           	line	14
+   745                           ;i2cSlave.c: 14: CKP = 1;
+   746  0755  1283               	bcf	status, 5	;RP0=0, select bank0
+   747  0756  1303               	bcf	status, 6	;RP1=0, select bank0
+   748  0757  1614               	bsf	(164/8),(164)&7
+   749                           	line	16
+   750                           ;i2cSlave.c: 16: SSPM0 = 0;
+   751  0758  1014               	bcf	(160/8),(160)&7
+   752                           	line	17
+   753                           ;i2cSlave.c: 17: SSPM1 = 1;
+   754  0759  1494               	bsf	(161/8),(161)&7
+   755                           	line	18
+   756                           ;i2cSlave.c: 18: SSPM2 = 1;
+   757  075A  1514               	bsf	(162/8),(162)&7
+   758                           	line	19
+   759                           ;i2cSlave.c: 19: SSPM3 = 0;
+   760  075B  1194               	bcf	(163/8),(163)&7
+   761                           	line	21
+   762                           ;i2cSlave.c: 21: SSPIE =1;
+   763  075C  1683               	bsf	status, 5	;RP0=1, select bank1
+   764  075D  1303               	bcf	status, 6	;RP1=0, select bank1
+   765  075E  158C               	bsf	(1123/8)^080h,(1123)&7
+   766                           	line	23
+   767                           	
+   768  075F                     l7447:	
+   769                           ;i2cSlave.c: 23: SSPADD = address;
+   770  075F  1283               	bcf	status, 5	;RP0=0, select bank0
+   771  0760  1303               	bcf	status, 6	;RP1=0, select bank0
+   772  0761  0820               	movf	(i2cInit@address),w
+   773  0762  1683               	bsf	status, 5	;RP0=1, select bank1
+   774  0763  1303               	bcf	status, 6	;RP1=0, select bank1
+   775  0764  0093               	movwf	(147)^080h	;volatile
+   776                           	line	24
+   777                           	
+   778  0765                     l7449:	
+   779                           ;i2cSlave.c: 24: PEIE = 1;
+   780  0765  170B               	bsf	(94/8),(94)&7
+   781                           	line	25
+   782                           	
+   783  0766                     l7451:	
+   784                           ;i2cSlave.c: 25: GIE = 1;
+   785  0766  178B               	bsf	(95/8),(95)&7
+   786                           	line	26
+   787                           	
+   788  0767                     l7453:	
+   789                           ;i2cSlave.c: 26: INTE = 1;
+   790  0767  160B               	bsf	(92/8),(92)&7
+   791                           	line	29
+   792                           	
+   793  0768                     l7455:	
+   794                           ;i2cSlave.c: 29: i2cBufferVal = 0;
+   795  0768  01FC               	clrf	(_i2cBufferVal)
+   796                           	line	30
+   797                           	
+   798  0769                     l4561:	
+   799  0769  0008               	return
+   800                           	opt stack 0
+   801                           GLOBAL	__end_of_i2cInit
+   802  076A                     	__end_of_i2cInit:
+   803 ;; =============== function _i2cInit ends ============
+   804                           
+   805                           	signat	_i2cInit,4216
+   806                           	global	_BeginPWM
+   807                           psect	text309,local,class=CODE,delta=2
+   808                           global __ptext309
+   809  0709                     __ptext309:
+   810                           
+   811 ;; *************** function _BeginPWM *****************
+   812 ;; Defined at:
+   813 ;;		line 41 in file "pwmlib.c"
+   814 ;; Parameters:    Size  Location     Type
+   815 ;;		None
+   816 ;; Auto vars:     Size  Location     Type
+   817 ;;		None
+   818 ;; Return value:  Size  Location     Type
+   819 ;;		None               void
+   820 ;; Registers used:
+   821 ;;		wreg, status,2
+   822 ;; Tracked objects:
+   823 ;;		On entry : 0/0
+   824 ;;		On exit  : 0/0
+   825 ;;		Unchanged: 0/0
+   826 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   827 ;;      Params:         0       0       0       0       0
+   828 ;;      Locals:         0       0       0       0       0
+   829 ;;      Temps:          0       0       0       0       0
+   830 ;;      Totals:         0       0       0       0       0
+   831 ;;Total ram usage:        0 bytes
+   832 ;; Hardware stack levels used:    1
+   833 ;; Hardware stack levels required when called:    3
+   834 ;; This function calls:
+   835 ;;		Nothing
+   836 ;; This function is called by:
+   837 ;;		_Initialise
+   838 ;; This function uses a non-reentrant model
+   839 ;;
+   840                           psect	text309
+   841                           	file	"pwmlib.c"
+   842                           	line	41
+   843                           	global	__size_of_BeginPWM
+   844  001E                     	__size_of_BeginPWM	equ	__end_of_BeginPWM-_BeginPWM
+   845                           	
+   846  0709                     _BeginPWM:	
+   847                           	opt	stack 3
+   848                           ; Regs used in _BeginPWM: [wreg+status,2]
+   849                           	line	44
+   850                           	
+   851  0709                     l7427:	
+   852                           ;pwmlib.c: 44: TRISCbits.TRISC5 = 1;
+   853  0709  1683               	bsf	status, 5	;RP0=1, select bank1
+   854  070A  1303               	bcf	status, 6	;RP1=0, select bank1
+   855  070B  1687               	bsf	(135)^080h,5	;volatile
+   856                           	line	47
+   857                           ;pwmlib.c: 47: PIE1bits.TMR2IE = 0;
+   858  070C  108C               	bcf	(140)^080h,1	;volatile
+   859                           	line	51
+   860                           	
+   861  070D                     l7429:	
+   862                           ;pwmlib.c: 51: PR2 = 0xFF;
+   863  070D  30FF               	movlw	(0FFh)
+   864  070E  0092               	movwf	(146)^080h	;volatile
+   865                           	line	55
+   866                           ;pwmlib.c: 55: CCP1CON = 0b00001100;
+   867  070F  300C               	movlw	(0Ch)
+   868  0710  1283               	bcf	status, 5	;RP0=0, select bank0
+   869  0711  1303               	bcf	status, 6	;RP1=0, select bank0
+   870  0712  0097               	movwf	(23)	;volatile
+   871                           	line	59
+   872                           	
+   873  0713                     l7431:	
+   874                           ;pwmlib.c: 59: CCPR1L = 0;
+   875  0713  0195               	clrf	(21)	;volatile
+   876                           	line	60
    877                           	
-   878  0767                     l3040:	
-   879                           	line	75
-   880  0767  2F5C               	goto	l5869
-   881                           	
-   882  0768                     l3039:	
-   883                           	line	84
-   884                           	
-   885  0768                     l3041:	
-   886  0768  0008               	return
-   887                           	opt stack 0
-   888                           GLOBAL	__end_of_BeginPWM
-   889  0769                     	__end_of_BeginPWM:
-   890 ;; =============== function _BeginPWM ends ============
-   891                           
-   892                           	signat	_BeginPWM,88
-   893                           	global	_SetPulse
-   894                           psect	text236,local,class=CODE,delta=2
-   895                           global __ptext236
-   896  0788                     __ptext236:
-   897                           
-   898 ;; *************** function _SetPulse *****************
-   899 ;; Defined at:
-   900 ;;		line 105 in file "pwmlib.c"
-   901 ;; Parameters:    Size  Location     Type
-   902 ;;  length          2    0[BANK0 ] int 
-   903 ;; Auto vars:     Size  Location     Type
-   904 ;;  temp            2    2[BANK0 ] int 
-   905 ;; Return value:  Size  Location     Type
-   906 ;;		None               void
-   907 ;; Registers used:
-   908 ;;		wreg, status,2, status,0, btemp+1
-   909 ;; Tracked objects:
-   910 ;;		On entry : 0/0
-   911 ;;		On exit  : 0/0
-   912 ;;		Unchanged: 0/0
-   913 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   914 ;;      Params:         0       2       0       0       0
-   915 ;;      Locals:         0       2       0       0       0
-   916 ;;      Temps:          0       0       0       0       0
-   917 ;;      Totals:         0       4       0       0       0
-   918 ;;Total ram usage:        4 bytes
-   919 ;; Hardware stack levels used:    1
-   920 ;; Hardware stack levels required when called:    1
-   921 ;; This function calls:
-   922 ;;		Nothing
-   923 ;; This function is called by:
-   924 ;;		_main
-   925 ;;		_CalcPulse
-   926 ;; This function uses a non-reentrant model
-   927 ;;
-   928                           psect	text236
-   929                           	file	"pwmlib.c"
-   930                           	line	105
-   931                           	global	__size_of_SetPulse
-   932  0020                     	__size_of_SetPulse	equ	__end_of_SetPulse-_SetPulse
+   878  0714                     l7433:	
+   879                           ;pwmlib.c: 60: CCP1CONbits.CCP1X = 0;
+   880  0714  1297               	bcf	(23),5	;volatile
+   881                           	line	61
+   882                           	
+   883  0715                     l7435:	
+   884                           ;pwmlib.c: 61: CCP1CONbits.CCP1Y = 0;
+   885  0715  1217               	bcf	(23),4	;volatile
+   886                           	line	66
+   887                           	
+   888  0716                     l7437:	
+   889                           ;pwmlib.c: 66: PIR1bits.TMR2IF = 0;
+   890  0716  108C               	bcf	(12),1	;volatile
+   891                           	line	70
+   892                           	
+   893  0717                     l7439:	
+   894                           ;pwmlib.c: 70: T2CON = 0b00000100;
+   895  0717  3004               	movlw	(04h)
+   896  0718  0092               	movwf	(18)	;volatile
+   897  0719  2F1A               	goto	l7441
+   898                           	line	75
+   899                           ;pwmlib.c: 75: while(1)
+   900                           	
+   901  071A                     l3041:	
+   902                           	line	77
+   903                           	
+   904  071A                     l7441:	
+   905                           ;pwmlib.c: 76: {
+   906                           ;pwmlib.c: 77: if(PIR1bits.TMR2IF == 1)
+   907  071A  1283               	bcf	status, 5	;RP0=0, select bank0
+   908  071B  1C8C               	btfss	(12),1	;volatile
+   909  071C  2F1E               	goto	u2391
+   910  071D  2F1F               	goto	u2390
+   911  071E                     u2391:
+   912  071E  2F1A               	goto	l7441
+   913  071F                     u2390:
+   914                           	line	79
+   915                           	
+   916  071F                     l7443:	
+   917                           ;pwmlib.c: 78: {
+   918                           ;pwmlib.c: 79: TMR2IF = 0;
+   919  071F  108C               	bcf	(97/8),(97)&7
+   920                           	line	80
+   921                           ;pwmlib.c: 80: TRISCbits.TRISC5 = 0;
+   922  0720  1683               	bsf	status, 5	;RP0=1, select bank1
+   923  0721  1303               	bcf	status, 6	;RP1=0, select bank1
+   924  0722  1287               	bcf	(135)^080h,5	;volatile
+   925                           	line	81
+   926                           ;pwmlib.c: 81: break;
+   927  0723  2F26               	goto	l3045
+   928                           	line	82
+   929                           	
+   930  0724                     l3042:	
+   931  0724  2F1A               	goto	l7441
+   932                           	line	83
    933                           	
-   934  0788                     _SetPulse:	
-   935                           	opt	stack 6
-   936                           ; Regs used in _SetPulse: [wreg+status,2+status,0+btemp+1]
-   937                           	line	106
-   938                           	
-   939  0788                     l5849:	
-   940                           ;pwmlib.c: 106: int temp = length;
-   941  0788  1283               	bcf	status, 5	;RP0=0, select bank0
-   942  0789  1303               	bcf	status, 6	;RP1=0, select bank0
-   943  078A  0837               	movf	(SetPulse@length+1),w
-   944  078B  01B9               	clrf	(SetPulse@temp+1)
-   945  078C  07B9               	addwf	(SetPulse@temp+1)
-   946  078D  0836               	movf	(SetPulse@length),w
-   947  078E  01B8               	clrf	(SetPulse@temp)
-   948  078F  07B8               	addwf	(SetPulse@temp)
-   949                           
-   950                           	line	107
-   951                           	
-   952  0790                     l5851:	
-   953                           ;pwmlib.c: 107: if (temp > 255)
-   954  0790  0839               	movf	(SetPulse@temp+1),w
-   955  0791  3A80               	xorlw	80h
-   956  0792  00FF               	movwf	btemp+1
-   957  0793  3081               	movlw	(high(0100h))^80h
-   958  0794  027F               	subwf	btemp+1,w
-   959  0795  1D03               	skipz
-   960  0796  2F99               	goto	u2305
-   961  0797  3000               	movlw	low(0100h)
-   962  0798  0238               	subwf	(SetPulse@temp),w
-   963  0799                     u2305:
-   964                           
-   965  0799  1C03               	skipc
-   966  079A  2F9C               	goto	u2301
-   967  079B  2F9D               	goto	u2300
-   968  079C                     u2301:
-   969  079C  2FA3               	goto	l3048
-   970  079D                     u2300:
-   971                           	line	108
-   972                           	
-   973  079D                     l5853:	
-   974                           ;pwmlib.c: 108: temp = 255;
-   975  079D  30FF               	movlw	low(0FFh)
-   976  079E  1283               	bcf	status, 5	;RP0=0, select bank0
-   977  079F  1303               	bcf	status, 6	;RP1=0, select bank0
-   978  07A0  00B8               	movwf	(SetPulse@temp)
-   979  07A1  3000               	movlw	high(0FFh)
-   980  07A2  00B9               	movwf	((SetPulse@temp))+1
-   981                           	
-   982  07A3                     l3048:	
-   983                           	line	109
-   984                           ;pwmlib.c: 109: CCPR1L = temp;
-   985  07A3  1283               	bcf	status, 5	;RP0=0, select bank0
-   986  07A4  1303               	bcf	status, 6	;RP1=0, select bank0
-   987  07A5  0838               	movf	(SetPulse@temp),w
-   988  07A6  0095               	movwf	(21)	;volatile
-   989                           	line	113
-   990                           	
-   991  07A7                     l3049:	
-   992  07A7  0008               	return
-   993                           	opt stack 0
-   994                           GLOBAL	__end_of_SetPulse
-   995  07A8                     	__end_of_SetPulse:
-   996 ;; =============== function _SetPulse ends ============
-   997                           
-   998                           	signat	_SetPulse,4216
-   999                           	global	_isr
-  1000                           psect	text237,local,class=CODE,delta=2
-  1001                           global __ptext237
-  1002  07CA                     __ptext237:
-  1003                           
-  1004 ;; *************** function _isr *****************
-  1005 ;; Defined at:
-  1006 ;;		line 134 in file "PWMmain.c"
-  1007 ;; Parameters:    Size  Location     Type
-  1008 ;;		None
-  1009 ;; Auto vars:     Size  Location     Type
-  1010 ;;		None
-  1011 ;; Return value:  Size  Location     Type
-  1012 ;;		None               void
-  1013 ;; Registers used:
-  1014 ;;		wreg, fsr0l, fsr0h, status,2, status,0
-  1015 ;; Tracked objects:
-  1016 ;;		On entry : 0/0
-  1017 ;;		On exit  : 0/0
-  1018 ;;		Unchanged: 0/0
-  1019 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1020 ;;      Params:         0       0       0       0       0
-  1021 ;;      Locals:         0       0       0       0       0
-  1022 ;;      Temps:          7       0       0       0       0
-  1023 ;;      Totals:         7       0       0       0       0
-  1024 ;;Total ram usage:        7 bytes
-  1025 ;; Hardware stack levels used:    1
-  1026 ;; This function calls:
-  1027 ;;		Nothing
-  1028 ;; This function is called by:
-  1029 ;;		Interrupt level 1
-  1030 ;; This function uses a non-reentrant model
-  1031 ;;
-  1032                           psect	text237
-  1033                           	file	"PWMmain.c"
-  1034                           	line	134
-  1035                           	global	__size_of_isr
-  1036  0036                     	__size_of_isr	equ	__end_of_isr-_isr
+   934  0725                     l3044:	
+   935                           	line	75
+   936  0725  2F1A               	goto	l7441
+   937                           	
+   938  0726                     l3043:	
+   939                           	line	84
+   940                           	
+   941  0726                     l3045:	
+   942  0726  0008               	return
+   943                           	opt stack 0
+   944                           GLOBAL	__end_of_BeginPWM
+   945  0727                     	__end_of_BeginPWM:
+   946 ;; =============== function _BeginPWM ends ============
+   947                           
+   948                           	signat	_BeginPWM,88
+   949                           	global	_SetPulse
+   950                           psect	text310,local,class=CODE,delta=2
+   951                           global __ptext310
+   952  0727                     __ptext310:
+   953                           
+   954 ;; *************** function _SetPulse *****************
+   955 ;; Defined at:
+   956 ;;		line 105 in file "pwmlib.c"
+   957 ;; Parameters:    Size  Location     Type
+   958 ;;  length          2    0[BANK0 ] int 
+   959 ;; Auto vars:     Size  Location     Type
+   960 ;;  temp            2    2[BANK0 ] int 
+   961 ;; Return value:  Size  Location     Type
+   962 ;;		None               void
+   963 ;; Registers used:
+   964 ;;		wreg, status,2, status,0, btemp+1
+   965 ;; Tracked objects:
+   966 ;;		On entry : 0/0
+   967 ;;		On exit  : 0/0
+   968 ;;		Unchanged: 0/0
+   969 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   970 ;;      Params:         0       2       0       0       0
+   971 ;;      Locals:         0       2       0       0       0
+   972 ;;      Temps:          0       0       0       0       0
+   973 ;;      Totals:         0       4       0       0       0
+   974 ;;Total ram usage:        4 bytes
+   975 ;; Hardware stack levels used:    1
+   976 ;; Hardware stack levels required when called:    3
+   977 ;; This function calls:
+   978 ;;		Nothing
+   979 ;; This function is called by:
+   980 ;;		_main
+   981 ;;		_CalcPulse
+   982 ;; This function uses a non-reentrant model
+   983 ;;
+   984                           psect	text310
+   985                           	file	"pwmlib.c"
+   986                           	line	105
+   987                           	global	__size_of_SetPulse
+   988  0020                     	__size_of_SetPulse	equ	__end_of_SetPulse-_SetPulse
+   989                           	
+   990  0727                     _SetPulse:	
+   991                           	opt	stack 4
+   992                           ; Regs used in _SetPulse: [wreg+status,2+status,0+btemp+1]
+   993                           	line	106
+   994                           	
+   995  0727                     l7421:	
+   996                           ;pwmlib.c: 106: int temp = length;
+   997  0727  1283               	bcf	status, 5	;RP0=0, select bank0
+   998  0728  1303               	bcf	status, 6	;RP1=0, select bank0
+   999  0729  0821               	movf	(SetPulse@length+1),w
+  1000  072A  01A3               	clrf	(SetPulse@temp+1)
+  1001  072B  07A3               	addwf	(SetPulse@temp+1)
+  1002  072C  0820               	movf	(SetPulse@length),w
+  1003  072D  01A2               	clrf	(SetPulse@temp)
+  1004  072E  07A2               	addwf	(SetPulse@temp)
+  1005                           
+  1006                           	line	107
+  1007                           	
+  1008  072F                     l7423:	
+  1009                           ;pwmlib.c: 107: if (temp > 255)
+  1010  072F  0823               	movf	(SetPulse@temp+1),w
+  1011  0730  3A80               	xorlw	80h
+  1012  0731  00FF               	movwf	btemp+1
+  1013  0732  3081               	movlw	(high(0100h))^80h
+  1014  0733  027F               	subwf	btemp+1,w
+  1015  0734  1D03               	skipz
+  1016  0735  2F38               	goto	u2385
+  1017  0736  3000               	movlw	low(0100h)
+  1018  0737  0222               	subwf	(SetPulse@temp),w
+  1019  0738                     u2385:
+  1020                           
+  1021  0738  1C03               	skipc
+  1022  0739  2F3B               	goto	u2381
+  1023  073A  2F3C               	goto	u2380
+  1024  073B                     u2381:
+  1025  073B  2F42               	goto	l3052
+  1026  073C                     u2380:
+  1027                           	line	108
+  1028                           	
+  1029  073C                     l7425:	
+  1030                           ;pwmlib.c: 108: temp = 255;
+  1031  073C  30FF               	movlw	low(0FFh)
+  1032  073D  1283               	bcf	status, 5	;RP0=0, select bank0
+  1033  073E  1303               	bcf	status, 6	;RP1=0, select bank0
+  1034  073F  00A2               	movwf	(SetPulse@temp)
+  1035  0740  3000               	movlw	high(0FFh)
+  1036  0741  00A3               	movwf	((SetPulse@temp))+1
   1037                           	
-  1038  07CA                     _isr:	
-  1039                           	opt	stack 5
-  1040                           ; Regs used in _isr: [wreg-fsr0h+status,2+status,0]
-  1041                           psect	intentry,class=CODE,delta=2
-  1042                           global __pintentry
-  1043  0004                     __pintentry:
-  1044                           global interrupt_function
-  1045  0004                     interrupt_function:
-  1046                           	global saved_w
-  1047  007E                     	saved_w	set	btemp+0
-  1048  0004  00FE               	movwf	saved_w
-  1049  0005  0E03               	swapf	status,w
-  1050  0006  00F4               	movwf	(??_isr+3)
-  1051  0007  0804               	movf	fsr0,w
-  1052  0008  00F5               	movwf	(??_isr+4)
-  1053  0009  080A               	movf	pclath,w
-  1054  000A  00F6               	movwf	(??_isr+5)
-  1055  000B  1283               	bcf	status, 5	;RP0=0, select bank0
-  1056  000C  1303               	bcf	status, 6	;RP1=0, select bank0
-  1057  000D  087F               	movf	btemp+1,w
-  1058  000E  00F7               	movwf	(??_isr+6)
-  1059  000F  120A  118A  2FCA   	ljmp	_isr
-  1060                           psect	text237
-  1061                           	line	159
-  1062                           	
-  1063  07CA                     i1l4927:	
-  1064                           ;PWMmain.c: 159: if (val == 2)
-  1065  07CA  3002               	movlw	02h
-  1066  07CB  0678               	xorwf	(_val),w
-  1067  07CC  0479               	iorwf	(_val+1),w
-  1068  07CD  1D03               	skipz
-  1069  07CE  2FD0               	goto	u4_21
-  1070  07CF  2FD1               	goto	u4_20
-  1071  07D0                     u4_21:
-  1072  07D0  2FD4               	goto	i1l4931
-  1073  07D1                     u4_20:
-  1074                           	line	160
-  1075                           	
-  1076  07D1                     i1l4929:	
-  1077                           ;PWMmain.c: 160: val = 0;
-  1078  07D1  01F8               	clrf	(_val)
-  1079  07D2  01F9               	clrf	(_val+1)
-  1080  07D3  2FD4               	goto	i1l4931
-  1081                           	
-  1082  07D4                     i1l1528:	
-  1083                           	line	162
-  1084                           	
-  1085  07D4                     i1l4931:	
-  1086                           ;PWMmain.c: 162: if ((SSPSTAT & 0b00100000) == 0b00100000){
-  1087  07D4  1683               	bsf	status, 5	;RP0=1, select bank1
-  1088  07D5  1303               	bcf	status, 6	;RP1=0, select bank1
-  1089  07D6  1E94               	btfss	(148)^080h,(5)&7
-  1090  07D7  2FD9               	goto	u5_21
-  1091  07D8  2FDA               	goto	u5_20
-  1092  07D9                     u5_21:
-  1093  07D9  2FF1               	goto	i1l4937
-  1094  07DA                     u5_20:
-  1095                           	line	166
-  1096                           	
-  1097  07DA                     i1l4933:	
-  1098                           ;PWMmain.c: 166: i2cBuffer[val] = SSPBUF;
-  1099  07DA  1283               	bcf	status, 5	;RP0=0, select bank0
-  1100  07DB  1303               	bcf	status, 6	;RP1=0, select bank0
-  1101  07DC  0813               	movf	(19),w	;volatile
-  1102  07DD  00F1               	movwf	(??_isr+0)+0
-  1103  07DE  01F2               	clrf	(??_isr+0)+0+1
-  1104  07DF  0878               	movf	(_val),w
-  1105  07E0  00F3               	movwf	(??_isr+2)+0
-  1106  07E1  0773               	addwf	(??_isr+2)+0,w
-  1107  07E2  3E20               	addlw	_i2cBuffer&0ffh
-  1108  07E3  0084               	movwf	fsr0
-  1109  07E4  0871               	movf	0+(??_isr+0)+0,w
-  1110  07E5  1383               	bcf	status, 7	;select IRP bank0
-  1111  07E6  0080               	movwf	indf
-  1112  07E7  0A84               	incf	fsr0,f
-  1113  07E8  0872               	movf	1+(??_isr+0)+0,w
-  1114  07E9  0080               	movwf	indf
-  1115                           	line	167
-  1116                           	
-  1117  07EA                     i1l4935:	
-  1118                           ;PWMmain.c: 167: val++;
-  1119  07EA  3001               	movlw	low(01h)
-  1120  07EB  07F8               	addwf	(_val),f
-  1121  07EC  1803               	skipnc
-  1122  07ED  0AF9               	incf	(_val+1),f
-  1123  07EE  3000               	movlw	high(01h)
-  1124  07EF  07F9               	addwf	(_val+1),f
-  1125                           	line	168
-  1126                           ;PWMmain.c: 168: }
-  1127  07F0  2FF4               	goto	i1l4939
-  1128                           	line	169
-  1129                           	
-  1130  07F1                     i1l1529:	
-  1131                           	line	170
-  1132                           	
-  1133  07F1                     i1l4937:	
-  1134                           ;PWMmain.c: 169: else{
-  1135                           ;PWMmain.c: 170: SSPBUF = 0;
-  1136  07F1  1283               	bcf	status, 5	;RP0=0, select bank0
-  1137  07F2  0193               	clrf	(19)	;volatile
-  1138  07F3  2FF4               	goto	i1l4939
-  1139                           	line	171
+  1038  0742                     l3052:	
+  1039                           	line	109
+  1040                           ;pwmlib.c: 109: CCPR1L = temp;
+  1041  0742  1283               	bcf	status, 5	;RP0=0, select bank0
+  1042  0743  1303               	bcf	status, 6	;RP1=0, select bank0
+  1043  0744  0822               	movf	(SetPulse@temp),w
+  1044  0745  0095               	movwf	(21)	;volatile
+  1045                           	line	113
+  1046                           	
+  1047  0746                     l3053:	
+  1048  0746  0008               	return
+  1049                           	opt stack 0
+  1050                           GLOBAL	__end_of_SetPulse
+  1051  0747                     	__end_of_SetPulse:
+  1052 ;; =============== function _SetPulse ends ============
+  1053                           
+  1054                           	signat	_SetPulse,4216
+  1055                           	global	_setDirection
+  1056                           psect	text311,local,class=CODE,delta=2
+  1057                           global __ptext311
+  1058  06BF                     __ptext311:
+  1059                           
+  1060 ;; *************** function _setDirection *****************
+  1061 ;; Defined at:
+  1062 ;;		line 149 in file "PWMmain.c"
+  1063 ;; Parameters:    Size  Location     Type
+  1064 ;;  dir             2    0[BANK0 ] int 
+  1065 ;; Auto vars:     Size  Location     Type
+  1066 ;;		None
+  1067 ;; Return value:  Size  Location     Type
+  1068 ;;		None               void
+  1069 ;; Registers used:
+  1070 ;;		wreg, status,2, status,0
+  1071 ;; Tracked objects:
+  1072 ;;		On entry : 0/0
+  1073 ;;		On exit  : 0/0
+  1074 ;;		Unchanged: 0/0
+  1075 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1076 ;;      Params:         0       2       0       0       0
+  1077 ;;      Locals:         0       0       0       0       0
+  1078 ;;      Temps:          0       0       0       0       0
+  1079 ;;      Totals:         0       2       0       0       0
+  1080 ;;Total ram usage:        2 bytes
+  1081 ;; Hardware stack levels used:    1
+  1082 ;; Hardware stack levels required when called:    3
+  1083 ;; This function calls:
+  1084 ;;		Nothing
+  1085 ;; This function is called by:
+  1086 ;;		_main
+  1087 ;; This function uses a non-reentrant model
+  1088 ;;
+  1089                           psect	text311
+  1090                           	file	"PWMmain.c"
+  1091                           	line	149
+  1092                           	global	__size_of_setDirection
+  1093  0017                     	__size_of_setDirection	equ	__end_of_setDirection-_setDirection
+  1094                           	
+  1095  06BF                     _setDirection:	
+  1096                           	opt	stack 4
+  1097                           ; Regs used in _setDirection: [wreg+status,2+status,0]
+  1098                           	line	150
+  1099                           	
+  1100  06BF                     l7413:	
+  1101                           ;PWMmain.c: 150: if (dir == 0)
+  1102  06BF  1283               	bcf	status, 5	;RP0=0, select bank0
+  1103  06C0  1303               	bcf	status, 6	;RP1=0, select bank0
+  1104  06C1  0821               	movf	((setDirection@dir+1)),w
+  1105  06C2  0420               	iorwf	((setDirection@dir)),w
+  1106  06C3  1D03               	skipz
+  1107  06C4  2EC6               	goto	u2361
+  1108  06C5  2EC7               	goto	u2360
+  1109  06C6                     u2361:
+  1110  06C6  2EC9               	goto	l7417
+  1111  06C7                     u2360:
+  1112                           	line	151
+  1113                           	
+  1114  06C7                     l7415:	
+  1115                           ;PWMmain.c: 151: PORTBbits.RB3 = 0;
+  1116  06C7  1186               	bcf	(6),3	;volatile
+  1117  06C8  2ED5               	goto	l1550
+  1118                           	line	152
+  1119                           	
+  1120  06C9                     l1546:	
+  1121                           	
+  1122  06C9                     l7417:	
+  1123                           ;PWMmain.c: 152: else if (dir == 1)
+  1124  06C9  3001               	movlw	01h
+  1125  06CA  0620               	xorwf	(setDirection@dir),w
+  1126  06CB  0421               	iorwf	(setDirection@dir+1),w
+  1127  06CC  1D03               	skipz
+  1128  06CD  2ECF               	goto	u2371
+  1129  06CE  2ED0               	goto	u2370
+  1130  06CF                     u2371:
+  1131  06CF  2ED2               	goto	l1548
+  1132  06D0                     u2370:
+  1133                           	line	153
+  1134                           	
+  1135  06D0                     l7419:	
+  1136                           ;PWMmain.c: 153: PORTBbits.RB3 = 1;
+  1137  06D0  1586               	bsf	(6),3	;volatile
+  1138  06D1  2ED5               	goto	l1550
+  1139                           	line	154
   1140                           	
-  1141  07F4                     i1l1530:	
-  1142                           	line	174
-  1143                           	
-  1144  07F4                     i1l4939:	
-  1145                           ;PWMmain.c: 171: }
-  1146                           ;PWMmain.c: 174: SSPIF = 0;
-  1147  07F4  118C               	bcf	(99/8),(99)&7
-  1148                           	line	177
-  1149                           	
-  1150  07F5                     i1l1531:	
-  1151  07F5  0877               	movf	(??_isr+6),w
-  1152  07F6  00FF               	movwf	btemp+1
-  1153  07F7  0876               	movf	(??_isr+5),w
-  1154  07F8  008A               	movwf	pclath
-  1155  07F9  0875               	movf	(??_isr+4),w
-  1156  07FA  0084               	movwf	fsr0
-  1157  07FB  0E74               	swapf	(??_isr+3)^0FFFFFF80h,w
-  1158  07FC  0083               	movwf	status
-  1159  07FD  0EFE               	swapf	saved_w,f
-  1160  07FE  0E7E               	swapf	saved_w,w
-  1161  07FF  0009               	retfie
-  1162                           	opt stack 0
-  1163                           GLOBAL	__end_of_isr
-  1164  0800                     	__end_of_isr:
-  1165 ;; =============== function _isr ends ============
+  1141  06D2                     l1548:	
+  1142                           	line	155
+  1143                           ;PWMmain.c: 154: else
+  1144                           ;PWMmain.c: 155: PORTBbits.RB3 = 0;
+  1145  06D2  1186               	bcf	(6),3	;volatile
+  1146  06D3  2ED5               	goto	l1550
+  1147                           	
+  1148  06D4                     l1549:	
+  1149  06D4  2ED5               	goto	l1550
+  1150                           	
+  1151  06D5                     l1547:	
+  1152                           	line	156
+  1153                           	
+  1154  06D5                     l1550:	
+  1155  06D5  0008               	return
+  1156                           	opt stack 0
+  1157                           GLOBAL	__end_of_setDirection
+  1158  06D6                     	__end_of_setDirection:
+  1159 ;; =============== function _setDirection ends ============
+  1160                           
+  1161                           	signat	_setDirection,4216
+  1162                           	global	_isr
+  1163                           psect	text312,local,class=CODE,delta=2
+  1164                           global __ptext312
+  1165  06AD                     __ptext312:
   1166                           
-  1167                           	signat	_isr,88
-  1168                           psect	text238,local,class=CODE,delta=2
-  1169                           global __ptext238
-  1170  0000                     __ptext238:
-  1171                           	global	btemp
-  1172  007E                     	btemp set 07Eh
-  1173                           
-  1174                           	DABS	1,126,2	;btemp
-  1175                           	global	wtemp0
-  1176  007E                     	wtemp0 set btemp
+  1167 ;; *************** function _isr *****************
+  1168 ;; Defined at:
+  1169 ;;		line 113 in file "PWMmain.c"
+  1170 ;; Parameters:    Size  Location     Type
+  1171 ;;		None
+  1172 ;; Auto vars:     Size  Location     Type
+  1173 ;;		None
+  1174 ;; Return value:  Size  Location     Type
+  1175 ;;		None               void
+  1176 ;; Registers used:
+  1177 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, btemp+1, pclath, cstack
+  1178 ;; Tracked objects:
+  1179 ;;		On entry : 0/0
+  1180 ;;		On exit  : 0/0
+  1181 ;;		Unchanged: 0/0
+  1182 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1183 ;;      Params:         0       0       0       0       0
+  1184 ;;      Locals:         0       0       0       0       0
+  1185 ;;      Temps:          4       0       0       0       0
+  1186 ;;      Totals:         4       0       0       0       0
+  1187 ;;Total ram usage:        4 bytes
+  1188 ;; Hardware stack levels used:    1
+  1189 ;; Hardware stack levels required when called:    2
+  1190 ;; This function calls:
+  1191 ;;		_i2cIsrHandler
+  1192 ;; This function is called by:
+  1193 ;;		Interrupt level 1
+  1194 ;; This function uses a non-reentrant model
+  1195 ;;
+  1196                           psect	text312
+  1197                           	file	"PWMmain.c"
+  1198                           	line	113
+  1199                           	global	__size_of_isr
+  1200  0012                     	__size_of_isr	equ	__end_of_isr-_isr
+  1201                           	
+  1202  06AD                     _isr:	
+  1203                           	opt	stack 3
+  1204                           ; Regs used in _isr: [allreg]
+  1205                           psect	intentry,class=CODE,delta=2
+  1206                           global __pintentry
+  1207  0004                     __pintentry:
+  1208                           global interrupt_function
+  1209  0004                     interrupt_function:
+  1210                           	global saved_w
+  1211  007E                     	saved_w	set	btemp+0
+  1212  0004  00FE               	movwf	saved_w
+  1213  0005  0E03               	swapf	status,w
+  1214  0006  00F4               	movwf	(??_isr+0)
+  1215  0007  0804               	movf	fsr0,w
+  1216  0008  00F5               	movwf	(??_isr+1)
+  1217  0009  080A               	movf	pclath,w
+  1218  000A  00F6               	movwf	(??_isr+2)
+  1219  000B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1220  000C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1221  000D  087F               	movf	btemp+1,w
+  1222  000E  00F7               	movwf	(??_isr+3)
+  1223  000F  120A  118A  2EAD   	ljmp	_isr
+  1224                           psect	text312
+  1225                           	line	114
+  1226                           	
+  1227  06AD                     i1l7463:	
+  1228                           ;PWMmain.c: 114: i2cIsrHandler();
+  1229  06AD  120A  118A  2794   	fcall	_i2cIsrHandler
+              120A  118A         
+  1230                           	line	116
+  1231                           	
+  1232  06B2                     i1l1535:	
+  1233  06B2  0877               	movf	(??_isr+3),w
+  1234  06B3  1283               	bcf	status, 5	;RP0=0, select bank0
+  1235  06B4  1303               	bcf	status, 6	;RP1=0, select bank0
+  1236  06B5  00FF               	movwf	btemp+1
+  1237  06B6  0876               	movf	(??_isr+2),w
+  1238  06B7  008A               	movwf	pclath
+  1239  06B8  0875               	movf	(??_isr+1),w
+  1240  06B9  0084               	movwf	fsr0
+  1241  06BA  0E74               	swapf	(??_isr+0)^0FFFFFF80h,w
+  1242  06BB  0083               	movwf	status
+  1243  06BC  0EFE               	swapf	saved_w,f
+  1244  06BD  0E7E               	swapf	saved_w,w
+  1245  06BE  0009               	retfie
+  1246                           	opt stack 0
+  1247                           GLOBAL	__end_of_isr
+  1248  06BF                     	__end_of_isr:
+  1249 ;; =============== function _isr ends ============
+  1250                           
+  1251                           	signat	_isr,88
+  1252                           	global	_i2cIsrHandler
+  1253                           psect	text313,local,class=CODE,delta=2
+  1254                           global __ptext313
+  1255  0794                     __ptext313:
+  1256                           
+  1257 ;; *************** function _i2cIsrHandler *****************
+  1258 ;; Defined at:
+  1259 ;;		line 32 in file "i2cSlave.c"
+  1260 ;; Parameters:    Size  Location     Type
+  1261 ;;		None
+  1262 ;; Auto vars:     Size  Location     Type
+  1263 ;;		None
+  1264 ;; Return value:  Size  Location     Type
+  1265 ;;		None               void
+  1266 ;; Registers used:
+  1267 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1268 ;; Tracked objects:
+  1269 ;;		On entry : 0/0
+  1270 ;;		On exit  : 0/0
+  1271 ;;		Unchanged: 0/0
+  1272 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1273 ;;      Params:         0       0       0       0       0
+  1274 ;;      Locals:         0       0       0       0       0
+  1275 ;;      Temps:          1       0       0       0       0
+  1276 ;;      Totals:         1       0       0       0       0
+  1277 ;;Total ram usage:        1 bytes
+  1278 ;; Hardware stack levels used:    1
+  1279 ;; Hardware stack levels required when called:    1
+  1280 ;; This function calls:
+  1281 ;;		_i2cSend
+  1282 ;;		_i2cDataUpdate
+  1283 ;; This function is called by:
+  1284 ;;		_isr
+  1285 ;; This function uses a non-reentrant model
+  1286 ;;
+  1287                           psect	text313
+  1288                           	file	"i2cSlave.c"
+  1289                           	line	32
+  1290                           	global	__size_of_i2cIsrHandler
+  1291  006C                     	__size_of_i2cIsrHandler	equ	__end_of_i2cIsrHandler-_i2cIsrHandler
+  1292                           	
+  1293  0794                     _i2cIsrHandler:	
+  1294                           	opt	stack 3
+  1295                           ; Regs used in _i2cIsrHandler: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1296                           	line	42
+  1297                           	
+  1298  0794                     i1l7465:	
+  1299                           ;i2cSlave.c: 42: if ((SSPSTAT & 0b00100100) == 0b00100000){
+  1300  0794  1683               	bsf	status, 5	;RP0=1, select bank1
+  1301  0795  1303               	bcf	status, 6	;RP1=0, select bank1
+  1302  0796  0814               	movf	(148)^080h,w
+  1303  0797  3924               	andlw	024h
+  1304  0798  3A20               	xorlw	020h
+  1305  0799  1D03               	skipz
+  1306  079A  2F9C               	goto	u240_21
+  1307  079B  2F9D               	goto	u240_20
+  1308  079C                     u240_21:
+  1309  079C  2FAB               	goto	i1l7471
+  1310  079D                     u240_20:
+  1311                           	line	43
+  1312                           	
+  1313  079D                     i1l7467:	
+  1314                           ;i2cSlave.c: 43: i2cBuffer[i2cBufferVal] = SSPBUF;
+  1315  079D  1283               	bcf	status, 5	;RP0=0, select bank0
+  1316  079E  1303               	bcf	status, 6	;RP1=0, select bank0
+  1317  079F  0813               	movf	(19),w	;volatile
+  1318  07A0  00F3               	movwf	(??_i2cIsrHandler+0)+0
+  1319  07A1  087C               	movf	(_i2cBufferVal),w
+  1320  07A2  3E78               	addlw	_i2cBuffer&0ffh
+  1321  07A3  0084               	movwf	fsr0
+  1322  07A4  0873               	movf	(??_i2cIsrHandler+0)+0,w
+  1323  07A5  0080               	movwf	indf
+  1324                           	line	44
+  1325                           	
+  1326  07A6                     i1l7469:	
+  1327                           ;i2cSlave.c: 44: i2cBufferVal++;
+  1328  07A6  3001               	movlw	(01h)
+  1329  07A7  00F3               	movwf	(??_i2cIsrHandler+0)+0
+  1330  07A8  0873               	movf	(??_i2cIsrHandler+0)+0,w
+  1331  07A9  07FC               	addwf	(_i2cBufferVal),f
+  1332                           	line	46
+  1333                           ;i2cSlave.c: 46: } else if ((SSPSTAT & 0b00100100) == 0b0000000){
+  1334  07AA  2FEE               	goto	i1l7489
+  1335                           	
+  1336  07AB                     i1l4564:	
+  1337                           	
+  1338  07AB                     i1l7471:	
+  1339  07AB  1683               	bsf	status, 5	;RP0=1, select bank1
+  1340  07AC  1303               	bcf	status, 6	;RP1=0, select bank1
+  1341  07AD  0814               	movf	(148)^080h,w
+  1342  07AE  3924               	andlw	024h
+  1343  07AF  1D03               	btfss	status,2
+  1344  07B0  2FB2               	goto	u241_21
+  1345  07B1  2FB3               	goto	u241_20
+  1346  07B2                     u241_21:
+  1347  07B2  2FB7               	goto	i1l7475
+  1348  07B3                     u241_20:
+  1349                           	line	48
+  1350                           	
+  1351  07B3                     i1l7473:	
+  1352                           ;i2cSlave.c: 48: SSPBUF = 0;
+  1353  07B3  1283               	bcf	status, 5	;RP0=0, select bank0
+  1354  07B4  1303               	bcf	status, 6	;RP1=0, select bank0
+  1355  07B5  0193               	clrf	(19)	;volatile
+  1356                           	line	50
+  1357                           ;i2cSlave.c: 50: } else if ((SSPSTAT & 0b00100100) == 0b0000100){
+  1358  07B6  2FEE               	goto	i1l7489
+  1359                           	
+  1360  07B7                     i1l4566:	
+  1361                           	
+  1362  07B7                     i1l7475:	
+  1363  07B7  1683               	bsf	status, 5	;RP0=1, select bank1
+  1364  07B8  1303               	bcf	status, 6	;RP1=0, select bank1
+  1365  07B9  0814               	movf	(148)^080h,w
+  1366  07BA  3924               	andlw	024h
+  1367  07BB  3A04               	xorlw	04h
+  1368  07BC  1D03               	skipz
+  1369  07BD  2FBF               	goto	u242_21
+  1370  07BE  2FC0               	goto	u242_20
+  1371  07BF                     u242_21:
+  1372  07BF  2FC2               	goto	i1l7479
+  1373  07C0                     u242_20:
+  1374  07C0  2FEE               	goto	i1l7489
+  1375                           	line	53
+  1376                           	
+  1377  07C1                     i1l7477:	
+  1378                           ;i2cSlave.c: 53: } else if ((SSPSTAT & 0b00100100) == 0b0010100){
+  1379  07C1  2FEE               	goto	i1l7489
+  1380                           	
+  1381  07C2                     i1l4568:	
+  1382                           	
+  1383  07C2                     i1l7479:	
+  1384  07C2  0814               	movf	(148)^080h,w
+  1385  07C3  3924               	andlw	024h
+  1386  07C4  3A14               	xorlw	014h
+  1387  07C5  1D03               	skipz
+  1388  07C6  2FC8               	goto	u243_21
+  1389  07C7  2FC9               	goto	u243_20
+  1390  07C8                     u243_21:
+  1391  07C8  2FEE               	goto	i1l7489
+  1392  07C9                     u243_20:
+  1393                           	line	55
+  1394                           	
+  1395  07C9                     i1l7481:	
+  1396                           ;i2cSlave.c: 55: i2cRequest = SSPBUF;
+  1397  07C9  1283               	bcf	status, 5	;RP0=0, select bank0
+  1398  07CA  1303               	bcf	status, 6	;RP1=0, select bank0
+  1399  07CB  0813               	movf	(19),w	;volatile
+  1400  07CC  00F3               	movwf	(??_i2cIsrHandler+0)+0
+  1401  07CD  0873               	movf	(??_i2cIsrHandler+0)+0,w
+  1402  07CE  00FD               	movwf	(_i2cRequest)
+  1403                           	line	57
+  1404                           ;i2cSlave.c: 57: if (i2cRequest == 1){
+  1405  07CF  087D               	movf	(_i2cRequest),w
+  1406  07D0  3A01               	xorlw	01h
+  1407  07D1  1D03               	skipz
+  1408  07D2  2FD4               	goto	u244_21
+  1409  07D3  2FD5               	goto	u244_20
+  1410  07D4                     u244_21:
+  1411  07D4  2FDC               	goto	i1l7485
+  1412  07D5                     u244_20:
+  1413                           	line	58
+  1414                           	
+  1415  07D5                     i1l7483:	
+  1416                           ;i2cSlave.c: 58: i2cSend(0x00);
+  1417  07D5  3000               	movlw	(0)
+  1418  07D6  120A  118A  2699   	fcall	_i2cSend
+              120A  118A         
+  1419                           	line	59
+  1420                           ;i2cSlave.c: 59: } else if (i2cRequest == 2){
+  1421  07DB  2FEE               	goto	i1l7489
+  1422                           	
+  1423  07DC                     i1l4571:	
+  1424                           	
+  1425  07DC                     i1l7485:	
+  1426  07DC  087D               	movf	(_i2cRequest),w
+  1427  07DD  3A02               	xorlw	02h
+  1428  07DE  1D03               	skipz
+  1429  07DF  2FE1               	goto	u245_21
+  1430  07E0  2FE2               	goto	u245_20
+  1431  07E1                     u245_21:
+  1432  07E1  2FEE               	goto	i1l7489
+  1433  07E2                     u245_20:
+  1434                           	line	60
+  1435                           	
+  1436  07E2                     i1l7487:	
+  1437                           ;i2cSlave.c: 60: i2cSend(0x00);
+  1438  07E2  3000               	movlw	(0)
+  1439  07E3  120A  118A  2699   	fcall	_i2cSend
+              120A  118A         
+  1440  07E8  2FEE               	goto	i1l7489
+  1441                           	line	61
+  1442                           	
+  1443  07E9                     i1l4573:	
+  1444  07E9  2FEE               	goto	i1l7489
+  1445                           	line	62
+  1446                           	
+  1447  07EA                     i1l4572:	
+  1448  07EA  2FEE               	goto	i1l7489
+  1449                           	
+  1450  07EB                     i1l4570:	
+  1451  07EB  2FEE               	goto	i1l7489
+  1452                           	line	65
+  1453                           	
+  1454  07EC                     i1l4569:	
+  1455  07EC  2FEE               	goto	i1l7489
+  1456                           	
+  1457  07ED                     i1l4567:	
+  1458  07ED  2FEE               	goto	i1l7489
+  1459                           	
+  1460  07EE                     i1l4565:	
+  1461                           	
+  1462  07EE                     i1l7489:	
+  1463                           ;i2cSlave.c: 61: }
+  1464                           ;i2cSlave.c: 62: }
+  1465                           ;i2cSlave.c: 65: SSPIF = 0;
+  1466  07EE  1283               	bcf	status, 5	;RP0=0, select bank0
+  1467  07EF  1303               	bcf	status, 6	;RP1=0, select bank0
+  1468  07F0  118C               	bcf	(99/8),(99)&7
+  1469                           	line	67
+  1470                           	
+  1471  07F1                     i1l7491:	
+  1472                           ;i2cSlave.c: 67: if (i2cBufferVal == 2){
+  1473  07F1  087C               	movf	(_i2cBufferVal),w
+  1474  07F2  3A02               	xorlw	02h
+  1475  07F3  1D03               	skipz
+  1476  07F4  2FF6               	goto	u246_21
+  1477  07F5  2FF7               	goto	u246_20
+  1478  07F6                     u246_21:
+  1479  07F6  2FFF               	goto	i1l4575
+  1480  07F7                     u246_20:
+  1481                           	line	68
+  1482                           	
+  1483  07F7                     i1l7493:	
+  1484                           ;i2cSlave.c: 68: i2cBufferVal = 0;
+  1485  07F7  01FC               	clrf	(_i2cBufferVal)
+  1486                           	line	69
+  1487                           	
+  1488  07F8                     i1l7495:	
+  1489                           ;i2cSlave.c: 69: i2cDataUpdate();
+  1490  07F8  120A  118A  26ED   	fcall	_i2cDataUpdate
+              120A  118A         
+  1491  07FD  2FFF               	goto	i1l4575
+  1492                           	line	70
+  1493                           	
+  1494  07FE                     i1l4574:	
+  1495  07FE  2FFF               	goto	i1l4575
+  1496                           	line	71
+  1497                           	
+  1498  07FF                     i1l7497:	
+  1499                           	line	72
+  1500                           ;i2cSlave.c: 70: }
+  1501                           ;i2cSlave.c: 71: return;
+  1502                           	
+  1503  07FF                     i1l4575:	
+  1504  07FF  0008               	return
+  1505                           	opt stack 0
+  1506                           GLOBAL	__end_of_i2cIsrHandler
+  1507  0800                     	__end_of_i2cIsrHandler:
+  1508 ;; =============== function _i2cIsrHandler ends ============
+  1509                           
+  1510                           	signat	_i2cIsrHandler,88
+  1511                           	global	_i2cDataUpdate
+  1512                           psect	text314,local,class=CODE,delta=2
+  1513                           global __ptext314
+  1514  06ED                     __ptext314:
+  1515                           
+  1516 ;; *************** function _i2cDataUpdate *****************
+  1517 ;; Defined at:
+  1518 ;;		line 75 in file "i2cSlave.c"
+  1519 ;; Parameters:    Size  Location     Type
+  1520 ;;		None
+  1521 ;; Auto vars:     Size  Location     Type
+  1522 ;;		None
+  1523 ;; Return value:  Size  Location     Type
+  1524 ;;		None               void
+  1525 ;; Registers used:
+  1526 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1527 ;; Tracked objects:
+  1528 ;;		On entry : 0/0
+  1529 ;;		On exit  : 0/0
+  1530 ;;		Unchanged: 0/0
+  1531 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1532 ;;      Params:         0       0       0       0       0
+  1533 ;;      Locals:         0       0       0       0       0
+  1534 ;;      Temps:          2       0       0       0       0
+  1535 ;;      Totals:         2       0       0       0       0
+  1536 ;;Total ram usage:        2 bytes
+  1537 ;; Hardware stack levels used:    1
+  1538 ;; This function calls:
+  1539 ;;		Nothing
+  1540 ;; This function is called by:
+  1541 ;;		_i2cIsrHandler
+  1542 ;; This function uses a non-reentrant model
+  1543 ;;
+  1544                           psect	text314
+  1545                           	file	"i2cSlave.c"
+  1546                           	line	75
+  1547                           	global	__size_of_i2cDataUpdate
+  1548  001C                     	__size_of_i2cDataUpdate	equ	__end_of_i2cDataUpdate-_i2cDataUpdate
+  1549                           	
+  1550  06ED                     _i2cDataUpdate:	
+  1551                           	opt	stack 3
+  1552                           ; Regs used in _i2cDataUpdate: [wreg-fsr0h+status,2+status,0]
+  1553                           	line	76
+  1554                           	
+  1555  06ED                     i1l7499:	
+  1556                           ;i2cSlave.c: 76: switch (i2cBuffer[0]) {
+  1557  06ED  2F03               	goto	i1l7507
+  1558                           	line	77
+  1559                           ;i2cSlave.c: 77: case 0 :
+  1560                           	
+  1561  06EE                     i1l4579:	
+  1562                           	line	78
+  1563                           	
+  1564  06EE                     i1l7501:	
+  1565                           ;i2cSlave.c: 78: i2cSpeed = (i2cBuffer[1] & 0b01111111);
+  1566  06EE  0879               	movf	0+(_i2cBuffer)+01h,w
+  1567  06EF  397F               	andlw	07Fh
+  1568  06F0  00F1               	movwf	(??_i2cDataUpdate+0)+0
+  1569  06F1  0871               	movf	(??_i2cDataUpdate+0)+0,w
+  1570  06F2  1283               	bcf	status, 5	;RP0=0, select bank0
+  1571  06F3  1303               	bcf	status, 6	;RP1=0, select bank0
+  1572  06F4  00A7               	movwf	(_i2cSpeed)
+  1573                           	line	79
+  1574                           	
+  1575  06F5                     i1l7503:	
+  1576                           ;i2cSlave.c: 79: i2cDirection = (i2cBuffer[1] >> 7);
+  1577  06F5  0879               	movf	0+(_i2cBuffer)+01h,w
+  1578  06F6  00F1               	movwf	(??_i2cDataUpdate+0)+0
+  1579  06F7  3007               	movlw	07h
+  1580  06F8                     u247_25:
+  1581  06F8  1003               	clrc
+  1582  06F9  0CF1               	rrf	(??_i2cDataUpdate+0)+0,f
+  1583  06FA  3EFF               	addlw	-1
+  1584  06FB  1D03               	skipz
+  1585  06FC  2EF8               	goto	u247_25
+  1586  06FD  0871               	movf	0+(??_i2cDataUpdate+0)+0,w
+  1587  06FE  00F2               	movwf	(??_i2cDataUpdate+1)+0
+  1588  06FF  0872               	movf	(??_i2cDataUpdate+1)+0,w
+  1589  0700  00A6               	movwf	(_i2cDirection)
+  1590                           	line	80
+  1591                           ;i2cSlave.c: 80: break;
+  1592  0701  2F08               	goto	i1l4581
+  1593                           	line	83
+  1594                           	
+  1595  0702                     i1l7505:	
+  1596                           ;i2cSlave.c: 83: }
+  1597  0702  2F08               	goto	i1l4581
+  1598                           	line	76
+  1599                           	
+  1600  0703                     i1l4578:	
+  1601                           	
+  1602  0703                     i1l7507:	
+  1603  0703  0878               	movf	(_i2cBuffer),w
+  1604                           	; Switch size 1, requested type "space"
+  1605                           ; Number of cases is 1, Range of values is 0 to 0
+  1606                           ; switch strategies available:
+  1607                           ; Name         Instructions Cycles
+  1608                           ; simple_byte            4     3 (average)
+  1609                           ; direct_byte           11     8 (fixed)
+  1610                           ; jumptable            260     6 (fixed)
+  1611                           ; rangetable             5     6 (fixed)
+  1612                           ; spacedrange            8     9 (fixed)
+  1613                           ; locatedrange           1     3 (fixed)
+  1614                           ;	Chosen strategy is simple_byte
+  1615                           
+  1616                           	opt asmopt_off
+  1617  0704  3A00               	xorlw	0^0	; case 0
+  1618  0705  1903               	skipnz
+  1619  0706  2EEE               	goto	i1l7501
+  1620  0707  2F08               	goto	i1l4581
+  1621                           	opt asmopt_on
+  1622                           
+  1623                           	line	83
+  1624                           	
+  1625  0708                     i1l4580:	
+  1626                           	line	85
+  1627                           ;i2cSlave.c: 84: return;
+  1628                           	
+  1629  0708                     i1l4581:	
+  1630  0708  0008               	return
+  1631                           	opt stack 0
+  1632                           GLOBAL	__end_of_i2cDataUpdate
+  1633  0709                     	__end_of_i2cDataUpdate:
+  1634 ;; =============== function _i2cDataUpdate ends ============
+  1635                           
+  1636                           	signat	_i2cDataUpdate,88
+  1637                           	global	_i2cSend
+  1638                           psect	text315,local,class=CODE,delta=2
+  1639                           global __ptext315
+  1640  0699                     __ptext315:
+  1641                           
+  1642 ;; *************** function _i2cSend *****************
+  1643 ;; Defined at:
+  1644 ;;		line 87 in file "i2cSlave.c"
+  1645 ;; Parameters:    Size  Location     Type
+  1646 ;;  msg             1    wreg     unsigned char 
+  1647 ;; Auto vars:     Size  Location     Type
+  1648 ;;		None
+  1649 ;; Return value:  Size  Location     Type
+  1650 ;;		None               void
+  1651 ;; Registers used:
+  1652 ;;		wreg
+  1653 ;; Tracked objects:
+  1654 ;;		On entry : 0/0
+  1655 ;;		On exit  : 0/0
+  1656 ;;		Unchanged: 0/0
+  1657 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1658 ;;      Params:         0       0       0       0       0
+  1659 ;;      Locals:         0       0       0       0       0
+  1660 ;;      Temps:          0       0       0       0       0
+  1661 ;;      Totals:         0       0       0       0       0
+  1662 ;;Total ram usage:        0 bytes
+  1663 ;; Hardware stack levels used:    1
+  1664 ;; This function calls:
+  1665 ;;		Nothing
+  1666 ;; This function is called by:
+  1667 ;;		_i2cIsrHandler
+  1668 ;; This function uses a non-reentrant model
+  1669 ;;
+  1670                           psect	text315
+  1671                           	file	"i2cSlave.c"
+  1672                           	line	87
+  1673                           	global	__size_of_i2cSend
+  1674  0001                     	__size_of_i2cSend	equ	__end_of_i2cSend-_i2cSend
+  1675                           	
+  1676  0699                     _i2cSend:	
+  1677                           	opt	stack 3
+  1678                           ; Regs used in _i2cSend: [wreg]
+  1679                           	line	89
+  1680                           	
+  1681  0699                     i1l6519:	
+  1682                           	line	90
+  1683                           ;i2cSlave.c: 89: return;
+  1684                           	
+  1685  0699                     i1l4584:	
+  1686  0699  0008               	return
+  1687                           	opt stack 0
+  1688                           GLOBAL	__end_of_i2cSend
+  1689  069A                     	__end_of_i2cSend:
+  1690 ;; =============== function _i2cSend ends ============
+  1691                           
+  1692                           	signat	_i2cSend,4216
+  1693                           psect	text316,local,class=CODE,delta=2
+  1694                           global __ptext316
+  1695  0000                     __ptext316:
+  1696                           	global	btemp
+  1697  007E                     	btemp set 07Eh
+  1698                           
+  1699                           	DABS	1,126,2	;btemp
+  1700                           	global	wtemp0
+  1701  007E                     	wtemp0 set btemp
 
 
 HI-TECH Software PICC Macro Assembler V9.83 build 10920 
-Symbol Table                                                                                   Fri Dec 14 15:34:06 2012
+Symbol Table                                                                                   Wed Jan 09 13:30:27 2013
 
-                    _RD 0C60                      _WR 0C61                      fsr 0004                     _CKE 04A6  
-                   _CKP 00A4                     _GIE 005F                     _PR2 0092                     _SMP 04A7  
-                   _isr 07CA                     _val 0078                     fsr0 0004                     indf 0000  
-                  l1510 07C7                    l3040 0767                    l3041 0768                    l1507 07AE  
-                  l1508 07C6                    l3037 075C                    l1525 0787                    l1509 07C7  
-                  l3038 0766                    l1534 071D                    l3039 0768                    l1519 074A  
-                  l3048 07A3                    l3049 07A7                    l5901 073F                    l5903 0744  
-                  l5911 07B6                    l5905 0747                    l5913 07C1                    l5851 0790  
-                  l5907 07A8                    ?_isr 0071                    l5853 079D                    l5861 0756  
-                  l5909 07AE                    l5871 0761                    l5863 0757                    l5855 074B  
-                  l5849 0788                    l5865 0758                    l5857 074F                    l5881 0782  
-                  l5873 0769                    l5867 0759                    l5859 0755                    l5883 0783  
-                  l5875 077E                    l5869 075C                    l5877 0780                    l5885 0717  
-                  l5879 0781                    l5899 0735                    u2300 079D                    u2301 079C  
-                  u2310 0761                    u2311 0760                    u2305 0799                    _PEIE 005E  
-                  _INTE 005C                    _WREN 0C62                    u4_20 07D1                    u4_21 07D0  
-                  u5_20 07DA                    u5_21 07D9         ??_directionInit 0036                    _main 07A8  
-                  btemp 007E                    start 0012                   ??_isr 0071                   ?_main 0071  
-                 _EEADR 010D                   _CARRY 0018                   _T2CON 0012                   _PORTD 0008  
-                 _SSPM0 00A0                   _SSPM1 00A1                   _SSPM2 00A2                   _SSPM3 00A3  
-                 _TRISD 0088                   _SSPIE 0463                   _SSPIF 0063                   _SSPEN 00A5  
-                 pclath 000A        __end_of_BeginPWM 0769                   status 0003                   wtemp0 007E  
-          __end_of_main 07CA        __end_of_i2c_init 0788              _Initialise 0735                  ??_main 003A  
-      __end_of_SetPulse 07A8                  _EEDATA 010C                  _CCPR1L 0015                  _EECON1 018C  
-                _EECON2 018D                  i1l1530 07F4                  i1l1531 07F5                  i1l1528 07D4  
-                i1l1529 07F1                  i1l4931 07D4                  i1l4933 07DA                  i1l4935 07EA  
-                i1l4927 07CA                  i1l4937 07F1                  i1l4929 07D1                  i1l4939 07F4  
-                _TMR2IF 0061                  _SSPADD 0093                  _TRISB3 0433                  _TRISC6 043E  
-                _TRISC7 043F                  _SSPBUF 0013                  clrloop 071F                  saved_w 007E  
-        __pcstackCOMMON 0071             ?_Initialise 0071               ?_BeginPWM 0071              __pbssBANK0 0020  
-             ?_i2c_init 0071               ?_SetPulse 0036              __pmaintext 07A8              __pintentry 0004  
-               _CCP1CON 0017              ??_BeginPWM 0036                 _SSPSTAT 0094              ??_i2c_init 0036  
-   __size_of_Initialise 0016   __end_of_directionInit 071E              ??_SetPulse 0038               _T2CONbits 0012  
-          __size_of_isr 0036    end_of_initialization 0731               _PORTBbits 0006          SetPulse@length 0036  
-             _TRISCbits 0087             _CCP1CONbits 0017            ??_Initialise 0036               _i2cBuffer 0020  
-   start_initialization 0726       __size_of_BeginPWM 001E             __end_of_isr 0800      __end_of_Initialise 074B  
-     __size_of_i2c_init 001F       __size_of_SetPulse 0020            SetPulse@temp 0038             __pbssCOMMON 0078  
-         __pcstackBANK0 0036               __ptext231 0000               __ptext232 0735               __ptext233 0717  
-             __ptext234 0769               __ptext235 074B               __ptext236 0788               __ptext237 07CA  
-             __ptext238 0000       interrupt_function 0004                _PIE1bits 008C                _PIR1bits 000C  
-              _BeginPWM 074B  __size_of_directionInit 0007                _i2c_init 0769                _SetPulse 0788  
-         __size_of_main 0022                clear_ram 071E           _directionInit 0717                _setSpeed 0034  
-              intlevel1 0000          ?_directionInit 0071  
+                    _RD 0C60                      _WR 0C61                     _CKE 04A6                     _CKP 00A4  
+                   _GIE 005F                     _PR2 0092                     _SMP 04A7                     _isr 06AD  
+                   fsr0 0004                     indf 0000                    l1520 0791                    l3041 071A  
+                  l3042 0724                    l3043 0726                    l3052 0742                    l3044 0725  
+                  l3053 0746                    l3045 0726                    l1517 076F                    l1550 06D5  
+                  l1518 0790                    l1519 0791                    l1529 06EC                    l1546 06C9  
+                  l1538 06A0                    l1547 06D5                    l1548 06D2                    l1549 06D4  
+                  l4561 0769                    l7413 06BF                    l7421 0727                    l7415 06C7  
+                  l7423 072F                    l7431 0713                    l7511 06E1                    l7417 06C9  
+                  l7425 073C                    l7441 071A                    l7433 0714                    l7513 06E6  
+                  l7521 078B                    l7419 06D0                    l7443 071F                    l7435 0715  
+                  l7427 0709                    l7451 0766                    l7515 06E9                    ?_isr 0071  
+                  l7437 0716                    l7429 070D                    l7453 0767                    l7445 074A  
+                  l7509 06D6                    l7517 076A                    l7439 0717                    l7455 0768  
+                  l7447 075F                    l7519 077D                    l7449 0765                    l7457 069A  
+                  u2360 06C7                    u2361 06C6                    u2370 06D0                    u2371 06CF  
+                  u2380 073C                    u2381 073B                    u2390 071F                    u2391 071E  
+                  u2385 0738                    _PEIE 005E                    _INTE 005C                    _WREN 0C62  
+       ??_directionInit 0020                    _main 076A                    btemp 007E                    start 0012  
+       ??_i2cIsrHandler 0073         __end_of_i2cInit 076A         __end_of_i2cSend 069A                   ??_isr 0074  
+                 ?_main 0071                   _EEADR 010D                   _CARRY 0018                   _T2CON 0012  
+                 _PORTD 0008                   _SSPM0 00A0                   _SSPM1 00A1                   _SSPM2 00A2  
+                 _SSPM3 00A3                   _TRISD 0088                   _SSPIE 0463                   _SSPIF 0063  
+                 _SSPEN 00A5                   pclath 000A        __end_of_BeginPWM 0727              _i2cRequest 007D  
+                 status 0003                   wtemp0 007E            __end_of_main 0794              _Initialise 06D6  
+                ??_main 0024        __end_of_SetPulse 0747                  _EEDATA 010C                  _CCPR1L 0015  
+                _EECON1 018C                  _EECON2 018D                  i1l1535 06B2                  i1l4570 07EB  
+                i1l4571 07DC                  i1l4580 0708                  i1l4572 07EA                  i1l4564 07AB  
+                i1l4581 0708                  i1l4565 07EE                  i1l4573 07E9                  i1l4574 07FE  
+                i1l4566 07B7                  i1l4575 07FF                  i1l4567 07ED                  i1l4584 0699  
+                i1l4568 07C2                  i1l4569 07EC                  i1l4578 0703                  i1l4579 06EE  
+                i1l7501 06EE                  i1l6519 0699                  i1l7503 06F5                  i1l7505 0702  
+                i1l7507 0703                  i1l7471 07AB                  i1l7463 06AD                  i1l7481 07C9  
+                i1l7473 07B3                  i1l7465 0794                  i1l7491 07F1                  i1l7483 07D5  
+                i1l7475 07B7                  i1l7467 079D                  i1l7493 07F7                  i1l7485 07DC  
+                i1l7477 07C1                  i1l7469 07A6                  i1l7495 07F8                  i1l7487 07E2  
+                i1l7479 07C2                  u240_20 079D                  i1l7497 07FF                  i1l7489 07EE  
+                u240_21 079C                  i1l7499 06ED                  u241_20 07B3                  u241_21 07B2  
+                u242_20 07C0                  u242_21 07BF                  u243_20 07C9                  u243_21 07C8  
+                u244_20 07D5                  u244_21 07D4                  u245_20 07E2                  u245_21 07E1  
+                u246_20 07F7                  u246_21 07F6                  u247_25 06F8                  _TMR2IF 0061  
+                _SSPADD 0093         setDirection@dir 0020                  _TRISB3 0433                  _TRISC6 043E  
+                _TRISC7 043F                  _SSPBUF 0013               ??_i2cInit 0020               ??_i2cSend 0071  
+                saved_w 007E          __pcstackCOMMON 0071             ?_Initialise 0071           ?_setDirection 0020  
+             ?_BeginPWM 0071   __end_of_i2cDataUpdate 0709              __pbssBANK0 0026               ?_SetPulse 0020  
+            __pmaintext 076A              __pintentry 0004                 _CCP1CON 0017          ??_setDirection 0022  
+            ??_BeginPWM 0020                 _SSPSTAT 0094     __size_of_Initialise 0017                 _i2cInit 0747  
+               _i2cSend 0699   __end_of_directionInit 06A1              ??_SetPulse 0022   __end_of_i2cIsrHandler 0800  
+          _i2cDirection 0026            _i2cBufferVal 007C               _T2CONbits 0012            __size_of_isr 0012  
+  end_of_initialization 06A9               _PORTBbits 0006          SetPulse@length 0020               _TRISCbits 0087  
+           _CCP1CONbits 0017    __end_of_setDirection 06D6            ??_Initialise 0021               _i2cBuffer 0078  
+   start_initialization 06A1       __size_of_BeginPWM 001E             __end_of_isr 06BF      __end_of_Initialise 06ED  
+     __size_of_SetPulse 0020            SetPulse@temp 0022             __pbssCOMMON 0078           __pcstackBANK0 0020  
+              ?_i2cInit 0071                ?_i2cSend 0071               __ptext310 0727               __ptext311 06BF  
+             __ptext312 06AD               __ptext313 0794               __ptext305 0000               __ptext314 06ED  
+             __ptext306 06D6               __ptext315 0699               __ptext307 069A               __ptext316 0000  
+             __ptext308 0747               __ptext309 0709  __size_of_i2cDataUpdate 001C   __size_of_setDirection 0017  
+     interrupt_function 0004                _PIE1bits 008C                _PIR1bits 000C                _BeginPWM 0709  
+          _setDirection 06BF  __size_of_directionInit 0007  __size_of_i2cIsrHandler 006C           _i2cDataUpdate 06ED  
+              _i2cSpeed 0027        __size_of_i2cInit 0023        __size_of_i2cSend 0001                _SetPulse 0727  
+        ?_i2cDataUpdate 0071           __size_of_main 002A           _directionInit 069A                _setSpeed 007A  
+         _i2cIsrHandler 0794                intlevel1 0000          ?_directionInit 0071          ?_i2cIsrHandler 0071  
+       ??_i2cDataUpdate 0071          i2cInit@address 0020  

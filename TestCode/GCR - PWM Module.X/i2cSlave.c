@@ -4,7 +4,7 @@
 
 
 
-void i2c_init(char address){
+void i2cInit(char address){
 
     TRISC6 = 1;
     TRISC7 = 1;
@@ -25,6 +25,8 @@ void i2c_init(char address){
     GIE = 1;
     INTE = 1;
    // i2cBuffer[1] = 0;
+
+    i2cBufferVal = 0;
 }
 
 void i2cIsrHandler(){
@@ -38,7 +40,8 @@ void i2cIsrHandler(){
 
 
     if ((SSPSTAT & 0b00100100) == 0b00100000){ // D_A high, R_W low, write w/ data in buffer
-        i2cBuffer[val] = SSPBUF;
+        i2cBuffer[i2cBufferVal] = SSPBUF;
+        i2cBufferVal++;
 
     } else if ((SSPSTAT & 0b00100100) == 0b0000000){ // D_A low,R_W low, write w/ addr in buffer
         // Empty the buffer and carry on, this shouldn't happen since the pic does addr matching.
@@ -58,26 +61,27 @@ void i2cIsrHandler(){
         }
     }
         
-    val++;
+    
     SSPIF = 0;
 
-    if (val == 2){
+    if (i2cBufferVal == 2){
+        i2cBufferVal = 0;
         i2cDataUpdate();
-        val = 0;
     }
+    return;
 }
 
 
 void i2cDataUpdate(){
     switch (i2cBuffer[0]) { // Check message type
         case 0 : // Velocity
-            i2cSpeed = i2cBuffer[1] & 0b01111111;
-            i2cDirection = i2cBuffer[1] >> 7;
+            i2cSpeed = (i2cBuffer[1] & 0b01111111);
+            i2cDirection = (i2cBuffer[1] >> 7);
             break;
 
         // case 1 :
     }
-
+    return;
 }
 
 void i2cSend(char msg){

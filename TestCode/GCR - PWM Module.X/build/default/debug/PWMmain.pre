@@ -2405,9 +2405,6 @@ extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsign
 #pragma inline(_delay)
 extern void _delay(unsigned long);
 
-# 12 "PWMmain.c"
-asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
-
 # 18 "pwmlib.h"
 void BeginPWM();
 
@@ -2421,7 +2418,23 @@ void SetPulse(int length);
 
 void StopPWM();
 
+# 12 "i2cSlave.h"
+char i2cBufferVal;
+char i2cBuffer[2];
+char i2cRequest;
+char i2cSpeed;
+char i2cDirection;
+
+
+
+void i2cInit(char address);
+void i2cIsrHandler();
+void i2cSend(char msg);
+void i2cDataUpdate();
+
 # 18 "PWMmain.c"
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
+
 void Initialise();
 void CalcPulse(int speed);
 void directionInit();
@@ -2430,12 +2443,12 @@ void setDirection(int dir);
 
 
 void delay(int length);
-void i2c_init();
+
 void interrupt isr();
 
 
-int i2cBuffer[10];
-int val = 0;
+
+
 int setSpeed = 0;
 
 
@@ -2445,15 +2458,12 @@ void main()
 int direction;
 Initialise();
 
-# 60
+# 62
 while (1)
 {
-
-
-setSpeed = i2cBuffer[1];
-SetPulse(setSpeed);
-
-PORTD = setSpeed;
+setDirection(i2cDirection);
+SetPulse(i2cSpeed);
+PORTD = i2cSpeed;
 }
 
 
@@ -2475,7 +2485,7 @@ x--;
 void Initialise()
 {
 BeginPWM();
-i2c_init();
+i2cInit(0x10);
 directionInit();
 
 TRISD = 0;
@@ -2491,66 +2501,23 @@ int pulse = speed*255/10;
 SetPulse(pulse);
 }
 
-
-
-
-void i2c_init(){
-TRISC6 = 1;
-TRISC7 = 1;
-SSPEN = 1;
-CKE = 0;
-SMP = 0;
-CKP = 1;
-
-SSPM0 = 0;
-SSPM1 = 1;
-SSPM2 = 1;
-SSPM3 = 0;
-
-SSPIE =1;
-
-SSPADD = 0b10100100;
-PEIE = 1;
-GIE = 1;
-INTE = 1;
-i2cBuffer[1] = 0;
-}
-
-# 134
+# 113
 void interrupt isr(){
-
-# 159
-if (val == 2)
-val = 0;
-
-if ((SSPSTAT & 0b00100000) == 0b00100000){
-
-
-
-i2cBuffer[val] = SSPBUF;
-val++;
-}
-else{
-SSPBUF = 0;
-}
-
-
-SSPIF = 0;
-
+i2cIsrHandler();
 
 }
 
-# 183
+# 122
 void directionInit()
 {
 TRISB3 = 0;
 PORTBbits.RB3 = 0;
 }
 
-# 193
+# 132
 int parseDirectionPWM()
 {
-setSpeed = i2cBuffer[1]&01111111;
+setSpeed = i2cBuffer[1] & 0b01111111;
 
 if (i2cBuffer[1] > 0)
 {
@@ -2560,7 +2527,7 @@ else
 return 0;
 }
 
-# 209
+# 148
 void setDirection(int dir)
 {
 if (dir == 0)

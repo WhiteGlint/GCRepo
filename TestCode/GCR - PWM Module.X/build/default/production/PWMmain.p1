@@ -1878,7 +1878,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "2475 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [v _EECON2 `Vuc  1 e@397 ]
 "12 i2cSlave.h
-[v _val `i  1 e ]
+[v _i2cBufferVal `uc  1 e ]
 "13 i2cSlave.h
 [v _i2cBuffer `uc  -> 2 `i e ]
 "14 i2cSlave.h
@@ -1898,6 +1898,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SetPulse `(v  0 ef1`i ]
 "18 pwmlib.h
 [v _BeginPWM `(v  0 ef ]
+"20 i2cSlave.h
+[v _i2cInit `(v  0 ef1`uc ]
 "22 PWMmain.c
 [v _directionInit `(v  0 ef ]
 "21 i2cSlave.h
@@ -3871,11 +3873,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pwmlib.h: 21: void SetPR2(int length);
 [; ;pwmlib.h: 25: void SetPulse(int length);
 [; ;pwmlib.h: 28: void StopPWM();
-"12 i2cSlave.h
-[i _val
--> 0 `i
-]
-[; ;i2cSlave.h: 12: int val = 0;
+[; ;i2cSlave.h: 12: char i2cBufferVal;
 [; ;i2cSlave.h: 13: char i2cBuffer[2];
 [; ;i2cSlave.h: 14: char i2cRequest;
 [; ;i2cSlave.h: 15: char i2cSpeed;
@@ -3894,7 +3892,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWMmain.c: 23: int parseDirectionPWM();
 [; ;PWMmain.c: 24: void setDirection(int dir);
 [; ;PWMmain.c: 27: void delay(int length);
-[; ;PWMmain.c: 28: void i2c_init();
 [; ;PWMmain.c: 29: void interrupt isr();
 "34
 [i _setSpeed
@@ -3926,9 +3923,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWMmain.c: 65: SetPulse(i2cSpeed);
 "65
 [e ( _SetPulse (1 -> _i2cSpeed `i ]
-[; ;PWMmain.c: 66: PORTD = setSpeed;
+[; ;PWMmain.c: 66: PORTD = i2cSpeed;
 "66
-[e = _PORTD -> _setSpeed `uc ]
+[e = _PORTD _i2cSpeed ]
 "67
 }
 [e :U 202 ]
@@ -3988,6 +3985,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PWMmain.c: 87: BeginPWM();
 "87
 [e ( _BeginPWM ..  ]
+[; ;PWMmain.c: 88: i2cInit(0x10);
+"88
+[e ( _i2cInit (1 -> -> 16 `i `uc ]
 [; ;PWMmain.c: 89: directionInit();
 "89
 [e ( _directionInit ..  ]
@@ -4021,9 +4021,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 211 ]
 }
 "29
-[v F2700 `(v  1 tf ]
+[v F2699 `(v  1 tf ]
 "113
-[v _isr `IF2700  1 e ]
+[v _isr `IF2699  1 e ]
 {
 [; ;PWMmain.c: 113: void interrupt isr(){
 [e :U _isr ]

@@ -2419,7 +2419,7 @@ void SetPulse(int length);
 void StopPWM();
 
 # 12 "i2cSlave.h"
-int val = 0;
+char i2cBufferVal;
 char i2cBuffer[2];
 char i2cRequest;
 char i2cSpeed;
@@ -2443,7 +2443,7 @@ void setDirection(int dir);
 
 
 void delay(int length);
-void i2c_init();
+
 void interrupt isr();
 
 
@@ -2463,7 +2463,7 @@ while (1)
 {
 setDirection(i2cDirection);
 SetPulse(i2cSpeed);
-PORTD = setSpeed;
+PORTD = i2cSpeed;
 }
 
 
@@ -2485,7 +2485,7 @@ x--;
 void Initialise()
 {
 BeginPWM();
-
+i2cInit(0x10);
 directionInit();
 
 TRISD = 0;

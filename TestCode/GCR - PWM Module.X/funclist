@@ -1,11 +1,12 @@
-_setDirection: CODE, 264 0 23
-_main: CODE, 132 0 42
-_directionInit: CODE, 335 0 7
-_SetPulse: CODE, 174 0 32
-_Initialise: CODE, 305 0 17
-_i2cIsrHandler: CODE, 21 0 111
-_isr: CODE, 287 0 18
-_i2cSend: CODE, 342 0 1
-_BeginPWM: CODE, 206 0 30
-_i2cDataUpdate: CODE, 236 0 28
-Total: 309
+_setDirection: CODE, 319 0 23
+_main: CODE, 129 0 42
+_directionInit: CODE, 372 0 7
+_SetPulse: CODE, 206 0 32
+_Initialise: CODE, 296 0 23
+_i2cIsrHandler: CODE, 21 0 108
+_isr: CODE, 342 0 18
+_i2cInit: CODE, 171 0 35
+_i2cSend: CODE, 379 0 1
+_BeginPWM: CODE, 238 0 30
+_i2cDataUpdate: CODE, 268 0 28
+Total: 347

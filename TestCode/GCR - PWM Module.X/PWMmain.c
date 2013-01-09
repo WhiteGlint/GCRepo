@@ -25,7 +25,7 @@ void setDirection(int dir);
 
 //Test Functions
 void delay(int length);
-void i2c_init();            //for testing I2C
+
 void interrupt isr();       //for testing I2C interrupts
 
 //Global Variables
@@ -63,7 +63,7 @@ void main()
     {
         setDirection(i2cDirection);
         SetPulse(i2cSpeed);
-        PORTD = setSpeed;
+        PORTD = i2cSpeed;
     }
 
 
@@ -85,7 +85,7 @@ void delay(int length)
 void Initialise()
 {
     BeginPWM();
-  //  i2c_init();
+    i2cInit(0x10);
     directionInit();
 
     TRISD = 0;  //set up onboard LEDs as
