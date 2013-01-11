@@ -37,19 +37,28 @@ void control_lib::run_test()
 	message[8] = 'z';
 	message[9] = 'e';
 	message[10] = 'd';
+
 	give_output();
 //	system("pause");
 	cin.get();
+
 	move_forward(5);
 	give_output();
+	cin.get();
+
 	move_forward(2);
 	give_output();
+	cin.get();
+
 	stop();
 	give_output();
 //	system("pause");
 	cin.get();
+
 	rotate_clockwise(8);
 	give_output();
+	cin.get();
+
 	rotate_counterclockwise(5);
 	give_output();
 	cout << "\n***THE END***\n";
@@ -340,7 +349,7 @@ void control_lib::create_address(int address)
 
 void control_lib::create_type(int type)
 {
-	// since this only uses on type of message
+	// since this only uses one type of message
 	// i need to know what literal to put in here
 	message[0] = 0;
 }

@@ -1,6 +1,6 @@
 /* 
  * File:   i2cSlave.h
- * Author: josh
+ * Author: Josh Galicic
  *
  * Created on December 27, 2012, 8:55 PM
  */
