@@ -1,0 +1,17 @@
+<package>
+  <description brief="GCRobotics">
+
+     GCRobotics
+
+  </description>
+  <author>Josh Galicic</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/GCRobotics</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+
+</package>
+
+
