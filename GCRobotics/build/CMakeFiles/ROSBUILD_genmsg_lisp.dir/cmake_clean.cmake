@@ -1,5 +1,11 @@
 FILE(REMOVE_RECURSE
+  "../src/GCRobotics/msg"
+  "../msg_gen"
+  "../msg_gen"
   "CMakeFiles/ROSBUILD_genmsg_lisp"
+  "../msg_gen/lisp/i2cData.lisp"
+  "../msg_gen/lisp/_package.lisp"
+  "../msg_gen/lisp/_package_i2cData.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

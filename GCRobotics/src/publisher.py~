@@ -2,13 +2,14 @@
 import roslib; roslib.load_manifest('GCRobotics')
 import rospy
 from std_msgs.msg import String
+from GCRobotics.msg import i2cData
 
 def talker():
-	pub = rospy.Publisher('i2cSend',String)
+	pub = rospy.Publisher('i2cSend',i2cData)
 	rospy.init_node('talker')
 	while not rospy.is_shutdown():
 		str = "hello World"
-		pub.publish(string(str))
+		pub.publish(String(str))
 		rospy.sleep(1.0)
 
 if __name__ == '__main__':

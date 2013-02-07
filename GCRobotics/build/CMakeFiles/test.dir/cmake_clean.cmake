@@ -1,4 +1,7 @@
 FILE(REMOVE_RECURSE
+  "../src/GCRobotics/msg"
+  "../msg_gen"
+  "../msg_gen"
   "CMakeFiles/test"
 )
 
