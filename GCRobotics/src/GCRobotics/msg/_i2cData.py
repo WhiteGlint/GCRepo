@@ -6,16 +6,17 @@ import struct
 
 
 class i2cData(genpy.Message):
-  _md5sum = "b4597ca3548c510333f2e2d836183e5b"
+  _md5sum = "c17484e7b26b31d2a1c50a7b05afae82"
   _type = "GCRobotics/i2cData"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """uint8 address
 uint8 messageType
 uint8 messageData
+bool expectDataBack
 
 """
-  __slots__ = ['address','messageType','messageData']
-  _slot_types = ['uint8','uint8','uint8']
+  __slots__ = ['address','messageType','messageData','expectDataBack']
+  _slot_types = ['uint8','uint8','uint8','bool']
 
   def __init__(self, *args, **kwds):
     """
@@ -25,7 +26,7 @@ uint8 messageData
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       address,messageType,messageData
+       address,messageType,messageData,expectDataBack
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -40,10 +41,13 @@ uint8 messageData
         self.messageType = 0
       if self.messageData is None:
         self.messageData = 0
+      if self.expectDataBack is None:
+        self.expectDataBack = False
     else:
       self.address = 0
       self.messageType = 0
       self.messageData = 0
+      self.expectDataBack = False
 
   def _get_types(self):
     """
@@ -58,7 +62,7 @@ uint8 messageData
     """
     try:
       _x = self
-      buff.write(_struct_3B.pack(_x.address, _x.messageType, _x.messageData))
+      buff.write(_struct_4B.pack(_x.address, _x.messageType, _x.messageData, _x.expectDataBack))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -71,8 +75,9 @@ uint8 messageData
       end = 0
       _x = self
       start = end
-      end += 3
-      (_x.address, _x.messageType, _x.messageData,) = _struct_3B.unpack(str[start:end])
+      end += 4
+      (_x.address, _x.messageType, _x.messageData, _x.expectDataBack,) = _struct_4B.unpack(str[start:end])
+      self.expectDataBack = bool(self.expectDataBack)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -86,7 +91,7 @@ uint8 messageData
     """
     try:
       _x = self
-      buff.write(_struct_3B.pack(_x.address, _x.messageType, _x.messageData))
+      buff.write(_struct_4B.pack(_x.address, _x.messageType, _x.messageData, _x.expectDataBack))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -100,11 +105,12 @@ uint8 messageData
       end = 0
       _x = self
       start = end
-      end += 3
-      (_x.address, _x.messageType, _x.messageData,) = _struct_3B.unpack(str[start:end])
+      end += 4
+      (_x.address, _x.messageType, _x.messageData, _x.expectDataBack,) = _struct_4B.unpack(str[start:end])
+      self.expectDataBack = bool(self.expectDataBack)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
-_struct_3B = struct.Struct("<3B")
+_struct_4B = struct.Struct("<4B")

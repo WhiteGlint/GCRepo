@@ -25,6 +25,7 @@ struct i2cData_ {
   : address(0)
   , messageType(0)
   , messageData(0)
+  , expectDataBack(false)
   {
   }
 
@@ -32,6 +33,7 @@ struct i2cData_ {
   : address(0)
   , messageType(0)
   , messageData(0)
+  , expectDataBack(false)
   {
   }
 
@@ -43,6 +45,9 @@ struct i2cData_ {
 
   typedef uint8_t _messageData_type;
   uint8_t messageData;
+
+  typedef uint8_t _expectDataBack_type;
+  uint8_t expectDataBack;
 
 
   typedef boost::shared_ptr< ::GCRobotics::i2cData_<ContainerAllocator> > Ptr;
@@ -73,12 +78,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::GCRobotics::i2cData_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "b4597ca3548c510333f2e2d836183e5b";
+    return "c17484e7b26b31d2a1c50a7b05afae82";
   }
 
   static const char* value(const  ::GCRobotics::i2cData_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0xb4597ca3548c5103ULL;
-  static const uint64_t static_value2 = 0x33f2e2d836183e5bULL;
+  static const uint64_t static_value1 = 0xc17484e7b26b31d2ULL;
+  static const uint64_t static_value2 = 0xa1c50a7b05afae82ULL;
 };
 
 template<class ContainerAllocator>
@@ -98,6 +103,7 @@ struct Definition< ::GCRobotics::i2cData_<ContainerAllocator> > {
     return "uint8 address\n\
 uint8 messageType\n\
 uint8 messageData\n\
+bool expectDataBack\n\
 \n\
 ";
   }
@@ -121,6 +127,7 @@ template<class ContainerAllocator> struct Serializer< ::GCRobotics::i2cData_<Con
     stream.next(m.address);
     stream.next(m.messageType);
     stream.next(m.messageData);
+    stream.next(m.expectDataBack);
   }
 
   ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -144,6 +151,8 @@ struct Printer< ::GCRobotics::i2cData_<ContainerAllocator> >
     Printer<uint8_t>::stream(s, indent + "  ", v.messageType);
     s << indent << "messageData: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.messageData);
+    s << indent << "expectDataBack: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.expectDataBack);
   }
 };
 
