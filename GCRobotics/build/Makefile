@@ -187,6 +187,19 @@ i2cNode/fast:
 .PHONY : i2cNode/fast
 
 #=============================================================================
+# Target rules for targets named motorControlNode
+
+# Build rule for target.
+motorControlNode: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 motorControlNode
+.PHONY : motorControlNode
+
+# fast build rule for target.
+motorControlNode/fast:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/build
+.PHONY : motorControlNode/fast
+
+#=============================================================================
 # Target rules for targets named rosbuild_precompile
 
 # Build rule for target.
@@ -344,6 +357,36 @@ src/i2cNode.s:
 	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/src/i2cNode.s
 .PHONY : src/i2cNode.s
 
+# target to build an object file
+src/motorControl.o:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/src/motorControl.o
+.PHONY : src/motorControl.o
+
+# target to preprocess a source file
+src/motorControl.i:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/src/motorControl.i
+.PHONY : src/motorControl.i
+
+# target to generate assembly for a file
+src/motorControl.s:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/src/motorControl.s
+.PHONY : src/motorControl.s
+
+# target to build an object file
+src/motorControlNode.o:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/src/motorControlNode.o
+.PHONY : src/motorControlNode.o
+
+# target to preprocess a source file
+src/motorControlNode.i:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/src/motorControlNode.i
+.PHONY : src/motorControlNode.i
+
+# target to generate assembly for a file
+src/motorControlNode.s:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/src/motorControlNode.s
+.PHONY : src/motorControlNode.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -358,6 +401,7 @@ help:
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
 	@echo "... i2cNode"
+	@echo "... motorControlNode"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
 	@echo "... rosbuild_premsgsrvgen"
@@ -373,6 +417,12 @@ help:
 	@echo "... src/i2cNode.o"
 	@echo "... src/i2cNode.i"
 	@echo "... src/i2cNode.s"
+	@echo "... src/motorControl.o"
+	@echo "... src/motorControl.i"
+	@echo "... src/motorControl.s"
+	@echo "... src/motorControlNode.o"
+	@echo "... src/motorControlNode.i"
+	@echo "... src/motorControlNode.s"
 .PHONY : help
 
 

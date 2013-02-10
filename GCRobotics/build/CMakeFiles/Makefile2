@@ -271,11 +271,46 @@ clean: CMakeFiles/i2cNode.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/motorControlNode.dir
+
+# All Build rule for target.
+CMakeFiles/motorControlNode.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/depend
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  6 7
+	@echo "Built target motorControlNode"
+.PHONY : CMakeFiles/motorControlNode.dir/all
+
+# Include target in all.
+all: CMakeFiles/motorControlNode.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/motorControlNode.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/motorControlNode.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
+.PHONY : CMakeFiles/motorControlNode.dir/rule
+
+# Convenience name for target.
+motorControlNode: CMakeFiles/motorControlNode.dir/rule
+.PHONY : motorControlNode
+
+# clean rule for target.
+CMakeFiles/motorControlNode.dir/clean:
+	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/clean
+.PHONY : CMakeFiles/motorControlNode.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/motorControlNode.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/rosbuild_precompile.dir
 
 # All Build rule for target.
-CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg.dir/all
 CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg_libexe.dir/all
+CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg.dir/all
 	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/depend
 	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles 
