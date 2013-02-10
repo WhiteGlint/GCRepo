@@ -174,6 +174,19 @@ clean-test-results/fast:
 .PHONY : clean-test-results/fast
 
 #=============================================================================
+# Target rules for targets named i2cNode
+
+# Build rule for target.
+i2cNode: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 i2cNode
+.PHONY : i2cNode
+
+# fast build rule for target.
+i2cNode/fast:
+	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/build
+.PHONY : i2cNode/fast
+
+#=============================================================================
 # Target rules for targets named rosbuild_precompile
 
 # Build rule for target.
@@ -316,6 +329,21 @@ tests/fast:
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
+# target to build an object file
+src/i2cNode.o:
+	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/src/i2cNode.o
+.PHONY : src/i2cNode.o
+
+# target to preprocess a source file
+src/i2cNode.i:
+	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/src/i2cNode.i
+.PHONY : src/i2cNode.i
+
+# target to generate assembly for a file
+src/i2cNode.s:
+	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/src/i2cNode.s
+.PHONY : src/i2cNode.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -329,6 +357,7 @@ help:
 	@echo "... ROSBUILD_gensrv_lisp"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
+	@echo "... i2cNode"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
 	@echo "... rosbuild_premsgsrvgen"
@@ -341,6 +370,9 @@ help:
 	@echo "... test-results"
 	@echo "... test-results-run"
 	@echo "... tests"
+	@echo "... src/i2cNode.o"
+	@echo "... src/i2cNode.i"
+	@echo "... src/i2cNode.s"
 .PHONY : help
 
 

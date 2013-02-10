@@ -236,6 +236,41 @@ clean: CMakeFiles/clean-test-results.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/i2cNode.dir
+
+# All Build rule for target.
+CMakeFiles/i2cNode.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/depend
+	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  5
+	@echo "Built target i2cNode"
+.PHONY : CMakeFiles/i2cNode.dir/all
+
+# Include target in all.
+all: CMakeFiles/i2cNode.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/i2cNode.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/i2cNode.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
+.PHONY : CMakeFiles/i2cNode.dir/rule
+
+# Convenience name for target.
+i2cNode: CMakeFiles/i2cNode.dir/rule
+.PHONY : i2cNode
+
+# clean rule for target.
+CMakeFiles/i2cNode.dir/clean:
+	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/clean
+.PHONY : CMakeFiles/i2cNode.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/i2cNode.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/rosbuild_precompile.dir
 
 # All Build rule for target.

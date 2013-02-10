@@ -12,6 +12,7 @@ def talker():
 		msg.address = 0x05
 		msg.messageType = 0x06
 		msg.messageData = 0x07
+		msg.expectDataBack = 0;
 		pub.publish(msg)
 		rospy.sleep(1.0)
 

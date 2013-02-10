@@ -4,6 +4,7 @@
 /home/josh/GCRepo/GCRobotics/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
 /home/josh/GCRepo/GCRobotics/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir
 /home/josh/GCRepo/GCRobotics/build/CMakeFiles/clean-test-results.dir
+/home/josh/GCRepo/GCRobotics/build/CMakeFiles/i2cNode.dir
 /home/josh/GCRepo/GCRobotics/build/CMakeFiles/rosbuild_precompile.dir
 /home/josh/GCRepo/GCRobotics/build/CMakeFiles/rosbuild_premsgsrvgen.dir
 /home/josh/GCRepo/GCRobotics/build/CMakeFiles/rospack_genmsg.dir
