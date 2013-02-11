@@ -43,6 +43,7 @@ CMAKE_BINARY_DIR = /home/josh/GCRepo/GCRobotics/build
 include CMakeFiles/ROSBUILD_genmsg_cpp.dir/progress.make
 
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/GCRobotics/i2cData.h
+CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h
 
 ../msg_gen/cpp/include/GCRobotics/i2cData.h: ../msg/i2cData.msg
 ../msg_gen/cpp/include/GCRobotics/i2cData.h: /opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py
@@ -56,8 +57,21 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/GCRobotics/i2cData.h
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/GCRobotics/i2cData.h"
 	/opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/josh/GCRepo/GCRobotics/msg/i2cData.msg
 
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: ../msg/simpleVelocity.msg
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/roslib/bin/gendeps
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: ../manifest.xml
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/std_msgs/manifest.xml
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/roslang/manifest.xml
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/rospy/manifest.xml
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/roscpp/manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h"
+	/opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/josh/GCRepo/GCRobotics/msg/simpleVelocity.msg
+
 ROSBUILD_genmsg_cpp: CMakeFiles/ROSBUILD_genmsg_cpp
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/GCRobotics/i2cData.h
+ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h
 ROSBUILD_genmsg_cpp: CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make
 .PHONY : ROSBUILD_genmsg_cpp
 

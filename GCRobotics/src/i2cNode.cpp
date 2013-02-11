@@ -2,6 +2,7 @@
 #include "std_msgs/String.h"
 #include "GCRobotics/i2cData.h"
 #include "/home/josh/GCRepo/roboio/Include/roboard.h"
+#include <iostream>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ void i2cSendCallback(const GCRobotics::i2cData::ConstPtr& msg)
 	// Roboard i2cSend functions here
 	//roboio_SetRBVer(RB_100RD);
 	ROS_INFO("I heard things");
+	cout << "Here\n";
 	std_msgs::String stringmsg;
 	stringmsg.data = "i2cDataIsHere";
 	pub.publish(stringmsg);

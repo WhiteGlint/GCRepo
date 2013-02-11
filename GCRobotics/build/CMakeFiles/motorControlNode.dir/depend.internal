@@ -3,6 +3,7 @@
 
 CMakeFiles/motorControlNode.dir/src/motorControl.o
  ../msg_gen/cpp/include/GCRobotics/i2cData.h
+ ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h
  /home/josh/GCRepo/GCRobotics/src/../include/motorControl.h
  /home/josh/GCRepo/GCRobotics/src/motorControl.cpp
  /opt/ros/fuerte/include/XmlRpcDecl.h
@@ -59,8 +60,9 @@ CMakeFiles/motorControlNode.dir/src/motorControl.o
  /opt/ros/fuerte/include/ros/wall_timer.h
  /opt/ros/fuerte/include/ros/wall_timer_options.h
  /opt/ros/fuerte/include/rosconsole/macros_generated.h
+ /opt/ros/fuerte/include/std_msgs/String.h
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o
- ../msg_gen/cpp/include/GCRobotics/i2cData.h
+ ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h
  /home/josh/GCRepo/GCRobotics/src/../include/motorControl.h
  /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp
  /opt/ros/fuerte/include/XmlRpcDecl.h

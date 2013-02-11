@@ -6,4 +6,6 @@
   :components ((:file "_package")
     (:file "i2cData" :depends-on ("_package_i2cData"))
     (:file "_package_i2cData" :depends-on ("_package"))
+    (:file "simpleVelocity" :depends-on ("_package_simpleVelocity"))
+    (:file "_package_simpleVelocity" :depends-on ("_package"))
   ))

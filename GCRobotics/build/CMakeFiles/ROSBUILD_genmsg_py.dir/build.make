@@ -45,9 +45,10 @@ include CMakeFiles/ROSBUILD_genmsg_py.dir/progress.make
 CMakeFiles/ROSBUILD_genmsg_py: ../src/GCRobotics/msg/__init__.py
 
 ../src/GCRobotics/msg/__init__.py: ../src/GCRobotics/msg/_i2cData.py
+../src/GCRobotics/msg/__init__.py: ../src/GCRobotics/msg/_simpleVelocity.py
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/GCRobotics/msg/__init__.py"
-	/opt/ros/fuerte/share/rospy/rosbuild/scripts/genmsg_py.py --initpy /home/josh/GCRepo/GCRobotics/msg/i2cData.msg
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/genmsg_py.py --initpy /home/josh/GCRepo/GCRobotics/msg/i2cData.msg /home/josh/GCRepo/GCRobotics/msg/simpleVelocity.msg
 
 ../src/GCRobotics/msg/_i2cData.py: ../msg/i2cData.msg
 ../src/GCRobotics/msg/_i2cData.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/genmsg_py.py
@@ -61,9 +62,22 @@ CMakeFiles/ROSBUILD_genmsg_py: ../src/GCRobotics/msg/__init__.py
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/GCRobotics/msg/_i2cData.py"
 	/opt/ros/fuerte/share/rospy/rosbuild/scripts/genmsg_py.py --noinitpy /home/josh/GCRepo/GCRobotics/msg/i2cData.msg
 
+../src/GCRobotics/msg/_simpleVelocity.py: ../msg/simpleVelocity.msg
+../src/GCRobotics/msg/_simpleVelocity.py: /opt/ros/fuerte/share/rospy/rosbuild/scripts/genmsg_py.py
+../src/GCRobotics/msg/_simpleVelocity.py: /opt/ros/fuerte/share/roslib/bin/gendeps
+../src/GCRobotics/msg/_simpleVelocity.py: ../manifest.xml
+../src/GCRobotics/msg/_simpleVelocity.py: /opt/ros/fuerte/share/std_msgs/manifest.xml
+../src/GCRobotics/msg/_simpleVelocity.py: /opt/ros/fuerte/share/roslang/manifest.xml
+../src/GCRobotics/msg/_simpleVelocity.py: /opt/ros/fuerte/share/rospy/manifest.xml
+../src/GCRobotics/msg/_simpleVelocity.py: /opt/ros/fuerte/share/roscpp/manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../src/GCRobotics/msg/_simpleVelocity.py"
+	/opt/ros/fuerte/share/rospy/rosbuild/scripts/genmsg_py.py --noinitpy /home/josh/GCRepo/GCRobotics/msg/simpleVelocity.msg
+
 ROSBUILD_genmsg_py: CMakeFiles/ROSBUILD_genmsg_py
 ROSBUILD_genmsg_py: ../src/GCRobotics/msg/__init__.py
 ROSBUILD_genmsg_py: ../src/GCRobotics/msg/_i2cData.py
+ROSBUILD_genmsg_py: ../src/GCRobotics/msg/_simpleVelocity.py
 ROSBUILD_genmsg_py: CMakeFiles/ROSBUILD_genmsg_py.dir/build.make
 .PHONY : ROSBUILD_genmsg_py
 

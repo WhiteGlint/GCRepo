@@ -6,6 +6,9 @@ FILE(REMOVE_RECURSE
   "../msg_gen/lisp/i2cData.lisp"
   "../msg_gen/lisp/_package.lisp"
   "../msg_gen/lisp/_package_i2cData.lisp"
+  "../msg_gen/lisp/simpleVelocity.lisp"
+  "../msg_gen/lisp/_package.lisp"
+  "../msg_gen/lisp/_package_simpleVelocity.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

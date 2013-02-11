@@ -2,19 +2,17 @@
 import roslib; roslib.load_manifest('GCRobotics')
 import rospy
 from std_msgs.msg import String
-from GCRobotics.msg import i2cData
+from GCRobotics.msg import simpleVelocity
 
 def talker():
-	pub = rospy.Publisher('i2cSend',i2cData)
+	pub = rospy.Publisher('Velocity',simpleVelocity)
 	rospy.init_node('talker')
 	while not rospy.is_shutdown():
-		msg = i2cData()
-		msg.address = 0x05
-		msg.messageType = 0x06
-		msg.messageData = 0x07
-		msg.expectDataBack = 0;
+		msg = simpleVelocity()
+		msg.direction = 1;
+		msg.speed = 5;
 		pub.publish(msg)
-		rospy.sleep(1.0)
+		rospy.sleep(10.0)
 
 if __name__ == '__main__':
 	try:

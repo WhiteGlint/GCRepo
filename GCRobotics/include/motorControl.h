@@ -3,6 +3,8 @@
 #define CONTROL_LIB
 
 #include "ros/ros.h"
+#include "GCRobotics/simpleVelocity.h"
+
 
 
 class motorControl
@@ -62,11 +64,14 @@ private:
 
 public:
 
-
+	// ros things
 	ros::Publisher pub;
 	ros::Subscriber sub;
-
+	ros::NodeHandle n;
+	
 	void init(int argc, char **argv);
+	void velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& msg);
+	
 	// constructor
 	motorControl();
 

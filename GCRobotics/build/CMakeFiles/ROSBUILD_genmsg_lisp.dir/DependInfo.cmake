@@ -7,6 +7,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
 SET(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/josh/GCRepo/GCRobotics/msg_gen/lisp/_package.lisp" "/home/josh/GCRepo/GCRobotics/msg_gen/lisp/i2cData.lisp"
   "/home/josh/GCRepo/GCRobotics/msg_gen/lisp/_package_i2cData.lisp" "/home/josh/GCRepo/GCRobotics/msg_gen/lisp/i2cData.lisp"
+  "/home/josh/GCRepo/GCRobotics/msg_gen/lisp/_package_simpleVelocity.lisp" "/home/josh/GCRepo/GCRobotics/msg_gen/lisp/simpleVelocity.lisp"
   )
 
 

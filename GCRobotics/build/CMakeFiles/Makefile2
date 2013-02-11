@@ -56,13 +56,13 @@ CMAKE_BINARY_DIR = /home/josh/GCRepo/GCRobotics/build
 CMakeFiles/ROSBUILD_genmsg_cpp.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make CMakeFiles/ROSBUILD_genmsg_cpp.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make CMakeFiles/ROSBUILD_genmsg_cpp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  1 2
 	@echo "Built target ROSBUILD_genmsg_cpp"
 .PHONY : CMakeFiles/ROSBUILD_genmsg_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ROSBUILD_genmsg_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ROSBUILD_genmsg_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/ROSBUILD_genmsg_cpp.dir/rule
@@ -87,13 +87,13 @@ clean: CMakeFiles/ROSBUILD_genmsg_cpp.dir/clean
 CMakeFiles/ROSBUILD_genmsg_lisp.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_lisp.dir/build.make CMakeFiles/ROSBUILD_genmsg_lisp.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_lisp.dir/build.make CMakeFiles/ROSBUILD_genmsg_lisp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  3 4
 	@echo "Built target ROSBUILD_genmsg_lisp"
 .PHONY : CMakeFiles/ROSBUILD_genmsg_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ROSBUILD_genmsg_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ROSBUILD_genmsg_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/ROSBUILD_genmsg_lisp.dir/rule
@@ -118,13 +118,13 @@ clean: CMakeFiles/ROSBUILD_genmsg_lisp.dir/clean
 CMakeFiles/ROSBUILD_genmsg_py.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_py.dir/build.make CMakeFiles/ROSBUILD_genmsg_py.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_py.dir/build.make CMakeFiles/ROSBUILD_genmsg_py.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  3 4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  5 6 7
 	@echo "Built target ROSBUILD_genmsg_py"
 .PHONY : CMakeFiles/ROSBUILD_genmsg_py.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ROSBUILD_genmsg_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ROSBUILD_genmsg_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/ROSBUILD_genmsg_py.dir/rule
@@ -242,7 +242,7 @@ clean: CMakeFiles/clean-test-results.dir/clean
 CMakeFiles/i2cNode.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/depend
 	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  8
 	@echo "Built target i2cNode"
 .PHONY : CMakeFiles/i2cNode.dir/all
 
@@ -252,7 +252,7 @@ all: CMakeFiles/i2cNode.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/i2cNode.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/i2cNode.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/i2cNode.dir/rule
@@ -277,7 +277,7 @@ clean: CMakeFiles/i2cNode.dir/clean
 CMakeFiles/motorControlNode.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/depend
 	$(MAKE) -f CMakeFiles/motorControlNode.dir/build.make CMakeFiles/motorControlNode.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  6 7
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles  9 10
 	@echo "Built target motorControlNode"
 .PHONY : CMakeFiles/motorControlNode.dir/all
 
@@ -287,7 +287,7 @@ all: CMakeFiles/motorControlNode.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/motorControlNode.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/motorControlNode.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/motorControlNode.dir/rule
@@ -319,7 +319,7 @@ CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rosbuild_precompile.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosbuild_precompile.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/rosbuild_precompile.dir/rule
@@ -383,7 +383,7 @@ CMakeFiles/rospack_genmsg.dir/all: CMakeFiles/ROSBUILD_genmsg_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rospack_genmsg.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rospack_genmsg.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/rospack_genmsg.dir/rule
@@ -418,7 +418,7 @@ all: CMakeFiles/rospack_genmsg_all.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rospack_genmsg_all.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rospack_genmsg_all.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : CMakeFiles/rospack_genmsg_all.dir/rule

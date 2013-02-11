@@ -3,5 +3,7 @@
   (:export
    "<I2CDATA>"
    "I2CDATA"
+   "<SIMPLEVELOCITY>"
+   "SIMPLEVELOCITY"
   ))
 

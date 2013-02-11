@@ -5,19 +5,40 @@
 #include <unistd.h>
 #include "../include/motorControl.h"
 #include "GCRobotics/i2cData.h"
+#include "std_msgs/String.h"
+
 #include "ros/ros.h"
 
 using namespace std;
 
-
 void motorControl::init(int argc, char **argv)
 {
-	
-	ros::init(argc, argv, "motorController");	
-	ros::NodeHandle n;
 	pub = n.advertise<GCRobotics::i2cData>("i2cSend",100);
-		
+	
+	sub = n.subscribe("Velocity", 100, &motorControl::velocityCallback, this);
+	return;
 }
+
+void motorControl::velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& msg)
+{	
+	switch (msg->direction)
+	{
+		 case 1:  
+		 	move_forward(msg->speed);
+		 case 2:
+		 	move_backward(msg->speed);
+		 case 3:  
+		 	move_left(msg->speed);
+		 case 4:
+		 	move_right(msg->speed);
+		 case 5:  
+		 	rotate_clockwise(msg->speed);
+		 case 6:
+		 	rotate_counterclockwise(msg->speed);
+	}
+	return;	
+}
+
 // constructor
 motorControl::motorControl()
 {
