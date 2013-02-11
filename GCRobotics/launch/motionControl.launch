@@ -1,4 +1,5 @@
 <launch>
 	<node name="i2cNode" pkg="GCRobotics" type="i2cNode" />
+	<node name="motorController" pkg="GCRobotics" type="motorControlNode" />
 	
 </launch>
