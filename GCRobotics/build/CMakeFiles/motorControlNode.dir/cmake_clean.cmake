@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
+  "../msg_gen"
+  "../msg_gen"
   "../src/GCRobotics/msg"
-  "../msg_gen"
-  "../msg_gen"
   "CMakeFiles/motorControlNode.dir/src/motorControlNode.o"
   "CMakeFiles/motorControlNode.dir/src/motorControl.o"
   "../bin/motorControlNode.pdb"

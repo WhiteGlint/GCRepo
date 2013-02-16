@@ -15,13 +15,11 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "motorController");
 	motorControl controller;
 	controller.init(argc, argv);
-	
-	
+
 	cin.get();
 	controller.move_forward(5);
-	
-	
-	
+    	
+
 	ros::spin();
 	return 0;
 }

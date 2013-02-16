@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 
 	return 0;
 }
-/*
+
 void i2cSend(const GCRobotics::i2cData::ConstPtr& msg)
 {
 	if (i2c_Init(I2CMODE_AUTO, 1000))
@@ -61,4 +61,4 @@ void i2cSend(const GCRobotics::i2cData::ConstPtr& msg)
 	i2c_Close();
 	return;	
 }
-*/
+
