@@ -53,6 +53,7 @@ CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/st
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/motorControlNode.dir/src/motorControlNode.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControlNode.o -c /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp
@@ -81,6 +82,7 @@ CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/std_ms
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/motorControlNode.dir/src/motorControl.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControl.o -c /home/josh/GCRepo/GCRobotics/src/motorControl.cpp

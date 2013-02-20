@@ -332,14 +332,14 @@ GCRobotics_INCLUDE_DIRS:INTERNAL=/opt/ros/fuerte/include
 GCRobotics_LDFLAGS_OTHER:INTERNAL=
 GCRobotics_LIBRARIES:INTERNAL=roscpp;rostime;rosconsole;roscpp_serialization;xmlrpcpp
 GCRobotics_LIBRARY_DIRS:INTERNAL=/opt/ros/fuerte/lib
-GCRobotics_cached_manifest_list:INTERNAL=/home/josh/GCRepo/GCRobotics/manifest.xml;/opt/ros/fuerte/share/std_msgs/manifest.xml;/opt/ros/fuerte/share/roslang/manifest.xml;/opt/ros/fuerte/share/rospy/manifest.xml;/opt/ros/fuerte/share/roscpp/manifest.xml
+GCRobotics_cached_manifest_list:INTERNAL=/home/josh/GCRepo/GCRobotics/manifest.xml;/opt/ros/fuerte/share/std_msgs/manifest.xml;/opt/ros/fuerte/share/roslang/manifest.xml;/opt/ros/fuerte/share/rospy/manifest.xml;/opt/ros/fuerte/share/roscpp/manifest.xml;/opt/ros/fuerte/share/geometry_msgs/manifest.xml
 GCRobotics_temp:INTERNAL=
 //ADVANCED property for variable: PYTHON_EXECUTABLE
 PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 _rosbuild_EXPORTS:INTERNAL=
-_rosbuild_cached_flag_time:INTERNAL=1360171082.71
+_rosbuild_cached_flag_time:INTERNAL=1361391874.4
 _roslang_LANGS:INTERNAL=roscpp;roslisp;rospy
-_rospack_deps_manifests_invoke_result:INTERNAL=/opt/ros/fuerte/share/std_msgs/manifest.xml;/opt/ros/fuerte/share/roslang/manifest.xml;/opt/ros/fuerte/share/rospy/manifest.xml;/opt/ros/fuerte/share/roscpp/manifest.xml
+_rospack_deps_manifests_invoke_result:INTERNAL=/opt/ros/fuerte/share/std_msgs/manifest.xml;/opt/ros/fuerte/share/roslang/manifest.xml;/opt/ros/fuerte/share/rospy/manifest.xml;/opt/ros/fuerte/share/roscpp/manifest.xml;/opt/ros/fuerte/share/geometry_msgs/manifest.xml
 _rospack_msgsrv_gen_invoke_result:INTERNAL=
 roscpp_CMAKE:INTERNAL=/opt/ros/fuerte/share/roscpp/rosbuild/roscpp.cmake
 roslib_path:INTERNAL=/opt/ros/fuerte/share/roslib

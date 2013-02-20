@@ -53,6 +53,7 @@ CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/std_msgs/manifest.xm
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/roscpp/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/i2cNode.dir/src/i2cNode.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/i2cNode.dir/src/i2cNode.o -c /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp

@@ -3,4 +3,14 @@
 	<node name="i2cNode" pkg="GCRobotics" type="i2cNode" />
 	<node name="motorController" pkg="GCRobotics" type="motorControlNode" />
 	
+	
+	<!-- Fake Laser Ripped from /opt/ros/fuerte/stacks/turtlebot/turtlebot_bringup/kinect.launch--> 
+  <node pkg="nodelet" type="nodelet" name="kinect_laser" args="load pointcloud_to_laserscan/CloudToScan openni_manager" respawn="true">
+    <param name="output_frame_id" value="/camera_depth_frame"/>
+    <!-- heights are in the (optical?) frame of the kinect -->
+    <param name="min_height" value="-0.15"/>
+    <param name="max_height" value="0.15"/>
+    <remap from="cloud" to="/cloud_throttled"/>
+  </node>
+	
 </launch>

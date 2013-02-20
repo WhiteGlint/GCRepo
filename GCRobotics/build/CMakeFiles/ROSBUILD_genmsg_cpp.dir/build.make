@@ -53,6 +53,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/GCRobotics/simpleVelocity
 ../msg_gen/cpp/include/GCRobotics/i2cData.h: /opt/ros/fuerte/share/roslang/manifest.xml
 ../msg_gen/cpp/include/GCRobotics/i2cData.h: /opt/ros/fuerte/share/rospy/manifest.xml
 ../msg_gen/cpp/include/GCRobotics/i2cData.h: /opt/ros/fuerte/share/roscpp/manifest.xml
+../msg_gen/cpp/include/GCRobotics/i2cData.h: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/GCRobotics/i2cData.h"
 	/opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/josh/GCRepo/GCRobotics/msg/i2cData.msg
@@ -65,6 +66,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/GCRobotics/simpleVelocity
 ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/roslang/manifest.xml
 ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/rospy/manifest.xml
 ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/roscpp/manifest.xml
+../msg_gen/cpp/include/GCRobotics/simpleVelocity.h: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h"
 	/opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/josh/GCRepo/GCRobotics/msg/simpleVelocity.msg

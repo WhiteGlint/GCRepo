@@ -7,6 +7,8 @@ CMakeFiles/motorControlNode.dir/src/motorControl.o: ../src/../include/motorContr
 CMakeFiles/motorControlNode.dir/src/motorControl.o: ../src/motorControl.cpp
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/XmlRpcDecl.h
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/XmlRpcValue.h
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/geometry_msgs/Twist.h
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/geometry_msgs/Vector3.h
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/ros/advertise_options.h
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/ros/advertise_service_options.h
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/ros/assert.h
@@ -61,11 +63,12 @@ CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/ros/
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/rosconsole/macros_generated.h
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/include/std_msgs/String.h
 
-CMakeFiles/motorControlNode.dir/src/motorControlNode.o: ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: ../src/../include/motorControl.h
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: ../src/motorControlNode.cpp
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/include/XmlRpcDecl.h
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/include/XmlRpcValue.h
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/include/geometry_msgs/Twist.h
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/include/geometry_msgs/Vector3.h
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/include/ros/advertise_options.h
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/include/ros/advertise_service_options.h
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/include/ros/assert.h
