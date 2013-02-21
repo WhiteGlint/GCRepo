@@ -2,7 +2,7 @@
 import roslib; roslib.load_manifest('GCRobotics')
 import rospy
 from std_msgs.msg import String
-from geometry_msgs import Twist
+from geometry_msgs.msg import Twist
 import curses
 
 def talker():
