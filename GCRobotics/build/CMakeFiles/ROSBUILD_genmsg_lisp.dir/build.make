@@ -58,6 +58,16 @@ CMakeFiles/ROSBUILD_genmsg_lisp: ../msg_gen/lisp/_package_simpleVelocity.lisp
 ../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/rospy/manifest.xml
 ../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/roscpp/manifest.xml
 ../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/stacks/bullet/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/rosconsole/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/rostest/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/roswtf/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/share/message_filters/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+../msg_gen/lisp/i2cData.lisp: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/lisp/i2cData.lisp, ../msg_gen/lisp/_package.lisp, ../msg_gen/lisp/_package_i2cData.lisp"
 	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/josh/GCRepo/GCRobotics/msg/i2cData.msg
@@ -75,6 +85,16 @@ CMakeFiles/ROSBUILD_genmsg_lisp: ../msg_gen/lisp/_package_simpleVelocity.lisp
 ../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/rospy/manifest.xml
 ../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/roscpp/manifest.xml
 ../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/stacks/bullet/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/rosconsole/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/rostest/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/roswtf/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/share/message_filters/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+../msg_gen/lisp/simpleVelocity.lisp: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/lisp/simpleVelocity.lisp, ../msg_gen/lisp/_package.lisp, ../msg_gen/lisp/_package_simpleVelocity.lisp"
 	/opt/ros/fuerte/share/roslisp/rosbuild/scripts/genmsg_lisp.py /home/josh/GCRepo/GCRobotics/msg/simpleVelocity.msg

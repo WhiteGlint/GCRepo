@@ -18,24 +18,26 @@ def talker():
 		if i == ord('w'):
 			msg.linear.x = 5;
 			msg.linear.y = 0;
-			pub.publish(msg);	
+			#pub.publish(msg);	
 		elif i == ord('a'):
 			msg.linear.x = 0;
 			msg.linear.y = -5;
-			pub.publish(msg);	
+			#pub.publish(msg);	
 		elif i == ord('s'):
 			msg.linear.x = -5;
 			msg.linear.y = 0;
-			pub.publish(msg);	
+			#pub.publish(msg);	
 		elif i == ord('d'):
 			msg.linear.x = 0;
 			msg.linear.y = 5;
-			pub.publish(msg);	
+			#pub.publish(msg);	
 		elif i == ord('f'):
 			msg.linear.x = 0;
 			msg.linear.y = 0;
-			pub.publish(msg);	
-					
+			#pub.publish(msg);	
+			
+		pub.publish(msg);
+		rospy.sleep(.01);
 
 if __name__ == '__main__':
 

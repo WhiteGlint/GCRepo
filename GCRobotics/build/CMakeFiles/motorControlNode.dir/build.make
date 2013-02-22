@@ -54,17 +54,27 @@ CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/ro
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/stacks/bullet/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/rostest/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/roswtf/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/message_filters/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/motorControlNode.dir/src/motorControlNode.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControlNode.o -c /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControlNode.o -c /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp
 
 CMakeFiles/motorControlNode.dir/src/motorControlNode.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/motorControlNode.dir/src/motorControlNode.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp > CMakeFiles/motorControlNode.dir/src/motorControlNode.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp > CMakeFiles/motorControlNode.dir/src/motorControlNode.i
 
 CMakeFiles/motorControlNode.dir/src/motorControlNode.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/motorControlNode.dir/src/motorControlNode.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp -o CMakeFiles/motorControlNode.dir/src/motorControlNode.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp -o CMakeFiles/motorControlNode.dir/src/motorControlNode.s
 
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o.requires:
 .PHONY : CMakeFiles/motorControlNode.dir/src/motorControlNode.o.requires
@@ -83,17 +93,27 @@ CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/roslan
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/stacks/bullet/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/rostest/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/roswtf/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/message_filters/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/motorControlNode.dir/src/motorControl.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControl.o -c /home/josh/GCRepo/GCRobotics/src/motorControl.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControl.o -c /home/josh/GCRepo/GCRobotics/src/motorControl.cpp
 
 CMakeFiles/motorControlNode.dir/src/motorControl.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/motorControlNode.dir/src/motorControl.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/motorControl.cpp > CMakeFiles/motorControlNode.dir/src/motorControl.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/motorControl.cpp > CMakeFiles/motorControlNode.dir/src/motorControl.i
 
 CMakeFiles/motorControlNode.dir/src/motorControl.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/motorControlNode.dir/src/motorControl.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/motorControl.cpp -o CMakeFiles/motorControlNode.dir/src/motorControl.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/motorControl.cpp -o CMakeFiles/motorControlNode.dir/src/motorControl.s
 
 CMakeFiles/motorControlNode.dir/src/motorControl.o.requires:
 .PHONY : CMakeFiles/motorControlNode.dir/src/motorControl.o.requires

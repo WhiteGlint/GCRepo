@@ -31,3 +31,4 @@ rosbuild_genmsg()
 
 rosbuild_add_executable(i2cNode src/i2cNode.cpp)
 rosbuild_add_executable(motorControlNode src/motorControlNode.cpp src/motorControl.cpp)
+rosbuild_add_executable(DeadReckoner src/deadReckoning.cpp)

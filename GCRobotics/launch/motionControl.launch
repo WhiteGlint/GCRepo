@@ -6,8 +6,15 @@
 <!-- Convert Twist message to i2c messages for i2cNode to send -->
 <node name="motorControlNode" pkg="GCRobotics" type="motorControlNode" />
 
+<!-- Create Pose based only off of /Velocity topic (dead reckoning) -->
+<node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" />
+
 <!-- Kinect pointcloud generation, from freenect package -->
 <include file="$(find freenect_launch)/launch/freenect.launch" />
+
+
+<node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0 0 0 0 0 0 /GCRbase /camera_depth_frame 100" />
+
 
 <!-- openni_manager -->
   <node pkg="nodelet" type="nodelet" name="kinect_manager" output="screen" respawn="true" args="manager"/>

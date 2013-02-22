@@ -54,17 +54,27 @@ CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/roscpp/manifest.xml
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/stacks/bullet/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/rosconsole/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/rostest/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/roswtf/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/message_filters/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/i2cNode.dir/src/i2cNode.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/i2cNode.dir/src/i2cNode.o -c /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/i2cNode.dir/src/i2cNode.o -c /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp
 
 CMakeFiles/i2cNode.dir/src/i2cNode.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/i2cNode.dir/src/i2cNode.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp > CMakeFiles/i2cNode.dir/src/i2cNode.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp > CMakeFiles/i2cNode.dir/src/i2cNode.i
 
 CMakeFiles/i2cNode.dir/src/i2cNode.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/i2cNode.dir/src/i2cNode.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp -o CMakeFiles/i2cNode.dir/src/i2cNode.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -DBT_USE_DOUBLE_PRECISION -DBT_EULER_DEFAULT_ZYX -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp -o CMakeFiles/i2cNode.dir/src/i2cNode.s
 
 CMakeFiles/i2cNode.dir/src/i2cNode.o.requires:
 .PHONY : CMakeFiles/i2cNode.dir/src/i2cNode.o.requires

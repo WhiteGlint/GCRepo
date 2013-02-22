@@ -96,6 +96,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named DeadReckoner
+
+# Build rule for target.
+DeadReckoner: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 DeadReckoner
+.PHONY : DeadReckoner
+
+# fast build rule for target.
+DeadReckoner/fast:
+	$(MAKE) -f CMakeFiles/DeadReckoner.dir/build.make CMakeFiles/DeadReckoner.dir/build
+.PHONY : DeadReckoner/fast
+
+#=============================================================================
 # Target rules for targets named ROSBUILD_genmsg_cpp
 
 # Build rule for target.
@@ -343,6 +356,21 @@ tests/fast:
 .PHONY : tests/fast
 
 # target to build an object file
+src/deadReckoning.o:
+	$(MAKE) -f CMakeFiles/DeadReckoner.dir/build.make CMakeFiles/DeadReckoner.dir/src/deadReckoning.o
+.PHONY : src/deadReckoning.o
+
+# target to preprocess a source file
+src/deadReckoning.i:
+	$(MAKE) -f CMakeFiles/DeadReckoner.dir/build.make CMakeFiles/DeadReckoner.dir/src/deadReckoning.i
+.PHONY : src/deadReckoning.i
+
+# target to generate assembly for a file
+src/deadReckoning.s:
+	$(MAKE) -f CMakeFiles/DeadReckoner.dir/build.make CMakeFiles/DeadReckoner.dir/src/deadReckoning.s
+.PHONY : src/deadReckoning.s
+
+# target to build an object file
 src/i2cNode.o:
 	$(MAKE) -f CMakeFiles/i2cNode.dir/build.make CMakeFiles/i2cNode.dir/src/i2cNode.o
 .PHONY : src/i2cNode.o
@@ -393,6 +421,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... DeadReckoner"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_genmsg_lisp"
 	@echo "... ROSBUILD_genmsg_py"
@@ -414,6 +443,9 @@ help:
 	@echo "... test-results"
 	@echo "... test-results-run"
 	@echo "... tests"
+	@echo "... src/deadReckoning.o"
+	@echo "... src/deadReckoning.i"
+	@echo "... src/deadReckoning.s"
 	@echo "... src/i2cNode.o"
 	@echo "... src/i2cNode.i"
 	@echo "... src/i2cNode.s"
