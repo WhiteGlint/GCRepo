@@ -2450,20 +2450,22 @@ void interrupt isr();
 
 
 int setSpeed = 0;
-
+int dc;
 
 void main()
 {
 
 int direction;
 Initialise();
+OPTION_REG = 0b10100111;
 
-# 62
+# 63
 while (1)
 {
-setDirection(i2cDirection);
-SetPulse(i2cSpeed);
-PORTD = i2cSpeed;
+
+# 68
+SetPulse(150);
+PORTD = TMR0;
 }
 
 
@@ -2501,20 +2503,20 @@ int pulse = speed*255/10;
 SetPulse(pulse);
 }
 
-# 113
+# 116
 void interrupt isr(){
 i2cIsrHandler();
 
 }
 
-# 122
+# 125
 void directionInit()
 {
 TRISB3 = 0;
 PORTBbits.RB3 = 0;
 }
 
-# 132
+# 135
 int parseDirectionPWM()
 {
 setSpeed = i2cBuffer[1] & 0b01111111;
@@ -2527,7 +2529,7 @@ else
 return 0;
 }
 
-# 148
+# 151
 void setDirection(int dir)
 {
 if (dir == 0)

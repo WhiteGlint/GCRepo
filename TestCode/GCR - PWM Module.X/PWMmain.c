@@ -32,41 +32,56 @@ void interrupt isr();       //for testing I2C interrupts
 //int i2cBuffer[10];          //buffer for holding incoming data
 //int val = 0;                //refers to i2cBuffer index
 int setSpeed = 0;              //register holding the currently desired speed
+int dc;
 
-
-void main()
+int main()
 {
    // unsigned char dc;
     int direction;
     Initialise();
+    OPTION_REG = 0b10100000;
+    TRISA = 0x0000;
+    TRISD = 0;
+    TMR0 = 0;
    // i2cInit(0x010);
-/*    while(1)                         // forever
+    while(1)                         // forever
     {
         /*
          * PWM resolution is 10 bits
          * don't use last 2 less significant bits CCPxCON,
          * so only CCPRxL have to be touched to change duty cycle
-         /
-        for(dc = 8 ; dc <= 10 ; dc++)
+         */
+        PORTD = 0xFF;
+        for(dc = 0 ; dc <= 10 ; dc++)
         {
             CalcPulse(dc);
-            delay(2000) ;
+            delay(6000) ;
         }
-        for(dc = 10; dc >= 8 ; dc--)
+        PORTD = 0x00;
+        for(dc = 10; dc >= 0 ; dc--)
         {
             CalcPulse(dc);
-            delay(2000) ;
+            delay(6000) ;
         }
+        delay(6000);
+
+        if (PORTBbits.RB3 == 0)
+            PORTBbits.RB3 = 1;
+        else
+            PORTBbits.RB3 = 0;
+
+    }//*/
+    
+ /*   while (1)
+    {
+        /*setDirection(i2cDirection);
+        SetPulse(i2cSpeed);
+        PORTD = i2cSpeed;/
+        SetPulse(150);
+        PORTD = TMR0;
     }//*/
 
-    while (1)
-    {
-        setDirection(i2cDirection);
-        SetPulse(i2cSpeed);
-        PORTD = i2cSpeed;
-    }
-
-
+    return 1;       // standard ending for an "int main"
 }
 
 
@@ -122,7 +137,7 @@ void interrupt isr(){
 void directionInit()
 {
     TRISB3 = 0; //set as output
-    PORTBbits.RB3 = 0; //default to forward
+    PORTBbits.RB3 = 1; //default to forward
 }
 
 
