@@ -1,0 +1,8 @@
+___awdiv: CODE, 1930 0 118
+_main: CODE, 1797 0 41
+_CalcPulse: CODE, 1880 0 50
+_SetPulse: CODE, 1739 0 28
+_Initialise: CODE, 1721 0 18
+_BeginPWM: CODE, 1767 0 30
+___wmul: CODE, 1838 0 42
+Total: 327
