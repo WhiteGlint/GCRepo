@@ -1,0 +1,10 @@
+<launch>
+
+<!-- Create Pose based only off of /Velocity topic (dead reckoning) -->
+<node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" />
+
+
+<node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0 0 0 0 0 0 /GCRbase /world 100" />
+
+
+</launch>

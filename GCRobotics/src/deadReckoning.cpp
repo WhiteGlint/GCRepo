@@ -56,8 +56,9 @@ void callback(const geometry_msgs::Twist::ConstPtr& data)
 	pub.publish(msg);
 	tf::TransformBroadcaster br;
 	tf::Transform transform;
-  	transform.setOrigin( tf::Vector3(data->linear.x, data->linear.y, 0.0) );
-  	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "GCRbase"));
+  	transform.setOrigin( tf::Vector3(msg.pose.position.x, msg.pose.position.y, 0.0) );
+  	transform.setRotation(tf::Quaternion(0,0,0));
+  //	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "GCRbase"));
 	
 	
 }
