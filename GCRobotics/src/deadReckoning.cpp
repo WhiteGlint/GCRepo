@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
 	pub = n.advertise<geometry_msgs::PoseStamped>("DeadPose",100);
 		
-	msg.header.frame_id = "/GCRbase";	
+	msg.header.frame_id = "/odom";	
 	ros::spin();
 
 	return 0;
@@ -54,11 +54,12 @@ void callback(const geometry_msgs::Twist::ConstPtr& data)
 	t1 = ros::Time::now().toSec();
 	
 	pub.publish(msg);
+	
 	tf::TransformBroadcaster br;
 	tf::Transform transform;
   	transform.setOrigin( tf::Vector3(msg.pose.position.x, msg.pose.position.y, 0.0) );
   	transform.setRotation(tf::Quaternion(0,0,0));
-  //	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "GCRbase"));
+  	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "base_link"));
 	
 	
 }
