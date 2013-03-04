@@ -3,8 +3,7 @@
 #define CONTROL_LIB
 
 #include "ros/ros.h"
-#include "GCRobotics/simpleVelocity.h"
-
+#include "geometry_msgs/Twist.h"
 
 
 class motorControl
@@ -70,7 +69,7 @@ public:
 	ros::NodeHandle n;
 	
 	void init(int argc, char **argv);
-	void velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& msg);
+	void velocityCallback(const geometry_msgs::Twist::ConstPtr& msg);
 	
 	// constructor
 	motorControl();

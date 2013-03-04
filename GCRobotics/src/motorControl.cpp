@@ -6,6 +6,7 @@
 #include "../include/motorControl.h"
 #include "GCRobotics/i2cData.h"
 #include "std_msgs/String.h"
+#include "geometry_msgs/Twist.h"
 
 #include "ros/ros.h"
 
@@ -19,8 +20,25 @@ void motorControl::init(int argc, char **argv)
 	return;
 }
 
-void motorControl::velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& msg)
+void motorControl::velocityCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {	
+	if (msg->linear.x !=0)
+	{
+		if (msg->linear.x >0)
+			move_forward(msg->linear.x);
+		else
+			move_backward(msg->linear.x);
+	}
+	if (msg->linear.y !=0)
+	{
+		if (msg->linear.y >0)
+			move_left(msg->linear.y);
+		else
+			move_right(msg->linear.y);
+	}
+
+
+/*	
 	switch (msg->direction)
 	{
 		 case 1:  
@@ -36,6 +54,8 @@ void motorControl::velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& 
 		 case 6:
 		 	rotate_counterclockwise(msg->speed);
 	}
+	
+*/
 	return;	
 }
 

@@ -16,8 +16,8 @@ int main(int argc, char **argv)
 	motorControl controller;
 	controller.init(argc, argv);
 
-	cin.get();
-	controller.move_forward(5);
+	//cin.get();
+	//controller.move_forward(5);
     	
 
 	ros::spin();
