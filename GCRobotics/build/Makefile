@@ -8,7 +8,7 @@ default_target: all
 #=============================================================================
 # Special targets provided by cmake.
 
-# Disable implicit rules so canonical targets will work.
+# Disable implicit rules so canoncical targets will work.
 .SUFFIXES:
 
 # Remove some rules from gmake that .SUFFIXES does not remove.
@@ -36,10 +36,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/josh/GCRepo/GCRobotics
+CMAKE_SOURCE_DIR = /home/gcr/GCRepo/GCRobotics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/josh/GCRepo/GCRobotics/build
+CMAKE_BINARY_DIR = /home/gcr/GCRepo/GCRobotics/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -66,9 +66,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles /home/josh/GCRepo/GCRobotics/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gcr/GCRepo/GCRobotics/build/CMakeFiles /home/gcr/GCRepo/GCRobotics/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/GCRepo/GCRobotics/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gcr/GCRepo/GCRobotics/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

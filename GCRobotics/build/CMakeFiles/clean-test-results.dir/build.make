@@ -4,7 +4,7 @@
 #=============================================================================
 # Special targets provided by cmake.
 
-# Disable implicit rules so canonical targets will work.
+# Disable implicit rules so canoncical targets will work.
 .SUFFIXES:
 
 # Remove some rules from gmake that .SUFFIXES does not remove.
@@ -32,18 +32,15 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/josh/GCRepo/GCRobotics
+CMAKE_SOURCE_DIR = /home/gcr/GCRepo/GCRobotics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/josh/GCRepo/GCRobotics/build
+CMAKE_BINARY_DIR = /home/gcr/GCRepo/GCRobotics/build
 
 # Utility rule file for clean-test-results.
 
-# Include the progress variables for this target.
-include CMakeFiles/clean-test-results.dir/progress.make
-
 CMakeFiles/clean-test-results:
-	if ! rm -rf /home/josh/.ros/test_results/GCRobotics; then echo WARNING:\ failed\ to\ remove\ test-results\ directory ; fi
+	if ! rm -rf /home/gcr/.ros/test_results/GCRobotics; then echo WARNING:\ failed\ to\ remove\ test-results\ directory ; fi
 
 clean-test-results: CMakeFiles/clean-test-results
 clean-test-results: CMakeFiles/clean-test-results.dir/build.make
@@ -58,6 +55,6 @@ CMakeFiles/clean-test-results.dir/clean:
 .PHONY : CMakeFiles/clean-test-results.dir/clean
 
 CMakeFiles/clean-test-results.dir/depend:
-	cd /home/josh/GCRepo/GCRobotics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/josh/GCRepo/GCRobotics /home/josh/GCRepo/GCRobotics /home/josh/GCRepo/GCRobotics/build /home/josh/GCRepo/GCRobotics/build /home/josh/GCRepo/GCRobotics/build/CMakeFiles/clean-test-results.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gcr/GCRepo/GCRobotics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gcr/GCRepo/GCRobotics /home/gcr/GCRepo/GCRobotics /home/gcr/GCRepo/GCRobotics/build /home/gcr/GCRepo/GCRobotics/build /home/gcr/GCRepo/GCRobotics/build/CMakeFiles/clean-test-results.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clean-test-results.dir/depend
 

@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "../msg_gen"
-  "../msg_gen"
   "../src/GCRobotics/msg"
+  "../msg_gen"
   "CMakeFiles/ROSBUILD_genmsg_cpp"
   "../msg_gen/cpp/include/GCRobotics/i2cData.h"
   "../msg_gen/cpp/include/GCRobotics/simpleVelocity.h"

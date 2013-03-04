@@ -4,7 +4,7 @@
 #=============================================================================
 # Special targets provided by cmake.
 
-# Disable implicit rules so canonical targets will work.
+# Disable implicit rules so canoncical targets will work.
 .SUFFIXES:
 
 # Remove some rules from gmake that .SUFFIXES does not remove.
@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/josh/GCRepo/GCRobotics
+CMAKE_SOURCE_DIR = /home/gcr/GCRepo/GCRobotics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/josh/GCRepo/GCRobotics/build
+CMAKE_BINARY_DIR = /home/gcr/GCRepo/GCRobotics/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/i2cNode.dir/depend.make
@@ -53,17 +53,17 @@ CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/std_msgs/manifest.xm
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/i2cNode.dir/src/i2cNode.o: /opt/ros/fuerte/share/roscpp/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/gcr/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/i2cNode.dir/src/i2cNode.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/i2cNode.dir/src/i2cNode.o -c /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/i2cNode.dir/src/i2cNode.o -c /home/gcr/GCRepo/GCRobotics/src/i2cNode.cpp
 
 CMakeFiles/i2cNode.dir/src/i2cNode.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/i2cNode.dir/src/i2cNode.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp > CMakeFiles/i2cNode.dir/src/i2cNode.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/gcr/GCRepo/GCRobotics/src/i2cNode.cpp > CMakeFiles/i2cNode.dir/src/i2cNode.i
 
 CMakeFiles/i2cNode.dir/src/i2cNode.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/i2cNode.dir/src/i2cNode.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/i2cNode.cpp -o CMakeFiles/i2cNode.dir/src/i2cNode.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/gcr/GCRepo/GCRobotics/src/i2cNode.cpp -o CMakeFiles/i2cNode.dir/src/i2cNode.s
 
 CMakeFiles/i2cNode.dir/src/i2cNode.o.requires:
 .PHONY : CMakeFiles/i2cNode.dir/src/i2cNode.o.requires
@@ -73,6 +73,7 @@ CMakeFiles/i2cNode.dir/src/i2cNode.o.provides: CMakeFiles/i2cNode.dir/src/i2cNod
 .PHONY : CMakeFiles/i2cNode.dir/src/i2cNode.o.provides
 
 CMakeFiles/i2cNode.dir/src/i2cNode.o.provides.build: CMakeFiles/i2cNode.dir/src/i2cNode.o
+.PHONY : CMakeFiles/i2cNode.dir/src/i2cNode.o.provides.build
 
 # Object files for target i2cNode
 i2cNode_OBJECTS = \
@@ -82,6 +83,7 @@ i2cNode_OBJECTS = \
 i2cNode_EXTERNAL_OBJECTS =
 
 ../bin/i2cNode: CMakeFiles/i2cNode.dir/src/i2cNode.o
+../bin/i2cNode: /home/gcr/GCRepo/roboio/Lib/libRBIO.a
 ../bin/i2cNode: CMakeFiles/i2cNode.dir/build.make
 ../bin/i2cNode: CMakeFiles/i2cNode.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../bin/i2cNode"
@@ -99,6 +101,6 @@ CMakeFiles/i2cNode.dir/clean:
 .PHONY : CMakeFiles/i2cNode.dir/clean
 
 CMakeFiles/i2cNode.dir/depend:
-	cd /home/josh/GCRepo/GCRobotics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/josh/GCRepo/GCRobotics /home/josh/GCRepo/GCRobotics /home/josh/GCRepo/GCRobotics/build /home/josh/GCRepo/GCRobotics/build /home/josh/GCRepo/GCRobotics/build/CMakeFiles/i2cNode.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gcr/GCRepo/GCRobotics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gcr/GCRepo/GCRobotics /home/gcr/GCRepo/GCRobotics /home/gcr/GCRepo/GCRobotics/build /home/gcr/GCRepo/GCRobotics/build /home/gcr/GCRepo/GCRobotics/build/CMakeFiles/i2cNode.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/i2cNode.dir/depend
 

@@ -1,1 +1,1 @@
-/usr/bin/c++   -O2 -g     -pthread CMakeFiles/i2cNode.dir/src/i2cNode.o  -o ../bin/i2cNode -rdynamic -L/opt/ros/fuerte/lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization -lxmlrpcpp -Wl,-rpath,/opt/ros/fuerte/lib 
+/usr/bin/c++   -O2 -g   -pthread CMakeFiles/i2cNode.dir/src/i2cNode.o  -o ../bin/i2cNode -rdynamic -L/opt/ros/fuerte/lib -L/home/gcr/GCRepo/roboio/Lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization -lxmlrpcpp /home/gcr/GCRepo/roboio/Lib/libRBIO.a -Wl,-rpath,/opt/ros/fuerte/lib 

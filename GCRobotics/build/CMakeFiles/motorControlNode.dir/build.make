@@ -4,7 +4,7 @@
 #=============================================================================
 # Special targets provided by cmake.
 
-# Disable implicit rules so canonical targets will work.
+# Disable implicit rules so canoncical targets will work.
 .SUFFIXES:
 
 # Remove some rules from gmake that .SUFFIXES does not remove.
@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/josh/GCRepo/GCRobotics
+CMAKE_SOURCE_DIR = /home/gcr/GCRepo/GCRobotics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/josh/GCRepo/GCRobotics/build
+CMAKE_BINARY_DIR = /home/gcr/GCRepo/GCRobotics/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/motorControlNode.dir/depend.make
@@ -53,17 +53,17 @@ CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/st
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o: /opt/ros/fuerte/share/roscpp/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/gcr/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/motorControlNode.dir/src/motorControlNode.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControlNode.o -c /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControlNode.o -c /home/gcr/GCRepo/GCRobotics/src/motorControlNode.cpp
 
 CMakeFiles/motorControlNode.dir/src/motorControlNode.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/motorControlNode.dir/src/motorControlNode.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp > CMakeFiles/motorControlNode.dir/src/motorControlNode.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/gcr/GCRepo/GCRobotics/src/motorControlNode.cpp > CMakeFiles/motorControlNode.dir/src/motorControlNode.i
 
 CMakeFiles/motorControlNode.dir/src/motorControlNode.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/motorControlNode.dir/src/motorControlNode.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp -o CMakeFiles/motorControlNode.dir/src/motorControlNode.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/gcr/GCRepo/GCRobotics/src/motorControlNode.cpp -o CMakeFiles/motorControlNode.dir/src/motorControlNode.s
 
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o.requires:
 .PHONY : CMakeFiles/motorControlNode.dir/src/motorControlNode.o.requires
@@ -73,6 +73,7 @@ CMakeFiles/motorControlNode.dir/src/motorControlNode.o.provides: CMakeFiles/moto
 .PHONY : CMakeFiles/motorControlNode.dir/src/motorControlNode.o.provides
 
 CMakeFiles/motorControlNode.dir/src/motorControlNode.o.provides.build: CMakeFiles/motorControlNode.dir/src/motorControlNode.o
+.PHONY : CMakeFiles/motorControlNode.dir/src/motorControlNode.o.provides.build
 
 CMakeFiles/motorControlNode.dir/src/motorControl.o: CMakeFiles/motorControlNode.dir/flags.make
 CMakeFiles/motorControlNode.dir/src/motorControl.o: ../src/motorControl.cpp
@@ -81,17 +82,17 @@ CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/std_ms
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/roslang/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/rospy/manifest.xml
 CMakeFiles/motorControlNode.dir/src/motorControl.o: /opt/ros/fuerte/share/roscpp/manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/josh/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/gcr/GCRepo/GCRobotics/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/motorControlNode.dir/src/motorControl.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControl.o -c /home/josh/GCRepo/GCRobotics/src/motorControl.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/motorControlNode.dir/src/motorControl.o -c /home/gcr/GCRepo/GCRobotics/src/motorControl.cpp
 
 CMakeFiles/motorControlNode.dir/src/motorControl.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/motorControlNode.dir/src/motorControl.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/josh/GCRepo/GCRobotics/src/motorControl.cpp > CMakeFiles/motorControlNode.dir/src/motorControl.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /home/gcr/GCRepo/GCRobotics/src/motorControl.cpp > CMakeFiles/motorControlNode.dir/src/motorControl.i
 
 CMakeFiles/motorControlNode.dir/src/motorControl.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/motorControlNode.dir/src/motorControl.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/josh/GCRepo/GCRobotics/src/motorControl.cpp -o CMakeFiles/motorControlNode.dir/src/motorControl.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /home/gcr/GCRepo/GCRobotics/src/motorControl.cpp -o CMakeFiles/motorControlNode.dir/src/motorControl.s
 
 CMakeFiles/motorControlNode.dir/src/motorControl.o.requires:
 .PHONY : CMakeFiles/motorControlNode.dir/src/motorControl.o.requires
@@ -101,6 +102,7 @@ CMakeFiles/motorControlNode.dir/src/motorControl.o.provides: CMakeFiles/motorCon
 .PHONY : CMakeFiles/motorControlNode.dir/src/motorControl.o.provides
 
 CMakeFiles/motorControlNode.dir/src/motorControl.o.provides.build: CMakeFiles/motorControlNode.dir/src/motorControl.o
+.PHONY : CMakeFiles/motorControlNode.dir/src/motorControl.o.provides.build
 
 # Object files for target motorControlNode
 motorControlNode_OBJECTS = \
@@ -130,6 +132,6 @@ CMakeFiles/motorControlNode.dir/clean:
 .PHONY : CMakeFiles/motorControlNode.dir/clean
 
 CMakeFiles/motorControlNode.dir/depend:
-	cd /home/josh/GCRepo/GCRobotics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/josh/GCRepo/GCRobotics /home/josh/GCRepo/GCRobotics /home/josh/GCRepo/GCRobotics/build /home/josh/GCRepo/GCRobotics/build /home/josh/GCRepo/GCRobotics/build/CMakeFiles/motorControlNode.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gcr/GCRepo/GCRobotics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gcr/GCRepo/GCRobotics /home/gcr/GCRepo/GCRobotics /home/gcr/GCRepo/GCRobotics/build /home/gcr/GCRepo/GCRobotics/build /home/gcr/GCRepo/GCRobotics/build/CMakeFiles/motorControlNode.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/motorControlNode.dir/depend
 

@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "../msg_gen"
-  "../msg_gen"
   "../src/GCRobotics/msg"
+  "../msg_gen"
   "CMakeFiles/i2cNode.dir/src/i2cNode.o"
   "../bin/i2cNode.pdb"
   "../bin/i2cNode"

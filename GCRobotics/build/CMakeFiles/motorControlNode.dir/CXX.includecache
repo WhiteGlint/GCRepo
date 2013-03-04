@@ -6,6 +6,28 @@
 
 #IncludeRegexTransform: 
 
+../msg_gen/cpp/include/GCRobotics/i2cData.h
+string
+-
+vector
+-
+map
+-
+ostream
+-
+ros/serialization.h
+../msg_gen/cpp/include/GCRobotics/ros/serialization.h
+ros/builtin_message_traits.h
+../msg_gen/cpp/include/GCRobotics/ros/builtin_message_traits.h
+ros/message_operations.h
+../msg_gen/cpp/include/GCRobotics/ros/message_operations.h
+ros/time.h
+../msg_gen/cpp/include/GCRobotics/ros/time.h
+ros/macros.h
+../msg_gen/cpp/include/GCRobotics/ros/macros.h
+ros/assert.h
+../msg_gen/cpp/include/GCRobotics/ros/assert.h
+
 ../msg_gen/cpp/include/GCRobotics/simpleVelocity.h
 string
 -
@@ -28,19 +50,33 @@ ros/macros.h
 ros/assert.h
 ../msg_gen/cpp/include/GCRobotics/ros/assert.h
 
-/home/josh/GCRepo/GCRobotics/src/../include/motorControl.h
+/home/gcr/GCRepo/GCRobotics/src/../include/motorControl.h
 ros/ros.h
-/home/josh/GCRepo/GCRobotics/src/../include/ros/ros.h
+/home/gcr/GCRepo/GCRobotics/src/../include/ros/ros.h
 GCRobotics/simpleVelocity.h
-/home/josh/GCRepo/GCRobotics/src/../include/GCRobotics/simpleVelocity.h
+/home/gcr/GCRepo/GCRobotics/src/../include/GCRobotics/simpleVelocity.h
 
-/home/josh/GCRepo/GCRobotics/src/motorControlNode.cpp
-ros/ros.h
-/home/josh/GCRepo/GCRobotics/src/ros/ros.h
-std_msgs/String.h
-/home/josh/GCRepo/GCRobotics/src/std_msgs/String.h
+/home/gcr/GCRepo/GCRobotics/src/motorControl.cpp
+iostream
+-
+unistd.h
+-
 ../include/motorControl.h
-/home/josh/GCRepo/GCRobotics/src/../include/motorControl.h
+/home/gcr/GCRepo/GCRobotics/src/../include/motorControl.h
+GCRobotics/i2cData.h
+/home/gcr/GCRepo/GCRobotics/src/GCRobotics/i2cData.h
+std_msgs/String.h
+/home/gcr/GCRepo/GCRobotics/src/std_msgs/String.h
+ros/ros.h
+/home/gcr/GCRepo/GCRobotics/src/ros/ros.h
+
+/home/gcr/GCRepo/GCRobotics/src/motorControlNode.cpp
+ros/ros.h
+/home/gcr/GCRepo/GCRobotics/src/ros/ros.h
+std_msgs/String.h
+/home/gcr/GCRepo/GCRobotics/src/std_msgs/String.h
+../include/motorControl.h
+/home/gcr/GCRepo/GCRobotics/src/../include/motorControl.h
 iostream
 -
 
