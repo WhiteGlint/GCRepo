@@ -19,6 +19,17 @@
 __CONFIG(FOSC_INTOSCIO & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_OFF & IESO_ON & FCMEN_OFF);
 
 
+// Pre-processor definitions that specify an individual PIC.  That is, all
+//  the main code can be exactly the same, from PIC to PIC for the robot,
+//  depending on the motor position (front left motor, for example), only
+//  these definitions will need to change
+#define I2C_address 0x04
+#define FORWARD 0
+#define BACKWARD 1
+
+
+
+
 void Initialise();
 void CalcPulse(int speed);
 void setDirection(int dir);
