@@ -10,9 +10,6 @@ class motorControl
 {
 private:
 
-
-
-
 	static int const wait_time = 50; // wait time between motor speed steps in milleseconds
 	int motor1_speed, // directionless, 0-10
 		motor2_speed,
