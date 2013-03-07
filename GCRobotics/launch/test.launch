@@ -1,0 +1,6 @@
+<launch>
+
+<!-- Create Pose based only off of /Velocity topic (dead reckoning) -->
+<node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" />
+
+</launch>

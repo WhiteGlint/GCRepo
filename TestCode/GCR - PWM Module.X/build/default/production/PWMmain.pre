@@ -2405,9 +2405,6 @@ extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsign
 #pragma inline(_delay)
 extern void _delay(unsigned long);
 
-# 12 "PWMmain.c"
-asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
-
 # 18 "pwmlib.h"
 void BeginPWM();
 
@@ -2421,20 +2418,144 @@ void SetPulse(int length);
 
 void StopPWM();
 
+# 12 "i2cSlave.h"
+char i2cBufferVal;
+char i2cBuffer[2];
+char i2cRequest;
+char i2cSpeed;
+char i2cDirection;
+
+
+
+void i2cInit(char address);
+void i2cIsrHandler();
+void i2cSend(char msg);
+void i2cDataUpdate();
+
 # 18 "PWMmain.c"
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
+
 void Initialise();
+void CalcPulse(int speed);
+void directionInit();
+int parseDirectionPWM();
+void setDirection(int dir);
 
 
-void main()
+void delay(int length);
+
+void interrupt isr();
+
+
+
+
+int setSpeed = 0;
+int dc;
+
+int main()
 {
 
+int direction;
+Initialise();
+OPTION_REG = 0b10100000;
+TRISA = 0x0000;
+TRISD = 0;
+TMR0 = 0;
 
+while(1)
+{
 
+# 54
+PORTD = 0xFF;
+for(dc = 0 ; dc <= 10 ; dc++)
+{
+CalcPulse(dc);
+delay(6000) ;
+}
+PORTD = 0x00;
+for(dc = 10; dc >= 0 ; dc--)
+{
+CalcPulse(dc);
+delay(6000) ;
+}
+delay(6000);
+
+if (PORTBbits.RB3 == 0)
+PORTBbits.RB3 = 1;
+else
+PORTBbits.RB3 = 0;
 
 }
+
+# 84
+return 1;
+}
+
+
+
+void delay(int length)
+{
+for (int x=0; x < length; x++)
+{
+x++;
+x--;
+}
+}
+
 
 
 void Initialise()
 {
 BeginPWM();
+i2cInit(0x10);
+directionInit();
+
+TRISD = 0;
+PORTD = 0;
+}
+
+
+
+
+void CalcPulse(int speed)
+{
+int pulse = speed*255/10;
+SetPulse(pulse);
+}
+
+# 128
+void interrupt isr(){
+i2cIsrHandler();
+
+}
+
+# 137
+void directionInit()
+{
+TRISB3 = 0;
+PORTBbits.RB3 = 1;
+}
+
+# 147
+int parseDirectionPWM()
+{
+setSpeed = i2cBuffer[1] & 0b01111111;
+
+if (i2cBuffer[1] > 0)
+{
+return 1;
+}
+else
+return 0;
+}
+
+# 163
+void setDirection(int dir)
+{
+if (dir == 0)
+PORTBbits.RB3 = 0;
+else if (dir == 1)
+PORTBbits.RB3 = 1;
+else
+PORTBbits.RB3 = 0;
 }

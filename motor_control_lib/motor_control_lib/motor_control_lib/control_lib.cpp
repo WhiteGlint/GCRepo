@@ -1,14 +1,16 @@
 
 // object for motor control library
 #include <iostream>
-#include <Windows.h>
+//#include <Windows.h>
+#include <unistd.h>
 #include "control_lib.h"
-#include "roboard.h"
+#include </home/gcr/GCRepo/roboio/Include/roboard.h>
 using namespace std;
 
 // constructor
 control_lib::control_lib()
 {
+	roboio_SetRBVer(RB_100RD);
 	motor1_speed = 0;
 	motor2_speed = 0;
 	motor3_speed = 0;
@@ -35,21 +37,33 @@ void control_lib::run_test()
 	message[8] = 'z';
 	message[9] = 'e';
 	message[10] = 'd';
+
 	give_output();
-	system("pause");
+//	system("pause");
+	cin.get();
+
 	move_forward(5);
 	give_output();
+	cin.get();
+
 	move_forward(2);
 	give_output();
+	cin.get();
+
 	stop();
 	give_output();
-	system("pause");
+//	system("pause");
+	cin.get();
+
 	rotate_clockwise(8);
 	give_output();
+	cin.get();
+
 	rotate_counterclockwise(5);
 	give_output();
 	cout << "\n***THE END***\n";
-	system("pause");	
+//	system("pause");	
+	cin.get();
 }
 
 void control_lib::give_output()
@@ -259,17 +273,20 @@ void control_lib::speed_up()
 void control_lib::wait()
 {
 	// wait for 50 ms
-	Sleep(wait_time);
+//	Sleep(wait_time);
+	usleep(1000*wait_time);
 }
 
 // I^2C messaging
 void control_lib::send_message()
 {
+	i2c_Init(I2CMODE_AUTO, 100000);
 	cout << "\nmessage sent\n";
 	send_motor1();
 	send_motor2();
 	send_motor3();
 	send_motor4();
+	i2c_Close();
 }
 
 void control_lib::send_motor1()
@@ -299,28 +316,28 @@ void control_lib::send_motor4()
 // Message creation
 void control_lib::create_message1()
 {
-	create_address(1);
+	create_address(0x10);
 	create_type(0);
 	create_data(motor1_direction, motor1_speed);
 }
 
 void control_lib::create_message2()
 {
-	create_address(2);
+	create_address(0x12);
 	create_type(0);
 	create_data(motor2_direction, motor2_speed);
 }
 
 void control_lib::create_message3()
 {
-	create_address(3);
+	create_address(0x14);
 	create_type(0);
 	create_data(motor3_direction, motor3_speed);
 }
 
 void control_lib::create_message4()
 {
-	create_address(4);
+	create_address(0x16);
 	create_type(0);
 	create_data(motor4_direction, motor4_speed);
 }
@@ -332,7 +349,7 @@ void control_lib::create_address(int address)
 
 void control_lib::create_type(int type)
 {
-	// since this only uses on type of message
+	// since this only uses one type of message
 	// i need to know what literal to put in here
 	message[0] = 0;
 }
@@ -347,7 +364,10 @@ void control_lib::create_data(int direction, int speed)
 
 void control_lib::push_i2c()
 {
+
+//	if (i2c_Init(I2CMODE_AUTO,100000) == false) cout << "ERROR!!: " << roboio_GetErrMsg();
 	i2c_Send(message_address, message, 2);
+//	i2c_Close();
 	/*
 	// actual message when we get it working
 	// i2c_Send(addr(char), buf(char[]), size(int);

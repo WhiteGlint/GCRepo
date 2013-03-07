@@ -32,12 +32,12 @@ the PIR1 register is set).
 clearing the associated TRIS bit.
  */
 
-//#include <pwmlib.h>
+#include "pwmlib.h"
 #include <pic16f917.h>
 
 //Function that configures the CCP module for PWM mode,
 //configure Timer2 to run
-void beginPWM()
+void BeginPWM()
 {
     //Disable PWM pin (CCP1) by setting associated TRIS bit;
     //  in this case, set RC5 as input, or TRISCbits.TRISC5 = 1
@@ -111,7 +111,6 @@ void SetPulse(int length)
     //NOTE:  if CCPR1L > PR2 (duty cycle greater than period), it is the
     //  same as the duty cycle being 100%
 }
-
 
 
 //Function that stops PWM by turning off Timer2
