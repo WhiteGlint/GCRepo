@@ -36,6 +36,7 @@ private:
 		int calculate_quadrant();
 		float calculate_theta(int);
 	void resolve_heading();
+		int check_heading_difference();
 		void rotate_clockwise();
 		void rotate_counterclockwise();
 	void resolve_distance();

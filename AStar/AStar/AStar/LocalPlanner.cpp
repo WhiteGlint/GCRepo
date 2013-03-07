@@ -10,12 +10,35 @@ void LocalPlanner::move_to_point(){
 	get_current_velocity();
 	get_destination();
 	calculate_new_heading();
-	if (current_heading != new_heading)
+	if (check_heading_difference() != 1)
 		resolve_heading();
 	else
 		resolve_distance();
 
+	// Begin debugging
 	print_output();
+	// End debugging
+}
+
+int LocalPlanner::check_heading_difference(){
+	int ch, nh, sensitivity;
+	sensitivity = 100000;
+	/**************************************************
+	To change the sensitivity of the comparison between
+	headings, adjust the sensitivity.  A greater value
+	of sensitivity will mean that the comparison is
+	valid to more decimal places.  i.e. if the value is
+	set to 1, the comparison will only look at the integer
+	value of the heading.  If the value is 1000, the
+	comparison will look up to three decimal places.
+	*************************************************/
+	ch = current_heading * sensitivity;
+	nh = new_heading * sensitivity;
+
+	if (ch == nh)
+		return 1;
+	else
+		return 0;
 }
 
 void LocalPlanner::get_current_location(){
@@ -124,7 +147,6 @@ void LocalPlanner::resolve_distance(){
 	velocity_out = 5;
 	direction_out = 0;
 }
-
 
 // Debugging functions
 void LocalPlanner::print_output(){
