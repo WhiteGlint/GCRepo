@@ -1,15 +1,30 @@
 #include "Odometry.h"
 #include "GCRobotics/Pose_msg.h"
+#include "GCRobotics/Encoder_msg.h"
 
 
-void Odometry::init(int argc, char **argv);
+void Odometry::init(int argc, char **argv)
 {
 	pub = n.advertise<GCRobotics::Pose_msg>("CurrentPose",100);
 	
 	sub = n.subscribe("EncoderData", 100, &Odometry::odometryCallback, this);
+	
+	wheelCircumference = 16.95; // in centimeters per revolution
+	wheelRadius = 2.699; // in centimeters
+	CPR = 360; // counts per revolution
+	degreesPerCircle = 360;
+	circleCircumference = 88.175081008304729835; // in centimeters... close enough
+	degreesPerCount = (degreesPerCircle * wheelCircumference) / (circleCircumference * CPR); // how far around the circle we've traveled in deg/count
+
+	double x = 0;			
+	double y = 0;
+	
+	double heading = 0;
+
 	return;
 }
-void Odometry::odometryCallback(const GCRobotics::encoder_msg::ConstPtr& msg)
+
+void Odometry::odometryCallback(const GCRobotics::Encoder_msg::ConstPtr& msg)
 {
 	en1 = msg->encoder1;
 	en2 = msg->encoder2;
@@ -59,19 +74,19 @@ void Odometry::processMotion()
 		
 }
 
-double Odometry::moveStraight (EC1, EC2, EC3, EC4) { // Pass in 4 integers
+double Odometry::moveStraight (double EC1, double EC2, double EC3, double EC4) { // Pass in 4 integers
 	long double count = (EC1 + EC2 + EC3 + EC4) / 4; // Average the inputs
 
 	double distanceTraveled = (count * wheelCircumference / CPR); // Kstraight
 	return distanceTraveled;
 }
 
-double Odometry::moveStrafe (EC1, EC2, EC3, EC4) { // Pass in 4 integers
+double Odometry::moveStrafe (double EC1, double EC2, double EC3, double EC4) { // Pass in 4 integers
 	double distanceTraveled = moveStraight(EC1, EC2, EC3, EC4) * sin(45); // Kstrafe = Kstraight * sin(45)
 	return distanceTraveled;
 }
 
-double Odometry::moveRotate (EC1, EC2, EC3, EC4) {
+double Odometry::moveRotate (double EC1, double EC2, double EC3, double EC4) {
 	long double count = (EC1 + EC2 + EC3 + EC4) / 4; // Average the inputs	
 	double degreesTurned = degreesPerCount * count;
 	return degreesTurned;

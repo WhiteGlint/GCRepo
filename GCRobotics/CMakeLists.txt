@@ -29,8 +29,7 @@ rosbuild_genmsg()
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_executable(i2cNode src/i2cNode.cpp)
-target_link_libraries(i2cNode /home/gcr/GCRepo/roboio/Lib/libRBIO.a)
 
+rosbuild_add_executable(odometryNode src/odometryNode.cpp src/Odometry.cpp)
 rosbuild_add_executable(motorControlNode src/motorControlNode.cpp src/motorControl.cpp)
 rosbuild_add_executable(DeadReckoner src/deadReckoning.cpp)
