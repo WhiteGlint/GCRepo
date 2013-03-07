@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#define PI 3.14159265
 using namespace std;
 
 class LocalPlanner
@@ -14,8 +15,18 @@ private:
 	float new_heading;
 	int destination[2];
 	
+	// Published variables
 	int velocity_out;
-	float heading_out;
+	float direction_out;
+	/***********************
+	0 = forward
+	1 = right
+	2 = backward
+	3 = left
+	4 = clockwise
+	5 = counterclockwise
+	6 = stop
+	***********************/
 
 	// Move to Point methods
 	void get_current_location();
@@ -25,7 +36,12 @@ private:
 		int calculate_quadrant();
 		float calculate_theta(int);
 	void resolve_heading();
+		void rotate_clockwise();
+		void rotate_counterclockwise();
 	void resolve_distance();
+
+	// Debugging functions
+	void print_output();
 
 public:
 	LocalPlanner();
