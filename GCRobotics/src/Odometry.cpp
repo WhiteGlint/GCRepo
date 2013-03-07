@@ -1,13 +1,15 @@
 #include "Odometry.h"
-#include "geometry_msgs/String.h"
+#include "GCRobotics/Pose_msg.h"
+
+
 void Odometry::init(int argc, char **argv);
 {
-	pub = n.advertise<geometry_msgs::PoseStamped>("CurrentPose",100);
+	pub = n.advertise<GCRobotics::Pose_msg>("CurrentPose",100);
 	
 	sub = n.subscribe("EncoderData", 100, &Odometry::odometryCallback, this);
 	return;
 }
-void Odometry::odometryCallback(const geometry_msgs::Pose::ConstPtr& msg)
+void Odometry::odometryCallback(const GCRobotics::encoder_msg::ConstPtr& msg)
 {
 	en1 = msg->encoder1;
 	en2 = msg->encoder2;
@@ -20,7 +22,7 @@ void Odometry::odometryCallback(const geometry_msgs::Pose::ConstPtr& msg)
 	direction4 = msg->direction4;		
 	
 	processMotion();
-	
+
 	return;				
 }
 		
@@ -54,10 +56,7 @@ void Odometry::processMotion()
 		x += moveStraight(en1, en2, en3, en4) * cos(heading);
 		y += moveStraight(en1, en2, en3, en4) * sin(heading);
 	}
-	
-	
-	// Publish position data
-	
+		
 }
 
 double Odometry::moveStraight (EC1, EC2, EC3, EC4) { // Pass in 4 integers
