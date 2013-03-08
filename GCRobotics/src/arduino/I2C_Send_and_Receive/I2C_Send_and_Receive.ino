@@ -6,22 +6,26 @@
 #include <Wire.h>
 #include <GCRobotics/Encoder_msg.h>
 #include <GCRobotics/i2cData.h>
-#include <std_msgs/String.h>
+#include <std_msgs/UInt16.h>
+
 
 #include <TimerOne.h>
 
 ros::NodeHandle n;
 //std_msgs::String encoders;
 GCRobotics::Encoder_msg encoders;
+std_msgs::UInt16 voltage;
 ros::Publisher pub("EncoderData", &encoders);
+ros::Publisher diagPub("Diagnostic", &voltage);
 
 void setup(){
   Wire.begin(); // join i2c bus
   n.initNode();
   n.advertise(pub);
+  n.advertise(diagPub);
   
   pinMode(13, OUTPUT);
-  Timer1.initialize(50000); // 50 ms between inetrrupts
+  Timer1.initialize(150000); // 150 ms between inetrrupts
   Timer1.attachInterrupt(Read);
 }
 
@@ -41,6 +45,8 @@ void Read() {
   //encoders.encoder4 = ReadOne (4); // these need to be the right address
   //delay(5);
   pub.publish(&encoders);
+     diagPub.publish(&voltage);
+
   digitalWrite(13,LOW);
 }
 
@@ -59,8 +65,8 @@ int ReadOne(char address) { // pass in the motor you want to read
 }
 
 void loop(){
-   n.spinOnce();   
-
+   n.spinOnce();
+   voltage.data = analogRead(0);
   // get input from Comp via USB
   //Write(address, velocity, dir);
 }
