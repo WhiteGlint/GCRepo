@@ -26,9 +26,10 @@ private:
 		
 public:
 	
-	double x;			
+	double x;
 	double y;
 	double heading;
+	//double velocityDistance, velocityHeading;
 	
 	// Ros things
 	ros::NodeHandle n;
