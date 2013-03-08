@@ -4,6 +4,7 @@
 
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
+#include "GCRobotics/simpleVelocity.h"
 
 
 class motorControl
@@ -66,7 +67,7 @@ public:
 	ros::NodeHandle n;
 	
 	void init(int argc, char **argv);
-	void velocityCallback(const geometry_msgs::Twist::ConstPtr& msg);
+	void velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& msg);
 	
 	// constructor
 	motorControl();

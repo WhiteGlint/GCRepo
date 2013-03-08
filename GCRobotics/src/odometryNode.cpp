@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "Odometry.h"
-
+#include <tf/transform_broadcaster.h>
+#include <tf/transform_datatypes.h>
 using namespace std;
 
 
@@ -10,7 +11,11 @@ int main(int argc, char **argv)
 	Odometry controller;
 	controller.init(argc, argv);
 	GCRobotics::Pose_msg data;
-		
+	tf::TransformBroadcaster br;
+	tf::Transform transform;
+	tf::Quaternion q;
+	
+
 	ros::Rate r(10); // 10 hz
 	while (ros::ok())
 	{
@@ -20,6 +25,12 @@ int main(int argc, char **argv)
 		data.heading = controller.heading;
 
 		controller.pub.publish(data);
+
+  		transform.setOrigin( tf::Vector3(controller.x, controller.y, 0.0) );
+		q.setRPY(0,0,controller.heading);
+  		transform.setRotation(q);
+  		br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "base_link"));
+	
 
 		ros::spinOnce();
 

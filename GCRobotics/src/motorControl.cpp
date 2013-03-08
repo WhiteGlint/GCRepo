@@ -20,42 +20,32 @@ void motorControl::init(int argc, char **argv)
 	return;
 }
 
-void motorControl::velocityCallback(const geometry_msgs::Twist::ConstPtr& msg)
+void motorControl::velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& msg)
 {	
-	if (msg->linear.x !=0)
-	{
-		if (msg->linear.x >0)
-			move_forward(msg->linear.x);
-		else
-			move_backward(msg->linear.x);
-	}
-	if (msg->linear.y !=0)
-	{
-		if (msg->linear.y >0)
-			move_left(msg->linear.y);
-		else
-			move_right(msg->linear.y);
-	}
-
-
-/*	
+	
 	switch (msg->direction)
 	{
-		 case 1:  
+		 case 0:  
 		 	move_forward(msg->speed);
-		 case 2:
-		 	move_backward(msg->speed);
-		 case 3:  
-		 	move_left(msg->speed);
-		 case 4:
+			break;
+		 case 1:
 		 	move_right(msg->speed);
-		 case 5:  
+			break;
+		 case 2:  
+		 	move_backward(msg->speed);
+		 	break;
+		 case 3:
+		 	move_left(msg->speed);
+		 	break;
+		 case 4:  
 		 	rotate_clockwise(msg->speed);
-		 case 6:
+		 	break;
+		 case 5:
 		 	rotate_counterclockwise(msg->speed);
+		 	break;
 	}
 	
-*/
+
 	return;	
 }
 

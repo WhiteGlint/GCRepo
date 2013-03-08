@@ -2,9 +2,6 @@
 #include "GCRobotics/Pose_msg.h"
 #include "GCRobotics/Encoder_msg.h"
 
-void Odometry::() {
-
-}
 
 void Odometry::init(int argc, char **argv)
 {
@@ -19,13 +16,9 @@ void Odometry::init(int argc, char **argv)
 	circleCircumference = 88.175081008304729835; // in centimeters... close enough
 	degreesPerCount = (degreesPerCircle * wheelCircumference) / (circleCircumference * CPR); // how far around the circle we've traveled in deg/count
 
-	double xNew = 0;
-	double xOld = 0;
-	double yNew = 0;
-	double yOld = 0;
-
-	
-	double heading = 0;
+	x = 0;
+	y = 0;
+	heading = 0;
 
 	return;
 }
@@ -108,6 +101,6 @@ double Odometry::moveStrafe (double EC1, double EC2, double EC3, double EC4) { /
 double Odometry::moveRotate (double EC1, double EC2, double EC3, double EC4) {
 	long double count = (EC1 + EC2 + EC3 + EC4) / 4; // Average the inputs	
 	double degreesTurned = degreesPerCount * count;
-	return degreesTurned;
+	return (degreesTurned *3.14159/180);
 }
 
