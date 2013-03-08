@@ -1,34 +1,37 @@
 <launch>
 
-<!-- Handle i2c hardware on RB100 -->
-<node name="i2cNode" pkg="GCRobotics" type="i2cNode" />
-
-<!-- Convert Twist message to i2c messages for i2cNode to send -->
+<!-- Motion Control node - Convert Velocity message to i2c messages for i2cNode to send -->
 <node name="motorControlNode" pkg="GCRobotics" type="motorControlNode" />
 
-<!-- Create Pose based only off of /Velocity topic (dead reckoning) -->
+<!-- Dead Reakoning - Create Pose based only off of /Velocity topic (dead reckoning) -->
 <node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" />
 
-<!-- Kinect pointcloud generation, from freenect package -->
-<include file="$(find freenect_launch)/launch/freenect.launch" />
+<!-- Openni - Kinect pointcloud generation, from openni package -->
+<include file="$(find openni_launch)/launch/openni.launch" />
 
-
+<!-- PUT REAL DATA FOR THIS TRANSFORM!!!!!!!!!!! -->
 <node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0 0 0 0 0 0 /base_link /camera_depth_frame 100" />
 
+<!-- Prep for laser scan - throttling -->
+<node pkg="nodelet" type="nodelet" name="pointcloud_throttle" args="load pointcloud_to_laserscan/CloudThrottle kinect_manager">
+  <param name="max_rate" value="2"/>
+  <remap from="cloud_in" to="/camera/depth/points"/>
+  <remap from="cloud_out" to="cloud_throttled"/>
+</node>
+ 
+<!-- pointcloud to laser scan - fake laser -->
+<node pkg="nodelet" type="nodelet" name="kinect_laser" args="load pointcloud_to_laserscan/CloudToScan kinect_manager">
+  <param name="output_frame_id" value="/camera_depth_frame"/>
+  <remap from="cloud" to="cloud_throttled"/>
+</node>
 
-<!-- openni_manager -->
-  <node pkg="nodelet" type="nodelet" name="kinect_manager" output="screen" respawn="true" args="manager"/>
- 
-  <!-- throttling -->
-  <node pkg="nodelet" type="nodelet" name="pointcloud_throttle" args="load pointcloud_to_laserscan/CloudThrottle kinect_manager">
-    <param name="max_rate" value="2"/>
-    <remap from="cloud_in" to="/camera/depth/points"/>
-    <remap from="cloud_out" to="cloud_throttled"/>
-  </node>
- 
-  <!-- fake laser -->
-  <node pkg="nodelet" type="nodelet" name="kinect_laser" args="load pointcloud_to_laserscan/CloudToScan kinect_manager">
-    <param name="output_frame_id" value="/camera_depth_frame"/>
-    <remap from="cloud" to="cloud_throttled"/>
-  </node>
+<!-- Odometry - Generate position data from encoders -->
+<node name="OdometryNode" pkg="GCRobotics" type="OdometryNode" />
+
+
+<!-- rosserial - take in arduino data -->
+
+
+<!-- GMapping - generate occ grid from laserscan -->
+
 </launch>
