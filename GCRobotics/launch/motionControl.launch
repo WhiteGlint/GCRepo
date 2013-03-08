@@ -26,7 +26,7 @@
 </node>
 
 <!-- Odometry - Generate position data from encoders -->
-<node name="OdometryNode" pkg="GCRobotics" type="OdometryNode" />
+<node name="odometryNode" pkg="GCRobotics" type="odometryNode" />
 
 
 <!-- rosserial - take in arduino data -->
@@ -36,10 +36,10 @@
 
 
 <!-- Global Path Planning -->
-<node name="GlobalPlannerNode" pkg="GCRobotics" type="GlobalPlannerNode" />
+<node name="GlobalPlanner" pkg="GCRobotics" type="GlobalPlanner" />
 	
 <!-- Local Path Planning -->
-<node name="LocalPlannerNode" pkg="GCRobotics" type="LocalPlannerNode" />
+<node name="LocalPlanner" pkg="GCRobotics" type="LocalPlanner" />
 
 
 </launch>
