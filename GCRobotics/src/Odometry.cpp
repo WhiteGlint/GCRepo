@@ -2,6 +2,9 @@
 #include "GCRobotics/Pose_msg.h"
 #include "GCRobotics/Encoder_msg.h"
 
+void Odometry::() {
+
+}
 
 void Odometry::init(int argc, char **argv)
 {
@@ -16,8 +19,11 @@ void Odometry::init(int argc, char **argv)
 	circleCircumference = 88.175081008304729835; // in centimeters... close enough
 	degreesPerCount = (degreesPerCircle * wheelCircumference) / (circleCircumference * CPR); // how far around the circle we've traveled in deg/count
 
-	double x = 0;			
-	double y = 0;
+	double xNew = 0;
+	double xOld = 0;
+	double yNew = 0;
+	double yOld = 0;
+
 	
 	double heading = 0;
 
@@ -40,16 +46,25 @@ void Odometry::odometryCallback(const GCRobotics::Encoder_msg::ConstPtr& msg)
 
 	return;				
 }
+
+/*void Odometry::processVelocity() // only call this once the robot has actually moved (straight or strafe)
+{
+
+}*/
 		
 void Odometry::processMotion()
 {	
 	if(!direction1 && !direction2 && !direction3 && !direction4) // back
 	{
+		//velocityDistance = moveStraight(en1, en2, en3, en4);
+		//velocityHeading = heading + 180;
 		x += moveStraight(en1, en2, en3, en4) * cos(heading+180);
 		y += moveStraight(en1, en2, en3, en4) * sin(heading+180);
 	}
 	else if(!direction1 && !direction2 && direction3 && direction4) // strafe right
 	{
+		//velocityDistance = moveStrafe(en1, en2, en3, en4);
+		//velocityHeading = heading + 270;
 		x += moveStrafe(en1, en2, en3, en4) * cos(heading+270);
 		y += moveStrafe(en1, en2, en3, en4) * sin(heading+270);
 	}
@@ -63,11 +78,15 @@ void Odometry::processMotion()
 	}
 	else if(direction1 && direction2 && !direction3 && !direction4) // strafe left
 	{
+		//velocityDistance = moveStrafe(en1, en2, en3, en4);
+		//velocityHeading = heading + 90;
 		x += moveStrafe(en1, en2, en3, en4) * cos(heading+90);
 		y += moveStrafe(en1, en2, en3, en4) * sin(heading+90);
 	}
 	else if(direction1 && direction2 && direction3 && direction4) // forward
 	{
+		//velocityDistance = moveStraight(en1, en2, en3, en4);
+		//velocityHeading = heading;
 		x += moveStraight(en1, en2, en3, en4) * cos(heading);
 		y += moveStraight(en1, en2, en3, en4) * sin(heading);
 	}
