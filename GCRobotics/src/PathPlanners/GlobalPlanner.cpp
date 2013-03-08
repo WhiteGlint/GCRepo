@@ -4,6 +4,36 @@
 GlobalPlanner::GlobalPlanner(){
 }
 
+//ros code initialization
+void GlobalPlanner::init(int argc, char **argv)
+{
+	pub = n.advertise<GCRobotics::Pose_msg>("NextPose",100);
+	
+	CurrentPoseSub = n.subscribe("CurrentPose", 100, &GlobalPlanner::CurrentPositionCallback, this);
+	GoalPoseSub = n.subscribe("GoalPose", 100, &GlobalPlanner::GoalPositionCallback, this);
+	MapSub = n.subscribe("Map", 100, &GlobalPlanner::MapCallback, this);
+	return;
+}
+
+void GlobalPlanner::CurrentPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+{
+	current_location[0] = msg->y;
+	current_location[1] = msg->x;	
+	return;
+}
+
+void GlobalPlanner::GoalPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+{
+	destination[0] = msg->y;
+	destination[1] = msg->x;
+	return;
+}
+
+void GlobalPlanner::MapCallback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
+{
+	//map = msg->data;
+	return;
+}
 
 // Public methods
 void GlobalPlanner::send_next_step(){
@@ -45,7 +75,7 @@ void GlobalPlanner::populate_all_nodes(){
 	********************************/
 	for (int i = 0; i < 50; i++){
 		for (int j = 0; j < 50; j++){
-			if (map[i][j] < 1){
+			if (map[i][j] < 1){	// set this value as lowest threshold
 				AllNodes[i][j].set_available(0);
 			}
 			else{

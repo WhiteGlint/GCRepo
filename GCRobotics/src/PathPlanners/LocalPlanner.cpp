@@ -1,8 +1,35 @@
 #include "LocalPlanner.h"
+#include "ros/ros.h"
+#include "GCRobotics/simpleVelocity.h"
+#include "GCRobotics/Pose_msg.h"
 
 
 LocalPlanner::LocalPlanner(){
 	initialize_tables();
+}
+
+void LocalPlanner::init(int argc, char **argv)
+{
+	pub = n.advertise<GCRobotics::simpleVelocity>("Velocity",100);
+	
+	CurrentPoseSub = n.subscribe("CurrentPose", 100, &LocalPlanner::CurrentPositionCallback, this);
+	NextPoseSub = n.subscribe("NextPose", 100, &LocalPlanner::NextPositionCallback, this);
+	return;
+}
+
+void LocalPlanner::CurrentPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+{
+	current_location[0] = msg->x;
+	current_location[1] = msg->y;
+	current_heading = msg->heading;	
+	return;
+}
+
+void LocalPlanner::NextPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+{
+	destination[0] = msg->x;
+	destination[1] = msg->y;
+	return;
 }
 
 void LocalPlanner::initialize_tables(){

@@ -3,17 +3,18 @@
 
 #include <iostream>
 #include <fstream>
+#include "ros/ros.h"
 #include "Cell.h"
+#include "GCRobotics/Pose_msg.h"
+#include "nav_msgs/OccupancyGrid.h"
+
 using namespace std;
 
 class GlobalPlanner
 {
 private:
-	int current_location[2];
-	int destination[2];
-	int current_square[2];
-	int map[50][50];
-	int next_step[2];
+	
+
 	Cell AllNodes[50][50];
 
 	// Internal functions
@@ -54,6 +55,23 @@ public:
 
 
 	void halt();
+	
+	// ros things
+	ros::NodeHandle n;
+	ros::Subscriber CurrentPoseSub;
+	ros::Subscriber GoalPoseSub;
+	ros::Subscriber MapSub;
+	ros::Publisher pub;
+	void init(int argc, char **argv);
+	void CurrentPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg);
+	void GoalPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg);
+	void MapCallback(const nav_msgs::OccupancyGrid::ConstPtr& msg);
+	
+	int next_step[2]; // y,x
+	int current_location[2]; // y,x
+	int destination[2]; // y,x
+	int current_square[2];
+	int map[50][50];
 };
 
 #endif
