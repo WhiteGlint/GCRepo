@@ -34,4 +34,12 @@
 
 <!-- GMapping - generate occ grid from laserscan -->
 
+
+<!-- Global Path Planning -->
+<node name="GlobalPlannerNode" pkg="GCRobotics" type="GlobalPlannerNode" />
+	
+<!-- Local Path Planning -->
+<node name="LocalPlannerNode" pkg="GCRobotics" type="LocalPlannerNode" />
+
+
 </launch>
