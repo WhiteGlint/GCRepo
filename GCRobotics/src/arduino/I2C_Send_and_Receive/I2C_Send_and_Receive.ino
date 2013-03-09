@@ -1,7 +1,4 @@
-
 #include <ArduinoHardware.h>
-
-
 #include <ros.h>
 #include <Wire.h>
 #include <GCRobotics/Encoder_msg.h>
