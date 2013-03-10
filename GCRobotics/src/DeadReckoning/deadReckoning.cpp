@@ -3,6 +3,7 @@
 #include "GCRobotics/i2cData.h"
 #include "geometry_msgs/Twist.h"
 #include "geometry_msgs/PoseStamped.h"
+#include "GCRobotics/simpleVelocity.h"
 #include <tf/transform_broadcaster.h>
 
 #include <iostream>
@@ -19,7 +20,7 @@ ros::Publisher pub;
 
 geometry_msgs::PoseStamped msg;
 
-void callback(const geometry_msgs::Twist::ConstPtr&);
+void callback(const GCRobotics::simpleVelocity::ConstPtr&);
 
 int main(int argc, char **argv)
 {
@@ -35,7 +36,7 @@ int main(int argc, char **argv)
 	return 0;
 }
 			
-void callback(const geometry_msgs::Twist::ConstPtr& data)
+void callback(const GCRobotics::simpleVelocity::ConstPtr& data)
 {
 	if(vx1 != 0) // forward x velocity
 	{ 
@@ -48,8 +49,8 @@ void callback(const geometry_msgs::Twist::ConstPtr& data)
 		msg.pose.position.y = msg.pose.position.y + (vy1*(ros::Time::now().toSec()-t1));
 	}
 		
-	vx1 = data->linear.x;
-	vy1 = data->linear.y;
+	//vx1 = data->linear.x;  // FIX HERE!!!!!!!!!!!1
+	//vy1 = data->linear.y;
 	t1 = ros::Time::now().toSec();
 	
 	pub.publish(msg);
