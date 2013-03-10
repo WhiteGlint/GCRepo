@@ -30,10 +30,13 @@
 
 
 <!-- rosserial - take in arduino data -->
-
+<node pkg="rosserial_python" type="serial_node.py" name="rosserial_arduino" output="screen">
+    <param name="~port" value="/dev/ttyACM0" />
+    <param name="~baud" value="57600" />
+</node>
 
 <!-- GMapping - generate occ grid from laserscan -->
-
+<include file="$(find GCRobotics)/launch/gmapping.launch" />
 
 <!-- Global Path Planning -->
 <node name="GlobalPlanner" pkg="GCRobotics" type="GlobalPlanner" />

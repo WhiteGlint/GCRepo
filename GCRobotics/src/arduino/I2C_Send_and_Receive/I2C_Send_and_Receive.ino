@@ -4,33 +4,58 @@
 #include <GCRobotics/Encoder_msg.h>
 #include <GCRobotics/i2cData.h>
 #include <std_msgs/UInt16.h>
-
-
 #include <TimerOne.h>
 
+void i2cCallback( const GCRobotics::i2cData& msg);
+void gpioCallback( const std_msgs::UInt16& msg);
+void Read();
+int ReadOne(char address);
+
 ros::NodeHandle n;
-//std_msgs::String encoders;
+
 GCRobotics::Encoder_msg encoders;
 std_msgs::UInt16 voltage;
-ros::Publisher pub("EncoderData", &encoders);
+ros::Publisher encoderPub("EncoderData", &encoders);
 ros::Publisher diagPub("Diagnostic", &voltage);
+
+ros::Subscriber<GCRobotics::i2cData> i2cSub("i2cSend", &i2cCallback );
+ros::Subscriber<std_msgs::UInt16> gpioSub("gpio", &gpioCallback);
 
 void setup(){
   Wire.begin(); // join i2c bus
+  
   n.initNode();
-  n.advertise(pub);
+  n.advertise(encoderPub);
   n.advertise(diagPub);
+  n.subscribe(i2cSub);
+  n.subscribe(gpioSub);
   
   pinMode(13, OUTPUT);
-  Timer1.initialize(150000); // 150 ms between inetrrupts
+  DDRD = B11111111;
+  Timer1.initialize(200000); // 200 ms between inetrrupts
   Timer1.attachInterrupt(Read);
 }
 
-void WriteOne(char address, char velocity, char dir) {
-  Wire.beginTransmission(address); // transmit to device "address"
-  Wire.write(velocity);            // sends velocity
-  Wire.write(dir);                 // sends direction
-  Wire.endTransmission();          // stop transmitting
+void loop(){
+  n.spinOnce();
+  voltage.data = analogRead(0);
+  diagPub.publish(&voltage);
+
+}
+
+void i2cCallback( const GCRobotics::i2cData& msg)
+{
+  digitalWrite(13,HIGH);
+  Wire.beginTransmission(msg.address); // transmit to device "address"
+  Wire.write(msg.messageType);
+  Wire.write(msg.messageData);
+  Wire.endTransmission();  
+  digitalWrite(13,LOW);
+}
+
+void gpioCallback( const std_msgs::UInt16& msg)
+{
+  PORTD = msg.data;
 }
 
 void Read() {
@@ -41,8 +66,7 @@ void Read() {
   //encoders.encoder3 = ReadOne (3); // these need to be the right address
   //encoders.encoder4 = ReadOne (4); // these need to be the right address
   //delay(5);
-  pub.publish(&encoders);
-     diagPub.publish(&voltage);
+  encoderPub.publish(&encoders);
 
   digitalWrite(13,LOW);
 }
@@ -61,9 +85,3 @@ int ReadOne(char address) { // pass in the motor you want to read
   return encoderCount;
 }
 
-void loop(){
-   n.spinOnce();
-   voltage.data = analogRead(0);
-  // get input from Comp via USB
-  //Write(address, velocity, dir);
-}
