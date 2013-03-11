@@ -6,10 +6,10 @@ import tf
 from std_msgs.msg import String
 from GCRobotics.msg import Pose_msg
 
-mouse1 = file('/dev/input/mouse0')
-mouse2 = file('/dev/input/mouse1')
+mouse1 = file('/dev/input/mouse1')
+mouse2 = file('/dev/input/mouse2')
 
-D = 1.0 # Distance between sensors
+D = 1000.0 # Distance between sensors
 
 def talker():
 	x1=0
@@ -37,15 +37,17 @@ def talker():
 		x2 +=dx2
 		y2 +=dy2
 	
-		msg.x = (x1+x2)/2
-		msg.y = (y1+y2)/2
 		msg.heading = math.atan2((y2-y1),D)
+		msg.x = (((x1+x2)/2))/10
+		msg.y = (((y1+y2)/2))/10
+		
+		
 	
 		pub.publish(msg)
-		br.sendTransform((msg.x, msg.y, 0), tf.transformations.quaternion_from_euler(0, 0, msg.heading), rospy.Time.now(),"Odom","world")
+		br.sendTransform((msg.x*math.cos(msg.heading)-msg.y*math.sin(msg.heading), msg.x*math.sin(msg.heading)+msg.y*math.cos(msg.heading), 0), tf.transformations.quaternion_from_euler(0, 0, msg.heading), rospy.Time.now(),"Odom","world")
 
-	
 if __name__ == '__main__':
+
 	try:
 		talker()
 	except rospy.ROSInterruptException:
