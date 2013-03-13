@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "Odometry");
+	ros::init(argc, argv, "odometryNode");
 	Odometry controller;
 	controller.init(argc, argv);
 	GCRobotics::Pose_msg data;

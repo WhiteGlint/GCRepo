@@ -1,6 +1,7 @@
 #include "Odometry.h"
 #include "GCRobotics/Pose_msg.h"
 #include "GCRobotics/Encoder_msg.h"
+#include <iostream>
 
 
 void Odometry::init(int argc, char **argv)
@@ -57,8 +58,8 @@ void Odometry::processMotion()
 	double Xt = (en1 - en2)*XConversion;
 	double Xb = (en3 - en4)*XConversion;
 	
-	Y = (Yl - Yr)/2;
-	X = (Xt + Xb)/2;
+	Y += (Yl + Yr)/2;
+	X += (Xt - Xb)/2;
 	
 	heading = atan((Yl-Yr)/frameWidth);
 }
