@@ -55,11 +55,11 @@ void Odometry::processMotion()
 	double Yl = (en1 + en3)*YConversion;
 	double Yr = (en2 + en4)*YConversion;
 	
-	double Xt = (en1 - en2)*XConversion;
-	double Xb = (en3 - en4)*XConversion;
+	double Xt = (en1 + en2)*XConversion;
+	double Xb = (en3 + en4)*XConversion;
 	
 	Y += (Yl + Yr)/2;
 	X += (Xt - Xb)/2;
-	
+
 	heading = atan((Yl-Yr)/frameWidth);
 }
