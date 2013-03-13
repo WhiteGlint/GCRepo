@@ -17,7 +17,9 @@ void Odometry::init(int argc, char **argv)
 	degreesPerCount = (degreesPerCircle * wheelCircumference) / (circleCircumference * CPR); // how far around the circle we've traveled in deg/count
 
 	
-	
+	XConversion=1;
+	YConversion =1;
+	frameWidth =10;
 	X = 0;
 	Y = 0;
 	heading = 0;
