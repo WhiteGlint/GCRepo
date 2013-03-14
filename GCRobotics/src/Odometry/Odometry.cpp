@@ -61,5 +61,5 @@ void Odometry::processMotion()
 	Y += (Yl + Yr)/2;
 	X += (Xt - Xb)/2;
 
-	heading = atan((Yl-Yr)/frameWidth);
+	heading += atan((Yl-Yr)/frameWidth);
 }
