@@ -1,8 +1,19 @@
-___awdiv: CODE, 1930 0 118
-_main: CODE, 1797 0 41
-_CalcPulse: CODE, 1880 0 50
-_SetPulse: CODE, 1739 0 28
-_Initialise: CODE, 1721 0 18
-_BeginPWM: CODE, 1767 0 30
-___wmul: CODE, 1838 0 42
-Total: 327
+___awdiv: CODE, 3687 0 118
+___aldiv: CODE, 1790 0 168
+_delay: CODE, 2002 0 41
+_EncUpdate: CODE, 3406 0 29
+_abs: CODE, 3497 0 35
+___ftpack: CODE, 3805 0 125
+_main: CODE, 21 0 791
+___ftadd: CODE, 812 0 326
+_SetPulse: CODE, 3465 0 32
+_Initialise: CODE, 3532 0 39
+_UpdateData: CODE, 1376 0 214
+_isr: CODE, 3571 0 116
+_BeginPWM: CODE, 3435 0 30
+___ftmul: CODE, 1138 0 238
+_BeginEncoder: CODE, 3377 0 11
+___awtoft: CODE, 1958 0 44
+___fttol: CODE, 3930 0 166
+___ftdiv: CODE, 1590 0 200
+Total: 2723

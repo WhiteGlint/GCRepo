@@ -2408,7 +2408,10 @@ extern void _delay(unsigned long);
 # 13 "encodermain.c"
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
 
-# 19
+
+void Initialise();
+
+# 23
 int main()
 {
 
@@ -2429,7 +2432,7 @@ T1CONbits.TMR1ON = 1;
 PORTD = TMR1L;
 }
 
-# 44
+# 48
 return 1;
 }
 

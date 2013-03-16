@@ -6,6 +6,8 @@ __S2 0 0 ABS
 _GIE 5F 0 ABS
 __Hintentry 0 0 CODE
 __Lintentry 0 0 CODE
+_TMR0 1 0 ABS
+_TMR1 E 0 ABS
 _WREN C62 0 ABS
 _main 7E7 0 CODE
 btemp 7E 0 ABS
@@ -30,6 +32,7 @@ __Lfunctab 0 0 CODE
 _EECON1 18C 0 ABS
 _CMCON1 97 0 ABS
 _EECON2 18D 0 ABS
+_OPTION_REG 81 0 ABS
 __Hcommon 0 0 ABS
 __Lcommon 0 0 ABS
 __Heeprom_data 0 0 EEDATA
@@ -101,16 +104,16 @@ cinit FC6 FCD CODE FC6
 dist/default/production\GCR_-_Encoder_Module.X.production.obj
 encodermain.c
 13 2007 0 CONFIG
-22 7E7 0 CODE
-23 7E8 0 CODE
-24 7EC 0 CODE
-27 7F0 0 CODE
-30 7F3 0 CODE
-31 7F6 0 CODE
-35 7F8 0 CODE
-36 7F9 0 CODE
-33 7FC 0 CODE
-45 7FD 0 CODE
-C:\Users\Alan\AppData\Local\Temp\s2r8.
-96 7E3 0 CODE
-97 7E4 0 CODE
+26 7E7 0 CODE
+27 7E8 0 CODE
+28 7EC 0 CODE
+31 7F0 0 CODE
+34 7F3 0 CODE
+35 7F6 0 CODE
+39 7F8 0 CODE
+40 7F9 0 CODE
+37 7FC 0 CODE
+49 7FD 0 CODE
+C:\Users\Alan\AppData\Local\Temp\s4nk.
+102 7E3 0 CODE
+103 7E4 0 CODE

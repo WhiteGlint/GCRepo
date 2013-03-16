@@ -1,131 +1,6 @@
 
 # 1 "primarymain.c"
 
-# 12 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\stdio.h"
-typedef int ptrdiff_t;
-typedef unsigned size_t;
-typedef unsigned short wchar_t;
-
-# 31 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\stdarg.h"
-typedef void * va_list[1];
-
-#pragma inline(__va_start)
-extern void * __va_start(void);
-
-#pragma inline(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 27 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\stdio.h"
-extern int errno;
-
-# 58
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 17 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\conio.h"
-extern int errno;
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern bit kbhit(void);
-
-# 31
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 103 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-# 195
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...);
-extern int sscanf(const char *, const char *, ...);
-extern int vprintf(const char *, va_list);
-extern int vsprintf(char *, const char *, va_list);
-extern int vscanf(const char *, va_list ap);
-extern int vsscanf(const char *, const char *, va_list);
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 27 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\stdlib.h"
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 65
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-# 106
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 122
-extern void abort(void);
-extern void exit(int);
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-# 145
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
 # 95 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h"
 volatile unsigned char INDF @ 0x000;
 
@@ -2418,44 +2293,161 @@ void SetPulse(int length);
 
 void StopPWM();
 
-# 19 "primarymain.c"
+# 17 "enclib.h"
+void BeginEncoder();
+
+
+
+
+void EncUpdate(int *t0, int *t1);
+
+# 18 "I2Clib.h"
+void BeginI2C(char address);
+
+# 24
+void SetVelocity(int *direction, int *speed, int cycles_per_rev_ratio);
+
+
+
+
+void ReturnData(int *t_h, int *t_l, int *c_h, int *c_l);
+
+# 35
+void I2C_ISR_Handler(int *flag);
+
+# 22 "primarymain.c"
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
 
-
+# 47
 void Initialise();
-void CalcPulse(int speed);
+void interrupt isr();
+void UpdateData(int t, int c);
+
 void setDirection(int dir);
+int abs(int a, int b);
+
 
 
 void delay(int length);
+void CalcPulse(int speed);
 
-void interrupt isr();
 
 
-int setSpeed = 0;
+
+int TARGET = 0;
+int DIRECTION = 0;
+int DIR_READ = 0;
+
+
+long TIME = 0;
+long COUNTS = 0;
+
+# 78
+unsigned char FLAG @ 0xAA;
+bit I2C @ ((unsigned)&FLAG*8)+0;
+bit T0 @ ((unsigned)&FLAG*8)+1;
+bit T1 @ ((unsigned)&FLAG*8)+2;
+bit DIR @ ((unsigned)&FLAG*8)+3;
+bit ERR @ ((unsigned)&FLAG*8)+4;
+union {
+struct {
+unsigned I2C : 1;
+unsigned T0 : 1;
+unsigned T1 : 1;
+unsigned DIR : 1;
+unsigned ERR : 1;
+unsigned : 3;
+};
+}F @ 0xAA;
+
 
 
 
 int main()
 {
+
+int time = 0, counts = 0;
+
+
+int *t, *c;
+*t = time;
+*c = counts;
+int currentPWM = 0;
+int v;
+
+int P, I, D, P_old = 0, PID;
+
+TARGET = 30;
+
+
+
 Initialise();
 
-INTCON = 0;
-CMCON1 = 0x02;
-T1CON = 0b00000110;
-
-
-TRISD = 0;
-
-
-TMR1H = 0;
-TMR1L = 0;
-T1CONbits.TMR1ON = 1;
-
-while (1)
+while(1)
 {
-CalcPulse(1);
-PORTD = TMR1;
+if (F.I2C == 1)
+{
+
+
+
+
+TIME = 0;
+COUNTS = 0;
+I = 0;
+D = 0;
+P_old = 0;
+
+
+F.I2C = 0;
+}
+
+if (F.DIR == 1)
+{
+
+EncUpdate(*t, *c);
+UpdateData(time, counts);
+
+
+DIR_READ = RB5;
+
+
+F.DIR = 0;
+}
+
+
+
+while (FLAG == 0)
+{
+
+EncUpdate(&time, &counts);
+UpdateData(time, counts);
+
+
+
+
+v = counts / time;
+P = abs(TARGET, v);
+I = I + (P / TIME);
+D = abs(P, P_old) / time;
+PID = (P * 1.0) + (I * 1.0) + (D * 1.0);
+P_old = P;
+
+
+
+
+if (currentPWM == 0)
+currentPWM = 1;
+if (v == 0)
+v = 1;
+currentPWM = (1.0 * PID * currentPWM) / v;
+
+PORTD = counts;
+
+SetPulse(0);
+
+delay(50);
+}
+
 }
 
 return 1;
@@ -2463,6 +2455,110 @@ return 1;
 
 
 
+
+void Initialise()
+{
+FLAG = 0;
+BeginPWM();
+BeginEncoder();
+
+
+PEIE = 1;
+RBIE = 1;
+T0IE = 1;
+PIE1 = 0b00001001;
+PIE2 = 0;
+
+SSPIF = 0;
+RBIF = 0;
+T0IF = 0;
+TMR1IF = 0;
+
+GIE = 0;
+
+TRISB = 0b11110111;
+PORTBbits.RB3 = 0;
+
+TRISD = 0;
+}
+
+
+
+void interrupt isr()
+{
+if (SSPIF == 1)
+{
+F.I2C = 1;
+SSPIF = 0;
+} else if (T0IF == 1)
+{
+TIME += 256;
+T0IF = 0;
+} else if (TMR1IF == 1)
+{
+COUNTS += 65536;
+TMR1IF = 0;
+} else if (RBIF == 1)
+{
+if (RB5 != DIR_READ)
+{
+F.DIR = 1;
+} else
+{
+TRISD = 0;
+PORTD = 0xE0;
+}
+RBIF = 0;
+} else
+{
+TRISD = 0;
+PORTD = 0xF0;
+}
+}
+
+
+
+
+void UpdateData(int t, int c)
+{
+
+
+
+if (DIR_READ == 0)
+{
+TIME += t;
+COUNTS += c;
+} else
+{
+TIME += t;
+COUNTS -= c;
+}
+}
+
+
+
+void setDirection(int dir)
+{
+if (dir == 0)
+PORTBbits.RB3 = 0;
+else if (dir == 1)
+PORTBbits.RB3 = 1;
+else
+PORTBbits.RB3 = 0;
+}
+
+
+
+int abs(int a, int b)
+{
+int temp;
+temp = a - b;
+if (temp < 0)
+temp = temp * -1;
+return temp;
+}
+
+# 307
 void delay(int length)
 {
 for (int x=0; x < length; x++)
@@ -2474,34 +2570,9 @@ x--;
 
 
 
-void Initialise()
-{
-BeginPWM();
-
-TRISB3 = 0;
-PORTBbits.RB3 = 0;
-
-TRISD = 0;
-PORTD = 0;
-}
-
-
-
-
 void CalcPulse(int speed)
 {
 int pulse = speed*255/10;
 SetPulse(pulse);
-}
-
-# 98
-void setDirection(int dir)
-{
-if (dir == 0)
-PORTBbits.RB3 = 0;
-else if (dir == 1)
-PORTBbits.RB3 = 1;
-else
-PORTBbits.RB3 = 0;
 }
 

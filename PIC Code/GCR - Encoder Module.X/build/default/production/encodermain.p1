@@ -3847,55 +3847,56 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;encodermain.c: 13: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
 [; 	psect config,class=CONFIG,delta=2 ;#
 [; 	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF ;#
-"20
+[; ;encodermain.c: 16: void Initialise();
+"24
 [v _main `(i  1 ef ]
 {
-[; ;encodermain.c: 19: int main()
-[; ;encodermain.c: 20: {
+[; ;encodermain.c: 23: int main()
+[; ;encodermain.c: 24: {
 [e :U _main ]
 [f ]
-[; ;encodermain.c: 22: INTCON = 0;
-"22
+[; ;encodermain.c: 26: INTCON = 0;
+"26
 [e = _INTCON -> -> 0 `i `uc ]
-[; ;encodermain.c: 23: CMCON1 = 0x02;
-"23
-[e = _CMCON1 -> -> 2 `i `uc ]
-[; ;encodermain.c: 24: T1CON = 0b00000110;
-"24
-[e = _T1CON -> -> 6 `i `uc ]
-[; ;encodermain.c: 27: TRISD = 0;
+[; ;encodermain.c: 27: CMCON1 = 0x02;
 "27
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;encodermain.c: 30: TMR1H = 0;
-"30
-[e = _TMR1H -> -> 0 `i `uc ]
-[; ;encodermain.c: 31: TMR1L = 0;
+[e = _CMCON1 -> -> 2 `i `uc ]
+[; ;encodermain.c: 28: T1CON = 0b00000110;
+"28
+[e = _T1CON -> -> 6 `i `uc ]
+[; ;encodermain.c: 31: TRISD = 0;
 "31
-[e = _TMR1L -> -> 0 `i `uc ]
-[; ;encodermain.c: 33: while (1)
-"33
-[e :U 203 ]
-[; ;encodermain.c: 34: {
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;encodermain.c: 34: TMR1H = 0;
 "34
-{
-[; ;encodermain.c: 35: T1CONbits.TMR1ON = 1;
+[e = _TMR1H -> -> 0 `i `uc ]
+[; ;encodermain.c: 35: TMR1L = 0;
 "35
-[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
-[; ;encodermain.c: 36: PORTD = TMR1L;
-"36
-[e = _PORTD _TMR1L ]
+[e = _TMR1L -> -> 0 `i `uc ]
+[; ;encodermain.c: 37: while (1)
 "37
+[e :U 203 ]
+[; ;encodermain.c: 38: {
+"38
+{
+[; ;encodermain.c: 39: T1CONbits.TMR1ON = 1;
+"39
+[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
+[; ;encodermain.c: 40: PORTD = TMR1L;
+"40
+[e = _PORTD _TMR1L ]
+"41
 }
 [e :U 202 ]
-"33
+"37
 [e $U 203  ]
 [e :U 204 ]
-[; ;encodermain.c: 37: }
-[; ;encodermain.c: 44: return 1;
-"44
+[; ;encodermain.c: 41: }
+[; ;encodermain.c: 48: return 1;
+"48
 [e ) -> 1 `i ]
 [e $UE 201  ]
-[; ;encodermain.c: 45: }
-"45
+[; ;encodermain.c: 49: }
+"49
 [e :UE 201 ]
 }

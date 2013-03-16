@@ -11,14 +11,14 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>i2cSlave.c</itemPath>
+      <itemPath>PWMmain.c</itemPath>
+      <itemPath>pwmlib.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>PWMmain.c</itemPath>
-    <itemPath>pwmlib.c</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

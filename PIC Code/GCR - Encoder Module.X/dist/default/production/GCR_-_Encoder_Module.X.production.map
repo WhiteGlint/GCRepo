@@ -16,7 +16,7 @@ Linker command line:
   -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 -AIDLOC=02000h-02003h \
   -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA \
   -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\Alan\AppData\Local\Temp\s2r8.obj \
+  C:\Users\Alan\AppData\Local\Temp\s4nk.obj \
   dist/default/production\GCR_-_Encoder_Module.X.production.obj 
 
 Object code version is 3.10
@@ -26,7 +26,7 @@ Machine type is 16F917
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Alan\AppData\Local\Temp\s2r8.obj
+C:\Users\Alan\AppData\Local\Temp\s4nk.obj
                 end_init                              0        0        3        0       0
 dist/default/production\GCR_-_Encoder_Module.X.production.obj
                 config                             2007     2007        1     400E       0
@@ -128,10 +128,13 @@ _EECON2               (abs)        018D
 _EEDATA               (abs)        010C
 _GIE                  (abs)        005F
 _INTCON               (abs)        000B
+_OPTION_REG           (abs)        0081
 _PORTD                (abs)        0008
 _RD                   (abs)        0C60
 _T1CON                (abs)        0010
 _T1CONbits            (abs)        0010
+_TMR0                 (abs)        0001
+_TMR1                 (abs)        000E
 _TMR1H                (abs)        000F
 _TMR1L                (abs)        000E
 _TRISD                (abs)        0088
