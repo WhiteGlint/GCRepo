@@ -23,32 +23,44 @@ ros::Subscriber<std_msgs::UInt16> gpioSub("gpio", &gpioCallback);
 
 void setup(){
   Wire.begin(); // join i2c bus
-  
   n.initNode();
   n.advertise(encoderPub);
   n.advertise(diagPub);
   n.subscribe(i2cSub);
   n.subscribe(gpioSub);
-  
+
   pinMode(13, OUTPUT);
   DDRD = B11111111;
-  Timer1.initialize(200000); // 200 ms between inetrrupts
-  Timer1.attachInterrupt(Read);
+  //Timer1.initialize(200000); // 200 ms between inetrrupts
+  //Timer1.attachInterrupt(Read);
 }
 
 void loop(){
   n.spinOnce();
-  voltage.data = analogRead(0);
-  diagPub.publish(&voltage);
-
+ // voltage.data = analogRead(0);
+/*
+   Wire.beginTransmission(0x010>>1); // transmit to device "address"
+  Wire.write(0);
+  Wire.write(100);
+  Wire.write(0);
+  Wire.endTransmission();  
+    digitalWrite(13, HIGH);
+  delay(200);
+  digitalWrite(13, LOW);
+  delay(200);
+  */
+ // voltage.data = ReadOne(0x010>>1);
+  //diagPub.publish(&voltage);
 }
 
 void i2cCallback( const GCRobotics::i2cData& msg)
 {
+
   digitalWrite(13,HIGH);
-  Wire.beginTransmission(msg.address); // transmit to device "address"
-  Wire.write(msg.messageType);
-  Wire.write(msg.messageData);
+  Wire.beginTransmission(msg.address>>1); // transmit to device "address"
+  Wire.write(0);
+  Wire.write(msg.messageData*50); // REMEMBER THAT THIS 50 IS HERE, and probably shouldnt be!!!!!!!
+  Wire.write(0);
   Wire.endTransmission();  
   digitalWrite(13,LOW);
 }

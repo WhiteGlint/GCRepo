@@ -3,7 +3,6 @@
 #define CONTROL_LIB
 
 #include "ros/ros.h"
-#include "geometry_msgs/Twist.h"
 #include "GCRobotics/simpleVelocity.h"
 
 

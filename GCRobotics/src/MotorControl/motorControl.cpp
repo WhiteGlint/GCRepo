@@ -6,7 +6,7 @@
 #include "../include/motorControl.h"
 #include "GCRobotics/i2cData.h"
 #include "std_msgs/String.h"
-#include "geometry_msgs/Twist.h"
+#include "GCRobotics/simpleVelocity.h"
 
 #include "ros/ros.h"
 
@@ -356,28 +356,28 @@ void motorControl::send_motor4()
 // Message creation
 void motorControl::create_message1()
 {
-	create_address(0x10);
+	create_address(0x02);
 	create_type(0);
 	create_data(motor1_direction, motor1_speed);
 }
 
 void motorControl::create_message2()
 {
-	create_address(0x12);
+	create_address(0x04);
 	create_type(0);
 	create_data(motor2_direction, motor2_speed);
 }
 
 void motorControl::create_message3()
 {
-	create_address(0x14);
+	create_address(0x06);
 	create_type(0);
 	create_data(motor3_direction, motor3_speed);
 }
 
 void motorControl::create_message4()
 {
-	create_address(0x16);
+	create_address(0x08);
 	create_type(0);
 	create_data(motor4_direction, motor4_speed);
 }
