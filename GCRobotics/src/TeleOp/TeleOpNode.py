@@ -2,13 +2,13 @@
 import roslib; roslib.load_manifest('GCRobotics')
 import rospy
 from std_msgs.msg import String
-from geometry_msgs.msg import Twist
+from GCRobotics.msg import simpleVelocity
 import curses
 
 def talker():
-	pub = rospy.Publisher('Velocity',Twist)
+	pub = rospy.Publisher('Velocity',simpleVelocity)
 	rospy.init_node('talker')
-	msg = Twist()
+	msg = simpleVelocity()
 	flag = 0;
 	while not rospy.is_shutdown():
 	
@@ -16,28 +16,28 @@ def talker():
 
 		i = stdscr.getch()
 		if i == ord('w'):
-			msg.linear.x = 5;
-			msg.linear.y = 0;
+			msg.speed = 5;
+			msg.direction = 0;
 			#pub.publish(msg);	
 		elif i == ord('a'):
-			msg.linear.x = 0;
-			msg.linear.y = -5;
+			msg.speed = 5;
+			msg.direction = 1;
 			#pub.publish(msg);	
 		elif i == ord('s'):
-			msg.linear.x = -5;
-			msg.linear.y = 0;
+			msg.speed = 5;
+			msg.direction = 2;
 			#pub.publish(msg);	
 		elif i == ord('d'):
-			msg.linear.x = 0;
-			msg.linear.y = 5;
+			msg.speed = 5;
+			msg.direction = 3;
 			#pub.publish(msg);	
 		elif i == ord('f'):
-			msg.linear.x = 0;
-			msg.linear.y = 0;
+			msg.speed = 0;
+			msg.direction = 0;
 			#pub.publish(msg);	
 			
 		pub.publish(msg);
-		rospy.sleep(.01);
+		rospy.sleep(.001);
 
 if __name__ == '__main__':
 
