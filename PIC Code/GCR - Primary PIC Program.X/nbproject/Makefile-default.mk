@@ -45,11 +45,11 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/pid.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/I2Clib.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/primarymain.p1.d ${OBJECTDIR}/pwmlib.p1.d ${OBJECTDIR}/pid.p1.d ${OBJECTDIR}/enclib.p1.d ${OBJECTDIR}/I2Clib.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/pid.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/i2cSlave.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/primarymain.p1.d ${OBJECTDIR}/pwmlib.p1.d ${OBJECTDIR}/pid.p1.d ${OBJECTDIR}/enclib.p1.d ${OBJECTDIR}/i2cSlave.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/pid.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/I2Clib.p1
+OBJECTFILES=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/pid.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/i2cSlave.p1
 
 
 CFLAGS=
@@ -110,13 +110,13 @@ ${OBJECTDIR}/enclib.p1: enclib.c  nbproject/Makefile-${CND_CONF}.mk
 	@cat ${OBJECTDIR}/enclib.dep >> ${OBJECTDIR}/enclib.p1.d
 	@${FIXDEPS} "${OBJECTDIR}/enclib.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/I2Clib.p1: I2Clib.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/i2cSlave.p1: i2cSlave.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
-	${MP_CC} --pass1 I2Clib.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@${MP_CC} --scandep  I2Clib.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@echo ${OBJECTDIR}/I2Clib.p1: > ${OBJECTDIR}/I2Clib.p1.d
-	@cat ${OBJECTDIR}/I2Clib.dep >> ${OBJECTDIR}/I2Clib.p1.d
-	@${FIXDEPS} "${OBJECTDIR}/I2Clib.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
+	${MP_CC} --pass1 i2cSlave.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
+	@${MP_CC} --scandep  i2cSlave.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
+	@echo ${OBJECTDIR}/i2cSlave.p1: > ${OBJECTDIR}/i2cSlave.p1.d
+	@cat ${OBJECTDIR}/i2cSlave.dep >> ${OBJECTDIR}/i2cSlave.p1.d
+	@${FIXDEPS} "${OBJECTDIR}/i2cSlave.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
 	
 else
 ${OBJECTDIR}/primarymain.p1: primarymain.c  nbproject/Makefile-${CND_CONF}.mk
@@ -151,13 +151,13 @@ ${OBJECTDIR}/enclib.p1: enclib.c  nbproject/Makefile-${CND_CONF}.mk
 	@cat ${OBJECTDIR}/enclib.dep >> ${OBJECTDIR}/enclib.p1.d
 	@${FIXDEPS} "${OBJECTDIR}/enclib.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/I2Clib.p1: I2Clib.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/i2cSlave.p1: i2cSlave.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
-	${MP_CC} --pass1 I2Clib.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@${MP_CC} --scandep  I2Clib.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@echo ${OBJECTDIR}/I2Clib.p1: > ${OBJECTDIR}/I2Clib.p1.d
-	@cat ${OBJECTDIR}/I2Clib.dep >> ${OBJECTDIR}/I2Clib.p1.d
-	@${FIXDEPS} "${OBJECTDIR}/I2Clib.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
+	${MP_CC} --pass1 i2cSlave.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
+	@${MP_CC} --scandep  i2cSlave.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
+	@echo ${OBJECTDIR}/i2cSlave.p1: > ${OBJECTDIR}/i2cSlave.p1.d
+	@cat ${OBJECTDIR}/i2cSlave.dep >> ${OBJECTDIR}/i2cSlave.p1.d
+	@${FIXDEPS} "${OBJECTDIR}/i2cSlave.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

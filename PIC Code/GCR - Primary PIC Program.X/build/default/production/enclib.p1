@@ -3761,9 +3761,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;enclib.c: 22: {
 [e :U _BeginEncoder ]
 [f ]
-[; ;enclib.c: 28: OPTION_REG = 0b10011000;
+[; ;enclib.c: 28: OPTION_REG = 0b10010111;
 "28
-[e = _OPTION_REG -> -> 152 `i `uc ]
+[e = _OPTION_REG -> -> 151 `i `uc ]
 [; ;enclib.c: 34: CMCON1 = 0x02;
 "34
 [e = _CMCON1 -> -> 2 `i `uc ]

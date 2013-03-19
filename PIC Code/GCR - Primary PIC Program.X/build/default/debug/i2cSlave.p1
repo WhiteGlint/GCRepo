@@ -1,4 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"12 i2cSlave.h
+[v _i2cBufferVal `uc  1 e ]
+"13 i2cSlave.h
+[v _i2cBuffer `uc  -> 3 `i e ]
+"14 i2cSlave.h
+[v _i2cRequest `uc  1 e ]
+"15 i2cSlave.h
+[v _i2cSpeed `uc  1 e ]
+"16 i2cSlave.h
+[v _i2cDirection `uc  1 e ]
+"17 i2cSlave.h
+[v _i2cWriteInt `uc  1 e ]
 "95 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [v _INDF `Vuc  1 e@0 ]
 "99 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
@@ -1877,63 +1889,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _EECON1bits `VS193  1 e@396 ]
 "2475 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [v _EECON2 `Vuc  1 e@397 ]
-"12 i2cSlave.h
-[v _i2cBufferVal `uc  1 e ]
-"13 i2cSlave.h
-[v _i2cBuffer `uc  -> 3 `i e ]
-"14 i2cSlave.h
-[v _i2cRequest `uc  1 e ]
-"15 i2cSlave.h
-[v _i2cSpeed `uc  1 e ]
-"16 i2cSlave.h
-[v _i2cDirection `uc  1 e ]
-"17 i2cSlave.h
-[v _i2cWriteInt `uc  1 e ]
-"65 primarymain.c
-[v _TARGET `i  1 e ]
-"66 primarymain.c
-[v _DIRECTION `i  1 e ]
-"67 primarymain.c
-[v _DIR_READ `i  1 e ]
-"71 primarymain.c
-[v _COUNTS `i  1 e ]
-"81 primarymain.c
-[v _FLAG `uc  1 e@170 ]
-"82 primarymain.c
-[v _I2C `b  1 e@1360 ]
-"83 primarymain.c
-[v _T0 `b  1 e@1361 ]
-"84 primarymain.c
-[v _T1 `b  1 e@1362 ]
-"85 primarymain.c
-[v _DIR `b  1 e@1363 ]
-"86 primarymain.c
-[v _ERR `b  1 e@1364 ]
-[s S197 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
-[n S197 . I2C T0 T1 DIR ERR . ]
-[u S196 `S197 1 ]
-[n S196 . . ]
-"96 primarymain.c
-[v _F `S196  1 e@170 ]
-[p mainexit ]
-"49 primarymain.c
-[v _Initialise `(v  0 ef ]
-"25 pwmlib.h
-[v _SetPulse `(v  0 ef1`i ]
-"53 primarymain.c
-[v _setDirection `(v  0 ef1`i ]
-"22 enclib.h
-[v _EncUpdate `(v  0 ef2`*i`*i ]
-"51 primarymain.c
-[v _UpdateData `(v  0 ef2`i`i ]
-"18 pwmlib.h
-[v _BeginPWM `(v  0 ef ]
-"17 enclib.h
-[v _BeginEncoder `(v  0 ef ]
-"22 i2cSlave.h
-[v _i2cInit `(v  0 ef1`uc ]
-"23 i2cSlave.h
-[v _i2cIsrHandler `(v  0 ef ]
+"24 i2cSlave.h
+[v _i2cSend `(v  0 ef1`uc ]
+"13 i2cSlave.c
+[v _COUNTS `i  0 e ]
+"25 i2cSlave.h
+[v _i2cDataUpdate `(v  0 ef ]
+[; ;i2cSlave.h: 12: char i2cBufferVal;
+[; ;i2cSlave.h: 13: char i2cBuffer[3];
+[; ;i2cSlave.h: 14: char i2cRequest;
+[; ;i2cSlave.h: 15: char i2cSpeed;
+[; ;i2cSlave.h: 16: char i2cDirection;
+[; ;i2cSlave.h: 17: char i2cWriteInt;
+[; ;i2cSlave.h: 22: void i2cInit(char address);
+[; ;i2cSlave.h: 23: void i2cIsrHandler();
+[; ;i2cSlave.h: 24: void i2cSend(char msg);
+[; ;i2cSlave.h: 25: void i2cDataUpdate();
 [; ;pic16f917.h: 95: volatile unsigned char INDF @ 0x000;
 [; ;pic16f917.h: 99: volatile unsigned char TMR0 @ 0x001;
 [; ;pic16f917.h: 103: volatile unsigned char PCL @ 0x002;
@@ -3809,579 +3780,227 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f917.h: 2470: };
 [; ;pic16f917.h: 2471: } EECON1bits @ 0x18C;
 [; ;pic16f917.h: 2475: volatile unsigned char EECON2 @ 0x18D;
-[; ;pic.h: 28: extern void _nop(void);
-[; ;pic.h: 80: extern unsigned int flash_read(unsigned short addr);
-[; ;eeprom_routines.h: 41: extern unsigned char eeprom_write(unsigned char addr, unsigned char value);
-[; ;eeprom_routines.h: 42: extern unsigned char eeprom_read(unsigned char addr);
-[; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, eeprom unsigned char *from, unsigned char size);
-[; ;eeprom_routines.h: 44: extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsigned char size);
-[; ;pic.h: 154: extern void _delay(unsigned long);
-[; ;pwmlib.h: 18: void BeginPWM();
-[; ;pwmlib.h: 21: void SetPR2(int length);
-[; ;pwmlib.h: 25: void SetPulse(int length);
-[; ;pwmlib.h: 28: void StopPWM();
-[; ;enclib.h: 17: void BeginEncoder();
-[; ;enclib.h: 22: void EncUpdate(int *t0, int *t1);
-[; ;i2cSlave.h: 12: char i2cBufferVal;
-[; ;i2cSlave.h: 13: char i2cBuffer[3];
-[; ;i2cSlave.h: 14: char i2cRequest;
-[; ;i2cSlave.h: 15: char i2cSpeed;
-[; ;i2cSlave.h: 16: char i2cDirection;
-[; ;i2cSlave.h: 17: char i2cWriteInt;
-[; ;i2cSlave.h: 22: void i2cInit(char address);
-[; ;i2cSlave.h: 23: void i2cIsrHandler();
-[; ;i2cSlave.h: 24: void i2cSend(char msg);
-[; ;i2cSlave.h: 25: void i2cDataUpdate();
-"23 primarymain.c
-[; ;primarymain.c: 23: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
-[; 	psect config,class=CONFIG,delta=2 ;#
-[; 	dw 0xFFFA & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF ;#
-[; ;primarymain.c: 49: void Initialise();
-[; ;primarymain.c: 50: void interrupt isr();
-[; ;primarymain.c: 51: void UpdateData(int t, int c);
-[; ;primarymain.c: 53: void setDirection(int dir);
-[; ;primarymain.c: 54: int abs(int a, int b);
-[; ;primarymain.c: 58: void delay(int length);
-[; ;primarymain.c: 59: void CalcPulse(int speed);
-[; ;primarymain.c: 60: void delay1sec();
-"65
-[i _TARGET
--> 0 `i
-]
-[; ;primarymain.c: 65: int TARGET = 0;
-"66
-[i _DIRECTION
--> 0 `i
-]
-[; ;primarymain.c: 66: int DIRECTION = 0;
-"67
-[i _DIR_READ
--> 0 `i
-]
-[; ;primarymain.c: 67: int DIR_READ = 0;
-"71
-[i _COUNTS
--> 0 `i
-]
-[; ;primarymain.c: 71: int COUNTS = 0;
-[; ;primarymain.c: 81: unsigned char FLAG @ 0xAA;
-[; ;primarymain.c: 82: bit I2C @ ((unsigned)&FLAG*8)+0;
-[; ;primarymain.c: 83: bit T0 @ ((unsigned)&FLAG*8)+1;
-[; ;primarymain.c: 84: bit T1 @ ((unsigned)&FLAG*8)+2;
-[; ;primarymain.c: 85: bit DIR @ ((unsigned)&FLAG*8)+3;
-[; ;primarymain.c: 86: bit ERR @ ((unsigned)&FLAG*8)+4;
-[; ;primarymain.c: 87: union {
-[; ;primarymain.c: 88: struct {
-[; ;primarymain.c: 89: unsigned I2C : 1;
-[; ;primarymain.c: 90: unsigned T0 : 1;
-[; ;primarymain.c: 91: unsigned T1 : 1;
-[; ;primarymain.c: 92: unsigned DIR : 1;
-[; ;primarymain.c: 93: unsigned ERR : 1;
-[; ;primarymain.c: 94: unsigned : 3;
-[; ;primarymain.c: 95: };
-[; ;primarymain.c: 96: }F @ 0xAA;
-"102
-[v _main `(i  1 ef ]
+[; ;i2cSlave.c: 13: extern int COUNTS;
+"17 i2cSlave.c
+[v _i2cInit `(v  1 ef1`uc ]
 {
-[; ;primarymain.c: 101: int main()
-[; ;primarymain.c: 102: {
-[e :U _main ]
+[; ;i2cSlave.c: 17: void i2cInit(char address){
+[e :U _i2cInit ]
+[v _address `uc  1 r1 ]
 [f ]
-"104
-[v _time `i  1 a ]
-[; ;primarymain.c: 104: int time = 0, counts = 0;
-[e = _time -> 0 `i ]
-[v _counts `i  1 a ]
-[e = _counts -> 0 `i ]
-"107
-[v _t `*i  1 a ]
-[v _c `*i  1 a ]
-[; ;primarymain.c: 107: int *t, *c;
-[; ;primarymain.c: 108: *t = time;
-"108
-[e = *U _t _time ]
-[; ;primarymain.c: 109: *c = counts;
-"109
-[e = *U _c _counts ]
-"110
-[v _currentPWM `i  1 a ]
-[; ;primarymain.c: 110: int currentPWM = 0;
-[e = _currentPWM -> 0 `i ]
-"111
-[v _v `i  1 a ]
-"113
-[v _P `i  1 a ]
-[v _I `i  1 a ]
-[v _D `i  1 a ]
-[v _P_old `i  1 a ]
-[; ;primarymain.c: 111: int v;
-[; ;primarymain.c: 113: int P, I, D, P_old = 0, PID;
-[e = _P_old -> 0 `i ]
-[v _PID `i  1 a ]
-[; ;primarymain.c: 118: Initialise();
-"118
-[e ( _Initialise ..  ]
-[; ;primarymain.c: 120: TARGET = 30;
-"120
-[e = _TARGET -> 30 `i ]
-[; ;primarymain.c: 121: SetPulse(0);
-"121
-[e ( _SetPulse (1 -> 0 `i ]
-[; ;primarymain.c: 123: while(1)
-"123
-[e :U 200 ]
-[; ;primarymain.c: 124: {
-"124
-{
-[; ;primarymain.c: 134: PORTD = TMR1;
-"134
-[e = _PORTD -> _TMR1 `uc ]
-[; ;primarymain.c: 135: SetPulse(i2cSpeed);
-"135
-[e ( _SetPulse (1 -> _i2cSpeed `i ]
-[; ;primarymain.c: 136: DIRECTION = i2cDirection;
-"136
-[e = _DIRECTION -> _i2cDirection `i ]
-[; ;primarymain.c: 137: setDirection(DIRECTION);
-"137
-[e ( _setDirection (1 _DIRECTION ]
-[; ;primarymain.c: 142: if (F.I2C == 1)
-"142
-[e $ ! == -> . . _F 0 0 `i -> 1 `i 202  ]
-[; ;primarymain.c: 143: {
-"143
-{
-[; ;primarymain.c: 149: COUNTS = 0;
-"149
-[e = _COUNTS -> 0 `i ]
-[; ;primarymain.c: 150: I = 0;
-"150
-[e = _I -> 0 `i ]
-[; ;primarymain.c: 151: D = 0;
-"151
-[e = _D -> 0 `i ]
-[; ;primarymain.c: 152: P_old = 0;
-"152
-[e = _P_old -> 0 `i ]
-[; ;primarymain.c: 155: F.I2C = 0;
-"155
-[e = . . _F 0 0 -> -> 0 `i `uc ]
-"156
+[; ;i2cSlave.c: 19: TRISC6 = 1;
+"19
+[e = _TRISC6 -> -> 1 `i `b ]
+[; ;i2cSlave.c: 20: TRISC7 = 1;
+"20
+[e = _TRISC7 -> -> 1 `i `b ]
+[; ;i2cSlave.c: 21: SSPEN = 1;
+"21
+[e = _SSPEN -> -> 1 `i `b ]
+[; ;i2cSlave.c: 22: CKE = 0;
+"22
+[e = _CKE -> -> 0 `i `b ]
+[; ;i2cSlave.c: 23: SMP = 0;
+"23
+[e = _SMP -> -> 0 `i `b ]
+[; ;i2cSlave.c: 24: CKP = 1;
+"24
+[e = _CKP -> -> 1 `i `b ]
+[; ;i2cSlave.c: 26: SSPM0 = 0;
+"26
+[e = _SSPM0 -> -> 0 `i `b ]
+[; ;i2cSlave.c: 27: SSPM1 = 1;
+"27
+[e = _SSPM1 -> -> 1 `i `b ]
+[; ;i2cSlave.c: 28: SSPM2 = 1;
+"28
+[e = _SSPM2 -> -> 1 `i `b ]
+[; ;i2cSlave.c: 29: SSPM3 = 0;
+"29
+[e = _SSPM3 -> -> 0 `i `b ]
+[; ;i2cSlave.c: 33: SSPADD = address;
+"33
+[e = _SSPADD _address ]
+[; ;i2cSlave.c: 39: i2cBufferVal = 0;
+"39
+[e = _i2cBufferVal -> -> 0 `i `uc ]
+[; ;i2cSlave.c: 40: i2cWriteInt = 0;
+"40
+[e = _i2cWriteInt -> -> 0 `i `uc ]
+[; ;i2cSlave.c: 41: }
+"41
+[e :UE 196 ]
 }
-[e :U 202 ]
-[; ;primarymain.c: 156: }
-[; ;primarymain.c: 158: if (F.DIR == 1)
-"158
-[e $ ! == -> . . _F 0 3 `i -> 1 `i 203  ]
-[; ;primarymain.c: 159: {
-"159
+"43
+[v _i2cIsrHandler `(v  1 ef ]
 {
-[; ;primarymain.c: 161: EncUpdate(*t, *c);
-"161
-[e ( _EncUpdate (2 , -> *U _t `*i -> *U _c `*i ]
-[; ;primarymain.c: 162: UpdateData(time, counts);
-"162
-[e ( _UpdateData (2 , _time _counts ]
-[; ;primarymain.c: 165: DIR_READ = RB5;
-"165
-[e = _DIR_READ -> _RB5 `i ]
-[; ;primarymain.c: 168: F.DIR = 0;
-"168
-[e = . . _F 0 3 -> -> 0 `i `uc ]
-"169
-}
-[e :U 203 ]
-"205
-}
-[e :U 199 ]
-"123
-[e $U 200  ]
-[e :U 201 ]
-[; ;primarymain.c: 169: }
-[; ;primarymain.c: 205: }
-[; ;primarymain.c: 207: return 1;
-"207
-[e ) -> 1 `i ]
-[e $UE 198  ]
-[; ;primarymain.c: 208: }
-"208
-[e :UE 198 ]
-}
-"214
-[v _Initialise `(v  1 ef ]
-{
-[; ;primarymain.c: 213: void Initialise()
-[; ;primarymain.c: 214: {
-[e :U _Initialise ]
+[; ;i2cSlave.c: 43: void i2cIsrHandler(){
+[e :U _i2cIsrHandler ]
 [f ]
-[; ;primarymain.c: 215: FLAG = 0;
-"215
-[e = _FLAG -> -> 0 `i `uc ]
-[; ;primarymain.c: 216: BeginPWM();
-"216
-[e ( _BeginPWM ..  ]
-[; ;primarymain.c: 217: BeginEncoder();
-"217
-[e ( _BeginEncoder ..  ]
-[; ;primarymain.c: 218: i2cInit(0x10);
-"218
-[e ( _i2cInit (1 -> -> 16 `i `uc ]
-[; ;primarymain.c: 221: PEIE = 1;
-"221
-[e = _PEIE -> -> 1 `i `b ]
-[; ;primarymain.c: 222: RBIE = 1;
-"222
-[e = _RBIE -> -> 1 `i `b ]
-[; ;primarymain.c: 223: T0IE = 0;
-"223
-[e = _T0IE -> -> 0 `i `b ]
-[; ;primarymain.c: 224: PIE1 = 0b00001001;
-"224
-[e = _PIE1 -> -> 9 `i `uc ]
-[; ;primarymain.c: 225: PIE2 = 0;
-"225
-[e = _PIE2 -> -> 0 `i `uc ]
-[; ;primarymain.c: 227: SSPIF = 0;
-"227
-[e = _SSPIF -> -> 0 `i `b ]
-[; ;primarymain.c: 228: RBIF = 0;
-"228
-[e = _RBIF -> -> 0 `i `b ]
-[; ;primarymain.c: 229: T0IF = 0;
-"229
-[e = _T0IF -> -> 0 `i `b ]
-[; ;primarymain.c: 230: TMR1IF = 0;
-"230
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;primarymain.c: 232: GIE = 1;
-"232
-[e = _GIE -> -> 1 `i `b ]
-[; ;primarymain.c: 234: TRISB = 0b11110111;
-"234
-[e = _TRISB -> -> 247 `i `uc ]
-[; ;primarymain.c: 235: PORTBbits.RB3 = 0;
-"235
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[; ;primarymain.c: 237: TRISD = 0;
-"237
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;primarymain.c: 238: }
-"238
-[e :UE 204 ]
-}
-"50
-[v F2513 `(v  1 tf ]
-"243
-[v _isr `IF2513  1 e ]
-{
-[; ;primarymain.c: 242: void interrupt isr()
-[; ;primarymain.c: 243: {
-[e :U _isr ]
-[f ]
-[; ;primarymain.c: 244: if (SSPIF == 1)
-"244
-[e $ ! == -> _SSPIF `i -> 1 `i 206  ]
-[; ;primarymain.c: 245: {
-"245
-{
-[; ;primarymain.c: 248: i2cIsrHandler();
-"248
-[e ( _i2cIsrHandler ..  ]
-"249
-}
-[; ;primarymain.c: 249: } else if (T0IF == 1)
-[e $U 207  ]
-[e :U 206 ]
-[e $ ! == -> _T0IF `i -> 1 `i 208  ]
-[; ;primarymain.c: 250: {
-"250
-{
-[; ;primarymain.c: 252: T0IF = 0;
-"252
-[e = _T0IF -> -> 0 `i `b ]
-"253
-}
-[; ;primarymain.c: 253: } else if (TMR1IF == 1)
-[e $U 209  ]
-[e :U 208 ]
-[e $ ! == -> _TMR1IF `i -> 1 `i 210  ]
-[; ;primarymain.c: 254: {
-"254
-{
-[; ;primarymain.c: 255: COUNTS += 65536;
-"255
-[e =+ _COUNTS -> -> 65536 `l `i ]
-[; ;primarymain.c: 256: TMR1IF = 0;
-"256
-[e = _TMR1IF -> -> 0 `i `b ]
-"257
-}
-[; ;primarymain.c: 257: } else if (RBIF == 1)
-[e $U 211  ]
-[e :U 210 ]
-[e $ ! == -> _RBIF `i -> 1 `i 212  ]
-[; ;primarymain.c: 258: {
-"258
-{
-[; ;primarymain.c: 259: if (RB5 != DIR_READ)
-"259
-[e $ ! != -> _RB5 `i _DIR_READ 213  ]
-[; ;primarymain.c: 260: {
-"260
-{
-[; ;primarymain.c: 261: F.DIR = 1;
-"261
-[e = . . _F 0 3 -> -> 1 `i `uc ]
-"262
-}
-[; ;primarymain.c: 262: } else
-[e $U 214  ]
-[e :U 213 ]
-[; ;primarymain.c: 263: {
-"263
-{
-[; ;primarymain.c: 264: TRISD = 0;
-"264
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;primarymain.c: 265: PORTD = 0xE0;
-"265
-[e = _PORTD -> -> 224 `i `uc ]
-"266
-}
-[e :U 214 ]
-[; ;primarymain.c: 266: }
-[; ;primarymain.c: 267: RBIF = 0;
-"267
-[e = _RBIF -> -> 0 `i `b ]
-"268
-}
-[; ;primarymain.c: 268: } else
-[e $U 215  ]
-[e :U 212 ]
-[; ;primarymain.c: 269: {
-"269
-{
-[; ;primarymain.c: 270: TRISD = 0;
-"270
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;primarymain.c: 271: PORTD = 0xF0;
-"271
-[e = _PORTD -> -> 240 `i `uc ]
-"272
-}
-[e :U 215 ]
-[e :U 211 ]
-[e :U 209 ]
-[e :U 207 ]
-[; ;primarymain.c: 272: }
-[; ;primarymain.c: 273: }
-"273
-[e :UE 205 ]
-}
-"279
-[v _UpdateData `(v  1 ef2`i`i ]
-{
-[; ;primarymain.c: 278: void UpdateData(int t, int c)
-[; ;primarymain.c: 279: {
-[e :U _UpdateData ]
-[v _t `i  1 r1 ]
-[v _c `i  1 r2 ]
-[f ]
-[; ;primarymain.c: 283: if (DIR_READ == 0)
-"283
-[e $ ! == _DIR_READ -> 0 `i 217  ]
-[; ;primarymain.c: 284: {
-"284
-{
-[; ;primarymain.c: 286: COUNTS += c;
-"286
-[e =+ _COUNTS _c ]
-"287
-}
-[; ;primarymain.c: 287: } else
-[e $U 218  ]
-[e :U 217 ]
-[; ;primarymain.c: 288: {
-"288
-{
-[; ;primarymain.c: 290: COUNTS -= c;
-"290
-[e =- _COUNTS _c ]
-"291
-}
-[e :U 218 ]
-[; ;primarymain.c: 291: }
-[; ;primarymain.c: 292: }
-"292
-[e :UE 216 ]
-}
-"297
-[v _setDirection `(v  1 ef1`i ]
-{
-[; ;primarymain.c: 296: void setDirection(int dir)
-[; ;primarymain.c: 297: {
-[e :U _setDirection ]
-[v _dir `i  1 r1 ]
-[f ]
-[; ;primarymain.c: 298: if (dir == 0)
-"298
-[e $ ! == _dir -> 0 `i 220  ]
-[; ;primarymain.c: 299: PORTBbits.RB3 = 0;
-"299
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[e $U 221  ]
-"300
-[e :U 220 ]
-[; ;primarymain.c: 300: else if (dir == 1)
-[e $ ! == _dir -> 1 `i 222  ]
-[; ;primarymain.c: 301: PORTBbits.RB3 = !0;
-"301
-[e = . . _PORTBbits 0 3 -> -> ! != -> 0 `i -> 0 `i `i `uc ]
-[e $U 223  ]
-"302
-[e :U 222 ]
-[; ;primarymain.c: 302: else
-[; ;primarymain.c: 303: PORTBbits.RB3 = 0;
-"303
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[e :U 223 ]
-[e :U 221 ]
-[; ;primarymain.c: 304: }
-"304
-[e :UE 219 ]
-}
-"309
-[v _abs `(i  1 ef2`i`i ]
-{
-[; ;primarymain.c: 308: int abs(int a, int b)
-[; ;primarymain.c: 309: {
-[e :U _abs ]
-[v _a `i  1 r1 ]
-[v _b `i  1 r2 ]
-[f ]
-"310
-[v _temp `i  1 a ]
-[; ;primarymain.c: 310: int temp;
-[; ;primarymain.c: 311: temp = a - b;
-"311
-[e = _temp - _a _b ]
-[; ;primarymain.c: 312: if (temp < 0)
-"312
-[e $ ! < _temp -> 0 `i 225  ]
-[; ;primarymain.c: 313: temp = temp * -1;
-"313
-[e = _temp * _temp -U -> 1 `i ]
-[e :U 225 ]
-[; ;primarymain.c: 314: return temp;
-"314
-[e ) _temp ]
-[e $UE 224  ]
-[; ;primarymain.c: 315: }
-"315
-[e :UE 224 ]
-}
-"332
-[v _delay `(v  1 ef1`i ]
-{
-[; ;primarymain.c: 331: void delay(int length)
-[; ;primarymain.c: 332: {
-[e :U _delay ]
-[v _length `i  1 r1 ]
-[f ]
-[; ;primarymain.c: 333: for (int x=0; x < length; x++)
-"333
-{
-[v _x `i  1 a ]
-[e = _x -> 0 `i ]
-[e $U 230  ]
-"334
-[e :U 227 ]
-[; ;primarymain.c: 334: {
-{
-[; ;primarymain.c: 335: x++;
-"335
-[e ++ _x -> 1 `i ]
-[; ;primarymain.c: 336: x--;
-"336
-[e -- _x -> 1 `i ]
-"337
-}
-"333
-[e ++ _x -> 1 `i ]
-[e :U 230 ]
-[e $ < _x _length 227  ]
-[e :U 228 ]
-"337
-}
-[; ;primarymain.c: 337: }
-[; ;primarymain.c: 338: }
-"338
-[e :UE 226 ]
-}
-"343
-[v _CalcPulse `(v  1 ef1`i ]
-{
-[; ;primarymain.c: 342: void CalcPulse(int speed)
-[; ;primarymain.c: 343: {
-[e :U _CalcPulse ]
-[v _speed `i  1 r1 ]
-[f ]
-"344
-[v _pulse `i  1 a ]
-[; ;primarymain.c: 344: int pulse = speed*255/10;
-[e = _pulse / * _speed -> 255 `i -> 10 `i ]
-[; ;primarymain.c: 345: SetPulse(pulse);
-"345
-[e ( _SetPulse (1 _pulse ]
-[; ;primarymain.c: 346: }
-"346
-[e :UE 231 ]
-}
-"351
-[v _delay1sec `(v  1 ef ]
-{
-[; ;primarymain.c: 350: void delay1sec()
-[; ;primarymain.c: 351: {
-[e :U _delay1sec ]
-[f ]
-"352
+"51
 [v _i `i  1 a ]
-[; ;primarymain.c: 352: int i = 0;
+[; ;i2cSlave.c: 51: int i = 0;
 [e = _i -> 0 `i ]
-[; ;primarymain.c: 355: for(i; i <= 76; i++)
-"355
-{
-[e _i ]
-[e $ <= _i -> 76 `i 233  ]
-[e $U 234  ]
-"356
-[e :U 233 ]
-[; ;primarymain.c: 356: {
-{
-[; ;primarymain.c: 357: while (T0IF == 0)
-"357
-[e $U 236  ]
-[e :U 237 ]
-[; ;primarymain.c: 358: asm("nop");
-"358
-[; nop ;#
-[e :U 236 ]
-"357
-[e $ == -> _T0IF `i -> 0 `i 237  ]
-[e :U 238 ]
-[; ;primarymain.c: 359: T0IF = 0;
-"359
-[e = _T0IF -> -> 0 `i `b ]
-"360
-}
-"355
+[; ;i2cSlave.c: 52: i++;
+"52
 [e ++ _i -> 1 `i ]
-[e $ <= _i -> 76 `i 233  ]
-[e :U 234 ]
-"360
+[; ;i2cSlave.c: 54: if ((SSPSTAT & 0b00100100) == 0b00100000){
+"54
+[e $ ! == & -> _SSPSTAT `i -> 36 `i -> 32 `i 198  ]
+{
+[; ;i2cSlave.c: 55: i2cBuffer[i2cBufferVal] = SSPBUF;
+"55
+[e = *U + &U _i2cBuffer * -> _i2cBufferVal `ux -> -> # *U &U _i2cBuffer `ui `ux _SSPBUF ]
+[; ;i2cSlave.c: 56: i2cBufferVal++;
+"56
+[e ++ _i2cBufferVal -> -> 1 `i `uc ]
+"58
 }
-[; ;primarymain.c: 360: }
-[; ;primarymain.c: 362: }
-"362
-[e :UE 232 ]
+[; ;i2cSlave.c: 58: } else if ((SSPSTAT & 0b00100100) == 0b0000000){
+[e $U 199  ]
+[e :U 198 ]
+[e $ ! == & -> _SSPSTAT `i -> 36 `i -> 0 `i 200  ]
+{
+[; ;i2cSlave.c: 60: SSPBUF = 0;
+"60
+[e = _SSPBUF -> -> 0 `i `uc ]
+"62
+}
+[; ;i2cSlave.c: 62: } else if ((SSPSTAT & 0b00100100) == 0b0000100){
+[e $U 201  ]
+[e :U 200 ]
+[e $ ! == & -> _SSPSTAT `i -> 36 `i -> 4 `i 202  ]
+{
+"65
+}
+[; ;i2cSlave.c: 65: } else if ((SSPSTAT & 0b00001100) == 0b00001100){
+[e $U 203  ]
+[e :U 202 ]
+[e $ ! == & -> _SSPSTAT `i -> 12 `i -> 12 `i 204  ]
+{
+[; ;i2cSlave.c: 67: if (i2cWriteInt == 0)
+"67
+[e $ ! == -> _i2cWriteInt `i -> 0 `i 205  ]
+[; ;i2cSlave.c: 68: {
+"68
+{
+[; ;i2cSlave.c: 69: i2cWriteInt = 1;
+"69
+[e = _i2cWriteInt -> -> 1 `i `uc ]
+[; ;i2cSlave.c: 70: i2cSend(COUNTS);
+"70
+[e ( _i2cSend (1 -> _COUNTS `uc ]
+"71
+}
+[; ;i2cSlave.c: 71: } else
+[e $U 206  ]
+[e :U 205 ]
+[; ;i2cSlave.c: 72: {
+"72
+{
+[; ;i2cSlave.c: 73: i2cWriteInt = 0;
+"73
+[e = _i2cWriteInt -> -> 0 `i `uc ]
+[; ;i2cSlave.c: 74: i2cSend(COUNTS >> 8);
+"74
+[e ( _i2cSend (1 -> >> _COUNTS -> 8 `i `uc ]
+"75
+}
+[e :U 206 ]
+"85
+}
+[e :U 204 ]
+"88
+[e :U 203 ]
+[e :U 201 ]
+[e :U 199 ]
+[; ;i2cSlave.c: 75: }
+[; ;i2cSlave.c: 85: }
+[; ;i2cSlave.c: 88: SSPIF = 0;
+[e = _SSPIF -> -> 0 `i `b ]
+[; ;i2cSlave.c: 90: if (i2cBufferVal == 3){
+"90
+[e $ ! == -> _i2cBufferVal `i -> 3 `i 207  ]
+{
+[; ;i2cSlave.c: 91: i2cBufferVal = 0;
+"91
+[e = _i2cBufferVal -> -> 0 `i `uc ]
+[; ;i2cSlave.c: 92: i2cDataUpdate();
+"92
+[e ( _i2cDataUpdate ..  ]
+"93
+}
+[e :U 207 ]
+[; ;i2cSlave.c: 93: }
+[; ;i2cSlave.c: 94: return;
+"94
+[e $UE 197  ]
+[; ;i2cSlave.c: 95: }
+"95
+[e :UE 197 ]
+}
+"98
+[v _i2cDataUpdate `(v  1 ef ]
+{
+[; ;i2cSlave.c: 98: void i2cDataUpdate(){
+[e :U _i2cDataUpdate ]
+[f ]
+[; ;i2cSlave.c: 99: switch (i2cBuffer[0]) {
+"99
+[e $U 210  ]
+{
+[; ;i2cSlave.c: 100: default :
+"100
+[e :U 211 ]
+[; ;i2cSlave.c: 101: i2cSpeed = (i2cBuffer[1]);
+"101
+[e = _i2cSpeed *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux ]
+[; ;i2cSlave.c: 102: i2cDirection = (i2cBuffer[2]);
+"102
+[e = _i2cDirection *U + &U _i2cBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux ]
+[; ;i2cSlave.c: 103: break;
+"103
+[e $U 209  ]
+"106
+}
+[; ;i2cSlave.c: 106: }
+[e $U 209  ]
+"99
+[e :U 210 ]
+[e [\ *U + &U _i2cBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux 211 ]
+"106
+[e :U 209 ]
+[; ;i2cSlave.c: 107: return;
+"107
+[e $UE 208  ]
+[; ;i2cSlave.c: 108: }
+"108
+[e :UE 208 ]
+}
+"111
+[v _i2cSend `(v  1 ef1`uc ]
+{
+[; ;i2cSlave.c: 111: void i2cSend(char msg){
+[e :U _i2cSend ]
+[v _msg `uc  1 r1 ]
+[f ]
+"112
+[v _i `i  1 a ]
+[; ;i2cSlave.c: 112: int i = 0;
+[e = _i -> 0 `i ]
+[; ;i2cSlave.c: 113: i++;
+"113
+[e ++ _i -> 1 `i ]
+[; ;i2cSlave.c: 114: SSPBUF = msg;
+"114
+[e = _SSPBUF _msg ]
+[; ;i2cSlave.c: 115: SSPCONbits.CKP = 1;
+"115
+[e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
+[; ;i2cSlave.c: 117: return;
+"117
+[e $UE 212  ]
+[; ;i2cSlave.c: 118: }
+"118
+[e :UE 212 ]
 }

@@ -1,4 +1,4 @@
 build/default/production/primarymain.p1:	\
 	pwmlib.h	\
+	i2cSlave.h	\
 	enclib.h	\
-	I2Clib.h	\

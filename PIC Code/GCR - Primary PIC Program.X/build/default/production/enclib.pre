@@ -2274,7 +2274,7 @@ void BeginEncoder()
 {
 
 # 28
-OPTION_REG = 0b10011000;
+OPTION_REG = 0b10010111;
 
 # 34
 CMCON1 = 0x02;

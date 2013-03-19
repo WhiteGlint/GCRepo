@@ -16,7 +16,7 @@
 #include "pwmlib.h"             // allows for use of PWM module
                                 //  (use double quotes for user-defined)
 #include "enclib.h"             // allows for use of Encoder module
-#include "I2Clib.h"             // allows for use of I2C module
+#include "i2cSlave.h"             // allows for use of I2C module
 
 // Configuration bit settings
 // Use 20MHz external oscillator --> FOSC_HS
@@ -29,10 +29,10 @@ __CONFIG(FOSC_HS & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF &
 //  the main code can be exactly the same, from PIC to PIC for the robot,
 //  depending on the motor position (front left motor, for example), only
 //  these definitions will need to change
-#define I2C_ADDRESS 0x04        // I2C address; unique to specific PIC
+#define I2C_ADDRESS 0x10        // I2C address; unique to specific PIC
 #define FORWARD 0               // PIC specific depending on wheel orientation
-#define BACKWARD 1              // ^
-#define CYCLES_PER_REV 780      // Should be nearly the same for all PICs,
+#define BACKWARD !FORWARD       // ^
+#define CYCLES_PER_REV 650      // Should be nearly the same for all PICs,
                                 //  but again could vary across motors
 #define PWM_FOR_RPS 125         // The PWM pulse width that is the closest
                                 //  for achieving 1 revolution per second
@@ -57,6 +57,7 @@ int abs(int a, int b);          // Returns the absolute value of the difference
 //Test Functions
 void delay(int length);
 void CalcPulse(int speed);
+void delay1sec();
 
 
 
@@ -66,8 +67,8 @@ int DIRECTION = FORWARD;        // target derection passed down from CPU
 int DIR_READ = FORWARD;         // value read from encoder flip-flop used
                                 //  to keep track of current direction
 
-long TIME = 0;                  // time counted from TMR0
-long COUNTS = 0;                // TMR1 encoder counts
+//long TIME = 0;                  // time counted from TMR0 --> **don't need**
+int COUNTS = 0;                // TMR1 encoder counts
 
 /*int TIME_HIGH = 0;              // upper 16 bits of time counted from TMR0
 int TIME_LOW = 0;               // lower 16 bits of time counted from TMR0
@@ -111,21 +112,40 @@ int main()
     //!! may need to convert these from int to float in order to get accuracy
     int P, I, D, P_old = 0, PID;    // PID specific variables
 
-    TARGET = 30;
-//    SetPulse(150);
+
 
     // BEGIN
     Initialise();
 
+    TARGET = 30;
+    SetPulse(0);
+
     while(1)
     {
+        /*/ Some test code
+        TMR1 = 0;
+        SetPulse(75);
+        for (P = 0; P < 10; P++)
+            delay1sec();
+        SetPulse(0);
+        asm("nop");     //*/
+
+        
+        PORTD = TMR1;
+        SetPulse(i2cSpeed);
+        DIRECTION = i2cDirection;
+        setDirection(DIRECTION);
+
+
+
+
         if (F.I2C == 1)
         {
             // Perform some I2C operation
 
 
             // If read, reset Data and PID information
-            TIME = 0;
+//            TIME = 0;
             COUNTS = 0;
             I = 0;
             D = 0;
@@ -149,7 +169,7 @@ int main()
         }
 
 
-        // PID Loop (again assuming counts does not overflow)
+        /*/ PID Loop (again assuming counts does not overflow)
         while (FLAG == 0)
         {
             // Update to most recent encoder time/counts
@@ -180,7 +200,7 @@ int main()
             SetPulse(0);               // Test PWM value
 
             delay(50);
-        } // end PID Loop
+        } // end PID Loop               */
 
     } // end while(1)
 
@@ -195,11 +215,12 @@ void Initialise()
     FLAG = 0;
     BeginPWM();             // initialize PWM associated registers
     BeginEncoder();         // initialize encoder registers (TMR0 & TMR1)
+    i2cInit(I2C_ADDRESS);   // initialize I2C
 
     // Configure interrupts
     PEIE = 1;               // generic peripheral interrupts enabled
     RBIE = 1;               // PORTB interrupts enabled
-    T0IE = 1;               // TMR0 interrupts enabled
+    T0IE = 0;               // TMR0 interrupts enabled      **DISABLED CURRENTLY**
     PIE1 = 0b00001001;      // I2C and TMR1 interrupts enabled
     PIE2 = 0;               // other peripherals disabled
     // Clear flags
@@ -208,7 +229,7 @@ void Initialise()
     T0IF = 0;
     TMR1IF = 0;
     // Enable all interrupts
-    GIE = 0;                        //** CURRENTLY DISABLED for testing
+    GIE = 1;
 
     TRISB = 0b11110111;
     PORTBbits.RB3 = FORWARD;    // default to forward
@@ -222,11 +243,12 @@ void interrupt isr()
 {
     if (SSPIF == 1)             // interrupt is I2C related
     {
-        F.I2C = 1;              // set i2c flag bit
-        SSPIF = 0;
+//        F.I2C = 1;              // set i2c flag bit
+//        SSPIF = 0;
+        i2cIsrHandler();
     } else if (T0IF == 1)       // overflow of time
     {
-        TIME += 256;
+//        TIME += 256;
         T0IF = 0;
     } else if (TMR1IF == 1)     // overflow of counts; probably never happens
     {
@@ -260,11 +282,11 @@ void UpdateData(int t, int c)
     // Add counts if going forward, subtract if going backwards
     if (DIR_READ == FORWARD)
     {
-        TIME += t;
+//        TIME += t;
         COUNTS += c;
     } else
     {
-        TIME += t;
+//        TIME += t;
         COUNTS -= c;
     }
 }
@@ -273,9 +295,9 @@ void UpdateData(int t, int c)
 // Sets the direction according to the direction value
 void setDirection(int dir)
 {
-    if (dir == FORWARD)
+    if (dir == 0)
         PORTBbits.RB3 = FORWARD;        // forward
-    else if (dir == BACKWARD)
+    else if (dir == 1)
         PORTBbits.RB3 = BACKWARD;       // reverse
     else
         PORTBbits.RB3 = FORWARD;        // default to motor forward
@@ -325,6 +347,18 @@ void CalcPulse(int speed)
 
 
 
+void delay1sec()
+{
+    int i = 0;
 
+    // Loop 76 times for 1 second delay (20MHz, 256 prescale)
+    for(i; i <= 76; i++)
+    {
+        while (T0IF == 0)
+            asm("nop");
+        T0IF = 0;
+    }
+
+}
 
 

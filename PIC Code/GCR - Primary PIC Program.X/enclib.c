@@ -22,10 +22,10 @@ void BeginEncoder()
 {
     // Timer0 Setup
     //  Timer0 is controlled by the OPTION_REG (shared by WDT)
-    //  Two main things are:  TMR0 controlled by internal clock
-    //   and Prescaler assigned to WDT (giving TMR0 1:1 prescale)
+    //  Two main things are:  TMR0 controlled by Fosc
+    //   and Prescaler assigned to TMR0 with 1:256 prescale
     //  See page 103 of 917 datasheet for OPTION_REG
-    OPTION_REG = 0b10011000;
+    OPTION_REG = 0b10010111;
 
     // Timer1 Setup
     //  Timer1 is controlled by the T1CON register

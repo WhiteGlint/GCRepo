@@ -1,13 +1,21 @@
 
-# 1 "enclib.c"
+# 1 "i2cSlave.c"
 
-# 17 "enclib.h"
-void BeginEncoder();
+# 12 "i2cSlave.h"
+char i2cBufferVal;
+char i2cBuffer[3];
+char i2cRequest;
+char i2cSpeed;
+char i2cDirection;
+char i2cWriteInt;
 
 
 
 
-void EncUpdate(int *t0, int *t1);
+void i2cInit(char address);
+void i2cIsrHandler();
+void i2cSend(char msg);
+void i2cDataUpdate();
 
 # 95 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h"
 volatile unsigned char INDF @ 0x000;
@@ -2269,26 +2277,95 @@ unsigned EEWR : 1;
 
 volatile unsigned char EECON2 @ 0x18D;
 
-# 21 "enclib.c"
-void BeginEncoder()
+# 13 "i2cSlave.c"
+extern int COUNTS;
+
+
+
+void i2cInit(char address){
+
+TRISC6 = 1;
+TRISC7 = 1;
+SSPEN = 1;
+CKE = 0;
+SMP = 0;
+CKP = 1;
+
+SSPM0 = 0;
+SSPM1 = 1;
+SSPM2 = 1;
+SSPM3 = 0;
+
+
+
+SSPADD = address;
+
+# 39
+i2cBufferVal = 0;
+i2cWriteInt = 0;
+}
+
+void i2cIsrHandler(){
+
+# 51
+int i = 0;
+i++;
+
+if ((SSPSTAT & 0b00100100) == 0b00100000){
+i2cBuffer[i2cBufferVal] = SSPBUF;
+i2cBufferVal++;
+
+} else if ((SSPSTAT & 0b00100100) == 0b0000000){
+
+SSPBUF = 0;
+
+} else if ((SSPSTAT & 0b00100100) == 0b0000100){
+
+
+} else if ((SSPSTAT & 0b00001100) == 0b00001100){
+
+if (i2cWriteInt == 0)
 {
+i2cWriteInt = 1;
+i2cSend(COUNTS);
+} else
+{
+i2cWriteInt = 0;
+i2cSend(COUNTS >> 8);
+}
 
-# 28
-OPTION_REG = 0b10010111;
-
-# 34
-CMCON1 = 0x02;
-T1CON = 0b00000111;
+# 85
 }
 
 
+SSPIF = 0;
 
-
-void EncUpdate(int *t0, int *t1)
-{
-*t1 = TMR1;
-*t0 = TMR0;
-TMR1 = 0;
-TMR0 = 0;
+if (i2cBufferVal == 3){
+i2cBufferVal = 0;
+i2cDataUpdate();
+}
+return;
 }
 
+
+void i2cDataUpdate(){
+switch (i2cBuffer[0]) {
+default :
+i2cSpeed = (i2cBuffer[1]);
+i2cDirection = (i2cBuffer[2]);
+break;
+
+
+}
+return;
+}
+
+
+void i2cSend(char msg){
+int i = 0;
+i++;
+SSPBUF = msg;
+SSPCONbits.CKP = 1;
+
+return;
+}
