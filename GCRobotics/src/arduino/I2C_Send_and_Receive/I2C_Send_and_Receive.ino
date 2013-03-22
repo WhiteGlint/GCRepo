@@ -60,7 +60,7 @@ void i2cCallback( const GCRobotics::i2cData& msg)
   Wire.beginTransmission(msg.address>>1); // transmit to device "address"
   Wire.write(0);
   Wire.write(msg.messageData);
-  Wire.write(0);
+  Wire.write(msg.messageData2);
   Wire.endTransmission();  
   digitalWrite(13,LOW);
 }
