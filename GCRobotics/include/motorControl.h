@@ -21,7 +21,7 @@ private:
 		motor4_direction;
 	int movement_direction, // overal direction of movement
 		travel_speed; // directionless, 0-10
-	unsigned char message[2]; // will hold the literal I^2C message
+	unsigned char message[3]; // will hold the literal I^2C message
 	unsigned char message_address; // will hold the I^2C address
 
 	// top level inside jobs

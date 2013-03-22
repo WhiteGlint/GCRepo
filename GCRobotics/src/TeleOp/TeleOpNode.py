@@ -16,19 +16,19 @@ def talker():
 
 		i = stdscr.getch()
 		if i == ord('w'):
-			msg.speed = 5;
+			msg.speed = 50;
 			msg.direction = 0;
 			#pub.publish(msg);	
 		elif i == ord('a'):
-			msg.speed = 5;
+			msg.speed = 50;
 			msg.direction = 1;
 			#pub.publish(msg);	
 		elif i == ord('s'):
-			msg.speed = 5;
+			msg.speed = 50;
 			msg.direction = 2;
 			#pub.publish(msg);	
 		elif i == ord('d'):
-			msg.speed = 5;
+			msg.speed = 50;
 			msg.direction = 3;
 			#pub.publish(msg);	
 		elif i == ord('f'):

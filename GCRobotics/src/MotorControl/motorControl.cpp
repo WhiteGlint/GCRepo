@@ -396,10 +396,12 @@ void motorControl::create_type(int type)
 
 void motorControl::create_data(int direction, int speed)
 {
+	message[1] = speed;
+	
 	if (direction == 1)
-		message[1] = speed + 128;
+		message[2] = 1;
 	else
-		message[1] = speed;
+		message[2] = 0;
 }
 
 void motorControl::push_i2c()
@@ -413,7 +415,8 @@ void motorControl::push_i2c()
 	data.address = message_address;
 	data.messageType = message[0];
 	data.messageData = message[1];
-
+	data.messageData2 = message[2];
+	
 	pub.publish(data);
 
 //	i2c_Close();
