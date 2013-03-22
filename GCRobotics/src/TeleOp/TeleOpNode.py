@@ -7,7 +7,7 @@ import curses
 
 def talker():
 	pub = rospy.Publisher('Velocity',simpleVelocity)
-	rospy.init_node('talker')
+	rospy.init_node('TeleOp')
 	msg = simpleVelocity()
 	flag = 0;
 	while not rospy.is_shutdown():
