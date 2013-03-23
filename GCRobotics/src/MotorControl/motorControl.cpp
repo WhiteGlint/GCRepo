@@ -192,15 +192,20 @@ void motorControl::goto_speed(int speed, int direction)
 
 	set_direction(direction);
 
-	if (travel_speed > speed) // need to slow down
-		slow_down();
+	//if (travel_speed > speed) // need to slow down
+	//	slow_down();
 	
-	if (travel_speed < speed) // need to speed up
-		speed_up();
-
+	//if (travel_speed < speed) // need to speed up
+	//	speed_up();
+	travel_speed = speed;
+	motor1_speed = speed;
+	motor2_speed = speed;
+	motor3_speed = speed;
+	motor4_speed = speed;
+	
 	send_message();
-	wait();
-	goto_speed(speed, direction); // go again until the speed is reached
+	//wait();
+	//goto_speed(speed, direction); // go again until the speed is reached
 }
 
 // low level controllers
