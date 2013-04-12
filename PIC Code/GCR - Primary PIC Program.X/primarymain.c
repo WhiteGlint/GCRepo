@@ -130,8 +130,8 @@ int main()
         SetPulse(0);
         asm("nop");     //*/
 
-        
-        PORTD = TMR1;
+	PORTD = i2cSpeed;
+        //PORTD = TMR1;
         SetPulse(i2cSpeed);
         DIRECTION = i2cDirection;
         setDirection(DIRECTION);

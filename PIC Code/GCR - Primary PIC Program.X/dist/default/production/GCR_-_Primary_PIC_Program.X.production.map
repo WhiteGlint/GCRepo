@@ -16,7 +16,7 @@ Linker command line:
   -ACONFIG=02007h-02007h -pconfig=CONFIG -DCONFIG=2 -AIDLOC=02000h-02003h \
   -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA \
   -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\Alan\AppData\Local\Temp\s6nk.obj \
+  C:\Users\josh\AppData\Local\Temp\s1ec.obj \
   dist/default/production\GCR_-_Primary_PIC_Program.X.production.obj 
 
 Object code version is 3.10
@@ -26,30 +26,30 @@ Machine type is 16F917
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Alan\AppData\Local\Temp\s6nk.obj
+C:\Users\josh\AppData\Local\Temp\s1ec.obj
                 end_init                             12       12        3        8       0
                 reset_vec                             0        0        3        0       0
 dist/default/production\GCR_-_Primary_PIC_Program.X.production.obj
                 intentry                              4        4        E        8       0
                 config                             2007     2007        1     400E       0
-                text373                             24F      24F       10        8       0
-                text372                             25F      25F        F        8       0
-                text371                              B0       B0       67        8       0
-                text370                             117      117       52        8       0
-                text369                             196      196       20        8       0
-                text368                             224      224       17        8       0
-                text367                             1D4      1D4       1D        8       0
-                text366                             20D      20D       17        8       0
-                text365                             1B6      1B6       1E        8       0
-                text364                             26E      26E        B        8       0
-                text363                             1F1      1F1       1C        8       0
-                text362                             169      169       2D        8       0
+                text373                             257      257       10        8       0
+                text372                             267      267        F        8       0
+                text371                              B0       B0       6F        8       0
+                text370                             11F      11F       52        8       0
+                text369                             19E      19E       20        8       0
+                text368                             22C      22C       17        8       0
+                text367                             1DC      1DC       1D        8       0
+                text366                             215      215       17        8       0
+                text365                             1BE      1BE       1E        8       0
+                text364                             276      276        B        8       0
+                text363                             1F9      1F9       1C        8       0
+                text362                             171      171       2D        8       0
                 maintext                             15       15       9B        8       0
                 cstackBANK0                          20       20       16       20       1
-                cstackCOMMON                         70       70        A       70       1
-                bssBANK0                             36       36        D       20       1
-                bssCOMMON                            7A       7A        3       70       1
-                cinit                               23B      23B       14        8       0
+                cstackCOMMON                         70       70        C       70       1
+                bssBANK0                             36       36        E       20       1
+                bssCOMMON                            7C       7C        2       70       1
+                cinit                               243      243       14        8       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CONST          
@@ -58,20 +58,20 @@ TOTAL           Name                               Link     Load   Length     Sp
                 end_init                             12       12        3         0
                 intentry                              4        4        E         0
                 reset_vec                             0        0        3         0
-                text373                             24F      24F       10         0
-                text372                             25F      25F        F         0
-                text371                              B0       B0       67         0
-                text370                             117      117       52         0
-                text369                             196      196       20         0
-                text368                             224      224       17         0
-                text367                             1D4      1D4       1D         0
-                text366                             20D      20D       17         0
-                text365                             1B6      1B6       1E         0
-                text364                             26E      26E        B         0
-                text363                             1F1      1F1       1C         0
-                text362                             169      169       2D         0
+                text373                             257      257       10         0
+                text372                             267      267        F         0
+                text371                              B0       B0       6F         0
+                text370                             11F      11F       52         0
+                text369                             19E      19E       20         0
+                text368                             22C      22C       17         0
+                text367                             1DC      1DC       1D         0
+                text366                             215      215       17         0
+                text365                             1BE      1BE       1E         0
+                text364                             276      276        B         0
+                text363                             1F9      1F9       1C         0
+                text362                             171      171       2D         0
                 maintext                             15       15       9B         0
-                cinit                               23B      23B       14         0
+                cinit                               243      243       14         0
 
         CLASS   STRCODE        
 
@@ -81,7 +81,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   BANK0          
                 cstackBANK0                          20       20       16         1
-                bssBANK0                             36       36        D         1
+                bssBANK0                             36       36        E         1
 
         CLASS   BANK1          
 
@@ -96,8 +96,8 @@ TOTAL           Name                               Link     Load   Length     Sp
                 abs_s1                               AA       AA        1         1
 
         CLASS   COMMON         
-                cstackCOMMON                         70       70        A         1
-                bssCOMMON                            7A       7A        3         1
+                cstackCOMMON                         70       70        C         1
+                bssCOMMON                            7C       7C        2         1
 
         CLASS   SFR0           
 
@@ -119,30 +119,29 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  000275  000279         8       0  CODE        2
-                cstackBANK0                    000020  000023  000043        20       1  BANK0       1
-                cstackCOMMON                   000070  00000D  00007D        70       1  COMMON      1
+                intentry                       000004  00027D  000281         8       0  CODE        2
+                cstackBANK0                    000020  000024  000044        20       1  BANK0       1
+                cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
                 config                         002007  000001  002008      400E       0  CONFIG      2
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            0043-006F             2D           1
+        BANK0            0044-006F             2C           1
         BANK1            00A0-00A9              A           1
                          00AB-00EF             45
         BANK2            0120-016F             50           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         0279-1FFF            800
-        COMMON           007D-007D              1           1
+                         0281-1FFF            800
         CONST            0003-0003              1           2
-                         0279-1FFF            100
+                         0281-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         0279-1FFF            100
+                         0281-1FFF            100
         IDLOC            2000-2003              4           2
-        RAM              0043-006F             2D           1
+        RAM              0044-006F             2C           1
                          00A0-00A9              A
                          00AB-00EF             45
                          0120-016F             50
@@ -152,9 +151,9 @@ UNUSED ADDRESS RANGES
         SFR2             0100-011F             20           1
         SFR3             0180-018F             10           1
         STRCODE          0003-0003              1           2
-                         0279-1FFF           1D87
+                         0281-1FFF           1D7F
         STRING           0003-0003              1           2
-                         0279-1FFF            100
+                         0281-1FFF            100
 
                                   Symbol Table
 
@@ -168,7 +167,7 @@ UNUSED ADDRESS RANGES
 ??_i2cInit              cstackBANK0  0020
 ??_i2cIsrHandler        cstackCOMMON 0073
 ??_i2cSend              cstackCOMMON 0070
-??_isr                  cstackCOMMON 0074
+??_isr                  cstackCOMMON 0076
 ??_main                 cstackBANK0  0026
 ??_setDirection         cstackBANK0  0022
 ?_BeginEncoder          cstackCOMMON 0070
@@ -190,8 +189,8 @@ SetPulse@length         cstackBANK0  0020
 SetPulse@temp           cstackBANK0  0022
 UpdateData@c            cstackBANK0  0022
 UpdateData@t            cstackBANK0  0020
-_BeginEncoder           text364      026E
-_BeginPWM               text365      01B6
+_BeginEncoder           text364      0276
+_BeginPWM               text365      01BE
 _CARRY                  (abs)        0018
 _CCP2CON                (abs)        001D
 _CCP2CONbits            (abs)        001D
@@ -208,12 +207,12 @@ _EECON1                 (abs)        018C
 _EECON2                 (abs)        018D
 _EEDATA                 (abs)        010C
 _ERR                    (abs)        0554
-_EncUpdate              text367      01D4
+_EncUpdate              text367      01DC
 _F                      (abs)        00AA
 _FLAG                   (abs)        00AA
 _GIE                    (abs)        005F
 _I2C                    (abs)        0550
-_Initialise             text362      0169
+_Initialise             text362      0171
 _OPTION_REG             (abs)        0081
 _PEIE                   (abs)        005E
 _PIE1                   (abs)        008C
@@ -238,7 +237,7 @@ _SSPM1                  (abs)        00A1
 _SSPM2                  (abs)        00A2
 _SSPM3                  (abs)        00A3
 _SSPSTAT                (abs)        0094
-_SetPulse               text369      0196
+_SetPulse               text369      019E
 _T0                     (abs)        0551
 _T0IE                   (abs)        005D
 _T0IF                   (abs)        005A
@@ -256,7 +255,7 @@ _TRISC6                 (abs)        043E
 _TRISC7                 (abs)        043F
 _TRISD                  (abs)        0088
 _TRISDbits              (abs)        0088
-_UpdateData             text366      020D
+_UpdateData             text366      0215
 _WR                     (abs)        0C61
 _WREN                   (abs)        0C62
 __Habs1                 abs1         0000
@@ -320,40 +319,40 @@ __Lsfr3                 sfr3         0000
 __Lstrings              strings      0000
 __Ltext                 text         0000
 __S0                    (abs)        2008
-__S1                    (abs)        007D
+__S1                    (abs)        007E
 __S2                    (abs)        0000
-__end_of_BeginEncoder   text364      0279
-__end_of_BeginPWM       text365      01D4
-__end_of_EncUpdate      text367      01F1
-__end_of_Initialise     text362      0196
-__end_of_SetPulse       text369      01B6
-__end_of_UpdateData     text366      0224
-__end_of_i2cDataUpdate  text372      026E
-__end_of_i2cInit        text363      020D
-__end_of_i2cIsrHandler  text371      0117
-__end_of_i2cSend        text373      025F
-__end_of_isr            text370      0169
+__end_of_BeginEncoder   text364      0281
+__end_of_BeginPWM       text365      01DC
+__end_of_EncUpdate      text367      01F9
+__end_of_Initialise     text362      019E
+__end_of_SetPulse       text369      01BE
+__end_of_UpdateData     text366      022C
+__end_of_i2cDataUpdate  text372      0276
+__end_of_i2cInit        text363      0215
+__end_of_i2cIsrHandler  text371      011F
+__end_of_i2cSend        text373      0267
+__end_of_isr            text370      0171
 __end_of_main           maintext     00B0
-__end_of_setDirection   text368      023B
+__end_of_setDirection   text368      0243
 __pbssBANK0             bssBANK0     0036
-__pbssCOMMON            bssCOMMON    007A
+__pbssCOMMON            bssCOMMON    007C
 __pcstackBANK0          cstackBANK0  0020
 __pcstackCOMMON         cstackCOMMON 0070
 __pintentry             intentry     0004
 __pmaintext             maintext     0015
 __ptext361              text361      0000
-__ptext362              text362      0169
-__ptext363              text363      01F1
-__ptext364              text364      026E
-__ptext365              text365      01B6
-__ptext366              text366      020D
-__ptext367              text367      01D4
-__ptext368              text368      0224
-__ptext369              text369      0196
-__ptext370              text370      0117
+__ptext362              text362      0171
+__ptext363              text363      01F9
+__ptext364              text364      0276
+__ptext365              text365      01BE
+__ptext366              text366      0215
+__ptext367              text367      01DC
+__ptext368              text368      022C
+__ptext369              text369      019E
+__ptext370              text370      011F
 __ptext371              text371      00B0
-__ptext372              text372      025F
-__ptext373              text373      024F
+__ptext372              text372      0267
+__ptext373              text373      0257
 __ptext374              text374      0000
 __size_of_BeginEncoder  (abs)        0000
 __size_of_BeginPWM      (abs)        0000
@@ -370,21 +369,22 @@ __size_of_main          (abs)        0000
 __size_of_setDirection  (abs)        0000
 _exit                   init         0012
 _i2cBuffer              bssBANK0     0036
-_i2cBufferVal           bssCOMMON    007A
-_i2cDataUpdate          text372      025F
+_i2cBufferVal           bssCOMMON    007C
+_i2cDataUpdate          text372      0267
 _i2cDirection           bssBANK0     0041
-_i2cInit                text363      01F1
+_i2cInit                text363      01F9
 _i2cIsrHandler          text371      00B0
-_i2cRequest             bssCOMMON    007B
-_i2cSend                text373      024F
-_i2cSpeed               bssBANK0     0042
-_i2cWriteInt            bssCOMMON    007C
-_isr                    text370      0117
+_i2cRequest             bssBANK0     0042
+_i2cSend                text373      0257
+_i2cSpeed               bssBANK0     0043
+_i2cWriteInt            bssCOMMON    007D
+_isr                    text370      011F
 _main                   maintext     0015
-_setDirection           text368      0224
+_setDirection           text368      022C
 btemp                   (abs)        007E
-end_of_initialization   cinit        024B
+end_of_initialization   cinit        0253
 i2cInit@address         cstackBANK0  0020
+i2cIsrHandler@i         cstackCOMMON 0074
 i2cSend@i               cstackCOMMON 0070
 i2cSend@msg             cstackCOMMON 0072
 interrupt_function      intentry     0004
@@ -406,5 +406,5 @@ reset_vec               reset_vec    0000
 saved_w                 (abs)        007E
 setDirection@dir        cstackBANK0  0020
 start                   init         0012
-start_initialization    cinit        023B
+start_initialization    cinit        0243
 wtemp0                  (abs)        007E
