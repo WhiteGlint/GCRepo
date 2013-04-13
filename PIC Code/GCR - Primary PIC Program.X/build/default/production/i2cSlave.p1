@@ -3837,163 +3837,170 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;i2cSlave.c: 43: void i2cIsrHandler(){
 [e :U _i2cIsrHandler ]
 [f ]
-[; ;i2cSlave.c: 53: if ((SSPSTAT & 0b00100100) == 0b00100000){
-"53
+"51
+[v _i `i  1 a ]
+[; ;i2cSlave.c: 51: int i = 0;
+[e = _i -> 0 `i ]
+[; ;i2cSlave.c: 52: i++;
+"52
+[e ++ _i -> 1 `i ]
+[; ;i2cSlave.c: 54: if ((SSPSTAT & 0b00100100) == 0b00100000){
+"54
 [e $ ! == & -> _SSPSTAT `i -> 36 `i -> 32 `i 198  ]
 {
-[; ;i2cSlave.c: 54: i2cBuffer[i2cBufferVal] = SSPBUF;
-"54
-[e = *U + &U _i2cBuffer * -> _i2cBufferVal `ux -> -> # *U &U _i2cBuffer `ui `ux _SSPBUF ]
-[; ;i2cSlave.c: 55: i2cBufferVal++;
+[; ;i2cSlave.c: 55: i2cBuffer[i2cBufferVal] = SSPBUF;
 "55
+[e = *U + &U _i2cBuffer * -> _i2cBufferVal `ux -> -> # *U &U _i2cBuffer `ui `ux _SSPBUF ]
+[; ;i2cSlave.c: 56: i2cBufferVal++;
+"56
 [e ++ _i2cBufferVal -> -> 1 `i `uc ]
-"57
+"58
 }
-[; ;i2cSlave.c: 57: } else if ((SSPSTAT & 0b00100100) == 0b0000000){
+[; ;i2cSlave.c: 58: } else if ((SSPSTAT & 0b00100100) == 0b0000000){
 [e $U 199  ]
 [e :U 198 ]
 [e $ ! == & -> _SSPSTAT `i -> 36 `i -> 0 `i 200  ]
 {
-[; ;i2cSlave.c: 59: SSPBUF = 0;
-"59
+[; ;i2cSlave.c: 60: SSPBUF = 0;
+"60
 [e = _SSPBUF -> -> 0 `i `uc ]
-"61
+"62
 }
-[; ;i2cSlave.c: 61: } else if ((SSPSTAT & 0b00100100) == 0b0000100){
+[; ;i2cSlave.c: 62: } else if ((SSPSTAT & 0b00100100) == 0b0000100){
 [e $U 201  ]
 [e :U 200 ]
 [e $ ! == & -> _SSPSTAT `i -> 36 `i -> 4 `i 202  ]
 {
-"64
+"65
 }
-[; ;i2cSlave.c: 64: } else if ((SSPSTAT & 0b00001100) == 0b0001100){
+[; ;i2cSlave.c: 65: } else if ((SSPSTAT & 0b00001100) == 0b00001100){
 [e $U 203  ]
 [e :U 202 ]
 [e $ ! == & -> _SSPSTAT `i -> 12 `i -> 12 `i 204  ]
 {
-[; ;i2cSlave.c: 66: if (i2cWriteInt == 0)
-"66
-[e $ ! == -> _i2cWriteInt `i -> 0 `i 205  ]
-[; ;i2cSlave.c: 67: {
+[; ;i2cSlave.c: 67: if (i2cWriteInt == 0)
 "67
-{
-[; ;i2cSlave.c: 68: i2cWriteInt = 1;
+[e $ ! == -> _i2cWriteInt `i -> 0 `i 205  ]
+[; ;i2cSlave.c: 68: {
 "68
-[e = _i2cWriteInt -> -> 1 `i `uc ]
-[; ;i2cSlave.c: 69: i2cSend(COUNTS);
+{
+[; ;i2cSlave.c: 69: i2cWriteInt = 1;
 "69
-[e ( _i2cSend (1 -> _COUNTS `uc ]
+[e = _i2cWriteInt -> -> 1 `i `uc ]
+[; ;i2cSlave.c: 70: i2cSend(COUNTS);
 "70
+[e ( _i2cSend (1 -> _COUNTS `uc ]
+"71
 }
-[; ;i2cSlave.c: 70: } else
+[; ;i2cSlave.c: 71: } else
 [e $U 206  ]
 [e :U 205 ]
-[; ;i2cSlave.c: 71: {
-"71
-{
-[; ;i2cSlave.c: 72: i2cWriteInt = 0;
+[; ;i2cSlave.c: 72: {
 "72
-[e = _i2cWriteInt -> -> 0 `i `uc ]
-[; ;i2cSlave.c: 73: i2cSend(COUNTS >> 8);
+{
+[; ;i2cSlave.c: 73: i2cWriteInt = 0;
 "73
-[e ( _i2cSend (1 -> >> _COUNTS -> 8 `i `uc ]
+[e = _i2cWriteInt -> -> 0 `i `uc ]
+[; ;i2cSlave.c: 74: i2cSend(COUNTS >> 8);
 "74
+[e ( _i2cSend (1 -> >> _COUNTS -> 8 `i `uc ]
+"75
 }
 [e :U 206 ]
-"84
+"85
 }
 [e :U 204 ]
-"87
+"88
 [e :U 203 ]
 [e :U 201 ]
 [e :U 199 ]
-[; ;i2cSlave.c: 74: }
-[; ;i2cSlave.c: 84: }
-[; ;i2cSlave.c: 87: SSPIF = 0;
+[; ;i2cSlave.c: 75: }
+[; ;i2cSlave.c: 85: }
+[; ;i2cSlave.c: 88: SSPIF = 0;
 [e = _SSPIF -> -> 0 `i `b ]
-[; ;i2cSlave.c: 89: if (i2cBufferVal == 3){
-"89
+[; ;i2cSlave.c: 90: if (i2cBufferVal == 3){
+"90
 [e $ ! == -> _i2cBufferVal `i -> 3 `i 207  ]
 {
-[; ;i2cSlave.c: 90: i2cBufferVal = 0;
-"90
-[e = _i2cBufferVal -> -> 0 `i `uc ]
-[; ;i2cSlave.c: 91: i2cDataUpdate();
+[; ;i2cSlave.c: 91: i2cBufferVal = 0;
 "91
-[e ( _i2cDataUpdate ..  ]
+[e = _i2cBufferVal -> -> 0 `i `uc ]
+[; ;i2cSlave.c: 92: i2cDataUpdate();
 "92
+[e ( _i2cDataUpdate ..  ]
+"93
 }
 [e :U 207 ]
-[; ;i2cSlave.c: 92: }
-[; ;i2cSlave.c: 93: return;
-"93
-[e $UE 197  ]
-[; ;i2cSlave.c: 94: }
+[; ;i2cSlave.c: 93: }
+[; ;i2cSlave.c: 94: return;
 "94
+[e $UE 197  ]
+[; ;i2cSlave.c: 95: }
+"95
 [e :UE 197 ]
 }
-"97
+"98
 [v _i2cDataUpdate `(v  1 ef ]
 {
-[; ;i2cSlave.c: 97: void i2cDataUpdate(){
+[; ;i2cSlave.c: 98: void i2cDataUpdate(){
 [e :U _i2cDataUpdate ]
 [f ]
-[; ;i2cSlave.c: 98: switch (i2cBuffer[0]) {
-"98
+[; ;i2cSlave.c: 99: switch (i2cBuffer[0]) {
+"99
 [e $U 210  ]
 {
-[; ;i2cSlave.c: 99: default :
-"99
-[e :U 211 ]
-[; ;i2cSlave.c: 100: i2cSpeed = (i2cBuffer[1]);
+[; ;i2cSlave.c: 100: default :
 "100
-[e = _i2cSpeed *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux ]
-[; ;i2cSlave.c: 101: i2cDirection = (i2cBuffer[2]);
+[e :U 211 ]
+[; ;i2cSlave.c: 101: i2cSpeed = (i2cBuffer[1]);
 "101
-[e = _i2cDirection *U + &U _i2cBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux ]
-[; ;i2cSlave.c: 102: break;
+[e = _i2cSpeed *U + &U _i2cBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux ]
+[; ;i2cSlave.c: 102: i2cDirection = (i2cBuffer[2]);
 "102
+[e = _i2cDirection *U + &U _i2cBuffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux ]
+[; ;i2cSlave.c: 103: break;
+"103
 [e $U 209  ]
-"105
+"106
 }
-[; ;i2cSlave.c: 105: }
+[; ;i2cSlave.c: 106: }
 [e $U 209  ]
-"98
+"99
 [e :U 210 ]
 [e [\ *U + &U _i2cBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2cBuffer `ui `ux 211 ]
-"105
-[e :U 209 ]
-[; ;i2cSlave.c: 106: return;
 "106
-[e $UE 208  ]
-[; ;i2cSlave.c: 107: }
+[e :U 209 ]
+[; ;i2cSlave.c: 107: return;
 "107
+[e $UE 208  ]
+[; ;i2cSlave.c: 108: }
+"108
 [e :UE 208 ]
 }
-"110
+"111
 [v _i2cSend `(v  1 ef1`uc ]
 {
-[; ;i2cSlave.c: 110: void i2cSend(char msg){
+[; ;i2cSlave.c: 111: void i2cSend(char msg){
 [e :U _i2cSend ]
 [v _msg `uc  1 r1 ]
 [f ]
-"111
-[v _i `i  1 a ]
-[; ;i2cSlave.c: 111: int i = 0;
-[e = _i -> 0 `i ]
-[; ;i2cSlave.c: 112: i++;
 "112
-[e ++ _i -> 1 `i ]
-[; ;i2cSlave.c: 113: SSPBUF = msg;
+[v _i `i  1 a ]
+[; ;i2cSlave.c: 112: int i = 0;
+[e = _i -> 0 `i ]
+[; ;i2cSlave.c: 113: i++;
 "113
-[e = _SSPBUF _msg ]
-[; ;i2cSlave.c: 114: SSPCONbits.CKP = 1;
+[e ++ _i -> 1 `i ]
+[; ;i2cSlave.c: 114: SSPBUF = msg;
 "114
+[e = _SSPBUF _msg ]
+[; ;i2cSlave.c: 115: SSPCONbits.CKP = 1;
+"115
 [e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
-[; ;i2cSlave.c: 116: return;
-"116
-[e $UE 212  ]
-[; ;i2cSlave.c: 117: }
+[; ;i2cSlave.c: 117: return;
 "117
+[e $UE 212  ]
+[; ;i2cSlave.c: 118: }
+"118
 [e :UE 212 ]
 }

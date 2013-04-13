@@ -2307,7 +2307,10 @@ i2cWriteInt = 0;
 
 void i2cIsrHandler(){
 
-# 53
+# 51
+int i = 0;
+i++;
+
 if ((SSPSTAT & 0b00100100) == 0b00100000){
 i2cBuffer[i2cBufferVal] = SSPBUF;
 i2cBufferVal++;
@@ -2319,7 +2322,7 @@ SSPBUF = 0;
 } else if ((SSPSTAT & 0b00100100) == 0b0000100){
 
 
-} else if ((SSPSTAT & 0b00001100) == 0b0001100){
+} else if ((SSPSTAT & 0b00001100) == 0b00001100){
 
 if (i2cWriteInt == 0)
 {
@@ -2331,7 +2334,7 @@ i2cWriteInt = 0;
 i2cSend(COUNTS >> 8);
 }
 
-# 84
+# 85
 }
 
 

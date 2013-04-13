@@ -3933,9 +3933,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 124: {
 "124
 {
-[; ;primarymain.c: 134: PORTD = TMR1;
-"134
-[e = _PORTD -> _TMR1 `uc ]
+[; ;primarymain.c: 133: PORTD = i2cSpeed;
+"133
+[e = _PORTD _i2cSpeed ]
 [; ;primarymain.c: 135: SetPulse(i2cSpeed);
 "135
 [e ( _SetPulse (1 -> _i2cSpeed `i ]

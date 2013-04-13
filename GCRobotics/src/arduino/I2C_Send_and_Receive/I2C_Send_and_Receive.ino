@@ -31,8 +31,8 @@ void setup(){
 
   pinMode(13, OUTPUT);
   DDRD = B11111111;
-  //Timer1.initialize(200000); // 200 ms between inetrrupts
-  //Timer1.attachInterrupt(Read);
+  Timer1.initialize(200000); // 200 ms between interrupts
+  Timer1.attachInterrupt(Read);
 }
 
 void loop(){
@@ -73,10 +73,10 @@ void gpioCallback( const std_msgs::UInt16& msg)
 void Read() {
   digitalWrite(13,HIGH);
   int EC1, EC2, EC3, EC4; // these should probably be global
-  //encoders.encoder1 = ReadOne (1); // these need to be the right address
-  //encoders.encoder2 = ReadOne (2); // these need to be the right address
-  //encoders.encoder3 = ReadOne (3); // these need to be the right address
-  //encoders.encoder4 = ReadOne (4); // these need to be the right address
+  encoders.encoder1 = ReadOne (10); // these need to be the right address
+  encoders.encoder2 = ReadOne (12); // these need to be the right address
+  encoders.encoder3 = ReadOne (14); // these need to be the right address
+  encoders.encoder4 = ReadOne (16); // these need to be the right address
   //delay(5);
   encoderPub.publish(&encoders);
 
@@ -85,12 +85,12 @@ void Read() {
 
 int ReadOne(char address) { // pass in the motor you want to read
   int encoderCount = 0;
-  Wire.requestFrom(address, 2);    // request 6 bytes from slave device #2
+  Wire.requestFrom(address>>1, 2);    // request 2 bytes from address
 
   while(Wire.available())   // slave may send less than requested
   { 
     char c = Wire.read();   // receive a byte as character
-    encoderCount<<8;        // shifts lower byte to upper byte
+    //encoderCount<<8;        // shifts lower byte to upper byte
     encoderCount += c;      //adds in the new lower byte
   }
   

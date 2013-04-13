@@ -2391,8 +2391,9 @@ SetPulse(0);
 while(1)
 {
 
-# 134
-PORTD = TMR1;
+# 133
+PORTD = i2cSpeed;
+
 SetPulse(i2cSpeed);
 DIRECTION = i2cDirection;
 setDirection(DIRECTION);

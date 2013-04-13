@@ -4349,9 +4349,9 @@
 [v _i2cInit `(v  1 e 0 0 ]
 "43
 [v _i2cIsrHandler `(v  1 e 0 0 ]
-"98
+"104
 [v _i2cDataUpdate `(v  1 e 0 0 ]
-"111
+"117
 [v _i2cSend `(v  1 e 0 0 ]
 "102 primarymain.c
 [v _main `(i  1 e 2 0 ]
@@ -5978,21 +5978,18 @@
 [v _i2cIsrHandler `(v  1 e 0 0 ]
 {
 "51
-[v i2cIsrHandler@i `i  1 a 2 4 ]
-"95
+[v i2cIsrHandler@i `i  1 a 2 2 ]
+"101
 } 0
-"98
+"104
 [v _i2cDataUpdate `(v  1 e 0 0 ]
 {
-"108
+"114
 } 0
-"111
+"117
 [v _i2cSend `(v  1 e 0 0 ]
 {
 [v i2cSend@msg `uc  1 a 1 wreg ]
-"112
-[v i2cSend@i `i  1 a 2 0 ]
-"111
 [v i2cSend@msg `uc  1 a 1 wreg ]
-"118
+"125
 } 0

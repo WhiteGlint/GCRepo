@@ -61,9 +61,11 @@ void i2cIsrHandler(){
 
     } else if ((SSPSTAT & 0b00100100) == 0b0000100){ // D_A low,R_W high, read w/ addr in buffer
         // Again shoulnt happen, just here in case we ever need it.
-
+	//SSPBUF = 20;
+	i2cSend(i2cSpeed*2);
+	
     } else if ((SSPSTAT & 0b00001100) == 0b00001100){ // D_A high,R_W high, read w/ data in buffer
-
+	/*
         if (i2cWriteInt == 0)
         {
             i2cWriteInt = 1;
@@ -73,15 +75,19 @@ void i2cIsrHandler(){
             i2cWriteInt = 0;
             i2cSend(COUNTS >> 8);
         }
-
-        /*/ Old Code
+	*/
+       
         i2cRequest = SSPBUF;
 
         if (i2cRequest == 1){ // requesting velocity       // SETUP THIS STUFF
-            i2cSend(0x00);
+            i2cSend(20);
         } else if (i2cRequest == 2){ // requesting errors
-            i2cSend(0x00);
-        } // */
+            i2cSend(20);
+        }
+	else
+	{
+	    i2cSend(20);
+	}
     }
         
 
@@ -109,9 +115,10 @@ void i2cDataUpdate(){
 
 // See Data Sheet page 208 for Slave Send instructions
 void i2cSend(char msg){
-    int i = 0;
-    i++;
+  //  int i = 0; Does this do anything??
+  //  i++;
     SSPBUF = msg;
+    SSPCONbits.CKP = 0;
     SSPCONbits.CKP = 1;
 
     return;
