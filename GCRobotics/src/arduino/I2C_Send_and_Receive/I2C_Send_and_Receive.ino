@@ -37,7 +37,7 @@ void setup(){
 
 void loop(){
   n.spinOnce();
- // voltage.data = analogRead(0);
+  voltage.data = analogRead(0);
 /*
    Wire.beginTransmission(0x010>>1); // transmit to device "address"
   Wire.write(0);
@@ -50,7 +50,7 @@ void loop(){
   delay(200);
   */
  // voltage.data = ReadOne(0x010>>1);
-  //diagPub.publish(&voltage);
+  diagPub.publish(&voltage);
 }
 
 void i2cCallback( const GCRobotics::i2cData& msg)
