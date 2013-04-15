@@ -45,11 +45,11 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/pid.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/i2cSlave.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/primarymain.p1.d ${OBJECTDIR}/pwmlib.p1.d ${OBJECTDIR}/pid.p1.d ${OBJECTDIR}/enclib.p1.d ${OBJECTDIR}/i2cSlave.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/i2cSlave.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/primarymain.p1.d ${OBJECTDIR}/pwmlib.p1.d ${OBJECTDIR}/enclib.p1.d ${OBJECTDIR}/i2cSlave.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/pid.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/i2cSlave.p1
+OBJECTFILES=${OBJECTDIR}/primarymain.p1 ${OBJECTDIR}/pwmlib.p1 ${OBJECTDIR}/enclib.p1 ${OBJECTDIR}/i2cSlave.p1
 
 
 CFLAGS=
@@ -94,14 +94,6 @@ ${OBJECTDIR}/pwmlib.p1: pwmlib.c  nbproject/Makefile-${CND_CONF}.mk
 	@cat ${OBJECTDIR}/pwmlib.dep >> ${OBJECTDIR}/pwmlib.p1.d
 	@${FIXDEPS} "${OBJECTDIR}/pwmlib.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/pid.p1: pid.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	${MP_CC} --pass1 pid.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@${MP_CC} --scandep  pid.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@echo ${OBJECTDIR}/pid.p1: > ${OBJECTDIR}/pid.p1.d
-	@cat ${OBJECTDIR}/pid.dep >> ${OBJECTDIR}/pid.p1.d
-	@${FIXDEPS} "${OBJECTDIR}/pid.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/enclib.p1: enclib.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
 	${MP_CC} --pass1 enclib.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9 -D__DEBUG --debugger=pickit3  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
@@ -134,14 +126,6 @@ ${OBJECTDIR}/pwmlib.p1: pwmlib.c  nbproject/Makefile-${CND_CONF}.mk
 	@echo ${OBJECTDIR}/pwmlib.p1: > ${OBJECTDIR}/pwmlib.p1.d
 	@cat ${OBJECTDIR}/pwmlib.dep >> ${OBJECTDIR}/pwmlib.p1.d
 	@${FIXDEPS} "${OBJECTDIR}/pwmlib.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/pid.p1: pid.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	${MP_CC} --pass1 pid.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --summary=default,-psect,-class,+mem,-hex --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@${MP_CC} --scandep  pid.c $(MP_EXTRA_CC_PRE) -q --chip=$(MP_PROCESSOR_OPTION) -P  --outdir="${OBJECTDIR}" -N31 --warn=0 --runtime=default,+clear,+init,-keep,+osccal,-resetbits,-download,-stackcall,+clib --opt=default,+asm,-asmfile,-speed,+space,-debug,9  --double=24 --float=24 --addrqual=ignore --mode=lite -g --asmlist "--errformat=%%f:%%l: error: %%s" "--msgformat=%%f:%%l: advisory: %%s" "--warnformat=%%f:%%l warning: %%s"
-	@echo ${OBJECTDIR}/pid.p1: > ${OBJECTDIR}/pid.p1.d
-	@cat ${OBJECTDIR}/pid.dep >> ${OBJECTDIR}/pid.p1.d
-	@${FIXDEPS} "${OBJECTDIR}/pid.p1.d" $(SILENT) -ht  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/enclib.p1: enclib.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 

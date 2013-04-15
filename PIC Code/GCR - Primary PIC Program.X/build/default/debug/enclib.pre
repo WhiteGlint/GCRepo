@@ -7,7 +7,7 @@ void BeginEncoder();
 
 
 
-void EncUpdate(int *t0, int *t1);
+void EncUpdate(int *t1);
 
 # 95 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h"
 volatile unsigned char INDF @ 0x000;
@@ -2284,11 +2284,11 @@ T1CON = 0b00000111;
 
 
 
-void EncUpdate(int *t0, int *t1)
+void EncUpdate(int *t1)
 {
 *t1 = TMR1;
-*t0 = TMR0;
+
 TMR1 = 0;
-TMR0 = 0;
+
 }
 

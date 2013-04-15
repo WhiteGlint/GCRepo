@@ -13,7 +13,6 @@
                    projectFiles="true">
       <itemPath>primarymain.c</itemPath>
       <itemPath>pwmlib.c</itemPath>
-      <itemPath>pid.c</itemPath>
       <itemPath>enclib.c</itemPath>
       <itemPath>i2cSlave.c</itemPath>
     </logicalFolder>

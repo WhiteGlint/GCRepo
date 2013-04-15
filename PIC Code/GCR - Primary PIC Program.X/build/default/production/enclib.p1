@@ -1878,7 +1878,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "2475 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f917.h
 [v _EECON2 `Vuc  1 e@397 ]
 [; ;enclib.h: 17: void BeginEncoder();
-[; ;enclib.h: 22: void EncUpdate(int *t0, int *t1);
+[; ;enclib.h: 22: void EncUpdate(int *t1);
 [; ;pic16f917.h: 95: volatile unsigned char INDF @ 0x000;
 [; ;pic16f917.h: 99: volatile unsigned char TMR0 @ 0x001;
 [; ;pic16f917.h: 103: volatile unsigned char PCL @ 0x002;
@@ -3775,26 +3775,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 196 ]
 }
 "42
-[v _EncUpdate `(v  1 ef2`*i`*i ]
+[v _EncUpdate `(v  1 ef1`*i ]
 {
-[; ;enclib.c: 41: void EncUpdate(int *t0, int *t1)
+[; ;enclib.c: 41: void EncUpdate(int *t1)
 [; ;enclib.c: 42: {
 [e :U _EncUpdate ]
-[v _t0 `*i  1 r1 ]
-[v _t1 `*i  1 r2 ]
+[v _t1 `*i  1 r1 ]
 [f ]
 [; ;enclib.c: 43: *t1 = TMR1;
 "43
 [e = *U _t1 -> _TMR1 `i ]
-[; ;enclib.c: 44: *t0 = TMR0;
-"44
-[e = *U _t0 -> _TMR0 `i ]
 [; ;enclib.c: 45: TMR1 = 0;
 "45
 [e = _TMR1 -> -> 0 `i `ui ]
-[; ;enclib.c: 46: TMR0 = 0;
-"46
-[e = _TMR0 -> -> 0 `i `uc ]
 [; ;enclib.c: 47: }
 "47
 [e :UE 197 ]
