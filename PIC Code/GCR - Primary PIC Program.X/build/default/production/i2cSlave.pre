@@ -2322,19 +2322,22 @@ SSPBUF = 0;
 } else if ((SSPSTAT & 0b00100100) == 0b0000100){
 
 
+i2cSend(i2cSpeed*2);
+
 } else if ((SSPSTAT & 0b00001100) == 0b00001100){
 
-if (i2cWriteInt == 0)
-{
-i2cWriteInt = 1;
-i2cSend(COUNTS);
-} else
-{
-i2cWriteInt = 0;
-i2cSend(COUNTS >> 8);
-}
+# 80
+i2cRequest = SSPBUF;
 
-# 85
+if (i2cRequest == 1){
+i2cSend(20);
+} else if (i2cRequest == 2){
+i2cSend(20);
+}
+else
+{
+i2cSend(20);
+}
 }
 
 
@@ -2362,9 +2365,10 @@ return;
 
 
 void i2cSend(char msg){
-int i = 0;
-i++;
+
+
 SSPBUF = msg;
+SSPCONbits.CKP = 0;
 SSPCONbits.CKP = 1;
 
 return;

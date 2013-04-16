@@ -38,11 +38,11 @@ void BeginEncoder()
 
 // Function that takes in two pointers and sets one equal to TMR0 and
 //  the other equal to TMR1.  The values of TMR0 and TMR1 are then reset.
-void EncUpdate(int *t0, int *t1)
+void EncUpdate(int *t1)
 {
     *t1 = TMR1;
-    *t0 = TMR0;
+//    *t0 = TMR0;
     TMR1 = 0;
-    TMR0 = 0;
+//    TMR0 = 0;
 }
 

@@ -1895,37 +1895,43 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _DIRECTION `i  1 e ]
 "67 primarymain.c
 [v _DIR_READ `i  1 e ]
-"71 primarymain.c
+"70 primarymain.c
 [v _COUNTS `i  1 e ]
-"81 primarymain.c
+"72 primarymain.c
+[v _TMR0_OverflowCount `i  1 e ]
+"73 primarymain.c
+[v _TMR0_OverflowTarget `i  1 e ]
+"79 primarymain.c
 [v _FLAG `uc  1 e@170 ]
-"82 primarymain.c
+"80 primarymain.c
 [v _I2C `b  1 e@1360 ]
-"83 primarymain.c
+"81 primarymain.c
 [v _T0 `b  1 e@1361 ]
-"84 primarymain.c
+"82 primarymain.c
 [v _T1 `b  1 e@1362 ]
-"85 primarymain.c
+"83 primarymain.c
 [v _DIR `b  1 e@1363 ]
-"86 primarymain.c
+"84 primarymain.c
 [v _ERR `b  1 e@1364 ]
 [s S197 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
 [n S197 . I2C T0 T1 DIR ERR . ]
 [u S196 `S197 1 ]
 [n S196 . . ]
-"96 primarymain.c
+"94 primarymain.c
 [v _F `S196  1 e@170 ]
 [p mainexit ]
 "49 primarymain.c
 [v _Initialise `(v  0 ef ]
+"60 primarymain.c
+[v _delay1sec `(v  0 ef ]
 "25 pwmlib.h
 [v _SetPulse `(v  0 ef1`i ]
 "53 primarymain.c
 [v _setDirection `(v  0 ef1`i ]
 "22 enclib.h
-[v _EncUpdate `(v  0 ef2`*i`*i ]
+[v _EncUpdate `(v  0 ef1`*i ]
 "51 primarymain.c
-[v _UpdateData `(v  0 ef2`i`i ]
+[v _UpdateData `(v  0 ef1`i ]
 "18 pwmlib.h
 [v _BeginPWM `(v  0 ef ]
 "17 enclib.h
@@ -3821,7 +3827,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pwmlib.h: 25: void SetPulse(int length);
 [; ;pwmlib.h: 28: void StopPWM();
 [; ;enclib.h: 17: void BeginEncoder();
-[; ;enclib.h: 22: void EncUpdate(int *t0, int *t1);
+[; ;enclib.h: 22: void EncUpdate(int *t1);
 [; ;i2cSlave.h: 12: char i2cBufferVal;
 [; ;i2cSlave.h: 13: char i2cBuffer[3];
 [; ;i2cSlave.h: 14: char i2cRequest;
@@ -3838,7 +3844,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; 	dw 0xFFFA & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF ;#
 [; ;primarymain.c: 49: void Initialise();
 [; ;primarymain.c: 50: void interrupt isr();
-[; ;primarymain.c: 51: void UpdateData(int t, int c);
+[; ;primarymain.c: 51: void UpdateData(int c);
 [; ;primarymain.c: 53: void setDirection(int dir);
 [; ;primarymain.c: 54: int abs(int a, int b);
 [; ;primarymain.c: 58: void delay(int length);
@@ -3851,153 +3857,231 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 65: int TARGET = 0;
 "66
 [i _DIRECTION
--> 0 `i
+-> 1 `i
 ]
-[; ;primarymain.c: 66: int DIRECTION = 0;
+[; ;primarymain.c: 66: int DIRECTION = 1;
 "67
 [i _DIR_READ
--> 0 `i
+-> 1 `i
 ]
-[; ;primarymain.c: 67: int DIR_READ = 0;
-"71
+[; ;primarymain.c: 67: int DIR_READ = 1;
+"70
 [i _COUNTS
 -> 0 `i
 ]
-[; ;primarymain.c: 71: int COUNTS = 0;
-[; ;primarymain.c: 81: unsigned char FLAG @ 0xAA;
-[; ;primarymain.c: 82: bit I2C @ ((unsigned)&FLAG*8)+0;
-[; ;primarymain.c: 83: bit T0 @ ((unsigned)&FLAG*8)+1;
-[; ;primarymain.c: 84: bit T1 @ ((unsigned)&FLAG*8)+2;
-[; ;primarymain.c: 85: bit DIR @ ((unsigned)&FLAG*8)+3;
-[; ;primarymain.c: 86: bit ERR @ ((unsigned)&FLAG*8)+4;
-[; ;primarymain.c: 87: union {
-[; ;primarymain.c: 88: struct {
-[; ;primarymain.c: 89: unsigned I2C : 1;
-[; ;primarymain.c: 90: unsigned T0 : 1;
-[; ;primarymain.c: 91: unsigned T1 : 1;
-[; ;primarymain.c: 92: unsigned DIR : 1;
-[; ;primarymain.c: 93: unsigned ERR : 1;
-[; ;primarymain.c: 94: unsigned : 3;
-[; ;primarymain.c: 95: };
-[; ;primarymain.c: 96: }F @ 0xAA;
-"102
+[; ;primarymain.c: 70: int COUNTS = 0;
+"72
+[i _TMR0_OverflowCount
+-> 0 `i
+]
+[; ;primarymain.c: 72: int TMR0_OverflowCount = 0;
+"73
+[i _TMR0_OverflowTarget
+-> 8 `i
+]
+[; ;primarymain.c: 73: int TMR0_OverflowTarget = 8;
+[; ;primarymain.c: 79: unsigned char FLAG @ 0xAA;
+[; ;primarymain.c: 80: bit I2C @ ((unsigned)&FLAG*8)+0;
+[; ;primarymain.c: 81: bit T0 @ ((unsigned)&FLAG*8)+1;
+[; ;primarymain.c: 82: bit T1 @ ((unsigned)&FLAG*8)+2;
+[; ;primarymain.c: 83: bit DIR @ ((unsigned)&FLAG*8)+3;
+[; ;primarymain.c: 84: bit ERR @ ((unsigned)&FLAG*8)+4;
+[; ;primarymain.c: 85: union {
+[; ;primarymain.c: 86: struct {
+[; ;primarymain.c: 87: unsigned I2C : 1;
+[; ;primarymain.c: 88: unsigned T0 : 1;
+[; ;primarymain.c: 89: unsigned T1 : 1;
+[; ;primarymain.c: 90: unsigned DIR : 1;
+[; ;primarymain.c: 91: unsigned ERR : 1;
+[; ;primarymain.c: 92: unsigned : 3;
+[; ;primarymain.c: 93: };
+[; ;primarymain.c: 94: }F @ 0xAA;
+"100
 [v _main `(i  1 ef ]
 {
-[; ;primarymain.c: 101: int main()
-[; ;primarymain.c: 102: {
+[; ;primarymain.c: 99: int main()
+[; ;primarymain.c: 100: {
 [e :U _main ]
 [f ]
-"104
-[v _time `i  1 a ]
-[; ;primarymain.c: 104: int time = 0, counts = 0;
-[e = _time -> 0 `i ]
+"102
 [v _counts `i  1 a ]
+[; ;primarymain.c: 102: int counts = 0,
 [e = _counts -> 0 `i ]
-"107
-[v _t `*i  1 a ]
-[v _c `*i  1 a ]
-[; ;primarymain.c: 107: int *t, *c;
-[; ;primarymain.c: 108: *t = time;
-"108
-[e = *U _t _time ]
-[; ;primarymain.c: 109: *c = counts;
-"109
-[e = *U _c _counts ]
-"110
-[v _currentPWM `i  1 a ]
-[; ;primarymain.c: 110: int currentPWM = 0;
-[e = _currentPWM -> 0 `i ]
-"111
-[v _v `i  1 a ]
-"113
+"103
 [v _P `i  1 a ]
+"104
 [v _I `i  1 a ]
+"105
 [v _D `i  1 a ]
+"106
 [v _P_old `i  1 a ]
-[; ;primarymain.c: 111: int v;
-[; ;primarymain.c: 113: int P, I, D, P_old = 0, PID;
+[; ;primarymain.c: 103: P,
+[; ;primarymain.c: 104: I,
+[; ;primarymain.c: 105: D,
+[; ;primarymain.c: 106: P_old = 0,
 [e = _P_old -> 0 `i ]
+"107
 [v _PID `i  1 a ]
-[; ;primarymain.c: 118: Initialise();
-"118
+"109
+[v _currentPWM `i  1 a ]
+[; ;primarymain.c: 107: PID;
+[; ;primarymain.c: 109: int currentPWM = 0;
+[e = _currentPWM -> 0 `i ]
+[; ;primarymain.c: 113: Initialise();
+"113
 [e ( _Initialise ..  ]
-[; ;primarymain.c: 120: TARGET = 30;
+[; ;primarymain.c: 115: TARGET = 50;
+"115
+[e = _TARGET -> 50 `i ]
+[; ;primarymain.c: 117: T0IE = 0;
+"117
+[e = _T0IE -> -> 0 `i `b ]
+[; ;primarymain.c: 118: delay1sec();
+"118
+[e ( _delay1sec ..  ]
+[; ;primarymain.c: 119: T0IE = 1;
+"119
+[e = _T0IE -> -> 1 `i `b ]
+[; ;primarymain.c: 120: TMR1 = 0;
 "120
-[e = _TARGET -> 30 `i ]
-[; ;primarymain.c: 121: SetPulse(0);
-"121
-[e ( _SetPulse (1 -> 0 `i ]
-[; ;primarymain.c: 123: while(1)
-"123
+[e = _TMR1 -> -> 0 `i `ui ]
+[; ;primarymain.c: 122: while(1)
+"122
 [e :U 200 ]
-[; ;primarymain.c: 124: {
-"124
+[; ;primarymain.c: 123: {
+"123
 {
-[; ;primarymain.c: 133: PORTD = i2cSpeed;
+[; ;primarymain.c: 132: PORTD = TMR1;
+"132
+[e = _PORTD -> _TMR1 `uc ]
+[; ;primarymain.c: 133: SetPulse(i2cSpeed);
 "133
-[e = _PORTD _i2cSpeed ]
-[; ;primarymain.c: 135: SetPulse(i2cSpeed);
-"135
 [e ( _SetPulse (1 -> _i2cSpeed `i ]
-[; ;primarymain.c: 136: DIRECTION = i2cDirection;
-"136
-[e = _DIRECTION -> _i2cDirection `i ]
-[; ;primarymain.c: 137: setDirection(DIRECTION);
+[; ;primarymain.c: 137: if (F.I2C == 1)
 "137
-[e ( _setDirection (1 _DIRECTION ]
-[; ;primarymain.c: 142: if (F.I2C == 1)
-"142
 [e $ ! == -> . . _F 0 0 `i -> 1 `i 202  ]
-[; ;primarymain.c: 143: {
-"143
+[; ;primarymain.c: 138: {
+"138
 {
-[; ;primarymain.c: 149: COUNTS = 0;
-"149
-[e = _COUNTS -> 0 `i ]
-[; ;primarymain.c: 150: I = 0;
+[; ;primarymain.c: 146: TARGET = i2cSpeed;
+"146
+[e = _TARGET -> _i2cSpeed `i ]
+[; ;primarymain.c: 147: setDirection(i2cDirection);
+"147
+[e ( _setDirection (1 -> _i2cDirection `i ]
+[; ;primarymain.c: 148: SetPulse(i2cSpeed);
+"148
+[e ( _SetPulse (1 -> _i2cSpeed `i ]
+[; ;primarymain.c: 150: COUNTS = 0;
 "150
-[e = _I -> 0 `i ]
-[; ;primarymain.c: 151: D = 0;
+[e = _COUNTS -> 0 `i ]
+[; ;primarymain.c: 151: I = 0;
 "151
-[e = _D -> 0 `i ]
-[; ;primarymain.c: 152: P_old = 0;
+[e = _I -> 0 `i ]
+[; ;primarymain.c: 152: D = 0;
 "152
+[e = _D -> 0 `i ]
+[; ;primarymain.c: 153: P_old = 0;
+"153
 [e = _P_old -> 0 `i ]
-[; ;primarymain.c: 155: F.I2C = 0;
-"155
-[e = . . _F 0 0 -> -> 0 `i `uc ]
+[; ;primarymain.c: 156: F.I2C = 0;
 "156
+[e = . . _F 0 0 -> -> 0 `i `uc ]
+"157
 }
 [e :U 202 ]
-[; ;primarymain.c: 156: }
-[; ;primarymain.c: 158: if (F.DIR == 1)
-"158
-[e $ ! == -> . . _F 0 3 `i -> 1 `i 203  ]
-[; ;primarymain.c: 159: {
+[; ;primarymain.c: 157: }
+[; ;primarymain.c: 159: if (F.DIR == 1)
 "159
+[e $ ! == -> . . _F 0 3 `i -> 1 `i 203  ]
+[; ;primarymain.c: 160: {
+"160
 {
-[; ;primarymain.c: 161: EncUpdate(*t, *c);
-"161
-[e ( _EncUpdate (2 , -> *U _t `*i -> *U _c `*i ]
-[; ;primarymain.c: 162: UpdateData(time, counts);
+[; ;primarymain.c: 162: EncUpdate(&counts);
 "162
-[e ( _UpdateData (2 , _time _counts ]
-[; ;primarymain.c: 165: DIR_READ = RB5;
-"165
+[e ( _EncUpdate (1 &U _counts ]
+[; ;primarymain.c: 163: UpdateData(counts);
+"163
+[e ( _UpdateData (1 _counts ]
+[; ;primarymain.c: 166: DIR_READ = RB5;
+"166
 [e = _DIR_READ -> _RB5 `i ]
-[; ;primarymain.c: 168: F.DIR = 0;
-"168
-[e = . . _F 0 3 -> -> 0 `i `uc ]
+[; ;primarymain.c: 169: F.DIR = 0;
 "169
+[e = . . _F 0 3 -> -> 0 `i `uc ]
+"170
 }
 [e :U 203 ]
+[; ;primarymain.c: 170: }
+[; ;primarymain.c: 175: if (F.T0 == 1)
+"175
+[e $ ! == -> . . _F 0 1 `i -> 1 `i 204  ]
+[; ;primarymain.c: 176: {
+"176
+{
+[; ;primarymain.c: 179: EncUpdate(&counts);
+"179
+[e ( _EncUpdate (1 &U _counts ]
+[; ;primarymain.c: 180: UpdateData(counts);
+"180
+[e ( _UpdateData (1 _counts ]
+[; ;primarymain.c: 183: P = TARGET - counts;
+"183
+[e = _P - _TARGET _counts ]
+[; ;primarymain.c: 184: I = I + P;
+"184
+[e = _I + _I _P ]
+[; ;primarymain.c: 186: if (I > 200)
+"186
+[e $ ! > _I -> 200 `i 205  ]
+[; ;primarymain.c: 187: I = 200;
+"187
+[e = _I -> 200 `i ]
+[e $U 206  ]
+"188
+[e :U 205 ]
+[; ;primarymain.c: 188: else if (I < -200)
+[e $ ! < _I -U -> 200 `i 207  ]
+[; ;primarymain.c: 189: I = -200;
+"189
+[e = _I -U -> 200 `i ]
+[e :U 207 ]
+"192
+[e :U 206 ]
+[; ;primarymain.c: 192: PID = (P * 3.0) + (I * 0.4);
+[e = _PID -> + * -> _P `d .3.0 * -> _I `d .0.4 `i ]
+[; ;primarymain.c: 193: P_old = P;
+"193
+[e = _P_old _P ]
+[; ;primarymain.c: 195: if (P != 0)
+"195
+[e $ ! != _P -> 0 `i 208  ]
+[; ;primarymain.c: 196: {
+"196
+{
+[; ;primarymain.c: 197: currentPWM = PID;
+"197
+[e = _currentPWM _PID ]
+"199
+}
+[e :U 208 ]
+[; ;primarymain.c: 199: }
+[; ;primarymain.c: 201: PORTD = COUNTS;
+"201
+[e = _PORTD -> _COUNTS `uc ]
+[; ;primarymain.c: 202: F.T0 = 0;
+"202
+[e = . . _F 0 1 -> -> 0 `i `uc ]
+"203
+}
+[e :U 204 ]
 "205
 }
 [e :U 199 ]
-"123
+"122
 [e $U 200  ]
 [e :U 201 ]
-[; ;primarymain.c: 169: }
+[; ;primarymain.c: 203: }
 [; ;primarymain.c: 205: }
 [; ;primarymain.c: 207: return 1;
 "207
@@ -4023,18 +4107,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 217: BeginEncoder();
 "217
 [e ( _BeginEncoder ..  ]
-[; ;primarymain.c: 218: i2cInit(0x10);
+[; ;primarymain.c: 218: i2cInit(0x04);
 "218
-[e ( _i2cInit (1 -> -> 16 `i `uc ]
+[e ( _i2cInit (1 -> -> 4 `i `uc ]
 [; ;primarymain.c: 221: PEIE = 1;
 "221
 [e = _PEIE -> -> 1 `i `b ]
 [; ;primarymain.c: 222: RBIE = 1;
 "222
 [e = _RBIE -> -> 1 `i `b ]
-[; ;primarymain.c: 223: T0IE = 0;
+[; ;primarymain.c: 223: T0IE = 1;
 "223
-[e = _T0IE -> -> 0 `i `b ]
+[e = _T0IE -> -> 1 `i `b ]
 [; ;primarymain.c: 224: PIE1 = 0b00001001;
 "224
 [e = _PIE1 -> -> 9 `i `uc ]
@@ -4059,20 +4143,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 234: TRISB = 0b11110111;
 "234
 [e = _TRISB -> -> 247 `i `uc ]
-[; ;primarymain.c: 235: PORTBbits.RB3 = 0;
+[; ;primarymain.c: 235: PORTBbits.RB3 = 1;
 "235
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
 [; ;primarymain.c: 237: TRISD = 0;
 "237
 [e = _TRISD -> -> 0 `i `uc ]
 [; ;primarymain.c: 238: }
 "238
-[e :UE 204 ]
+[e :UE 209 ]
 }
 "50
-[v F2513 `(v  1 tf ]
+[v F2512 `(v  1 tf ]
 "243
-[v _isr `IF2513  1 e ]
+[v _isr `IF2512  1 e ]
 {
 [; ;primarymain.c: 242: void interrupt isr()
 [; ;primarymain.c: 243: {
@@ -4080,308 +4164,273 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;primarymain.c: 244: if (SSPIF == 1)
 "244
-[e $ ! == -> _SSPIF `i -> 1 `i 206  ]
+[e $ ! == -> _SSPIF `i -> 1 `i 211  ]
 [; ;primarymain.c: 245: {
 "245
 {
+[; ;primarymain.c: 246: F.I2C = 1;
+"246
+[e = . . _F 0 0 -> -> 1 `i `uc ]
 [; ;primarymain.c: 248: i2cIsrHandler();
 "248
 [e ( _i2cIsrHandler ..  ]
 "249
 }
 [; ;primarymain.c: 249: } else if (T0IF == 1)
-[e $U 207  ]
-[e :U 206 ]
-[e $ ! == -> _T0IF `i -> 1 `i 208  ]
+[e $U 212  ]
+[e :U 211 ]
+[e $ ! == -> _T0IF `i -> 1 `i 213  ]
 [; ;primarymain.c: 250: {
 "250
 {
-[; ;primarymain.c: 252: T0IF = 0;
-"252
-[e = _T0IF -> -> 0 `i `b ]
-"253
-}
-[; ;primarymain.c: 253: } else if (TMR1IF == 1)
-[e $U 209  ]
-[e :U 208 ]
-[e $ ! == -> _TMR1IF `i -> 1 `i 210  ]
-[; ;primarymain.c: 254: {
+[; ;primarymain.c: 254: if (TMR0_OverflowCount == TMR0_OverflowTarget)
 "254
-{
-[; ;primarymain.c: 255: COUNTS += 65536;
+[e $ ! == _TMR0_OverflowCount _TMR0_OverflowTarget 214  ]
+[; ;primarymain.c: 255: {
 "255
-[e =+ _COUNTS -> -> 65536 `l `i ]
-[; ;primarymain.c: 256: TMR1IF = 0;
+{
+[; ;primarymain.c: 256: F.T0 = 1;
 "256
-[e = _TMR1IF -> -> 0 `i `b ]
+[e = . . _F 0 1 -> -> 1 `i `uc ]
+[; ;primarymain.c: 257: TMR0_OverflowCount = 0;
 "257
-}
-[; ;primarymain.c: 257: } else if (RBIF == 1)
-[e $U 211  ]
-[e :U 210 ]
-[e $ ! == -> _RBIF `i -> 1 `i 212  ]
-[; ;primarymain.c: 258: {
+[e = _TMR0_OverflowCount -> 0 `i ]
 "258
-{
-[; ;primarymain.c: 259: if (RB5 != DIR_READ)
+}
+[; ;primarymain.c: 258: } else
+[e $U 215  ]
+[e :U 214 ]
+[; ;primarymain.c: 259: TMR0_OverflowCount++;
 "259
-[e $ ! != -> _RB5 `i _DIR_READ 213  ]
-[; ;primarymain.c: 260: {
-"260
-{
-[; ;primarymain.c: 261: F.DIR = 1;
+[e ++ _TMR0_OverflowCount -> 1 `i ]
+[e :U 215 ]
+[; ;primarymain.c: 261: T0IF = 0;
 "261
-[e = . . _F 0 3 -> -> 1 `i `uc ]
+[e = _T0IF -> -> 0 `i `b ]
 "262
 }
-[; ;primarymain.c: 262: } else
-[e $U 214  ]
+[; ;primarymain.c: 262: } else if (TMR1IF == 1)
+[e $U 216  ]
 [e :U 213 ]
+[e $ ! == -> _TMR1IF `i -> 1 `i 217  ]
 [; ;primarymain.c: 263: {
 "263
 {
-[; ;primarymain.c: 264: TRISD = 0;
+[; ;primarymain.c: 264: COUNTS += 65536;
 "264
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;primarymain.c: 265: PORTD = 0xE0;
+[e =+ _COUNTS -> -> 65536 `l `i ]
+[; ;primarymain.c: 265: TMR1IF = 0;
 "265
-[e = _PORTD -> -> 224 `i `uc ]
+[e = _TMR1IF -> -> 0 `i `b ]
 "266
 }
-[e :U 214 ]
-[; ;primarymain.c: 266: }
-[; ;primarymain.c: 267: RBIF = 0;
+[; ;primarymain.c: 266: } else if (RBIF == 1)
+[e $U 218  ]
+[e :U 217 ]
+[e $ ! == -> _RBIF `i -> 1 `i 219  ]
+[; ;primarymain.c: 267: {
 "267
-[e = _RBIF -> -> 0 `i `b ]
+{
+[; ;primarymain.c: 268: if (RB5 != DIR_READ)
 "268
-}
-[; ;primarymain.c: 268: } else
-[e $U 215  ]
-[e :U 212 ]
+[e $ ! != -> _RB5 `i _DIR_READ 220  ]
 [; ;primarymain.c: 269: {
 "269
 {
-[; ;primarymain.c: 270: TRISD = 0;
+[; ;primarymain.c: 270: F.DIR = 1;
 "270
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;primarymain.c: 271: PORTD = 0xF0;
+[e = . . _F 0 3 -> -> 1 `i `uc ]
 "271
-[e = _PORTD -> -> 240 `i `uc ]
+}
+[; ;primarymain.c: 271: } else
+[e $U 221  ]
+[e :U 220 ]
+[; ;primarymain.c: 272: {
 "272
-}
-[e :U 215 ]
-[e :U 211 ]
-[e :U 209 ]
-[e :U 207 ]
-[; ;primarymain.c: 272: }
-[; ;primarymain.c: 273: }
+{
+[; ;primarymain.c: 273: TRISD = 0;
 "273
-[e :UE 205 ]
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;primarymain.c: 274: PORTD = 0x90;
+"274
+[e = _PORTD -> -> 144 `i `uc ]
+"275
 }
+[e :U 221 ]
+[; ;primarymain.c: 275: }
+[; ;primarymain.c: 276: RBIF = 0;
+"276
+[e = _RBIF -> -> 0 `i `b ]
+"277
+}
+[; ;primarymain.c: 277: } else
+[e $U 222  ]
+[e :U 219 ]
+[; ;primarymain.c: 278: {
+"278
+{
+[; ;primarymain.c: 279: TRISD = 0;
 "279
-[v _UpdateData `(v  1 ef2`i`i ]
-{
-[; ;primarymain.c: 278: void UpdateData(int t, int c)
-[; ;primarymain.c: 279: {
-[e :U _UpdateData ]
-[v _t `i  1 r1 ]
-[v _c `i  1 r2 ]
-[f ]
-[; ;primarymain.c: 283: if (DIR_READ == 0)
-"283
-[e $ ! == _DIR_READ -> 0 `i 217  ]
-[; ;primarymain.c: 284: {
-"284
-{
-[; ;primarymain.c: 286: COUNTS += c;
-"286
-[e =+ _COUNTS _c ]
-"287
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;primarymain.c: 280: PORTD = 0xF0;
+"280
+[e = _PORTD -> -> 240 `i `uc ]
+"281
 }
-[; ;primarymain.c: 287: } else
-[e $U 218  ]
-[e :U 217 ]
-[; ;primarymain.c: 288: {
-"288
-{
-[; ;primarymain.c: 290: COUNTS -= c;
-"290
-[e =- _COUNTS _c ]
-"291
-}
+[e :U 222 ]
 [e :U 218 ]
-[; ;primarymain.c: 291: }
-[; ;primarymain.c: 292: }
-"292
-[e :UE 216 ]
+[e :U 216 ]
+[e :U 212 ]
+[; ;primarymain.c: 281: }
+[; ;primarymain.c: 282: }
+"282
+[e :UE 210 ]
 }
+"288
+[v _UpdateData `(v  1 ef1`i ]
+{
+[; ;primarymain.c: 287: void UpdateData(int c)
+[; ;primarymain.c: 288: {
+[e :U _UpdateData ]
+[v _c `i  1 r1 ]
+[f ]
+[; ;primarymain.c: 292: if (DIR_READ == 1)
+"292
+[e $ ! == _DIR_READ -> 1 `i 224  ]
+[; ;primarymain.c: 293: {
+"293
+{
+[; ;primarymain.c: 294: COUNTS += c;
+"294
+[e =+ _COUNTS _c ]
+"295
+}
+[; ;primarymain.c: 295: } else
+[e $U 225  ]
+[e :U 224 ]
+[; ;primarymain.c: 296: {
+"296
+{
+[; ;primarymain.c: 297: COUNTS -= c;
 "297
+[e =- _COUNTS _c ]
+"298
+}
+[e :U 225 ]
+[; ;primarymain.c: 298: }
+[; ;primarymain.c: 299: }
+"299
+[e :UE 223 ]
+}
+"304
 [v _setDirection `(v  1 ef1`i ]
 {
-[; ;primarymain.c: 296: void setDirection(int dir)
-[; ;primarymain.c: 297: {
+[; ;primarymain.c: 303: void setDirection(int dir)
+[; ;primarymain.c: 304: {
 [e :U _setDirection ]
 [v _dir `i  1 r1 ]
 [f ]
-[; ;primarymain.c: 298: if (dir == 0)
-"298
-[e $ ! == _dir -> 0 `i 220  ]
-[; ;primarymain.c: 299: PORTBbits.RB3 = 0;
-"299
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[e $U 221  ]
-"300
-[e :U 220 ]
-[; ;primarymain.c: 300: else if (dir == 1)
-[e $ ! == _dir -> 1 `i 222  ]
-[; ;primarymain.c: 301: PORTBbits.RB3 = !0;
-"301
-[e = . . _PORTBbits 0 3 -> -> ! != -> 0 `i -> 0 `i `i `uc ]
-[e $U 223  ]
-"302
-[e :U 222 ]
-[; ;primarymain.c: 302: else
-[; ;primarymain.c: 303: PORTBbits.RB3 = 0;
-"303
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[e :U 223 ]
-[e :U 221 ]
-[; ;primarymain.c: 304: }
-"304
-[e :UE 219 ]
-}
+[; ;primarymain.c: 305: if (dir == 0)
+"305
+[e $ ! == _dir -> 0 `i 227  ]
+[; ;primarymain.c: 306: PORTBbits.RB3 = 1;
+"306
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[e $U 228  ]
+"307
+[e :U 227 ]
+[; ;primarymain.c: 307: else if (dir == 1)
+[e $ ! == _dir -> 1 `i 229  ]
+[; ;primarymain.c: 308: PORTBbits.RB3 = !1;
+"308
+[e = . . _PORTBbits 0 3 -> -> ! != -> 1 `i -> 0 `i `i `uc ]
+[e $U 230  ]
 "309
+[e :U 229 ]
+[; ;primarymain.c: 309: else
+[; ;primarymain.c: 310: PORTBbits.RB3 = 1;
+"310
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[e :U 230 ]
+[e :U 228 ]
+[; ;primarymain.c: 311: }
+"311
+[e :UE 226 ]
+}
+"316
 [v _abs `(i  1 ef2`i`i ]
 {
-[; ;primarymain.c: 308: int abs(int a, int b)
-[; ;primarymain.c: 309: {
+[; ;primarymain.c: 315: int abs(int a, int b)
+[; ;primarymain.c: 316: {
 [e :U _abs ]
 [v _a `i  1 r1 ]
 [v _b `i  1 r2 ]
 [f ]
-"310
+"317
 [v _temp `i  1 a ]
-[; ;primarymain.c: 310: int temp;
-[; ;primarymain.c: 311: temp = a - b;
-"311
+[; ;primarymain.c: 317: int temp;
+[; ;primarymain.c: 318: temp = a - b;
+"318
 [e = _temp - _a _b ]
-[; ;primarymain.c: 312: if (temp < 0)
-"312
-[e $ ! < _temp -> 0 `i 225  ]
-[; ;primarymain.c: 313: temp = temp * -1;
-"313
+[; ;primarymain.c: 319: if (temp < 0)
+"319
+[e $ ! < _temp -> 0 `i 232  ]
+[; ;primarymain.c: 320: temp = temp * -1;
+"320
 [e = _temp * _temp -U -> 1 `i ]
-[e :U 225 ]
-[; ;primarymain.c: 314: return temp;
-"314
+[e :U 232 ]
+[; ;primarymain.c: 321: return temp;
+"321
 [e ) _temp ]
-[e $UE 224  ]
-[; ;primarymain.c: 315: }
-"315
-[e :UE 224 ]
-}
-"332
-[v _delay `(v  1 ef1`i ]
-{
-[; ;primarymain.c: 331: void delay(int length)
-[; ;primarymain.c: 332: {
-[e :U _delay ]
-[v _length `i  1 r1 ]
-[f ]
-[; ;primarymain.c: 333: for (int x=0; x < length; x++)
-"333
-{
-[v _x `i  1 a ]
-[e = _x -> 0 `i ]
-[e $U 230  ]
-"334
-[e :U 227 ]
-[; ;primarymain.c: 334: {
-{
-[; ;primarymain.c: 335: x++;
-"335
-[e ++ _x -> 1 `i ]
-[; ;primarymain.c: 336: x--;
-"336
-[e -- _x -> 1 `i ]
-"337
-}
-"333
-[e ++ _x -> 1 `i ]
-[e :U 230 ]
-[e $ < _x _length 227  ]
-[e :U 228 ]
-"337
-}
-[; ;primarymain.c: 337: }
-[; ;primarymain.c: 338: }
-"338
-[e :UE 226 ]
-}
-"343
-[v _CalcPulse `(v  1 ef1`i ]
-{
-[; ;primarymain.c: 342: void CalcPulse(int speed)
-[; ;primarymain.c: 343: {
-[e :U _CalcPulse ]
-[v _speed `i  1 r1 ]
-[f ]
-"344
-[v _pulse `i  1 a ]
-[; ;primarymain.c: 344: int pulse = speed*255/10;
-[e = _pulse / * _speed -> 255 `i -> 10 `i ]
-[; ;primarymain.c: 345: SetPulse(pulse);
-"345
-[e ( _SetPulse (1 _pulse ]
-[; ;primarymain.c: 346: }
-"346
+[e $UE 231  ]
+[; ;primarymain.c: 322: }
+"322
 [e :UE 231 ]
 }
-"351
+"326
 [v _delay1sec `(v  1 ef ]
 {
-[; ;primarymain.c: 350: void delay1sec()
-[; ;primarymain.c: 351: {
+[; ;primarymain.c: 325: void delay1sec()
+[; ;primarymain.c: 326: {
 [e :U _delay1sec ]
 [f ]
-"352
+"327
 [v _i `i  1 a ]
-[; ;primarymain.c: 352: int i = 0;
+[; ;primarymain.c: 327: int i;
+[; ;primarymain.c: 329: for(i = 0; i <= 76; i++)
+"329
+{
 [e = _i -> 0 `i ]
-[; ;primarymain.c: 355: for(i; i <= 76; i++)
-"355
-{
-[e _i ]
-[e $ <= _i -> 76 `i 233  ]
-[e $U 234  ]
-"356
-[e :U 233 ]
-[; ;primarymain.c: 356: {
-{
-[; ;primarymain.c: 357: while (T0IF == 0)
-"357
-[e $U 236  ]
-[e :U 237 ]
-[; ;primarymain.c: 358: asm("nop");
-"358
-[; nop ;#
-[e :U 236 ]
-"357
-[e $ == -> _T0IF `i -> 0 `i 237  ]
-[e :U 238 ]
-[; ;primarymain.c: 359: T0IF = 0;
-"359
-[e = _T0IF -> -> 0 `i `b ]
-"360
-}
-"355
-[e ++ _i -> 1 `i ]
-[e $ <= _i -> 76 `i 233  ]
+[e $ <= _i -> 76 `i 234  ]
+[e $U 235  ]
+"330
 [e :U 234 ]
-"360
+[; ;primarymain.c: 330: {
+{
+[; ;primarymain.c: 331: while (T0IF == 0)
+"331
+[e $U 237  ]
+[e :U 238 ]
+[; ;primarymain.c: 332: asm("nop");
+"332
+[; nop ;#
+[e :U 237 ]
+"331
+[e $ == -> _T0IF `i -> 0 `i 238  ]
+[e :U 239 ]
+[; ;primarymain.c: 333: T0IF = 0;
+"333
+[e = _T0IF -> -> 0 `i `b ]
+"334
 }
-[; ;primarymain.c: 360: }
-[; ;primarymain.c: 362: }
-"362
-[e :UE 232 ]
+"329
+[e ++ _i -> 1 `i ]
+[e $ <= _i -> 76 `i 234  ]
+[e :U 235 ]
+"334
+}
+[; ;primarymain.c: 334: }
+[; ;primarymain.c: 335: }
+"335
+[e :UE 233 ]
 }

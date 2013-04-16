@@ -2299,7 +2299,7 @@ void BeginEncoder();
 
 
 
-void EncUpdate(int *t0, int *t1);
+void EncUpdate(int *t1);
 
 # 12 "i2cSlave.h"
 char i2cBufferVal;
@@ -2323,7 +2323,7 @@ asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFFF
 # 49
 void Initialise();
 void interrupt isr();
-void UpdateData(int t, int c);
+void UpdateData(int c);
 
 void setDirection(int dir);
 int abs(int a, int b);
@@ -2338,14 +2338,16 @@ void delay1sec();
 
 
 int TARGET = 0;
-int DIRECTION = 0;
-int DIR_READ = 0;
-
+int DIRECTION = 1;
+int DIR_READ = 1;
 
 
 int COUNTS = 0;
 
-# 81
+int TMR0_OverflowCount = 0;
+int TMR0_OverflowTarget = 8;
+
+# 79
 unsigned char FLAG @ 0xAA;
 bit I2C @ ((unsigned)&FLAG*8)+0;
 bit T0 @ ((unsigned)&FLAG*8)+1;
@@ -2369,42 +2371,43 @@ unsigned : 3;
 int main()
 {
 
-int time = 0, counts = 0;
+int counts = 0,
+P,
+I,
+D,
+P_old = 0,
+PID;
 
-
-int *t, *c;
-*t = time;
-*c = counts;
 int currentPWM = 0;
-int v;
-
-int P, I, D, P_old = 0, PID;
-
 
 
 
 Initialise();
 
-TARGET = 30;
-SetPulse(0);
+TARGET = 50;
+
+T0IE = 0;
+delay1sec();
+T0IE = 1;
+TMR1 = 0;
 
 while(1)
 {
 
-# 133
-PORTD = i2cSpeed;
-
+# 132
+PORTD = TMR1;
 SetPulse(i2cSpeed);
-DIRECTION = i2cDirection;
-setDirection(DIRECTION);
-
 
 
 
 if (F.I2C == 1)
 {
 
-# 149
+# 146
+TARGET = i2cSpeed;
+setDirection(i2cDirection);
+SetPulse(i2cSpeed);
+
 COUNTS = 0;
 I = 0;
 D = 0;
@@ -2417,8 +2420,8 @@ F.I2C = 0;
 if (F.DIR == 1)
 {
 
-EncUpdate(*t, *c);
-UpdateData(time, counts);
+EncUpdate(&counts);
+UpdateData(counts);
 
 
 DIR_READ = RB5;
@@ -2427,7 +2430,39 @@ DIR_READ = RB5;
 F.DIR = 0;
 }
 
-# 205
+
+
+
+if (F.T0 == 1)
+{
+
+
+EncUpdate(&counts);
+UpdateData(counts);
+
+
+P = TARGET - counts;
+I = I + P;
+
+if (I > 200)
+I = 200;
+else if (I < -200)
+I = -200;
+
+
+PID = (P * 3.0) + (I * 0.4);
+P_old = P;
+
+if (P != 0)
+{
+currentPWM = PID;
+
+}
+
+PORTD = COUNTS;
+F.T0 = 0;
+}
+
 }
 
 return 1;
@@ -2441,12 +2476,12 @@ void Initialise()
 FLAG = 0;
 BeginPWM();
 BeginEncoder();
-i2cInit(0x10);
+i2cInit(0x04);
 
 
 PEIE = 1;
 RBIE = 1;
-T0IE = 0;
+T0IE = 1;
 PIE1 = 0b00001001;
 PIE2 = 0;
 
@@ -2458,7 +2493,7 @@ TMR1IF = 0;
 GIE = 1;
 
 TRISB = 0b11110111;
-PORTBbits.RB3 = 0;
+PORTBbits.RB3 = 1;
 
 TRISD = 0;
 }
@@ -2469,11 +2504,20 @@ void interrupt isr()
 {
 if (SSPIF == 1)
 {
-
+F.I2C = 1;
 
 i2cIsrHandler();
 } else if (T0IF == 1)
 {
+
+
+
+if (TMR0_OverflowCount == TMR0_OverflowTarget)
+{
+F.T0 = 1;
+TMR0_OverflowCount = 0;
+} else
+TMR0_OverflowCount++;
 
 T0IF = 0;
 } else if (TMR1IF == 1)
@@ -2488,7 +2532,7 @@ F.DIR = 1;
 } else
 {
 TRISD = 0;
-PORTD = 0xE0;
+PORTD = 0x90;
 }
 RBIF = 0;
 } else
@@ -2501,18 +2545,16 @@ PORTD = 0xF0;
 
 
 
-void UpdateData(int t, int c)
+void UpdateData(int c)
 {
 
 
 
-if (DIR_READ == 0)
+if (DIR_READ == 1)
 {
-
 COUNTS += c;
 } else
 {
-
 COUNTS -= c;
 }
 }
@@ -2522,11 +2564,11 @@ COUNTS -= c;
 void setDirection(int dir)
 {
 if (dir == 0)
-PORTBbits.RB3 = 0;
+PORTBbits.RB3 = 1;
 else if (dir == 1)
-PORTBbits.RB3 = !0;
+PORTBbits.RB3 = !1;
 else
-PORTBbits.RB3 = 0;
+PORTBbits.RB3 = 1;
 }
 
 
@@ -2540,37 +2582,16 @@ temp = temp * -1;
 return temp;
 }
 
-# 331
-void delay(int length)
-{
-for (int x=0; x < length; x++)
-{
-x++;
-x--;
-}
-}
-
-
-
-void CalcPulse(int speed)
-{
-int pulse = speed*255/10;
-SetPulse(pulse);
-}
-
-
 
 void delay1sec()
 {
-int i = 0;
+int i;
 
-
-for(i; i <= 76; i++)
+for(i = 0; i <= 76; i++)
 {
 while (T0IF == 0)
 asm("nop");
 T0IF = 0;
 }
-
 }
 
