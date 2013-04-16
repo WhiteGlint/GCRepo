@@ -21,7 +21,7 @@ std_msgs::UInt16 errorCode;
 //pubs
 ros::Publisher encoderPub("EncoderData", &encoders);
 ros::Publisher diagPub("BatteryVoltage", &voltage);
-ros::Publisher error("ArduinoError", &errorCode);
+ros::Publisher errorPub("ArduinoError", &errorCode);
 // subs
 ros::Subscriber<GCRobotics::i2cData> i2cSub("i2cSend", &i2cCallback );
 ros::Subscriber<std_msgs::UInt16> gpioSub("gpio", &gpioCallback);
@@ -31,7 +31,7 @@ void setup(){
   n.initNode();
   n.advertise(encoderPub);
   n.advertise(diagPub);
-  n.advertise(error);
+  n.advertise(errorPub);
   
   n.subscribe(i2cSub);
   n.subscribe(gpioSub);
@@ -39,7 +39,7 @@ void setup(){
   pinMode(13, OUTPUT);
   DDRD = B11111111;
   
-  errorCode = 0;
+  errorCode.data = 0;
  // Timer1.initialize(2000000); // 2000 ms between interrupts
  // Timer1.attachInterrupt(Read);
 
@@ -47,21 +47,18 @@ void setup(){
 
 void loop(){
   n.spinOnce();
-  voltage.data  = analogRead(0); // average reading
-  voltage.data += analogRead(0);
-  voltage.data += analogRead(0);
-  voltage.data += analogRead(0);
-  voltage.data = voltage.data/4;
   
-  voltage.data = read1 * 0.021251222; // analog/1023 * 5 * 4.348, convert to voltage
-  delay(20);
-  diagPub.publish(&voltage);
+ // voltage.data  = analogRead(0); // average reading
+ // voltage.data += analogRead(0);
+ // voltage.data += analogRead(0);
+ // voltage.data += analogRead(0);
+ // voltage.data = voltage.data/4;
   
-  if (errorCode != 0)
-  {
-    errorCode = 0;
-    error.publish(errorCode);
-  }
+  //voltage.data = voltage.data * 0.021251222; // analog/1023 * 5 * 4.348, convert to voltage
+  //delay(20);
+  //diagPub.publish(&voltage);
+  // need a ROS delay here to prevent blocking
+
   
   /*
   Wire.beginTransmission(0x04>>1); // transmit to device "address"
@@ -86,7 +83,9 @@ void i2cCallback( const GCRobotics::i2cData& msg)
   Wire.write((byte)0);
   Wire.write(msg.messageData);
   Wire.write(msg.messageData2);
-  errorCode = Wire.endTransmission();  
+  errorCode.data = Wire.endTransmission(); 
+  errorPub.publish(&errorCode);
+ 
   digitalWrite(13,LOW);
 }
 
