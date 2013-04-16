@@ -40,25 +40,15 @@ void setup(){
   DDRD = B11111111;
   
   errorCode.data = 0;
- // Timer1.initialize(2000000); // 2000 ms between interrupts
- // Timer1.attachInterrupt(Read);
+  Timer1.initialize(2000000); // 2000 ms between interrupts
+  //Timer1.attachInterrupt(Read);
+  Timer1.attachInterrupt(Read);
+  Timer1.attachInterrupt(sendVoltage);
 
 }
 
 void loop(){
   n.spinOnce();
-  
- // voltage.data  = analogRead(0); // average reading
- // voltage.data += analogRead(0);
- // voltage.data += analogRead(0);
- // voltage.data += analogRead(0);
- // voltage.data = voltage.data/4;
-  
-  //voltage.data = voltage.data * 0.021251222; // analog/1023 * 5 * 4.348, convert to voltage
-  //delay(20);
-  //diagPub.publish(&voltage);
-  // need a ROS delay here to prevent blocking
-
   
   /*
   Wire.beginTransmission(0x04>>1); // transmit to device "address"
@@ -84,6 +74,7 @@ void i2cCallback( const GCRobotics::i2cData& msg)
   Wire.write(msg.messageData);
   Wire.write(msg.messageData2);
   errorCode.data = Wire.endTransmission(); 
+  errorCode.data = msg.address;
   errorPub.publish(&errorCode);
  
   digitalWrite(13,LOW);
@@ -95,13 +86,14 @@ void gpioCallback( const std_msgs::UInt16& msg)
 }
 
 void Read() {
+  sei(); // enable interrupts inside of this interrrupt, allowing wire fucntion calls to still function instead of blocking
   digitalWrite(13,HIGH);
   //int EC1, EC2, EC3, EC4; // these should probably be global
-  encoders.encoder1 = ReadOne (10); // these need to be the right address
-  //encoders.encoder2 = ReadOne (12); // these need to be the right address
-  //encoders.encoder3 = ReadOne (14); // these need to be the right address
-  //encoders.encoder4 = ReadOne (16); // these need to be the right address
-  delay(5);
+  encoders.encoder1 = ReadOne (0x2); // these need to be the right address
+  encoders.encoder2 = ReadOne (0x4); // these need to be the right address
+  encoders.encoder3 = ReadOne (0x6); // these need to be the right address
+  encoders.encoder4 = ReadOne (0x8); // these need to be the right address
+  //delay(5);
   //encoderPub.publish(&encoders);
   digitalWrite(13,LOW);
 
@@ -122,5 +114,18 @@ int ReadOne(char address) { // pass in the motor you want to read
 
   
   return encoderCount;
+}
+
+void sendVoltage()
+{
+   voltage.data  = analogRead(0); // average reading
+  voltage.data += analogRead(0);
+  voltage.data += analogRead(0);
+  voltage.data += analogRead(0);
+  voltage.data = voltage.data/4;
+  
+  voltage.data = voltage.data * 0.021251222; // analog/1023 * 5 * 4.348, convert to voltage
+  //delay(200);
+  diagPub.publish(&voltage);
 }
 
