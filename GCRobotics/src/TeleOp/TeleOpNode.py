@@ -17,26 +17,26 @@ def talker():
 
 		i = stdscr.getch()
 		if i == ord('w'):
-			msg.speed = 50;
+			msg.speed = 150;
 			msg.direction = 0;
 			#pub.publish(msg);	
 		elif i == ord('a'):
-			msg.speed = 50;
+			msg.speed = 150;
 			msg.direction = 1;
 			#pub.publish(msg);	
 		elif i == ord('s'):
-			msg.speed = 50;
+			msg.speed = 150;
 			msg.direction = 2;
 			#pub.publish(msg);	
 		elif i == ord('d'):
-			msg.speed = 50;
+			msg.speed = 150;
 			msg.direction = 3;
 			#pub.publish(msg);
 		elif i == ord('q'):
-			msg.speed = 50;
+			msg.speed = 150;
 			msg.direction = 4;
 		elif i == ord('e'):
-			msg.speed = 50;
+			msg.speed = 150;
 			msg.direction = 5;	
 		elif i == ord('f'):
 			msg.speed = 0;
