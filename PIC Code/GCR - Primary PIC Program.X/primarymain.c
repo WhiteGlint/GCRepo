@@ -130,7 +130,7 @@ int main()
         asm("nop");     //*/
 
 	PORTD = TMR1;
-        SetPulse(i2cSpeed);
+ //       SetPulse(i2cSpeed);
 
 
 

@@ -26,8 +26,13 @@
 
 // Configuration bit settings
 // Use 20MHz external oscillator --> FOSC_HS
-__CONFIG(FOSC_HS & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF &
-        BOREN_OFF & IESO_ON & FCMEN_OFF);
+// Turn on external oscillator --> FOSC_HS
+  // NOTE:  MCLRE must be set to ON because of this family of PIC (887.
+  //  Must be used in conjunction with the MCLR pin via weak pullup.
+  //  See section 14.2.2, page 211, of the 887 datasheet.
+__CONFIG(FOSC_HS & WDTE_OFF & PWRTE_ON & MCLRE_ON &
+        CP_OFF & CPD_OFF & BOREN_OFF & IESO_OFF & FCMEN_OFF & LVP_OFF);
+__CONFIG(BOR4V_BOR40V & WRT_OFF);
 
 
 
@@ -35,7 +40,7 @@ __CONFIG(FOSC_HS & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF &
 //  the main code can be exactly the same, from PIC to PIC for the robot,
 //  depending on the motor position (front left motor, for example), only
 //  these definitions will need to change
-#define I2C_ADDRESS 0x04        // I2C address; unique to specific PIC
+#define I2C_ADDRESS 0x06        // I2C address; unique to specific PIC
 #define FORWARD 1               // PIC specific depending on wheel orientation
 #define BACKWARD !FORWARD       // ^
 #define CYCLES_PER_REV 650      // Should be nearly the same for all PICs,
@@ -135,12 +140,8 @@ int main()
         SetPulse(0);
         asm("nop");     //*/
 
-	/*PORTD = i2cSpeed;
-        //PORTD = TMR1;
-        SetPulse(i2cSpeed);
-        DIRECTION = i2cDirection;
-        setDirection(DIRECTION);
-        */
+	PORTD = TMR1;
+
 
 
 
@@ -155,6 +156,7 @@ int main()
 
             TARGET = i2cSpeed;
             setDirection(i2cDirection);
+            SetPulse(i2cSpeed);
 
             COUNTS = 0;
             I = 0;
@@ -204,7 +206,7 @@ int main()
             if (P != 0)
             {
                 currentPWM = PID;
-                SetPulse(currentPWM + 128);       // set new PWM
+//                SetPulse(currentPWM + 128);       // set new PWM
             }
 
             PORTD = COUNTS;
@@ -244,7 +246,6 @@ void Initialise()
     PORTBbits.RB3 = FORWARD;    // default to forward
 
     TRISD = 0;
-//    PORTD = 0xFF;
 }
 
 

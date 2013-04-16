@@ -10,14 +10,14 @@
 #include "i2cSlave887.h"
 #include <pic16f887.h>
 
-extern int COUNTS;          // load from primarymain.c
+extern int COUNTS;          // load from primary887main.c
 
 
 
 void i2cInit(char address){
 
-    TRISC6 = 1;
-    TRISC7 = 1;
+    TRISC3 = 1;
+    TRISC4 = 1;
     SSPEN = 1;
     CKE = 0;
     SMP = 0;

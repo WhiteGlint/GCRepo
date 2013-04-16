@@ -16,7 +16,7 @@ Linker command line:
   -ACONFIG=02007h-02008h -pconfig=CONFIG -DCONFIG=2 -AIDLOC=02000h-02003h \
   -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA \
   -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\Alan\AppData\Local\Temp\s54o.obj \
+  C:\Users\Alan\AppData\Local\Temp\s5hg.obj \
   dist/default/debug\External_Oscillator_Test_887.X.debug.obj 
 
 Object code version is 3.10
@@ -26,7 +26,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Alan\AppData\Local\Temp\s54o.obj
+C:\Users\Alan\AppData\Local\Temp\s5hg.obj
                 end_init                              1        1        3        0       0
                 reset_vec                             0        0        1        0       0
 dist/default/debug\External_Oscillator_Test_887.X.debug.obj

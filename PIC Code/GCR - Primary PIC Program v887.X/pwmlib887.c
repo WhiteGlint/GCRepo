@@ -40,8 +40,8 @@ clearing the associated TRIS bit.
 void BeginPWM()
 {
     //Disable PWM pin (CCP2) by setting associated TRIS bit;
-    //  in this case, set RD2 as input, or TRISDbits.TRISD2 = 1
-    TRISDbits.TRISD2 = 1;
+    //  in this case, set RC1 as input, or TRISCbits.TRISC1 = 1
+    TRISCbits.TRISC1 = 1;
 
     //Disable TMR2 interrupts by clearing PIE1 bit 1
     PIE1bits.TMR2IE = 0;
@@ -77,7 +77,7 @@ void BeginPWM()
         if(PIR1bits.TMR2IF == 1)    //repeatedly test overflow flag
         {
             TMR2IF = 0;             //clear flag
-            TRISDbits.TRISD2 = 0;   //set PWM output to start
+            TRISCbits.TRISC1 = 0;   //set PWM output to start
             break;                  //exit loop
         }
     }

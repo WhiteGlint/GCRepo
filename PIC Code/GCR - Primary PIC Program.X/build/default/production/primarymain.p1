@@ -1924,10 +1924,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Initialise `(v  0 ef ]
 "60 primarymain.c
 [v _delay1sec `(v  0 ef ]
-"25 pwmlib.h
-[v _SetPulse `(v  0 ef1`i ]
 "53 primarymain.c
 [v _setDirection `(v  0 ef1`i ]
+"25 pwmlib.h
+[v _SetPulse `(v  0 ef1`i ]
 "22 enclib.h
 [v _EncUpdate `(v  0 ef1`*i ]
 "51 primarymain.c
@@ -3954,9 +3954,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 132: PORTD = TMR1;
 "132
 [e = _PORTD -> _TMR1 `uc ]
-[; ;primarymain.c: 133: SetPulse(i2cSpeed);
-"133
-[e ( _SetPulse (1 -> _i2cSpeed `i ]
 [; ;primarymain.c: 137: if (F.I2C == 1)
 "137
 [e $ ! == -> . . _F 0 0 `i -> 1 `i 202  ]

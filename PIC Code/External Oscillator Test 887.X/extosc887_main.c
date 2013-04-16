@@ -12,8 +12,8 @@
 #include <pic16f887.h>
 
 // Turn on external oscillator --> FOSC_HS
-__CONFIG(FOSC_INTRC_NOCLKOUT & WDTE_OFF & PWRTE_OFF & MCLRE_OFF & CP_OFF &
-        CPD_OFF & BOREN_OFF & IESO_ON & FCMEN_OFF & LVP_ON);
+__CONFIG(FOSC_HS & WDTE_OFF & PWRTE_ON & MCLRE_ON &
+        CP_OFF & CPD_OFF & BOREN_OFF & IESO_OFF & FCMEN_OFF & LVP_OFF);
 __CONFIG(BOR4V_BOR40V & WRT_OFF);
 
 
@@ -44,7 +44,7 @@ int main()
 void delay1sec()
 {
     int i = 0;
-    for(i; i <= 76; i++)
+    for(i; i <= 76; i++)          // normally 76
     {
         while (T0IF == 0)
             asm("nop");

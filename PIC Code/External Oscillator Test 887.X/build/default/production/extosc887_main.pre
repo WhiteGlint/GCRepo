@@ -1554,7 +1554,7 @@ extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsign
 extern void _delay(unsigned long);
 
 # 15 "extosc887_main.c"
-asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF & 0xFFFF");
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFEF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xEFFF");
 
 # 17
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");

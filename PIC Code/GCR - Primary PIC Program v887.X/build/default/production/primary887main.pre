@@ -1590,10 +1590,13 @@ void i2cIsrHandler();
 void i2cSend(char msg);
 void i2cDataUpdate();
 
-# 29 "primary887main.c"
-asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
+# 33 "primary887main.c"
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFEF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xEFFF");
 
-# 55
+# 35
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");
+
+# 60
 void Initialise();
 void interrupt isr();
 void UpdateData(int c);
@@ -1620,7 +1623,7 @@ int COUNTS = 0;
 int TMR0_OverflowCount = 0;
 int TMR0_OverflowTarget = 8;
 
-# 85
+# 90
 unsigned char FLAG @ 0xAA;
 bit I2C @ ((unsigned)&FLAG*8)+0;
 bit T0 @ ((unsigned)&FLAG*8)+1;
@@ -1667,13 +1670,19 @@ TMR1 = 0;
 while(1)
 {
 
-# 147
+# 143
+PORTD = TMR1;
+
+
+
+
 if (F.I2C == 1)
 {
 
-# 156
+# 157
 TARGET = i2cSpeed;
 setDirection(i2cDirection);
+SetPulse(i2cSpeed);
 
 COUNTS = 0;
 I = 0;
@@ -1723,7 +1732,7 @@ P_old = P;
 if (P != 0)
 {
 currentPWM = PID;
-SetPulse(currentPWM + 128);
+
 }
 
 PORTD = COUNTS;
@@ -1743,7 +1752,7 @@ void Initialise()
 FLAG = 0;
 BeginPWM();
 BeginEncoder();
-i2cInit(0x04);
+i2cInit(0x06);
 
 
 PEIE = 1;
@@ -1763,7 +1772,6 @@ TRISB = 0b11110111;
 PORTBbits.RB3 = 1;
 
 TRISD = 0;
-
 }
 
 

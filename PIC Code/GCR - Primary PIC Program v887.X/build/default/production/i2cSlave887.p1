@@ -2540,12 +2540,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _i2cInit ]
 [v _address `uc  1 r1 ]
 [f ]
-[; ;i2cSlave887.c: 19: TRISC6 = 1;
+[; ;i2cSlave887.c: 19: TRISC3 = 1;
 "19
-[e = _TRISC6 -> -> 1 `i `b ]
-[; ;i2cSlave887.c: 20: TRISC7 = 1;
+[e = _TRISC3 -> -> 1 `i `b ]
+[; ;i2cSlave887.c: 20: TRISC4 = 1;
 "20
-[e = _TRISC7 -> -> 1 `i `b ]
+[e = _TRISC4 -> -> 1 `i `b ]
 [; ;i2cSlave887.c: 21: SSPEN = 1;
 "21
 [e = _SSPEN -> -> 1 `i `b ]

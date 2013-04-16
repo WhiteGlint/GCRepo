@@ -1552,7 +1552,7 @@ void BeginPWM()
 {
 
 
-TRISDbits.TRISD2 = 1;
+TRISCbits.TRISC1 = 1;
 
 
 PIE1bits.TMR2IE = 0;
@@ -1588,7 +1588,7 @@ while(1)
 if(PIR1bits.TMR2IF == 1)
 {
 TMR2IF = 0;
-TRISDbits.TRISD2 = 0;
+TRISCbits.TRISC1 = 0;
 break;
 }
 }

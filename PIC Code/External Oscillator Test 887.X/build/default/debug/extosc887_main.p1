@@ -2517,9 +2517,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_routines.h: 44: extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 [; ;pic.h: 154: extern void _delay(unsigned long);
 "15 extosc887_main.c
-[; ;extosc887_main.c: 15: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF & 0xFFFF");
+[; ;extosc887_main.c: 15: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xFFFF");
 [; 	psect config,class=CONFIG,delta=2 ;#
-[; 	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF & 0xFFFF ;#
+[; 	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xFFFF ;#
 "17
 [; ;extosc887_main.c: 17: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");
 [; 	psect config,class=CONFIG,delta=2 ;#
@@ -2589,11 +2589,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _i `i  1 a ]
 [; ;extosc887_main.c: 46: int i = 0;
 [e = _i -> 0 `i ]
-[; ;extosc887_main.c: 47: for(i; i <= 76; i++)
+[; ;extosc887_main.c: 47: for(i; i <= 20; i++)
 "47
 {
 [e _i ]
-[e $ <= _i -> 76 `i 146  ]
+[e $ <= _i -> 20 `i 146  ]
 [e $U 147  ]
 "48
 [e :U 146 ]
@@ -2617,7 +2617,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "47
 [e ++ _i -> 1 `i ]
-[e $ <= _i -> 76 `i 146  ]
+[e $ <= _i -> 20 `i 146  ]
 [e :U 147 ]
 "52
 }

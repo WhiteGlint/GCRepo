@@ -1,7 +1,7 @@
 
 
 HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
-                                                                                               Mon Apr 15 13:52:46 2013
+                                                                                               Tue Apr 16 15:46:16 2013
 
 HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
      1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
@@ -48,7 +48,7 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
     42                           # 15 "extosc887_main.c"
     43                           	psect config,class=CONFIG,delta=2 ;#
     44                           # 15 "extosc887_main.c"
-    45  2007  F4D4               	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF & 0xF
+    45  2007  F0D4               	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xF
                                  FFF ;#
     46                           # 17 "extosc887_main.c"
     47                           	psect config,class=CONFIG,delta=2 ;#
@@ -87,7 +87,7 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
     80  0C61                     _WR	set	3169
     81                           	global	_WREN
     82  0C62                     _WREN	set	3170
-    83                           	file	"C:\Users\Alan\AppData\Local\Temp\s54o."
+    83                           	file	"C:\Users\Alan\AppData\Local\Temp\s5hg."
     84                           	line	#
     85                           psect cinit,class=CODE,delta=2
     86                           global start_initialization
@@ -380,11 +380,11 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
    372  07D5  0872               	movf	(delay1sec@i+1),w
    373  07D6  3A80               	xorlw	80h
    374  07D7  00FF               	movwf	btemp+1
-   375  07D8  3080               	movlw	(high(04Dh))^80h
+   375  07D8  3080               	movlw	(high(015h))^80h
    376  07D9  027F               	subwf	btemp+1,w
    377  07DA  1D03               	skipz
    378  07DB  2FDE               	goto	u15
-   379  07DC  304D               	movlw	low(04Dh)
+   379  07DC  3015               	movlw	low(015h)
    380  07DD  0271               	subwf	(delay1sec@i),w
    381  07DE                     u15:
    382                           
@@ -439,11 +439,11 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
    431  07F1  0872               	movf	(delay1sec@i+1),w
    432  07F2  3A80               	xorlw	80h
    433  07F3  00FF               	movwf	btemp+1
-   434  07F4  3080               	movlw	(high(04Dh))^80h
+   434  07F4  3080               	movlw	(high(015h))^80h
    435  07F5  027F               	subwf	btemp+1,w
    436  07F6  1D03               	skipz
    437  07F7  2FFA               	goto	u35
-   438  07F8  304D               	movlw	low(04Dh)
+   438  07F8  3015               	movlw	low(015h)
    439  07F9  0271               	subwf	(delay1sec@i),w
    440  07FA                     u35:
    441                           
@@ -478,7 +478,7 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
 
 
 HI-TECH Software PICC Macro Assembler V9.83 build 10920 
-Symbol Table                                                                                   Mon Apr 15 13:52:46 2013
+Symbol Table                                                                                   Tue Apr 16 15:46:16 2013
 
                   _RD 0C60                    u10 07E2                    u11 07E1                    u20 07EA  
                   u21 07E9                    u30 07FE                    u31 07FD                    u15 07DE  
