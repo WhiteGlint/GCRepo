@@ -16,9 +16,12 @@ ros::NodeHandle n;
 
 GCRobotics::Encoder_msg encoders;
 std_msgs::Float32 voltage;
+std_msgs::UInt16 errorCode;
+//pubs
 ros::Publisher encoderPub("EncoderData", &encoders);
-ros::Publisher diagPub("Diagnostic", &voltage);
-
+ros::Publisher diagPub("BatteryVoltage", &voltage);
+ros::Publisher error("ArduinoError", &errorCode);
+// subs
 ros::Subscriber<GCRobotics::i2cData> i2cSub("i2cSend", &i2cCallback );
 ros::Subscriber<std_msgs::UInt16> gpioSub("gpio", &gpioCallback);
  float read1;
@@ -28,11 +31,15 @@ void setup(){
   n.initNode();
   n.advertise(encoderPub);
   n.advertise(diagPub);
+  n.advertise(error);
+  
   n.subscribe(i2cSub);
   n.subscribe(gpioSub);
 
   pinMode(13, OUTPUT);
   DDRD = B11111111;
+  
+  errorCode = 0;
  // Timer1.initialize(2000000); // 2000 ms between interrupts
  // Timer1.attachInterrupt(Read);
 
@@ -40,15 +47,23 @@ void setup(){
 
 void loop(){
   n.spinOnce();
-  read1 = analogRead(0);
-  read1 += analogRead(0);
-  read1 += analogRead(0);
-  read1 += analogRead(0);
+  voltage.data  = analogRead(0); // average reading
+  voltage.data += analogRead(0);
+  voltage.data += analogRead(0);
+  voltage.data += analogRead(0);
+  voltage.data = voltage.data/4;
   
-  read1 = read1/4;
+  voltage.data = read1 * 0.021251222; // analog/1023 * 5 * 4.348, convert to voltage
+  delay(20);
+  diagPub.publish(&voltage);
   
-  voltage.data = read1 * 0.021251222; // analog/1023 * 5 * 4.348
-
+  if (errorCode != 0)
+  {
+    errorCode = 0;
+    error.publish(errorCode);
+  }
+  
+  /*
   Wire.beginTransmission(0x04>>1); // transmit to device "address"
   Wire.write((byte)0);
   Wire.write((byte)200);
@@ -58,10 +73,9 @@ void loop(){
   delay(200);
   digitalWrite(13, LOW);
   delay(200);
+  */
   
- // voltage.data = ReadOne(0x010>>1);
-  delay(20);
-  diagPub.publish(&voltage);
+  
 }
 
 void i2cCallback( const GCRobotics::i2cData& msg)
@@ -72,7 +86,7 @@ void i2cCallback( const GCRobotics::i2cData& msg)
   Wire.write((byte)0);
   Wire.write(msg.messageData);
   Wire.write(msg.messageData2);
-  Wire.endTransmission();  
+  errorCode = Wire.endTransmission();  
   digitalWrite(13,LOW);
 }
 
