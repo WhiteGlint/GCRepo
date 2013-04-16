@@ -14,6 +14,7 @@ int ReadOne(char address);
 
 ros::NodeHandle n;
 
+//Message data variables
 GCRobotics::Encoder_msg encoders;
 std_msgs::Float32 voltage;
 std_msgs::UInt16 errorCode;
@@ -24,7 +25,6 @@ ros::Publisher error("ArduinoError", &errorCode);
 // subs
 ros::Subscriber<GCRobotics::i2cData> i2cSub("i2cSend", &i2cCallback );
 ros::Subscriber<std_msgs::UInt16> gpioSub("gpio", &gpioCallback);
- float read1;
 
 void setup(){
   Wire.begin(); // join i2c bus
