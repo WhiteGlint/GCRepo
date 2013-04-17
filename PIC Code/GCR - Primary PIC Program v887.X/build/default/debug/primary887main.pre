@@ -1590,10 +1590,13 @@ void i2cIsrHandler();
 void i2cSend(char msg);
 void i2cDataUpdate();
 
-# 29 "primary887main.c"
-asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFFF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFFFF & 0xF7FF");
+# 33 "primary887main.c"
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFEF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xEFFF");
 
-# 55
+# 35
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");
+
+# 60
 void Initialise();
 void interrupt isr();
 void UpdateData(int c);
@@ -1611,8 +1614,8 @@ void delay1sec();
 
 
 int TARGET = 0;
-int DIRECTION = 1;
-int DIR_READ = 1;
+int DIRECTION = 0;
+int DIR_READ = 0;
 
 
 int COUNTS = 0;
@@ -1620,7 +1623,7 @@ int COUNTS = 0;
 int TMR0_OverflowCount = 0;
 int TMR0_OverflowTarget = 8;
 
-# 85
+# 90
 unsigned char FLAG @ 0xAA;
 bit I2C @ ((unsigned)&FLAG*8)+0;
 bit T0 @ ((unsigned)&FLAG*8)+1;
@@ -1658,7 +1661,7 @@ int currentPWM = 0;
 Initialise();
 
 TARGET = 0;
-
+SetPulse(0);
 T0IE = 0;
 delay1sec();
 T0IE = 1;
@@ -1667,13 +1670,19 @@ TMR1 = 0;
 while(1)
 {
 
-# 147
+# 143
+PORTD = TMR1;
+
+
+
+
 if (F.I2C == 1)
 {
 
-# 156
+# 157
 TARGET = i2cSpeed;
 setDirection(i2cDirection);
+SetPulse(i2cSpeed);
 
 COUNTS = 0;
 I = 0;
@@ -1723,7 +1732,7 @@ P_old = P;
 if (P != 0)
 {
 currentPWM = PID;
-SetPulse(currentPWM + 128);
+
 }
 
 PORTD = COUNTS;
@@ -1741,9 +1750,9 @@ return 1;
 void Initialise()
 {
 FLAG = 0;
-BeginPWM();
+
 BeginEncoder();
-i2cInit(0x04);
+i2cInit(0x08);
 
 
 PEIE = 1;
@@ -1760,10 +1769,11 @@ TMR1IF = 0;
 GIE = 1;
 
 TRISB = 0b11110111;
-PORTBbits.RB3 = 1;
+PORTBbits.RB3 = 0;
 
 TRISD = 0;
-
+TRISC = 0;
+PORTCbits.RC1 = 0;
 }
 
 
@@ -1818,7 +1828,7 @@ void UpdateData(int c)
 
 
 
-if (DIR_READ == 1)
+if (DIR_READ == 0)
 {
 COUNTS += c;
 } else
@@ -1832,11 +1842,11 @@ COUNTS -= c;
 void setDirection(int dir)
 {
 if (dir == 0)
-PORTBbits.RB3 = 1;
+PORTBbits.RB3 = 0;
 else if (dir == 1)
-PORTBbits.RB3 = !1;
+PORTBbits.RB3 = !0;
 else
-PORTBbits.RB3 = 1;
+PORTBbits.RB3 = 0;
 }
 
 

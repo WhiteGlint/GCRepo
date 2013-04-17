@@ -3857,14 +3857,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 65: int TARGET = 0;
 "66
 [i _DIRECTION
--> 1 `i
+-> 0 `i
 ]
-[; ;primarymain.c: 66: int DIRECTION = 1;
+[; ;primarymain.c: 66: int DIRECTION = 0;
 "67
 [i _DIR_READ
--> 1 `i
+-> 0 `i
 ]
-[; ;primarymain.c: 67: int DIR_READ = 1;
+[; ;primarymain.c: 67: int DIR_READ = 0;
 "70
 [i _COUNTS
 -> 0 `i
@@ -4104,9 +4104,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 217: BeginEncoder();
 "217
 [e ( _BeginEncoder ..  ]
-[; ;primarymain.c: 218: i2cInit(0x04);
+[; ;primarymain.c: 218: i2cInit(0x06);
 "218
-[e ( _i2cInit (1 -> -> 4 `i `uc ]
+[e ( _i2cInit (1 -> -> 6 `i `uc ]
 [; ;primarymain.c: 221: PEIE = 1;
 "221
 [e = _PEIE -> -> 1 `i `b ]
@@ -4140,9 +4140,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 234: TRISB = 0b11110111;
 "234
 [e = _TRISB -> -> 247 `i `uc ]
-[; ;primarymain.c: 235: PORTBbits.RB3 = 1;
+[; ;primarymain.c: 235: PORTBbits.RB3 = 0;
 "235
-[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
 [; ;primarymain.c: 237: TRISD = 0;
 "237
 [e = _TRISD -> -> 0 `i `uc ]
@@ -4291,9 +4291,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _UpdateData ]
 [v _c `i  1 r1 ]
 [f ]
-[; ;primarymain.c: 292: if (DIR_READ == 1)
+[; ;primarymain.c: 292: if (DIR_READ == 0)
 "292
-[e $ ! == _DIR_READ -> 1 `i 224  ]
+[e $ ! == _DIR_READ -> 0 `i 224  ]
 [; ;primarymain.c: 293: {
 "293
 {
@@ -4330,24 +4330,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 305: if (dir == 0)
 "305
 [e $ ! == _dir -> 0 `i 227  ]
-[; ;primarymain.c: 306: PORTBbits.RB3 = 1;
+[; ;primarymain.c: 306: PORTBbits.RB3 = 0;
 "306
-[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
 [e $U 228  ]
 "307
 [e :U 227 ]
 [; ;primarymain.c: 307: else if (dir == 1)
 [e $ ! == _dir -> 1 `i 229  ]
-[; ;primarymain.c: 308: PORTBbits.RB3 = !1;
+[; ;primarymain.c: 308: PORTBbits.RB3 = !0;
 "308
-[e = . . _PORTBbits 0 3 -> -> ! != -> 1 `i -> 0 `i `i `uc ]
+[e = . . _PORTBbits 0 3 -> -> ! != -> 0 `i -> 0 `i `i `uc ]
 [e $U 230  ]
 "309
 [e :U 229 ]
 [; ;primarymain.c: 309: else
-[; ;primarymain.c: 310: PORTBbits.RB3 = 1;
+[; ;primarymain.c: 310: PORTBbits.RB3 = 0;
 "310
-[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
 [e :U 230 ]
 [e :U 228 ]
 [; ;primarymain.c: 311: }

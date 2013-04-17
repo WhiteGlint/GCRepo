@@ -2517,9 +2517,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pwmlib887.c: 41: {
 [e :U _BeginPWM ]
 [f ]
-[; ;pwmlib887.c: 44: TRISDbits.TRISD2 = 1;
+[; ;pwmlib887.c: 44: TRISCbits.TRISC1 = 1;
 "44
-[e = . . _TRISDbits 0 2 -> -> 1 `i `uc ]
+[e = . . _TRISCbits 0 1 -> -> 1 `i `uc ]
 [; ;pwmlib887.c: 47: PIE1bits.TMR2IE = 0;
 "47
 [e = . . _PIE1bits 0 1 -> -> 0 `i `uc ]
@@ -2559,9 +2559,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pwmlib887.c: 79: TMR2IF = 0;
 "79
 [e = _TMR2IF -> -> 0 `i `b ]
-[; ;pwmlib887.c: 80: TRISDbits.TRISD2 = 0;
+[; ;pwmlib887.c: 80: TRISCbits.TRISC1 = 0;
 "80
-[e = . . _TRISDbits 0 2 -> -> 0 `i `uc ]
+[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
 [; ;pwmlib887.c: 81: break;
 "81
 [e $U 144  ]

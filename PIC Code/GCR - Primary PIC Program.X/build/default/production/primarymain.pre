@@ -2338,8 +2338,8 @@ void delay1sec();
 
 
 int TARGET = 0;
-int DIRECTION = 1;
-int DIR_READ = 1;
+int DIRECTION = 0;
+int DIR_READ = 0;
 
 
 int COUNTS = 0;
@@ -2476,7 +2476,7 @@ void Initialise()
 FLAG = 0;
 BeginPWM();
 BeginEncoder();
-i2cInit(0x04);
+i2cInit(0x06);
 
 
 PEIE = 1;
@@ -2493,7 +2493,7 @@ TMR1IF = 0;
 GIE = 1;
 
 TRISB = 0b11110111;
-PORTBbits.RB3 = 1;
+PORTBbits.RB3 = 0;
 
 TRISD = 0;
 }
@@ -2550,7 +2550,7 @@ void UpdateData(int c)
 
 
 
-if (DIR_READ == 1)
+if (DIR_READ == 0)
 {
 COUNTS += c;
 } else
@@ -2564,11 +2564,11 @@ COUNTS -= c;
 void setDirection(int dir)
 {
 if (dir == 0)
-PORTBbits.RB3 = 1;
+PORTBbits.RB3 = 0;
 else if (dir == 1)
-PORTBbits.RB3 = !1;
+PORTBbits.RB3 = !0;
 else
-PORTBbits.RB3 = 1;
+PORTBbits.RB3 = 0;
 }
 
 
