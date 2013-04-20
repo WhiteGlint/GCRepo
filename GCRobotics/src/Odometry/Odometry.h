@@ -23,11 +23,14 @@ private:
 	double moveStraight (double EC1, double EC2, double EC3, double EC4);
 	double moveStrafe (double EC1, double EC2, double EC3, double EC4);
 	double moveRotate (double EC1, double EC2, double EC3, double EC4);
-		
+	
+	double XConversion;
+	double YConversion;
+	double frameWidth;
 public:
 	
-	double x;
-	double y;
+	double X;
+	double Y;
 	double heading;
 	//double velocityDistance, velocityHeading;
 	

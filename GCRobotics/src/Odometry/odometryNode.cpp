@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "Odometry");
+	ros::init(argc, argv, "odometryNode");
 	Odometry controller;
 	controller.init(argc, argv);
 	GCRobotics::Pose_msg data;
@@ -19,14 +19,16 @@ int main(int argc, char **argv)
 	ros::Rate r(10); // 10 hz
 	while (ros::ok())
 	{
-		data.x = controller.x;
-		data.y = controller.y;
+		data.x = controller.X;
+		data.y = controller.Y;
 		data.z = 0;
 		data.heading = controller.heading;
 
 		controller.pub.publish(data);
 
-  		transform.setOrigin( tf::Vector3(controller.x, controller.y, 0.0) );
+  		transform.setOrigin( 
+			tf::Vector3(controller.X*cos(controller.heading) - controller.Y*sin(controller.heading),
+						controller.X*sin(controller.heading) + controller.Y*cos(controller.heading) , 0.0) );
 		q.setRPY(0,0,controller.heading);
   		transform.setRotation(q);
   		br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "base_link"));

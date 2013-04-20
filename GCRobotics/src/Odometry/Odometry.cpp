@@ -1,6 +1,7 @@
 #include "Odometry.h"
 #include "GCRobotics/Pose_msg.h"
 #include "GCRobotics/Encoder_msg.h"
+#include <iostream>
 
 
 void Odometry::init(int argc, char **argv)
@@ -16,8 +17,12 @@ void Odometry::init(int argc, char **argv)
 	circleCircumference = 88.175081008304729835; // in centimeters... close enough
 	degreesPerCount = (degreesPerCircle * wheelCircumference) / (circleCircumference * CPR); // how far around the circle we've traveled in deg/count
 
-	x = 0;
-	y = 0;
+	
+	XConversion=1;
+	YConversion =1;
+	frameWidth =10;
+	X = 0;
+	Y = 0;
 	heading = 0;
 
 	return;
@@ -30,7 +35,7 @@ void Odometry::odometryCallback(const GCRobotics::Encoder_msg::ConstPtr& msg)
 	en3 = msg->encoder3;
 	en4 = msg->encoder4;
 	
-	direction1 = msg->direction1;
+	direction1 = msg->direction1; // these shouldnt be necessary anymore
 	direction2 = msg->direction2;	
 	direction3 = msg->direction3;	
 	direction4 = msg->direction4;		
@@ -44,63 +49,17 @@ void Odometry::odometryCallback(const GCRobotics::Encoder_msg::ConstPtr& msg)
 {
 
 }*/
-		
+
 void Odometry::processMotion()
-{	
-	if(!direction1 && !direction2 && !direction3 && !direction4) // back
-	{
-		//velocityDistance = moveStraight(en1, en2, en3, en4);
-		//velocityHeading = heading + 180;
-		x += moveStraight(en1, en2, en3, en4) * cos(heading+180);
-		y += moveStraight(en1, en2, en3, en4) * sin(heading+180);
-	}
-	else if(!direction1 && !direction2 && direction3 && direction4) // strafe right
-	{
-		//velocityDistance = moveStrafe(en1, en2, en3, en4);
-		//velocityHeading = heading + 270;
-		x += moveStrafe(en1, en2, en3, en4) * cos(heading+270);
-		y += moveStrafe(en1, en2, en3, en4) * sin(heading+270);
-	}
-	else if(!direction1 && direction2 && !direction3 && direction4) // ccw
-	{
-		heading += moveRotate(en1, en2, en3,en4);
-	}
-	else if(direction1 && !direction2 && direction3 && !direction4) // cw
-	{
-		heading -= moveRotate(en1, en2, en3,en4);
-	}
-	else if(direction1 && direction2 && !direction3 && !direction4) // strafe left
-	{
-		//velocityDistance = moveStrafe(en1, en2, en3, en4);
-		//velocityHeading = heading + 90;
-		x += moveStrafe(en1, en2, en3, en4) * cos(heading+90);
-		y += moveStrafe(en1, en2, en3, en4) * sin(heading+90);
-	}
-	else if(direction1 && direction2 && direction3 && direction4) // forward
-	{
-		//velocityDistance = moveStraight(en1, en2, en3, en4);
-		//velocityHeading = heading;
-		x += moveStraight(en1, en2, en3, en4) * cos(heading);
-		y += moveStraight(en1, en2, en3, en4) * sin(heading);
-	}
-		
+{
+	double Yl = (en1 + en3)*YConversion;
+	double Yr = (en2 + en4)*YConversion;
+	
+	double Xt = (en1 + en2)*XConversion;
+	double Xb = (en3 + en4)*XConversion;
+	
+	Y += (Yl + Yr)/2;
+	X += (Xt - Xb)/2;
+
+	heading += atan((Yl-Yr)/frameWidth);
 }
-
-double Odometry::moveStraight (double EC1, double EC2, double EC3, double EC4) { // Pass in 4 integers
-	long double count = (EC1 + EC2 + EC3 + EC4) / 4; // Average the inputs
-
-	double distanceTraveled = (count * wheelCircumference / CPR); // Kstraight
-	return distanceTraveled;
-}
-
-double Odometry::moveStrafe (double EC1, double EC2, double EC3, double EC4) { // Pass in 4 integers
-	double distanceTraveled = moveStraight(EC1, EC2, EC3, EC4) * sin(45); // Kstrafe = Kstraight * sin(45)
-	return distanceTraveled;
-}
-
-double Odometry::moveRotate (double EC1, double EC2, double EC3, double EC4) {
-	long double count = (EC1 + EC2 + EC3 + EC4) / 4; // Average the inputs	
-	double degreesTurned = degreesPerCount * count;
-	return (degreesTurned *3.14159/180);
-}
-
