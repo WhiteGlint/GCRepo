@@ -24,7 +24,7 @@ void callback(const GCRobotics::simpleVelocity::ConstPtr&);
 
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv,"DeadReckoner");
+	ros::init(argc, argv,"DeadReckoningNode");
 	ros::NodeHandle n;
 	ros::Subscriber sub = n.subscribe("Velocity", 100, callback);
 
