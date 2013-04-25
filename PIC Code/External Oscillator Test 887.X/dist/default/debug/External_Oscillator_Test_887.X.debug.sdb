@@ -760,9 +760,9 @@
 [v ___fttoee `(f  1 e 3 0 ]
 "132
 [v ___fltoee `(d  1 e 3 0 ]
-"23 extosc887_main.c
+"29 extosc887_main.c
 [v _main `(i  1 e 2 0 ]
-"45
+"57
 [v _delay1sec `(v  1 e 0 0 ]
 "118 /hitech/products/compilers/pic/pro/9.83/dist/linux/include/pic16f887.h
 [v _INDF `VEuc  1 e 1 @0 ]
@@ -1786,17 +1786,17 @@
 [v _ANSELHbits `VES1744  1 e 1 @393 ]
 "1662
 [v _EECON1bits `VES1767  1 e 1 @396 ]
-"23 extosc887_main.c
+"29 extosc887_main.c
 [v _main `(i  1 e 2 0 ]
 {
-"30
+"36
 [v main@x `i  1 a 2 2 ]
-"41
+"53
 } 0
-"45
+"57
 [v _delay1sec `(v  1 e 0 0 ]
 {
-"46
+"58
 [v delay1sec@i `i  1 a 2 0 ]
-"54
+"66
 } 0

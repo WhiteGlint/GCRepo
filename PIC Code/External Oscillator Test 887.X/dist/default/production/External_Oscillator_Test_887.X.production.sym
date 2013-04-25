@@ -10,20 +10,24 @@ __Lintentry 0 0 CODE
 _TMR0 1 0 ABS
 _T0IF 5A 0 ABS
 _WREN C62 0 ABS
-_main 7B2 0 CODE
+_main 7D2 0 CODE
 btemp 7E 0 ABS
 _exit 0 0 CODE
 start 0 0 CODE
-__end_of_delay1sec 800 0 CODE
+__end_of_delay1sec 7D2 0 CODE
+_TRISB 86 0 ABS
+_TRISC 87 0 ABS
 reset_vec 0 0 CODE
 _TRISD 88 0 ABS
+_PORTB 6 0 ABS
+_PORTC 7 0 ABS
 _EEADR 10D 0 ABS
 _PORTD 8 0 ABS
 wtemp0 7E 0 ABS
 _CARRY 18 0 ABS
 __Hconfig 2009 0 CONFIG
 __Lconfig 2007 0 CONFIG
-_delay1sec 7D3 0 CODE
+_delay1sec 7A5 0 CODE
 main@x 72 0 COMMON
 __Hram 0 0 ABS
 __Lram 0 0 ABS
@@ -54,10 +58,10 @@ __Lcode 0 0 ABS
 ??_main 72 0 COMMON
 __Hinit 0 0 CODE
 __Linit 0 0 CODE
-__end_of_main 7D3 0 CODE
+__end_of_main 800 0 CODE
 __Htext 0 0 ABS
 __Ltext 0 0 ABS
-end_of_initialization 7AE 0 CODE
+end_of_initialization 7A1 0 CODE
 __Hstrings 0 0 ABS
 __Lstrings 0 0 ABS
 __Hbank0 0 0 ABS
@@ -78,7 +82,7 @@ __Lidloc 0 0 IDLOC
 __Hcinit 0 0 ABS
 __Lcinit 0 0 ABS
 __size_of_main 0 0 ABS
-__ptext71 7D3 0 CODE
+__ptext71 7A5 0 CODE
 __ptext72 0 0 CODE
 __Hend_init 3 0 CODE
 __Lend_init 0 0 CODE
@@ -93,42 +97,46 @@ intlevel5 0 0 CODE
 __HcstackCOMMON 0 0 ABS
 __LcstackCOMMON 0 0 ABS
 __pcstackCOMMON 70 0 COMMON
-start_initialization 7AE 0 CODE
+start_initialization 7A1 0 CODE
 __Hmaintext 0 0 ABS
 __Lmaintext 0 0 ABS
-__pmaintext 7B2 0 CODE
+__pmaintext 7D2 0 CODE
 __size_of_delay1sec 0 0 ABS
 %segments
 reset_vec 0 5 CODE 0
 config 400E 4011 CONFIG 400E
 cstackCOMMON 70 73 COMMON 70
-text71 FA6 FFF CODE FA6
-maintext F64 FA5 CODE F64
-cinit F5C F63 CODE F5C
+maintext FA4 FFF CODE FA4
+text71 F4A FA3 CODE F4A
+cinit F42 F49 CODE F42
 %locals
 dist/default/production\External_Oscillator_Test_887.X.production.obj
 extosc887_main.c
-15 2007 0 CONFIG
-17 2008 0 CONFIG
-24 7B2 0 CODE
-25 7B6 0 CODE
-26 7B7 0 CODE
-28 7BB 0 CODE
-30 7BC 0 CODE
-34 7BF 0 CODE
-35 7C3 0 CODE
-36 7C9 0 CODE
-32 7CF 0 CODE
-41 7D0 0 CODE
-C:\Users\Alan\AppData\Local\Temp\s5e0.
-95 7AE 0 CODE
-96 7AF 0 CODE
+21 2007 0 CONFIG
+23 2008 0 CONFIG
+30 7D2 0 CODE
+31 7D6 0 CODE
+32 7D7 0 CODE
+34 7DB 0 CODE
+36 7DC 0 CODE
+38 7DE 0 CODE
+39 7E1 0 CODE
+40 7E5 0 CODE
+41 7E8 0 CODE
+46 7EC 0 CODE
+47 7F0 0 CODE
+48 7F6 0 CODE
+44 7FC 0 CODE
+53 7FD 0 CODE
+C:\Users\Alan\AppData\Local\Temp\s57g.
+103 7A1 0 CODE
+104 7A2 0 CODE
 extosc887_main.c
-46 7D3 0 CODE
-47 7D5 0 CODE
-49 7E4 0 CODE
-50 7E5 0 CODE
-49 7E6 0 CODE
-51 7EA 0 CODE
-47 7EB 0 CODE
-54 7FF 0 CODE
+58 7A5 0 CODE
+59 7A7 0 CODE
+61 7B6 0 CODE
+62 7B7 0 CODE
+61 7B8 0 CODE
+63 7BC 0 CODE
+59 7BD 0 CODE
+66 7D1 0 CODE

@@ -1302,7 +1302,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1666 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f887.h
 [v _EECON2 `Vuc  1 e@397 ]
 [p mainexit ]
-"20 extosc887_main.c
+"26 extosc887_main.c
 [v _delay1sec `(v  0 ef ]
 [; ;pic16f887.h: 118: volatile unsigned char INDF @ 0x000;
 [; ;pic16f887.h: 122: volatile unsigned char TMR0 @ 0x001;
@@ -2516,113 +2516,125 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, eeprom unsigned char *from, unsigned char size);
 [; ;eeprom_routines.h: 44: extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 [; ;pic.h: 154: extern void _delay(unsigned long);
-"15 extosc887_main.c
-[; ;extosc887_main.c: 15: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xFFFF");
+"21 extosc887_main.c
+[; ;extosc887_main.c: 21: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFEF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xEFFF");
 [; 	psect config,class=CONFIG,delta=2 ;#
-[; 	dw 0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xFFFF ;#
-"17
-[; ;extosc887_main.c: 17: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");
+[; 	dw 0xFFFA & 0xFFF7 & 0xFFEF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xEFFF ;#
+"23
+[; ;extosc887_main.c: 23: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");
 [; 	psect config,class=CONFIG,delta=2 ;#
 [; 	dw 0xFFFF & 0xFFFF ;#
-[; ;extosc887_main.c: 20: void delay1sec();
-"23
+[; ;extosc887_main.c: 26: void delay1sec();
+"29
 [v _main `(i  1 ef ]
 {
-[; ;extosc887_main.c: 22: int main()
-[; ;extosc887_main.c: 23: {
+[; ;extosc887_main.c: 28: int main()
+[; ;extosc887_main.c: 29: {
 [e :U _main ]
 [f ]
-[; ;extosc887_main.c: 24: OPTION_REG = 0b10010111;
-"24
-[e = _OPTION_REG -> -> 151 `i `uc ]
-[; ;extosc887_main.c: 25: TRISD = 0x00;
-"25
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;extosc887_main.c: 26: PORTD = 0xFF;
-"26
-[e = _PORTD -> -> 255 `i `uc ]
-[; ;extosc887_main.c: 28: TMR0 = 0;
-"28
-[e = _TMR0 -> -> 0 `i `uc ]
+[; ;extosc887_main.c: 30: OPTION_REG = 0b10010111;
 "30
-[v _x `i  1 a ]
-[; ;extosc887_main.c: 30: int x = 0;
-[e = _x -> 0 `i ]
-[; ;extosc887_main.c: 32: while(1)
+[e = _OPTION_REG -> -> 151 `i `uc ]
+[; ;extosc887_main.c: 31: TRISD = 0x00;
+"31
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;extosc887_main.c: 32: PORTD = 0xFF;
 "32
-[e :U 143 ]
-[; ;extosc887_main.c: 33: {
-"33
-{
-[; ;extosc887_main.c: 34: PORTD = x;
+[e = _PORTD -> -> 255 `i `uc ]
+[; ;extosc887_main.c: 34: TMR0 = 0;
 "34
-[e = _PORTD -> _x `uc ]
-[; ;extosc887_main.c: 35: x++;
-"35
-[e ++ _x -> 1 `i ]
-[; ;extosc887_main.c: 36: delay1sec();
+[e = _TMR0 -> -> 0 `i `uc ]
 "36
+[v _x `i  1 a ]
+[; ;extosc887_main.c: 36: int x = 0;
+[e = _x -> 0 `i ]
+[; ;extosc887_main.c: 38: TRISB = 0x00;
+"38
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;extosc887_main.c: 39: PORTB = 0x00;
+"39
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;extosc887_main.c: 40: TRISC = 0x00;
+"40
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;extosc887_main.c: 41: PORTC = 0x00;
+"41
+[e = _PORTC -> -> 0 `i `uc ]
+[; ;extosc887_main.c: 44: while(1)
+"44
+[e :U 143 ]
+[; ;extosc887_main.c: 45: {
+"45
+{
+[; ;extosc887_main.c: 46: PORTD = x;
+"46
+[e = _PORTD -> _x `uc ]
+[; ;extosc887_main.c: 47: x++;
+"47
+[e ++ _x -> 1 `i ]
+[; ;extosc887_main.c: 48: delay1sec();
+"48
 [e ( _delay1sec ..  ]
-"37
+"49
 }
 [e :U 142 ]
-"32
+"44
 [e $U 143  ]
 [e :U 144 ]
-[; ;extosc887_main.c: 37: }
-[; ;extosc887_main.c: 40: return 1;
-"40
+[; ;extosc887_main.c: 49: }
+[; ;extosc887_main.c: 52: return 1;
+"52
 [e ) -> 1 `i ]
 [e $UE 141  ]
-[; ;extosc887_main.c: 41: }
-"41
+[; ;extosc887_main.c: 53: }
+"53
 [e :UE 141 ]
 }
-"45
+"57
 [v _delay1sec `(v  1 ef ]
 {
-[; ;extosc887_main.c: 44: void delay1sec()
-[; ;extosc887_main.c: 45: {
+[; ;extosc887_main.c: 56: void delay1sec()
+[; ;extosc887_main.c: 57: {
 [e :U _delay1sec ]
 [f ]
-"46
+"58
 [v _i `i  1 a ]
-[; ;extosc887_main.c: 46: int i = 0;
+[; ;extosc887_main.c: 58: int i = 0;
 [e = _i -> 0 `i ]
-[; ;extosc887_main.c: 47: for(i; i <= 20; i++)
-"47
+[; ;extosc887_main.c: 59: for(i; i <= 76; i++)
+"59
 {
 [e _i ]
-[e $ <= _i -> 20 `i 146  ]
+[e $ <= _i -> 76 `i 146  ]
 [e $U 147  ]
-"48
+"60
 [e :U 146 ]
-[; ;extosc887_main.c: 48: {
+[; ;extosc887_main.c: 60: {
 {
-[; ;extosc887_main.c: 49: while (T0IF == 0)
-"49
+[; ;extosc887_main.c: 61: while (T0IF == 0)
+"61
 [e $U 149  ]
 [e :U 150 ]
-[; ;extosc887_main.c: 50: asm("nop");
-"50
+[; ;extosc887_main.c: 62: asm("nop");
+"62
 [; nop ;#
 [e :U 149 ]
-"49
+"61
 [e $ == -> _T0IF `i -> 0 `i 150  ]
 [e :U 151 ]
-[; ;extosc887_main.c: 51: T0IF = 0;
-"51
+[; ;extosc887_main.c: 63: T0IF = 0;
+"63
 [e = _T0IF -> -> 0 `i `b ]
-"52
+"64
 }
-"47
+"59
 [e ++ _i -> 1 `i ]
-[e $ <= _i -> 20 `i 146  ]
+[e $ <= _i -> 76 `i 146  ]
 [e :U 147 ]
-"52
+"64
 }
-[; ;extosc887_main.c: 52: }
-[; ;extosc887_main.c: 54: }
-"54
+[; ;extosc887_main.c: 64: }
+[; ;extosc887_main.c: 66: }
+"66
 [e :UE 145 ]
 }

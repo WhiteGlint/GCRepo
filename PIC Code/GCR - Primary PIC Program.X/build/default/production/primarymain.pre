@@ -2476,7 +2476,7 @@ void Initialise()
 FLAG = 0;
 BeginPWM();
 BeginEncoder();
-i2cInit(0x06);
+i2cInit(0x04);
 
 
 PEIE = 1;

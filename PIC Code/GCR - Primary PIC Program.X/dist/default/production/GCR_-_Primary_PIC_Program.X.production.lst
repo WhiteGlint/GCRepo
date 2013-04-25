@@ -1,7 +1,7 @@
 
 
 HI-TECH Software PIC LITE Macro Assembler V9.83 build 10920 
-                                                                                               Wed Apr 17 00:26:10 2013
+                                                                                               Wed Apr 17 11:35:23 2013
 
 HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
      1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 10920"
@@ -224,7 +224,7 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
    218  0552                     _T1	set	1362
    219                           	DABS	1,170,1	;_T1
    220                           
-   221                           	file	"C:\Users\Alan\AppData\Local\Temp\s3c4."
+   221                           	file	"C:\Users\Alan\AppData\Local\Temp\sfk."
    222                           	line	#
    223                           psect cinit,class=CODE,delta=2
    224                           global start_initialization
@@ -2568,8 +2568,8 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
   2542  0601  120A  118A  2732   	fcall	_BeginEncoder
               120A  118A         
   2543                           	line	218
-  2544                           ;primarymain.c: 218: i2cInit(0x06);
-  2545  0606  3006               	movlw	(06h)
+  2544                           ;primarymain.c: 218: i2cInit(0x04);
+  2545  0606  3004               	movlw	(04h)
   2546  0607  120A  118A  26DC   	fcall	_i2cInit
               120A  118A         
   2547                           	line	221
@@ -4950,7 +4950,7 @@ HI-TECH Software Omniscient Code Generator (Lite mode) build 10920
 
 
 HI-TECH Software PICC Macro Assembler V9.83 build 10920 
-Symbol Table                                                                                   Wed Apr 17 00:26:10 2013
+Symbol Table                                                                                   Wed Apr 17 11:35:23 2013
 
                      _F 00AA              i2cSend@msg 0070                      _T0 0551                      _T1 0552  
                     _RD 0C60                      _WR 0C61            ___ftadd@exp1 0058            ___ftadd@exp2 0057  

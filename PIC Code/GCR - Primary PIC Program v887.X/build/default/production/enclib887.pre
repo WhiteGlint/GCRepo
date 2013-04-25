@@ -1546,10 +1546,12 @@ volatile unsigned char EECON2 @ 0x18D;
 void BeginEncoder()
 {
 
-# 28
+
+
+
 OPTION_REG = 0b10010111;
 
-# 35
+# 34
 T1CON = 0b00000111;
 }
 

@@ -1553,10 +1553,10 @@ extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsign
 #pragma inline(_delay)
 extern void _delay(unsigned long);
 
-# 15 "extosc887_main.c"
-asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xFFFF");
+# 21 "extosc887_main.c"
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFA & 0xFFF7 & 0xFFEF & 0xFFFF & 0xFFFF & 0xFFFF & 0xFCFF & 0xFBFF & 0xF7FF & 0xEFFF");
 
-# 17
+# 23
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");
 
 
@@ -1571,6 +1571,12 @@ PORTD = 0xFF;
 TMR0 = 0;
 
 int x = 0;
+
+TRISB = 0x00;
+PORTB = 0x00;
+TRISC = 0x00;
+PORTC = 0x00;
+
 
 while(1)
 {
@@ -1587,7 +1593,7 @@ return 1;
 void delay1sec()
 {
 int i = 0;
-for(i; i <= 20; i++)
+for(i; i <= 76; i++)
 {
 while (T0IF == 0)
 asm("nop");

@@ -40,7 +40,7 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
 //  the main code can be exactly the same, from PIC to PIC for the robot,
 //  depending on the motor position (front left motor, for example), only
 //  these definitions will need to change
-#define I2C_ADDRESS 0x08        // I2C address; unique to specific PIC
+#define I2C_ADDRESS 0x04        // I2C address; unique to specific PIC
 #define FORWARD 0               // PIC specific depending on wheel orientation
 #define BACKWARD !FORWARD       // ^
 #define CYCLES_PER_REV 650      // Should be nearly the same for all PICs,
@@ -141,6 +141,8 @@ int main()
         asm("nop");     //*/
 
 	PORTD = TMR1;
+//        SetPulse(150);
+//        setDirection(FORWARD);
 
 
 
@@ -186,7 +188,6 @@ int main()
         if (F.T0 == 1)
         {
             // Update to most recent encoder counts
-//            SetPulse(0);
             EncUpdate(&counts);
             UpdateData(counts);
 
@@ -209,7 +210,7 @@ int main()
 //                SetPulse(currentPWM + 128);       // set new PWM
             }
 
-            PORTD = COUNTS;
+
             F.T0 = 0;                   // reset TMR0 flag
         } // end PID Loop               */
 
@@ -224,7 +225,7 @@ int main()
 void Initialise()
 {
     FLAG = 0;
-//    BeginPWM();             // initialize PWM associated registers
+    BeginPWM();             // initialize PWM associated registers
     BeginEncoder();         // initialize encoder registers (TMR0 & TMR1)
     i2cInit(I2C_ADDRESS);   // initialize I2C
 

@@ -29,7 +29,7 @@ __CONFIG(FOSC_HS & WDTE_OFF & PWRTE_OFF & MCLRE_ON & CP_OFF & CPD_OFF &
 //  the main code can be exactly the same, from PIC to PIC for the robot,
 //  depending on the motor position (front left motor, for example), only
 //  these definitions will need to change
-#define I2C_ADDRESS 0x06        // I2C address; unique to specific PIC
+#define I2C_ADDRESS 0x04        // I2C address; unique to specific PIC
 #define FORWARD 0               // PIC specific depending on wheel orientation
 #define BACKWARD !FORWARD       // ^
 #define CYCLES_PER_REV 650      // Should be nearly the same for all PICs,

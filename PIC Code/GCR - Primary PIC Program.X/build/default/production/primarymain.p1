@@ -4104,9 +4104,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primarymain.c: 217: BeginEncoder();
 "217
 [e ( _BeginEncoder ..  ]
-[; ;primarymain.c: 218: i2cInit(0x06);
+[; ;primarymain.c: 218: i2cInit(0x04);
 "218
-[e ( _i2cInit (1 -> -> 6 `i `uc ]
+[e ( _i2cInit (1 -> -> 4 `i `uc ]
 [; ;primarymain.c: 221: PEIE = 1;
 "221
 [e = _PEIE -> -> 1 `i `b ]

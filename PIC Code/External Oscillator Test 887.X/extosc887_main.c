@@ -11,9 +11,15 @@
 #include <htc.h>
 #include <pic16f887.h>
 
-// Turn on external oscillator --> FOSC_HS
-__CONFIG(FOSC_HS & WDTE_OFF & PWRTE_ON & MCLRE_ON &
-        CP_OFF & CPD_OFF & BOREN_OFF & IESO_OFF & FCMEN_OFF & LVP_OFF);
+// External High Speed Oscillator
+//    __CONFIG(FOSC_HS);
+
+// Internal RC Oscillator
+//    __CONFIG(FOSC_INTRC_NOCLKOUT);
+
+// General Oscillator Settings
+__CONFIG(FOSC_HS & WDTE_OFF & PWRTE_ON & MCLRE_ON & CP_OFF & CPD_OFF & BOREN_OFF
+        & IESO_OFF & FCMEN_OFF & LVP_OFF);
 __CONFIG(BOR4V_BOR40V & WRT_OFF);
 
 
@@ -28,6 +34,12 @@ int main()
     TMR0 = 0;
 
     int x = 0;
+
+    TRISB = 0x00;
+    PORTB = 0xFF;
+    TRISC = 0x00;
+    PORTC = 0xFF;
+
 
     while(1)
     {

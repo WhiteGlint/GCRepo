@@ -2515,31 +2515,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;enclib887.c: 22: {
 [e :U _BeginEncoder ]
 [f ]
-[; ;enclib887.c: 28: OPTION_REG = 0b10010111;
-"28
+[; ;enclib887.c: 27: OPTION_REG = 0b10010111;
+"27
 [e = _OPTION_REG -> -> 151 `i `uc ]
-[; ;enclib887.c: 35: T1CON = 0b00000111;
-"35
+[; ;enclib887.c: 34: T1CON = 0b00000111;
+"34
 [e = _T1CON -> -> 7 `i `uc ]
-[; ;enclib887.c: 36: }
-"36
+[; ;enclib887.c: 35: }
+"35
 [e :UE 141 ]
 }
-"42
+"41
 [v _EncUpdate `(v  1 ef1`*i ]
 {
-[; ;enclib887.c: 41: void EncUpdate(int *t1)
-[; ;enclib887.c: 42: {
+[; ;enclib887.c: 40: void EncUpdate(int *t1)
+[; ;enclib887.c: 41: {
 [e :U _EncUpdate ]
 [v _t1 `*i  1 r1 ]
 [f ]
-[; ;enclib887.c: 43: *t1 = TMR1;
-"43
+[; ;enclib887.c: 42: *t1 = TMR1;
+"42
 [e = *U _t1 -> _TMR1 `i ]
-[; ;enclib887.c: 45: TMR1 = 0;
-"45
+[; ;enclib887.c: 44: TMR1 = 0;
+"44
 [e = _TMR1 -> -> 0 `i `ui ]
-[; ;enclib887.c: 47: }
-"47
+[; ;enclib887.c: 46: }
+"46
 [e :UE 142 ]
 }

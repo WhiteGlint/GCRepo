@@ -1673,13 +1673,11 @@ while(1)
 # 143
 PORTD = TMR1;
 
-
-
-
+# 150
 if (F.I2C == 1)
 {
 
-# 157
+# 159
 TARGET = i2cSpeed;
 setDirection(i2cDirection);
 SetPulse(i2cSpeed);
@@ -1712,7 +1710,6 @@ F.DIR = 0;
 if (F.T0 == 1)
 {
 
-
 EncUpdate(&counts);
 UpdateData(counts);
 
@@ -1735,7 +1732,7 @@ currentPWM = PID;
 
 }
 
-PORTD = COUNTS;
+
 F.T0 = 0;
 }
 
@@ -1750,9 +1747,9 @@ return 1;
 void Initialise()
 {
 FLAG = 0;
-
+BeginPWM();
 BeginEncoder();
-i2cInit(0x08);
+i2cInit(0x04);
 
 
 PEIE = 1;

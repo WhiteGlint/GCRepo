@@ -16,7 +16,7 @@ Linker command line:
   -ACONFIG=02007h-02008h -pconfig=CONFIG -DCONFIG=2 -AIDLOC=02000h-02003h \
   -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA \
   -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\Alan\AppData\Local\Temp\s5e0.obj \
+  C:\Users\Alan\AppData\Local\Temp\s57g.obj \
   dist/default/production\External_Oscillator_Test_887.X.production.obj 
 
 Object code version is 3.10
@@ -26,23 +26,23 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Alan\AppData\Local\Temp\s5e0.obj
+C:\Users\Alan\AppData\Local\Temp\s57g.obj
                 end_init                              0        0        3        0       0
 dist/default/production\External_Oscillator_Test_887.X.production.obj
                 config                             2007     2007        2     400E       0
-                text71                              7D3      7D3       2D      FA6       0
+                text71                              7A5      7A5       2D      F4A       0
                 cstackCOMMON                         70       70        4       70       1
-                cinit                               7AE      7AE        4      F5C       0
-                maintext                            7B2      7B2       21      F64       0
+                cinit                               7A1      7A1        4      F42       0
+                maintext                            7D2      7D2       2E      FA4       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CONST          
 
         CLASS   CODE           
                 end_init                              0        0        3         0
-                text71                              7D3      7D3       2D         0
-                cinit                               7AE      7AE        4         0
-                maintext                            7B2      7B2       21         0
+                text71                              7A5      7A5       2D         0
+                cinit                               7A1      7A1        4         0
+                maintext                            7D2      7D2       2E         0
 
         CLASS   STRCODE        
 
@@ -87,9 +87,9 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
                 cstackCOMMON                   000070  000004  000074        70       1  COMMON      1
-                cinit                          0007AE  000004  0007B2       F5C       0  CODE        2
-                maintext                       0007B2  000021  0007D3       F64       0  CODE        2
-                text71                         0007D3  00002D  000800       FA6       0  CODE        2
+                cinit                          0007A1  000004  0007A5       F42       0  CODE        2
+                text71                         0007A5  00002D  0007D2       F4A       0  CODE        2
+                maintext                       0007D2  00002E  000800       FA4       0  CODE        2
                 config                         002007  000002  002009      400E       0  CONFIG      2
 
 
@@ -100,13 +100,13 @@ UNUSED ADDRESS RANGES
         BANK1            00A0-00EF             50           1
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
-        CODE             0003-07AD            7AB           2
+        CODE             0003-07A0            79E           2
                          0800-1FFF            800
         COMMON           0074-007D              A           1
-        CONST            0003-07AD            100           2
+        CONST            0003-07A0            100           2
                          0800-1FFF            100
         EEDATA           2100-21FF            100           2
-        ENTRY            0003-07AD            100           2
+        ENTRY            0003-07A0            100           2
                          0800-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0020-006F             50           1
@@ -117,9 +117,9 @@ UNUSED ADDRESS RANGES
         SFR1             0080-009F             20           1
         SFR2             0100-010F             10           1
         SFR3             0180-018F             10           1
-        STRCODE          0003-07AD            7AB           2
+        STRCODE          0003-07A0            79E           2
                          0800-1FFF           1800
-        STRING           0003-07AD            100           2
+        STRING           0003-07A0            100           2
                          0800-1FFF            100
 
                                   Symbol Table
@@ -135,10 +135,14 @@ _EECON2               (abs)        018D
 _EEDATA               (abs)        010C
 _GIE                  (abs)        005F
 _OPTION_REG           (abs)        0081
+_PORTB                (abs)        0006
+_PORTC                (abs)        0007
 _PORTD                (abs)        0008
 _RD                   (abs)        0C60
 _T0IF                 (abs)        005A
 _TMR0                 (abs)        0001
+_TRISB                (abs)        0086
+_TRISC                (abs)        0087
 _TRISD                (abs)        0088
 _WR                   (abs)        0C61
 _WREN                 (abs)        0C62
@@ -199,20 +203,20 @@ __Ltext               text         0000
 __S0                  (abs)        2009
 __S1                  (abs)        0074
 __S2                  (abs)        0000
-__end_of_delay1sec    text71       0800
-__end_of_main         maintext     07D3
+__end_of_delay1sec    text71       07D2
+__end_of_main         maintext     0800
 __pcstackCOMMON       cstackCOMMON 0070
-__pmaintext           maintext     07B2
-__ptext71             text71       07D3
+__pmaintext           maintext     07D2
+__ptext71             text71       07A5
 __ptext72             text72       0000
 __size_of_delay1sec   (abs)        0000
 __size_of_main        (abs)        0000
-_delay1sec            text71       07D3
+_delay1sec            text71       07A5
 _exit                 init         0000
-_main                 maintext     07B2
+_main                 maintext     07D2
 btemp                 (abs)        007E
 delay1sec@i           cstackCOMMON 0070
-end_of_initialization cinit        07AE
+end_of_initialization cinit        07A1
 intlevel0             functab      0000
 intlevel1             functab      0000
 intlevel2             functab      0000
@@ -222,5 +226,5 @@ intlevel5             functab      0000
 main@x                cstackCOMMON 0072
 reset_vec             reset_vec    0000
 start                 init         0000
-start_initialization  cinit        07AE
+start_initialization  cinit        07A1
 wtemp0                (abs)        007E
