@@ -247,7 +247,6 @@ void Initialise()
     PORTBbits.RB3 = FORWARD;    // default to forward
 
     TRISD = 0;
-    TRISC = 0;
     PORTCbits.RC1 = 0;
 }
 

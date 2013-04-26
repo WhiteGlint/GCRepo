@@ -2761,15 +2761,15 @@
 [v _main `(i  1 e 2 0 ]
 "226
 [v _Initialise `(v  1 e 0 0 ]
-"257
+"256
 [v _isr `I(v  1 e 0 0 ]
-"302
+"301
 [v _UpdateData `(v  1 e 0 0 ]
-"318
+"317
 [v _setDirection `(v  1 e 0 0 ]
-"330
+"329
 [v _abs `(i  1 e 2 0 ]
-"340
+"339
 [v _delay1sec `(v  1 e 0 0 ]
 "41 pwmlib887.c
 [v _BeginPWM `(v  1 e 0 0 ]
@@ -3896,7 +3896,7 @@
 "226 primary887main.c
 [v _Initialise `(v  1 e 0 0 ]
 {
-"252
+"251
 } 0
 "45 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\fttol.c
 [v ___fttol `(l  1 e 4 0 ]
@@ -3935,11 +3935,11 @@
 {
 "84
 } 0
-"302 primary887main.c
+"301 primary887main.c
 [v _UpdateData `(v  1 e 0 0 ]
 {
 [v UpdateData@c `i  1 p 2 0 ]
-"313
+"312
 } 0
 "41 enclib887.c
 [v _EncUpdate `(v  1 e 0 0 ]
@@ -3948,18 +3948,18 @@
 [v EncUpdate@t1 `*.0i  1 a 1 wreg ]
 "46
 } 0
-"318 primary887main.c
+"317 primary887main.c
 [v _setDirection `(v  1 e 0 0 ]
 {
 [v setDirection@dir `i  1 p 2 0 ]
-"325
+"324
 } 0
-"340
+"339
 [v _delay1sec `(v  1 e 0 0 ]
 {
-"341
+"340
 [v delay1sec@i `i  1 a 2 0 ]
-"349
+"348
 } 0
 "105 pwmlib887.c
 [v _SetPulse `(v  1 e 0 0 ]
@@ -3970,10 +3970,10 @@
 [v SetPulse@length `i  1 p 2 0 ]
 "113
 } 0
-"257 primary887main.c
+"256 primary887main.c
 [v _isr `I(v  1 e 0 0 ]
 {
-"296
+"295
 } 0
 "43 i2cSlave887.c
 [v _i2cIsrHandler `(v  1 e 0 0 ]

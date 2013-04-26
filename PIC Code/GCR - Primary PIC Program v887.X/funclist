@@ -1,20 +1,20 @@
-_delay1sec: CODE, 1530 0 49
-_setDirection: CODE, 1790 0 23
-_EncUpdate: CODE, 1834 0 14
+_delay1sec: CODE, 1481 0 49
+_setDirection: CODE, 1789 0 23
+_EncUpdate: CODE, 1833 0 14
 ___ftpack: CODE, 1248 0 125
 _main: CODE, 21 0 362
 ___ftadd: CODE, 383 0 326
-_SetPulse: CODE, 1700 0 32
-_Initialise: CODE, 1481 0 49
+_SetPulse: CODE, 1699 0 32
+_Initialise: CODE, 1530 0 48
 _i2cIsrHandler: CODE, 1113 0 135
-_UpdateData: CODE, 1663 0 37
+_UpdateData: CODE, 1662 0 37
 _isr: CODE, 1373 0 108
-_i2cInit: CODE, 1762 0 28
-_i2cSend: CODE, 1857 0 9
-_BeginPWM: CODE, 1732 0 30
+_i2cInit: CODE, 1761 0 28
+_i2cSend: CODE, 1856 0 9
+_BeginPWM: CODE, 1731 0 30
 ___ftmul: CODE, 709 0 238
-_BeginEncoder: CODE, 1848 0 9
-_i2cDataUpdate: CODE, 1813 0 21
-___awtoft: CODE, 1579 0 44
+_BeginEncoder: CODE, 1847 0 9
+_i2cDataUpdate: CODE, 1812 0 21
+___awtoft: CODE, 1578 0 44
 ___fttol: CODE, 947 0 166
-Total: 1805
+Total: 1804

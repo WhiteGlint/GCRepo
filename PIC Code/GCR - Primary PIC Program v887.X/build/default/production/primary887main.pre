@@ -1769,7 +1769,6 @@ TRISB = 0b11110111;
 PORTBbits.RB3 = 0;
 
 TRISD = 0;
-TRISC = 0;
 PORTCbits.RC1 = 0;
 }
 
