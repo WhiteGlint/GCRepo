@@ -250,7 +250,7 @@ void motorControl::set_direction_right()
 	motor2_direction = 1;
 	motor3_direction = 1;
 	motor4_direction = 0;
-}
+}	
 
 void motorControl::set_direction_backward()
 {
@@ -274,8 +274,8 @@ void motorControl::set_direction_clockwise()
 {
 	movement_direction = 4;
 	motor1_direction = 1;
-	motor2_direction = 0;
-	motor3_direction = 1;
+	motor2_direction = 1;
+	motor3_direction = 0;
 	motor4_direction = 0;
 }
 
@@ -283,8 +283,8 @@ void motorControl::set_direction_counterclockwise()
 {
 	movement_direction = 5;
 	motor1_direction = 0;
-	motor2_direction = 1;
-	motor3_direction = 0;
+	motor2_direction = 0;
+	motor3_direction = 1;
 	motor4_direction = 1;
 }
 

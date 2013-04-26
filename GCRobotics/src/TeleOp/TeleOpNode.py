@@ -22,7 +22,7 @@ def talker():
 			#pub.publish(msg);	
 		elif i == ord('a'):
 			msg.speed = 150;
-			msg.direction = 1;
+			msg.direction = 3;
 			#pub.publish(msg);	
 		elif i == ord('s'):
 			msg.speed = 150;
@@ -30,14 +30,14 @@ def talker():
 			#pub.publish(msg);	
 		elif i == ord('d'):
 			msg.speed = 150;
-			msg.direction = 3;
+			msg.direction = 1;
 			#pub.publish(msg);
 		elif i == ord('q'):
 			msg.speed = 150;
-			msg.direction = 4;
+			msg.direction = 5;
 		elif i == ord('e'):
 			msg.speed = 150;
-			msg.direction = 5;	
+			msg.direction = 4;	
 		elif i == ord('f'):
 			msg.speed = 0;
 			msg.direction = 0;

@@ -37,12 +37,12 @@ void setup(){
   n.subscribe(gpioSub);
 
   pinMode(13, OUTPUT);
-  DDRD = B11111111;
+  //DDRD = B11111111;
   
   errorCode.data = 0;
   Timer1.initialize(2000000); // 2000 ms between interrupts
-  //Timer1.attachInterrupt(Read);
   Timer1.attachInterrupt(Read);
+  //Timer1.attachInterrupt(Read);
   Timer1.attachInterrupt(sendVoltage);
 
 }
