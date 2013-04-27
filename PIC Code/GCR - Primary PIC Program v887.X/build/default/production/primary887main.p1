@@ -1313,48 +1313,48 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _i2cDirection `uc  1 e ]
 "17 i2cSlave887.h
 [v _i2cWriteInt `uc  1 e ]
-"76 primary887main.c
-[v _TARGET `i  1 e ]
-"77 primary887main.c
-[v _DIRECTION `i  1 e ]
-"78 primary887main.c
-[v _DIR_READ `i  1 e ]
-"81 primary887main.c
-[v _COUNTS `i  1 e ]
-"83 primary887main.c
-[v _TMR0_OverflowCount `i  1 e ]
 "84 primary887main.c
-[v _TMR0_OverflowTarget `i  1 e ]
-"90 primary887main.c
-[v _FLAG `uc  1 e@170 ]
+[v _TARGET `i  1 e ]
+"85 primary887main.c
+[v _DIRECTION `i  1 e ]
+"86 primary887main.c
+[v _DIR_READ `i  1 e ]
+"89 primary887main.c
+[v _COUNTS `i  1 e ]
 "91 primary887main.c
-[v _I2C `b  1 e@1360 ]
+[v _TMR0_OverflowCount `i  1 e ]
 "92 primary887main.c
+[v _TMR0_OverflowTarget `i  1 e ]
+"98 primary887main.c
+[v _FLAG `uc  1 e@170 ]
+"99 primary887main.c
+[v _I2C `b  1 e@1360 ]
+"100 primary887main.c
 [v _T0 `b  1 e@1361 ]
-"93 primary887main.c
+"101 primary887main.c
 [v _T1 `b  1 e@1362 ]
-"94 primary887main.c
+"102 primary887main.c
 [v _DIR `b  1 e@1363 ]
-"95 primary887main.c
+"103 primary887main.c
 [v _ERR `b  1 e@1364 ]
 [s S142 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
 [n S142 . I2C T0 T1 DIR ERR . ]
 [u S141 `S142 1 ]
 [n S141 . . ]
-"105 primary887main.c
+"113 primary887main.c
 [v _F `S141  1 e@170 ]
 [p mainexit ]
-"60 primary887main.c
+"68 primary887main.c
 [v _Initialise `(v  0 ef ]
 "25 pwmlib887.h
 [v _SetPulse `(v  0 ef1`i ]
-"71 primary887main.c
+"79 primary887main.c
 [v _delay1sec `(v  0 ef ]
-"64 primary887main.c
+"72 primary887main.c
 [v _setDirection `(v  0 ef1`i ]
 "22 enclib887.h
 [v _EncUpdate `(v  0 ef1`*i ]
-"62 primary887main.c
+"70 primary887main.c
 [v _UpdateData `(v  0 ef1`i ]
 "18 pwmlib887.h
 [v _BeginPWM `(v  0 ef ]
@@ -2600,595 +2600,595 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;primary887main.c: 35: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFF & 0xFFFF");
 [; 	psect config,class=CONFIG,delta=2 ;#
 [; 	dw 0xFFFF & 0xFFFF ;#
-[; ;primary887main.c: 60: void Initialise();
-[; ;primary887main.c: 61: void interrupt isr();
-[; ;primary887main.c: 62: void UpdateData(int c);
-[; ;primary887main.c: 64: void setDirection(int dir);
-[; ;primary887main.c: 65: int abs(int a, int b);
-[; ;primary887main.c: 69: void delay(int length);
-[; ;primary887main.c: 70: void CalcPulse(int speed);
-[; ;primary887main.c: 71: void delay1sec();
-"76
+[; ;primary887main.c: 68: void Initialise();
+[; ;primary887main.c: 69: void interrupt isr();
+[; ;primary887main.c: 70: void UpdateData(int c);
+[; ;primary887main.c: 72: void setDirection(int dir);
+[; ;primary887main.c: 73: int abs(int a, int b);
+[; ;primary887main.c: 77: void delay(int length);
+[; ;primary887main.c: 78: void CalcPulse(int speed);
+[; ;primary887main.c: 79: void delay1sec();
+"84
 [i _TARGET
 -> 0 `i
 ]
-[; ;primary887main.c: 76: int TARGET = 0;
-"77
+[; ;primary887main.c: 84: int TARGET = 0;
+"85
 [i _DIRECTION
--> 0 `i
+-> 1 `i
 ]
-[; ;primary887main.c: 77: int DIRECTION = 0;
-"78
+[; ;primary887main.c: 85: int DIRECTION = 1;
+"86
 [i _DIR_READ
--> 0 `i
+-> 1 `i
 ]
-[; ;primary887main.c: 78: int DIR_READ = 0;
-"81
+[; ;primary887main.c: 86: int DIR_READ = 1;
+"89
 [i _COUNTS
 -> 0 `i
 ]
-[; ;primary887main.c: 81: int COUNTS = 0;
-"83
+[; ;primary887main.c: 89: int COUNTS = 0;
+"91
 [i _TMR0_OverflowCount
 -> 0 `i
 ]
-[; ;primary887main.c: 83: int TMR0_OverflowCount = 0;
-"84
+[; ;primary887main.c: 91: int TMR0_OverflowCount = 0;
+"92
 [i _TMR0_OverflowTarget
 -> 8 `i
 ]
-[; ;primary887main.c: 84: int TMR0_OverflowTarget = 8;
-[; ;primary887main.c: 90: unsigned char FLAG @ 0xAA;
-[; ;primary887main.c: 91: bit I2C @ ((unsigned)&FLAG*8)+0;
-[; ;primary887main.c: 92: bit T0 @ ((unsigned)&FLAG*8)+1;
-[; ;primary887main.c: 93: bit T1 @ ((unsigned)&FLAG*8)+2;
-[; ;primary887main.c: 94: bit DIR @ ((unsigned)&FLAG*8)+3;
-[; ;primary887main.c: 95: bit ERR @ ((unsigned)&FLAG*8)+4;
-[; ;primary887main.c: 96: union {
-[; ;primary887main.c: 97: struct {
-[; ;primary887main.c: 98: unsigned I2C : 1;
-[; ;primary887main.c: 99: unsigned T0 : 1;
-[; ;primary887main.c: 100: unsigned T1 : 1;
-[; ;primary887main.c: 101: unsigned DIR : 1;
-[; ;primary887main.c: 102: unsigned ERR : 1;
-[; ;primary887main.c: 103: unsigned : 3;
-[; ;primary887main.c: 104: };
-[; ;primary887main.c: 105: }F @ 0xAA;
-"111
+[; ;primary887main.c: 92: int TMR0_OverflowTarget = 8;
+[; ;primary887main.c: 98: unsigned char FLAG @ 0xAA;
+[; ;primary887main.c: 99: bit I2C @ ((unsigned)&FLAG*8)+0;
+[; ;primary887main.c: 100: bit T0 @ ((unsigned)&FLAG*8)+1;
+[; ;primary887main.c: 101: bit T1 @ ((unsigned)&FLAG*8)+2;
+[; ;primary887main.c: 102: bit DIR @ ((unsigned)&FLAG*8)+3;
+[; ;primary887main.c: 103: bit ERR @ ((unsigned)&FLAG*8)+4;
+[; ;primary887main.c: 104: union {
+[; ;primary887main.c: 105: struct {
+[; ;primary887main.c: 106: unsigned I2C : 1;
+[; ;primary887main.c: 107: unsigned T0 : 1;
+[; ;primary887main.c: 108: unsigned T1 : 1;
+[; ;primary887main.c: 109: unsigned DIR : 1;
+[; ;primary887main.c: 110: unsigned ERR : 1;
+[; ;primary887main.c: 111: unsigned : 3;
+[; ;primary887main.c: 112: };
+[; ;primary887main.c: 113: }F @ 0xAA;
+"119
 [v _main `(i  1 ef ]
 {
-[; ;primary887main.c: 110: int main()
-[; ;primary887main.c: 111: {
+[; ;primary887main.c: 118: int main()
+[; ;primary887main.c: 119: {
 [e :U _main ]
 [f ]
-"113
+"121
 [v _counts `i  1 a ]
-[; ;primary887main.c: 113: int counts = 0,
+[; ;primary887main.c: 121: int counts = 0,
 [e = _counts -> 0 `i ]
-"114
+"122
 [v _P `i  1 a ]
-"115
+"123
 [v _I `i  1 a ]
-"116
-[v _D `i  1 a ]
-"117
-[v _P_old `i  1 a ]
-[; ;primary887main.c: 114: P,
-[; ;primary887main.c: 115: I,
-[; ;primary887main.c: 116: D,
-[; ;primary887main.c: 117: P_old = 0,
-[e = _P_old -> 0 `i ]
-"118
-[v _PID `i  1 a ]
-"120
-[v _currentPWM `i  1 a ]
-[; ;primary887main.c: 118: PID;
-[; ;primary887main.c: 120: int currentPWM = 0;
-[e = _currentPWM -> 0 `i ]
-[; ;primary887main.c: 124: Initialise();
 "124
-[e ( _Initialise ..  ]
-[; ;primary887main.c: 126: TARGET = 0;
-"126
-[e = _TARGET -> 0 `i ]
-[; ;primary887main.c: 127: SetPulse(0);
-"127
-[e ( _SetPulse (1 -> 0 `i ]
-[; ;primary887main.c: 128: T0IE = 0;
-"128
-[e = _T0IE -> -> 0 `i `b ]
-[; ;primary887main.c: 129: delay1sec();
-"129
-[e ( _delay1sec ..  ]
-[; ;primary887main.c: 130: T0IE = 1;
-"130
-[e = _T0IE -> -> 1 `i `b ]
-[; ;primary887main.c: 131: TMR1 = 0;
-"131
-[e = _TMR1 -> -> 0 `i `ui ]
-[; ;primary887main.c: 133: while(1)
-"133
-[e :U 145 ]
-[; ;primary887main.c: 134: {
-"134
-{
-[; ;primary887main.c: 143: PORTD = TMR1;
-"143
-[e = _PORTD -> _TMR1 `uc ]
-[; ;primary887main.c: 150: if (F.I2C == 1)
-"150
-[e $ ! == -> . . _F 0 0 `i -> 1 `i 147  ]
-[; ;primary887main.c: 151: {
-"151
-{
-[; ;primary887main.c: 159: TARGET = i2cSpeed;
-"159
-[e = _TARGET -> _i2cSpeed `i ]
-[; ;primary887main.c: 160: setDirection(i2cDirection);
-"160
-[e ( _setDirection (1 -> _i2cDirection `i ]
-[; ;primary887main.c: 161: SetPulse(i2cSpeed);
-"161
-[e ( _SetPulse (1 -> _i2cSpeed `i ]
-[; ;primary887main.c: 163: COUNTS = 0;
-"163
-[e = _COUNTS -> 0 `i ]
-[; ;primary887main.c: 164: I = 0;
-"164
-[e = _I -> 0 `i ]
-[; ;primary887main.c: 165: D = 0;
-"165
-[e = _D -> 0 `i ]
-[; ;primary887main.c: 166: P_old = 0;
-"166
+[v _D `i  1 a ]
+"125
+[v _P_old `i  1 a ]
+[; ;primary887main.c: 122: P,
+[; ;primary887main.c: 123: I,
+[; ;primary887main.c: 124: D,
+[; ;primary887main.c: 125: P_old = 0,
 [e = _P_old -> 0 `i ]
-[; ;primary887main.c: 169: F.I2C = 0;
+"126
+[v _PID `i  1 a ]
+"128
+[v _currentPWM `i  1 a ]
+[; ;primary887main.c: 126: PID;
+[; ;primary887main.c: 128: int currentPWM = 0;
+[e = _currentPWM -> 0 `i ]
+[; ;primary887main.c: 132: Initialise();
+"132
+[e ( _Initialise ..  ]
+[; ;primary887main.c: 134: TARGET = 0;
+"134
+[e = _TARGET -> 0 `i ]
+[; ;primary887main.c: 135: SetPulse(0);
+"135
+[e ( _SetPulse (1 -> 0 `i ]
+[; ;primary887main.c: 136: T0IE = 0;
+"136
+[e = _T0IE -> -> 0 `i `b ]
+[; ;primary887main.c: 137: delay1sec();
+"137
+[e ( _delay1sec ..  ]
+[; ;primary887main.c: 138: T0IE = 1;
+"138
+[e = _T0IE -> -> 1 `i `b ]
+[; ;primary887main.c: 139: TMR1 = 0;
+"139
+[e = _TMR1 -> -> 0 `i `ui ]
+[; ;primary887main.c: 141: while(1)
+"141
+[e :U 145 ]
+[; ;primary887main.c: 142: {
+"142
+{
+[; ;primary887main.c: 151: PORTD = TMR1;
+"151
+[e = _PORTD -> _TMR1 `uc ]
+[; ;primary887main.c: 158: if (F.I2C == 1)
+"158
+[e $ ! == -> . . _F 0 0 `i -> 1 `i 147  ]
+[; ;primary887main.c: 159: {
+"159
+{
+[; ;primary887main.c: 167: TARGET = i2cSpeed;
+"167
+[e = _TARGET -> _i2cSpeed `i ]
+[; ;primary887main.c: 168: setDirection(i2cDirection);
+"168
+[e ( _setDirection (1 -> _i2cDirection `i ]
+[; ;primary887main.c: 169: SetPulse(i2cSpeed);
 "169
+[e ( _SetPulse (1 -> _i2cSpeed `i ]
+[; ;primary887main.c: 171: COUNTS = 0;
+"171
+[e = _COUNTS -> 0 `i ]
+[; ;primary887main.c: 172: I = 0;
+"172
+[e = _I -> 0 `i ]
+[; ;primary887main.c: 173: D = 0;
+"173
+[e = _D -> 0 `i ]
+[; ;primary887main.c: 174: P_old = 0;
+"174
+[e = _P_old -> 0 `i ]
+[; ;primary887main.c: 177: F.I2C = 0;
+"177
 [e = . . _F 0 0 -> -> 0 `i `uc ]
-"170
+"178
 }
 [e :U 147 ]
-[; ;primary887main.c: 170: }
-[; ;primary887main.c: 172: if (F.DIR == 1)
-"172
+[; ;primary887main.c: 178: }
+[; ;primary887main.c: 180: if (F.DIR == 1)
+"180
 [e $ ! == -> . . _F 0 3 `i -> 1 `i 148  ]
-[; ;primary887main.c: 173: {
-"173
+[; ;primary887main.c: 181: {
+"181
 {
-[; ;primary887main.c: 175: EncUpdate(&counts);
-"175
-[e ( _EncUpdate (1 &U _counts ]
-[; ;primary887main.c: 176: UpdateData(counts);
-"176
-[e ( _UpdateData (1 _counts ]
-[; ;primary887main.c: 179: DIR_READ = RB5;
-"179
-[e = _DIR_READ -> _RB5 `i ]
-[; ;primary887main.c: 182: F.DIR = 0;
-"182
-[e = . . _F 0 3 -> -> 0 `i `uc ]
+[; ;primary887main.c: 183: EncUpdate(&counts);
 "183
+[e ( _EncUpdate (1 &U _counts ]
+[; ;primary887main.c: 184: UpdateData(counts);
+"184
+[e ( _UpdateData (1 _counts ]
+[; ;primary887main.c: 187: DIR_READ = RB5;
+"187
+[e = _DIR_READ -> _RB5 `i ]
+[; ;primary887main.c: 190: F.DIR = 0;
+"190
+[e = . . _F 0 3 -> -> 0 `i `uc ]
+"191
 }
 [e :U 148 ]
-[; ;primary887main.c: 183: }
-[; ;primary887main.c: 188: if (F.T0 == 1)
-"188
-[e $ ! == -> . . _F 0 1 `i -> 1 `i 149  ]
-[; ;primary887main.c: 189: {
-"189
-{
-[; ;primary887main.c: 191: EncUpdate(&counts);
-"191
-[e ( _EncUpdate (1 &U _counts ]
-[; ;primary887main.c: 192: UpdateData(counts);
-"192
-[e ( _UpdateData (1 _counts ]
-[; ;primary887main.c: 195: P = TARGET - counts;
-"195
-[e = _P - _TARGET _counts ]
-[; ;primary887main.c: 196: I = I + P;
+[; ;primary887main.c: 191: }
+[; ;primary887main.c: 196: if (F.T0 == 1)
 "196
-[e = _I + _I _P ]
-[; ;primary887main.c: 198: if (I > 200)
-"198
-[e $ ! > _I -> 200 `i 150  ]
-[; ;primary887main.c: 199: I = 200;
+[e $ ! == -> . . _F 0 1 `i -> 1 `i 149  ]
+[; ;primary887main.c: 197: {
+"197
+{
+[; ;primary887main.c: 199: EncUpdate(&counts);
 "199
+[e ( _EncUpdate (1 &U _counts ]
+[; ;primary887main.c: 200: UpdateData(counts);
+"200
+[e ( _UpdateData (1 _counts ]
+[; ;primary887main.c: 203: P = TARGET - counts;
+"203
+[e = _P - _TARGET _counts ]
+[; ;primary887main.c: 204: I = I + P;
+"204
+[e = _I + _I _P ]
+[; ;primary887main.c: 206: if (I > 200)
+"206
+[e $ ! > _I -> 200 `i 150  ]
+[; ;primary887main.c: 207: I = 200;
+"207
 [e = _I -> 200 `i ]
 [e $U 151  ]
-"200
+"208
 [e :U 150 ]
-[; ;primary887main.c: 200: else if (I < -200)
+[; ;primary887main.c: 208: else if (I < -200)
 [e $ ! < _I -U -> 200 `i 152  ]
-[; ;primary887main.c: 201: I = -200;
-"201
+[; ;primary887main.c: 209: I = -200;
+"209
 [e = _I -U -> 200 `i ]
 [e :U 152 ]
-"204
+"212
 [e :U 151 ]
-[; ;primary887main.c: 204: PID = (P * 3.0) + (I * 0.4);
+[; ;primary887main.c: 212: PID = (P * 3.0) + (I * 0.4);
 [e = _PID -> + * -> _P `d .3.0 * -> _I `d .0.4 `i ]
-[; ;primary887main.c: 205: P_old = P;
-"205
+[; ;primary887main.c: 213: P_old = P;
+"213
 [e = _P_old _P ]
-[; ;primary887main.c: 207: if (P != 0)
-"207
+[; ;primary887main.c: 215: if (P != 0)
+"215
 [e $ ! != _P -> 0 `i 153  ]
-[; ;primary887main.c: 208: {
-"208
+[; ;primary887main.c: 216: {
+"216
 {
-[; ;primary887main.c: 209: currentPWM = PID;
-"209
+[; ;primary887main.c: 217: currentPWM = PID;
+"217
 [e = _currentPWM _PID ]
-"211
+"219
 }
 [e :U 153 ]
-[; ;primary887main.c: 211: }
-[; ;primary887main.c: 214: F.T0 = 0;
-"214
+[; ;primary887main.c: 219: }
+[; ;primary887main.c: 222: F.T0 = 0;
+"222
 [e = . . _F 0 1 -> -> 0 `i `uc ]
-"215
+"223
 }
 [e :U 149 ]
-"217
+"225
 }
 [e :U 144 ]
-"133
+"141
 [e $U 145  ]
 [e :U 146 ]
-[; ;primary887main.c: 215: }
-[; ;primary887main.c: 217: }
-[; ;primary887main.c: 219: return 1;
-"219
+[; ;primary887main.c: 223: }
+[; ;primary887main.c: 225: }
+[; ;primary887main.c: 227: return 1;
+"227
 [e ) -> 1 `i ]
 [e $UE 143  ]
-[; ;primary887main.c: 220: }
-"220
+[; ;primary887main.c: 228: }
+"228
 [e :UE 143 ]
 }
-"226
+"234
 [v _Initialise `(v  1 ef ]
 {
-[; ;primary887main.c: 225: void Initialise()
-[; ;primary887main.c: 226: {
+[; ;primary887main.c: 233: void Initialise()
+[; ;primary887main.c: 234: {
 [e :U _Initialise ]
 [f ]
-[; ;primary887main.c: 227: FLAG = 0;
-"227
-[e = _FLAG -> -> 0 `i `uc ]
-[; ;primary887main.c: 228: BeginPWM();
-"228
-[e ( _BeginPWM ..  ]
-[; ;primary887main.c: 229: BeginEncoder();
-"229
-[e ( _BeginEncoder ..  ]
-[; ;primary887main.c: 230: i2cInit(0x04);
-"230
-[e ( _i2cInit (1 -> -> 4 `i `uc ]
-[; ;primary887main.c: 233: PEIE = 1;
-"233
-[e = _PEIE -> -> 1 `i `b ]
-[; ;primary887main.c: 234: RBIE = 1;
-"234
-[e = _RBIE -> -> 1 `i `b ]
-[; ;primary887main.c: 235: T0IE = 1;
+[; ;primary887main.c: 235: FLAG = 0;
 "235
-[e = _T0IE -> -> 1 `i `b ]
-[; ;primary887main.c: 236: PIE1 = 0b00001001;
+[e = _FLAG -> -> 0 `i `uc ]
+[; ;primary887main.c: 236: BeginPWM();
 "236
-[e = _PIE1 -> -> 9 `i `uc ]
-[; ;primary887main.c: 237: PIE2 = 0;
+[e ( _BeginPWM ..  ]
+[; ;primary887main.c: 237: BeginEncoder();
 "237
-[e = _PIE2 -> -> 0 `i `uc ]
-[; ;primary887main.c: 239: SSPIF = 0;
-"239
-[e = _SSPIF -> -> 0 `i `b ]
-[; ;primary887main.c: 240: RBIF = 0;
-"240
-[e = _RBIF -> -> 0 `i `b ]
-[; ;primary887main.c: 241: T0IF = 0;
+[e ( _BeginEncoder ..  ]
+[; ;primary887main.c: 238: i2cInit(0x02);
+"238
+[e ( _i2cInit (1 -> -> 2 `i `uc ]
+[; ;primary887main.c: 241: PEIE = 1;
 "241
-[e = _T0IF -> -> 0 `i `b ]
-[; ;primary887main.c: 242: TMR1IF = 0;
+[e = _PEIE -> -> 1 `i `b ]
+[; ;primary887main.c: 242: RBIE = 1;
 "242
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;primary887main.c: 244: GIE = 1;
+[e = _RBIE -> -> 1 `i `b ]
+[; ;primary887main.c: 243: T0IE = 1;
+"243
+[e = _T0IE -> -> 1 `i `b ]
+[; ;primary887main.c: 244: PIE1 = 0b00001001;
 "244
-[e = _GIE -> -> 1 `i `b ]
-[; ;primary887main.c: 246: TRISB = 0b11110111;
-"246
-[e = _TRISB -> -> 247 `i `uc ]
-[; ;primary887main.c: 247: PORTBbits.RB3 = 0;
+[e = _PIE1 -> -> 9 `i `uc ]
+[; ;primary887main.c: 245: PIE2 = 0;
+"245
+[e = _PIE2 -> -> 0 `i `uc ]
+[; ;primary887main.c: 247: SSPIF = 0;
 "247
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[; ;primary887main.c: 249: TRISD = 0;
+[e = _SSPIF -> -> 0 `i `b ]
+[; ;primary887main.c: 248: RBIF = 0;
+"248
+[e = _RBIF -> -> 0 `i `b ]
+[; ;primary887main.c: 249: T0IF = 0;
 "249
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;primary887main.c: 250: PORTCbits.RC1 = 0;
+[e = _T0IF -> -> 0 `i `b ]
+[; ;primary887main.c: 250: TMR1IF = 0;
 "250
+[e = _TMR1IF -> -> 0 `i `b ]
+[; ;primary887main.c: 252: GIE = 1;
+"252
+[e = _GIE -> -> 1 `i `b ]
+[; ;primary887main.c: 254: TRISB = 0b11110111;
+"254
+[e = _TRISB -> -> 247 `i `uc ]
+[; ;primary887main.c: 255: PORTBbits.RB3 = 1;
+"255
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[; ;primary887main.c: 257: TRISD = 0;
+"257
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;primary887main.c: 258: PORTCbits.RC1 = 0;
+"258
 [e = . . _PORTCbits 0 1 -> -> 0 `i `uc ]
-[; ;primary887main.c: 251: }
-"251
+[; ;primary887main.c: 259: }
+"259
 [e :UE 154 ]
 }
-"61
+"69
 [v F1629 `(v  1 tf ]
-"256
+"264
 [v _isr `IF1629  1 e ]
 {
-[; ;primary887main.c: 255: void interrupt isr()
-[; ;primary887main.c: 256: {
+[; ;primary887main.c: 263: void interrupt isr()
+[; ;primary887main.c: 264: {
 [e :U _isr ]
 [f ]
-[; ;primary887main.c: 257: if (SSPIF == 1)
-"257
+[; ;primary887main.c: 265: if (SSPIF == 1)
+"265
 [e $ ! == -> _SSPIF `i -> 1 `i 156  ]
-[; ;primary887main.c: 258: {
-"258
+[; ;primary887main.c: 266: {
+"266
 {
-[; ;primary887main.c: 259: F.I2C = 1;
-"259
+[; ;primary887main.c: 267: F.I2C = 1;
+"267
 [e = . . _F 0 0 -> -> 1 `i `uc ]
-[; ;primary887main.c: 261: i2cIsrHandler();
-"261
+[; ;primary887main.c: 269: i2cIsrHandler();
+"269
 [e ( _i2cIsrHandler ..  ]
-"262
+"270
 }
-[; ;primary887main.c: 262: } else if (T0IF == 1)
+[; ;primary887main.c: 270: } else if (T0IF == 1)
 [e $U 157  ]
 [e :U 156 ]
 [e $ ! == -> _T0IF `i -> 1 `i 158  ]
-[; ;primary887main.c: 263: {
-"263
-{
-[; ;primary887main.c: 267: if (TMR0_OverflowCount == TMR0_OverflowTarget)
-"267
-[e $ ! == _TMR0_OverflowCount _TMR0_OverflowTarget 159  ]
-[; ;primary887main.c: 268: {
-"268
-{
-[; ;primary887main.c: 269: F.T0 = 1;
-"269
-[e = . . _F 0 1 -> -> 1 `i `uc ]
-[; ;primary887main.c: 270: TMR0_OverflowCount = 0;
-"270
-[e = _TMR0_OverflowCount -> 0 `i ]
+[; ;primary887main.c: 271: {
 "271
-}
-[; ;primary887main.c: 271: } else
-[e $U 160  ]
-[e :U 159 ]
-[; ;primary887main.c: 272: TMR0_OverflowCount++;
-"272
-[e ++ _TMR0_OverflowCount -> 1 `i ]
-[e :U 160 ]
-[; ;primary887main.c: 274: T0IF = 0;
-"274
-[e = _T0IF -> -> 0 `i `b ]
+{
+[; ;primary887main.c: 275: if (TMR0_OverflowCount == TMR0_OverflowTarget)
 "275
-}
-[; ;primary887main.c: 275: } else if (TMR1IF == 1)
-[e $U 161  ]
-[e :U 158 ]
-[e $ ! == -> _TMR1IF `i -> 1 `i 162  ]
+[e $ ! == _TMR0_OverflowCount _TMR0_OverflowTarget 159  ]
 [; ;primary887main.c: 276: {
 "276
 {
-[; ;primary887main.c: 277: COUNTS += 65536;
+[; ;primary887main.c: 277: F.T0 = 1;
 "277
-[e =+ _COUNTS -> -> 65536 `l `i ]
-[; ;primary887main.c: 278: TMR1IF = 0;
+[e = . . _F 0 1 -> -> 1 `i `uc ]
+[; ;primary887main.c: 278: TMR0_OverflowCount = 0;
 "278
-[e = _TMR1IF -> -> 0 `i `b ]
+[e = _TMR0_OverflowCount -> 0 `i ]
 "279
 }
-[; ;primary887main.c: 279: } else if (RBIF == 1)
+[; ;primary887main.c: 279: } else
+[e $U 160  ]
+[e :U 159 ]
+[; ;primary887main.c: 280: TMR0_OverflowCount++;
+"280
+[e ++ _TMR0_OverflowCount -> 1 `i ]
+[e :U 160 ]
+[; ;primary887main.c: 282: T0IF = 0;
+"282
+[e = _T0IF -> -> 0 `i `b ]
+"283
+}
+[; ;primary887main.c: 283: } else if (TMR1IF == 1)
+[e $U 161  ]
+[e :U 158 ]
+[e $ ! == -> _TMR1IF `i -> 1 `i 162  ]
+[; ;primary887main.c: 284: {
+"284
+{
+[; ;primary887main.c: 285: COUNTS += 65536;
+"285
+[e =+ _COUNTS -> -> 65536 `l `i ]
+[; ;primary887main.c: 286: TMR1IF = 0;
+"286
+[e = _TMR1IF -> -> 0 `i `b ]
+"287
+}
+[; ;primary887main.c: 287: } else if (RBIF == 1)
 [e $U 163  ]
 [e :U 162 ]
 [e $ ! == -> _RBIF `i -> 1 `i 164  ]
-[; ;primary887main.c: 280: {
-"280
+[; ;primary887main.c: 288: {
+"288
 {
-[; ;primary887main.c: 281: if (RB5 != DIR_READ)
-"281
+[; ;primary887main.c: 289: if (RB5 != DIR_READ)
+"289
 [e $ ! != -> _RB5 `i _DIR_READ 165  ]
-[; ;primary887main.c: 282: {
-"282
+[; ;primary887main.c: 290: {
+"290
 {
-[; ;primary887main.c: 283: F.DIR = 1;
-"283
+[; ;primary887main.c: 291: F.DIR = 1;
+"291
 [e = . . _F 0 3 -> -> 1 `i `uc ]
-"284
+"292
 }
-[; ;primary887main.c: 284: } else
+[; ;primary887main.c: 292: } else
 [e $U 166  ]
 [e :U 165 ]
-[; ;primary887main.c: 285: {
-"285
+[; ;primary887main.c: 293: {
+"293
 {
-[; ;primary887main.c: 286: TRISD = 0;
-"286
+[; ;primary887main.c: 294: TRISD = 0;
+"294
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;primary887main.c: 287: PORTD = 0x90;
-"287
+[; ;primary887main.c: 295: PORTD = 0x90;
+"295
 [e = _PORTD -> -> 144 `i `uc ]
-"288
+"296
 }
 [e :U 166 ]
-[; ;primary887main.c: 288: }
-[; ;primary887main.c: 289: RBIF = 0;
-"289
+[; ;primary887main.c: 296: }
+[; ;primary887main.c: 297: RBIF = 0;
+"297
 [e = _RBIF -> -> 0 `i `b ]
-"290
+"298
 }
-[; ;primary887main.c: 290: } else
+[; ;primary887main.c: 298: } else
 [e $U 167  ]
 [e :U 164 ]
-[; ;primary887main.c: 291: {
-"291
+[; ;primary887main.c: 299: {
+"299
 {
-[; ;primary887main.c: 292: TRISD = 0;
-"292
+[; ;primary887main.c: 300: TRISD = 0;
+"300
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;primary887main.c: 293: PORTD = 0xF0;
-"293
+[; ;primary887main.c: 301: PORTD = 0xF0;
+"301
 [e = _PORTD -> -> 240 `i `uc ]
-"294
+"302
 }
 [e :U 167 ]
 [e :U 163 ]
 [e :U 161 ]
 [e :U 157 ]
-[; ;primary887main.c: 294: }
-[; ;primary887main.c: 295: }
-"295
+[; ;primary887main.c: 302: }
+[; ;primary887main.c: 303: }
+"303
 [e :UE 155 ]
 }
-"301
+"309
 [v _UpdateData `(v  1 ef1`i ]
 {
-[; ;primary887main.c: 300: void UpdateData(int c)
-[; ;primary887main.c: 301: {
+[; ;primary887main.c: 308: void UpdateData(int c)
+[; ;primary887main.c: 309: {
 [e :U _UpdateData ]
 [v _c `i  1 r1 ]
 [f ]
-[; ;primary887main.c: 305: if (DIR_READ == 0)
-"305
-[e $ ! == _DIR_READ -> 0 `i 169  ]
-[; ;primary887main.c: 306: {
-"306
+[; ;primary887main.c: 313: if (DIR_READ == 1)
+"313
+[e $ ! == _DIR_READ -> 1 `i 169  ]
+[; ;primary887main.c: 314: {
+"314
 {
-[; ;primary887main.c: 307: COUNTS += c;
-"307
+[; ;primary887main.c: 315: COUNTS += c;
+"315
 [e =+ _COUNTS _c ]
-"308
+"316
 }
-[; ;primary887main.c: 308: } else
+[; ;primary887main.c: 316: } else
 [e $U 170  ]
 [e :U 169 ]
-[; ;primary887main.c: 309: {
-"309
+[; ;primary887main.c: 317: {
+"317
 {
-[; ;primary887main.c: 310: COUNTS -= c;
-"310
+[; ;primary887main.c: 318: COUNTS -= c;
+"318
 [e =- _COUNTS _c ]
-"311
+"319
 }
 [e :U 170 ]
-[; ;primary887main.c: 311: }
-[; ;primary887main.c: 312: }
-"312
+[; ;primary887main.c: 319: }
+[; ;primary887main.c: 320: }
+"320
 [e :UE 168 ]
 }
-"317
+"325
 [v _setDirection `(v  1 ef1`i ]
 {
-[; ;primary887main.c: 316: void setDirection(int dir)
-[; ;primary887main.c: 317: {
+[; ;primary887main.c: 324: void setDirection(int dir)
+[; ;primary887main.c: 325: {
 [e :U _setDirection ]
 [v _dir `i  1 r1 ]
 [f ]
-[; ;primary887main.c: 318: if (dir == 0)
-"318
+[; ;primary887main.c: 326: if (dir == 0)
+"326
 [e $ ! == _dir -> 0 `i 172  ]
-[; ;primary887main.c: 319: PORTBbits.RB3 = 0;
-"319
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[; ;primary887main.c: 327: PORTBbits.RB3 = 1;
+"327
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
 [e $U 173  ]
-"320
+"328
 [e :U 172 ]
-[; ;primary887main.c: 320: else if (dir == 1)
+[; ;primary887main.c: 328: else if (dir == 1)
 [e $ ! == _dir -> 1 `i 174  ]
-[; ;primary887main.c: 321: PORTBbits.RB3 = !0;
-"321
-[e = . . _PORTBbits 0 3 -> -> ! != -> 0 `i -> 0 `i `i `uc ]
+[; ;primary887main.c: 329: PORTBbits.RB3 = !1;
+"329
+[e = . . _PORTBbits 0 3 -> -> ! != -> 1 `i -> 0 `i `i `uc ]
 [e $U 175  ]
-"322
+"330
 [e :U 174 ]
-[; ;primary887main.c: 322: else
-[; ;primary887main.c: 323: PORTBbits.RB3 = 0;
-"323
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[; ;primary887main.c: 330: else
+[; ;primary887main.c: 331: PORTBbits.RB3 = 1;
+"331
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
 [e :U 175 ]
 [e :U 173 ]
-[; ;primary887main.c: 324: }
-"324
+[; ;primary887main.c: 332: }
+"332
 [e :UE 171 ]
 }
-"329
+"337
 [v _abs `(i  1 ef2`i`i ]
 {
-[; ;primary887main.c: 328: int abs(int a, int b)
-[; ;primary887main.c: 329: {
+[; ;primary887main.c: 336: int abs(int a, int b)
+[; ;primary887main.c: 337: {
 [e :U _abs ]
 [v _a `i  1 r1 ]
 [v _b `i  1 r2 ]
 [f ]
-"330
+"338
 [v _temp `i  1 a ]
-[; ;primary887main.c: 330: int temp;
-[; ;primary887main.c: 331: temp = a - b;
-"331
+[; ;primary887main.c: 338: int temp;
+[; ;primary887main.c: 339: temp = a - b;
+"339
 [e = _temp - _a _b ]
-[; ;primary887main.c: 332: if (temp < 0)
-"332
+[; ;primary887main.c: 340: if (temp < 0)
+"340
 [e $ ! < _temp -> 0 `i 177  ]
-[; ;primary887main.c: 333: temp = temp * -1;
-"333
+[; ;primary887main.c: 341: temp = temp * -1;
+"341
 [e = _temp * _temp -U -> 1 `i ]
 [e :U 177 ]
-[; ;primary887main.c: 334: return temp;
-"334
+[; ;primary887main.c: 342: return temp;
+"342
 [e ) _temp ]
 [e $UE 176  ]
-[; ;primary887main.c: 335: }
-"335
+[; ;primary887main.c: 343: }
+"343
 [e :UE 176 ]
 }
-"339
+"347
 [v _delay1sec `(v  1 ef ]
 {
-[; ;primary887main.c: 338: void delay1sec()
-[; ;primary887main.c: 339: {
+[; ;primary887main.c: 346: void delay1sec()
+[; ;primary887main.c: 347: {
 [e :U _delay1sec ]
 [f ]
-"340
+"348
 [v _i `i  1 a ]
-[; ;primary887main.c: 340: int i;
-[; ;primary887main.c: 342: for(i = 0; i <= 76; i++)
-"342
+[; ;primary887main.c: 348: int i;
+[; ;primary887main.c: 350: for(i = 0; i <= 76; i++)
+"350
 {
 [e = _i -> 0 `i ]
 [e $ <= _i -> 76 `i 179  ]
 [e $U 180  ]
-"343
+"351
 [e :U 179 ]
-[; ;primary887main.c: 343: {
+[; ;primary887main.c: 351: {
 {
-[; ;primary887main.c: 344: while (T0IF == 0)
-"344
+[; ;primary887main.c: 352: while (T0IF == 0)
+"352
 [e $U 182  ]
 [e :U 183 ]
-[; ;primary887main.c: 345: asm("nop");
-"345
+[; ;primary887main.c: 353: asm("nop");
+"353
 [; nop ;#
 [e :U 182 ]
-"344
+"352
 [e $ == -> _T0IF `i -> 0 `i 183  ]
 [e :U 184 ]
-[; ;primary887main.c: 346: T0IF = 0;
-"346
+[; ;primary887main.c: 354: T0IF = 0;
+"354
 [e = _T0IF -> -> 0 `i `b ]
-"347
+"355
 }
-"342
+"350
 [e ++ _i -> 1 `i ]
 [e $ <= _i -> 76 `i 179  ]
 [e :U 180 ]
-"347
+"355
 }
-[; ;primary887main.c: 347: }
-[; ;primary887main.c: 348: }
-"348
+[; ;primary887main.c: 355: }
+[; ;primary887main.c: 356: }
+"356
 [e :UE 178 ]
 }
