@@ -660,7 +660,7 @@
 `uc 1 EEPGD 1 0 :1:7 
 ]
 [u S1767 . 1 `S1760 1 . 1 0 ]
-"95 primary887main.c
+"103 primary887main.c
 [s S1796 . 1 `uc 1 I2C 1 0 :1:0 
 `uc 1 T0 1 0 :1:1 
 `uc 1 T1 1 0 :1:2 
@@ -669,7 +669,7 @@
 `uc 1 . 1 0 :3:5 
 ]
 [u S1803 . 1 `S1796 1 . 1 0 ]
-"61
+"69
 [v F1629 `(v  1 t 0 ]
 "139 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic16f887.h
 [s S1913 . 1 `uc 1 C 1 0 :1:0 
@@ -2757,19 +2757,19 @@
 [v _i2cDataUpdate `(v  1 e 0 0 ]
 "117
 [v _i2cSend `(v  1 e 0 0 ]
-"111 primary887main.c
+"119 primary887main.c
 [v _main `(i  1 e 2 0 ]
-"226
+"234
 [v _Initialise `(v  1 e 0 0 ]
-"256
+"264
 [v _isr `I(v  1 e 0 0 ]
-"301
+"309
 [v _UpdateData `(v  1 e 0 0 ]
-"317
+"325
 [v _setDirection `(v  1 e 0 0 ]
-"329
+"337
 [v _abs `(i  1 e 2 0 ]
-"339
+"347
 [v _delay1sec `(v  1 e 0 0 ]
 "41 pwmlib887.c
 [v _BeginPWM `(v  1 e 0 0 ]
@@ -3813,50 +3813,50 @@
 [v _i2cDirection `uc  1 e 1 0 ]
 "17
 [v _i2cWriteInt `uc  1 e 1 0 ]
-"76 primary887main.c
+"84 primary887main.c
 [v _TARGET `i  1 e 2 0 ]
-"77
+"85
 [v _DIRECTION `i  1 e 2 0 ]
-"78
+"86
 [v _DIR_READ `i  1 e 2 0 ]
-"81
+"89
 [v _COUNTS `i  1 e 2 0 ]
-"83
-[v _TMR0_OverflowCount `i  1 e 2 0 ]
-"84
-[v _TMR0_OverflowTarget `i  1 e 2 0 ]
-"90
-[v _FLAG `uc  1 e 1 @170 ]
 "91
-[v _I2C `b  1 e 0 @1360 ]
+[v _TMR0_OverflowCount `i  1 e 2 0 ]
 "92
+[v _TMR0_OverflowTarget `i  1 e 2 0 ]
+"98
+[v _FLAG `uc  1 e 1 @170 ]
+"99
+[v _I2C `b  1 e 0 @1360 ]
+"100
 [v _T0 `b  1 e 0 @1361 ]
-"93
+"101
 [v _T1 `b  1 e 0 @1362 ]
-"94
+"102
 [v _DIR `b  1 e 0 @1363 ]
-"95
+"103
 [v _ERR `b  1 e 0 @1364 ]
-"105
+"113
 [v _F `S1803  1 e 1 @170 ]
-"111
+"119
 [v _main `(i  1 e 2 0 ]
 {
-"113
+"121
 [v main@counts `i  1 a 2 71 ]
-"115
+"123
 [v main@I `i  1 a 2 69 ]
-"114
+"122
 [v main@P `i  1 a 2 67 ]
-"118
+"126
 [v main@PID `i  1 a 2 65 ]
-"117
+"125
 [v main@P_old `i  1 a 2 63 ]
-"120
+"128
 [v main@currentPWM `i  1 a 2 61 ]
-"116
+"124
 [v main@D `i  1 a 2 59 ]
-"220
+"228
 } 0
 "33 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\awtoft.c
 [v ___awtoft `(f  1 e 3 0 ]
@@ -3893,10 +3893,10 @@
 [v ___ftadd@f2 `f  1 p 3 47 ]
 "148
 } 0
-"226 primary887main.c
+"234 primary887main.c
 [v _Initialise `(v  1 e 0 0 ]
 {
-"251
+"259
 } 0
 "45 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\fttol.c
 [v ___fttol `(l  1 e 4 0 ]
@@ -3935,11 +3935,11 @@
 {
 "84
 } 0
-"301 primary887main.c
+"309 primary887main.c
 [v _UpdateData `(v  1 e 0 0 ]
 {
 [v UpdateData@c `i  1 p 2 0 ]
-"312
+"320
 } 0
 "41 enclib887.c
 [v _EncUpdate `(v  1 e 0 0 ]
@@ -3948,18 +3948,18 @@
 [v EncUpdate@t1 `*.0i  1 a 1 wreg ]
 "46
 } 0
-"317 primary887main.c
+"325 primary887main.c
 [v _setDirection `(v  1 e 0 0 ]
 {
 [v setDirection@dir `i  1 p 2 0 ]
-"324
+"332
 } 0
-"339
+"347
 [v _delay1sec `(v  1 e 0 0 ]
 {
-"340
-[v delay1sec@i `i  1 a 2 0 ]
 "348
+[v delay1sec@i `i  1 a 2 0 ]
+"356
 } 0
 "105 pwmlib887.c
 [v _SetPulse `(v  1 e 0 0 ]
@@ -3970,10 +3970,10 @@
 [v SetPulse@length `i  1 p 2 0 ]
 "113
 } 0
-"256 primary887main.c
+"264 primary887main.c
 [v _isr `I(v  1 e 0 0 ]
 {
-"295
+"303
 } 0
 "43 i2cSlave887.c
 [v _i2cIsrHandler `(v  1 e 0 0 ]

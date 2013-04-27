@@ -40,9 +40,17 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
 //  the main code can be exactly the same, from PIC to PIC for the robot,
 //  depending on the motor position (front left motor, for example), only
 //  these definitions will need to change
-#define I2C_ADDRESS 0x04        // I2C address; unique to specific PIC
-#define FORWARD 0               // PIC specific depending on wheel orientation
+
+// Motor 1:  Front Right.  Address = 0x02.  Forward = 1.
+// Motor 2:  Back Right.  Address = 0x04.  Forward = 1.
+// Motor 3:  Back Left.  Address = 0x06.  Forward = 0.
+// Motor 4:  Front Left.  Address = 0x08.  Forward = 0.
+
+#define I2C_ADDRESS 0x02        // I2C address; unique to specific PIC
+#define FORWARD 1               // PIC specific depending on wheel orientation
 #define BACKWARD !FORWARD       // ^
+
+
 #define CYCLES_PER_REV 650      // Should be nearly the same for all PICs,
                                 //  but again could vary across motors
 #define PWM_FOR_RPS 125         // The PWM pulse width that is the closest
