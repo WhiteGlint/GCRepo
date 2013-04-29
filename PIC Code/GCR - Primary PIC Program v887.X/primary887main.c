@@ -11,7 +11,7 @@
  *
  * April 15, 2013, 11:20 AM
  * Created version of project compatible with PIC16F887, which for our
- *  purposes is the same as the 16F916
+ *  purposes is the same as the 16F917
  *
  */
 
