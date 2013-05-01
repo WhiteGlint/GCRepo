@@ -12,7 +12,8 @@ def talker():
 	msg = simpleVelocity()
 	flag = 0;
 	stdscr = curses.initscr();
-	stdscr.addstr("W: Forward, S: Backward, A: left, D: right, Q: rotate left, E: rotate right, F: stop");
+	stdscr.addstr("W: Forward, S: Backward, A: left, D: right, Q: rotate left, E: rotate right, F: stop\n");
+	stdscr.addstr("j: Speed Up, k: Slow Down\n");
 	curses.noecho()
 	
 	while not rospy.is_shutdown():
@@ -20,11 +21,20 @@ def talker():
 		keyToDirection = {ord('w'):0, ord('a'):3, ord('s'):2, ord('d'):1, ord('q'):5, ord('e'):4, ord('f'):0}
 		
 		i = stdscr.getch()
-		msg.direction = keyToDirection[i]
-		msg.speed = 150;
+		try:
+			msg.direction = keyToDirection[i]
+		except:
+			pass
+		msg.speed = 130;
 		
 		if (i == ord('f')):
 			msg.speed = 0;
+			
+		if (i == ord('j')):
+			msg.speed += 20;
+		
+		if (i == ord('k')):
+			msg.speed -= 20;
 			
 		pub.publish(msg);
 		rospy.sleep(.001);

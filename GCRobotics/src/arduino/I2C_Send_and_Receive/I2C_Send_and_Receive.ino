@@ -43,7 +43,7 @@ void setup(){
   Timer1.initialize(2000000); // 2000 ms between interrupts
   Timer1.attachInterrupt(Read);
   //Timer1.attachInterrupt(Read);
-  Timer1.attachInterrupt(sendVoltage);
+ // Timer1.attachInterrupt(sendVoltage);
 
 }
 
@@ -88,32 +88,33 @@ void gpioCallback( const std_msgs::UInt16& msg)
 void Read() {
   sei(); // enable interrupts inside of this interrrupt, allowing wire fucntion calls to still function instead of blocking
   digitalWrite(13,HIGH);
-  //int EC1, EC2, EC3, EC4; // these should probably be global
   encoders.encoder1 = ReadOne (0x2); // these need to be the right address
   encoders.encoder2 = ReadOne (0x4); // these need to be the right address
   encoders.encoder3 = ReadOne (0x6); // these need to be the right address
   encoders.encoder4 = ReadOne (0x8); // these need to be the right address
   //delay(5);
-  //encoderPub.publish(&encoders);
+  encoderPub.publish(&encoders);
   digitalWrite(13,LOW);
 
 }
 
 int ReadOne(char address) { // pass in the motor you want to read
-  int encoderCount = 0;
-
-  Wire.requestFrom(address>>1, 2);    // request 2 bytes from address
-    digitalWrite(13,LOW);
+  unsigned int encoder[2] = {0,0};
+  int encoderCountTotal = 0;
+  Wire.requestFrom(address>>1, 2,0);    // request 2 bytes from address
+   // digitalWrite(13,LOW);
+   int i = 0;
   while(Wire.available())   // slave may send less than requested
   { 
-
-    char c = Wire.read();   // receive a byte as character
-    //encoderCount<<8;        // shifts lower byte to upper byte
-    encoderCount += c;      //adds in the new lower byte
+    encoder[i] = Wire.read();   // receive a byte as character
+    i++;
   }
-
+  //encoders.encoder2 = encoder[0];
   
-  return encoderCount;
+  encoder[1] = encoder[1] << 8;
+  
+  return encoder[1] + encoder[0];
+  
 }
 
 void sendVoltage()

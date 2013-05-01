@@ -1,10 +1,13 @@
 <launch>
 
+<node pkg="nodelet" type="nodelet" name="openni_manager" output="screen" respawn="true" args="manager"/>
+  
+  
 <!-- Motion Control node - Convert Velocity message to i2c messages for i2cNode to send -->
 <node name="motorControlNode" pkg="GCRobotics" type="motorControlNode" />
 
 <!-- Dead Reakoning - Create Pose based only off of /Velocity topic (dead reckoning) -->
-<node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" />
+<!-- <node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" /> -->
 
 <!-- Openni - Kinect pointcloud generation, from openni package -->
 <include file="$(find openni_launch)/launch/openni.launch" />
@@ -12,37 +15,31 @@
 <!-- PUT REAL DATA FOR THIS TRANSFORM!!!!!!!!!!! -->
 <node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0 0 0 0 0 0 /base_link /camera_depth_frame 100" />
 
-<!-- Prep for laser scan - throttling -->
-<node pkg="nodelet" type="nodelet" name="pointcloud_throttle" args="load pointcloud_to_laserscan/CloudThrottle kinect_manager">
-  <param name="max_rate" value="2"/>
+
+<!-- Prep for laser scan -->
+<node pkg="nodelet" type="nodelet" name="pointcloud_throttle" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet openni_manager" respawn="true">
+  <param name="max_rate" value="20"/>
   <remap from="cloud_in" to="/camera/depth/points"/>
-  <remap from="cloud_out" to="cloud_throttled"/>
+    <param name="output_frame_id" value="/base_link"/>
+    <remap from="image" to="/camera/depth/image_raw"/>
 </node>
  
-<!-- pointcloud to laser scan - fake laser -->
-<node pkg="nodelet" type="nodelet" name="kinect_laser" args="load pointcloud_to_laserscan/CloudToScan kinect_manager">
-  <param name="output_frame_id" value="/camera_depth_frame"/>
-  <remap from="cloud" to="cloud_throttled"/>
-</node>
 
 <!-- Odometry - Generate position data from encoders -->
 <node name="odometryNode" pkg="GCRobotics" type="odometryNode" />
 
 
 <!-- rosserial - take in arduino data -->
-<node pkg="rosserial_python" type="serial_node.py" name="rosserial_arduino" output="screen">
-    <param name="~port" value="/dev/ttyACM0" />
-    <param name="~baud" value="57600" />
-</node>
+
 
 <!-- GMapping - generate occ grid from laserscan -->
-<include file="$(find GCRobotics)/launch/gmapping.launch" />
+<!-- <include file="$(find GCRobotics)/launch/gmapping.launch" /> -->
 
 <!-- Global Path Planning -->
-<node name="GlobalPlanner" pkg="GCRobotics" type="GlobalPlanner" />
+<!-- <node name="GlobalPlanner" pkg="GCRobotics" type="GlobalPlanner" /> -->
 	
 <!-- Local Path Planning -->
-<node name="LocalPlanner" pkg="GCRobotics" type="LocalPlanner" />
+<!-- <node name="LocalPlanner" pkg="GCRobotics" type="LocalPlanner" /> -->
 
 
 </launch>

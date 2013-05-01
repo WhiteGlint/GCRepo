@@ -18,6 +18,7 @@ private:
 	int degreesPerCircle;
 	float circleCircumference; // in centimeters... close enough
 	double degreesPerCount; // how far around the circle we've traveled in deg/count
+	int motorGearing;
 
 	void processMotion();
 	double moveStraight (double EC1, double EC2, double EC3, double EC4);

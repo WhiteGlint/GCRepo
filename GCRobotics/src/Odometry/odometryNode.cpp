@@ -27,9 +27,12 @@ int main(int argc, char **argv)
 		controller.pub.publish(data);
 
   		transform.setOrigin( 
-			tf::Vector3(controller.X*cos(controller.heading) - controller.Y*sin(controller.heading),
-						controller.X*sin(controller.heading) + controller.Y*cos(controller.heading) , 0.0) );
-		q.setRPY(0,0,controller.heading);
+			tf::Vector3(
+						controller.X*sin(controller.heading) + controller.Y*cos(controller.heading) ,
+						controller.X*cos(controller.heading) - controller.Y*sin(controller.heading) ,
+						0.0 ) );
+						
+			q.setRPY(0,0,controller.heading);
   		transform.setRotation(q);
   		br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "base_link"));
 	
