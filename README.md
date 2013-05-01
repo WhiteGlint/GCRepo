@@ -23,3 +23,5 @@ All custom messages are placed in the msg folder, and are compiled when using ro
 Take a look at our software framework diagram to see how each node communicates over which topics.
 
 Finally, the GCRobotics.launch file will start all code for the kinect, mapping, navigation, and motor control.
+
+![Alt text](framework.png "GCRobotics Software Framework")
