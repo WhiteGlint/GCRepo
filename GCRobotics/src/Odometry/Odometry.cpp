@@ -10,17 +10,17 @@ void Odometry::init(int argc, char **argv)
 	
 	sub = n.subscribe("EncoderData", 100, &Odometry::odometryCallback, this);
 	
-	wheelCircumference = 16.95; // in centimeters per revolution
+	wheelCircumference = 0.1695; // in centimeters per revolution
 	wheelRadius = 2.699; // in centimeters
 	CPR = 360; // counts per revolution
 	degreesPerCircle = 360;
 	circleCircumference = 88.175081008304729835; // in centimeters... close enough
-	degreesPerCount = (degreesPerCircle * wheelCircumference) / (circleCircumference * CPR); // how far around the circle we've traveled in deg/count
+	degreesPerCount = (CPR * wheelCircumference) / (circleCircumference * degreesPerCircle); // how far around the circle we've traveled in deg/count
 
 	
-	XConversion=1;
-	YConversion =1;
-	frameWidth =10;
+	XConversion=wheelCircumference/CPR;
+	YConversion =(wheelCircumference/CPR) *0.707; // * sin(45)?
+	frameWidth = 0.3048;
 	X = 0;
 	Y = 0;
 	heading = 0;

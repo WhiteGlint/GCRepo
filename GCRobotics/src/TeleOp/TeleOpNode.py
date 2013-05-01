@@ -11,52 +11,33 @@ def talker():
 	rospy.init_node('TeleOp')
 	msg = simpleVelocity()
 	flag = 0;
+	stdscr = curses.initscr();
+	stdscr.addstr("W: Forward, S: Backward, A: left, D: right, Q: rotate left, E: rotate right, F: stop");
+	curses.noecho()
+	
 	while not rospy.is_shutdown():
 	
-		#curses.flushinp()
-
+		keyToDirection = {ord('w'):0, ord('a'):3, ord('s'):2, ord('d'):1, ord('q'):5, ord('e'):4, ord('f'):0}
+		
 		i = stdscr.getch()
-		if i == ord('w'):
-			msg.speed = 150;
-			msg.direction = 0;
-			#pub.publish(msg);	
-		elif i == ord('a'):
-			msg.speed = 150;
-			msg.direction = 3;
-			#pub.publish(msg);	
-		elif i == ord('s'):
-			msg.speed = 150;
-			msg.direction = 2;
-			#pub.publish(msg);	
-		elif i == ord('d'):
-			msg.speed = 150;
-			msg.direction = 1;
-			#pub.publish(msg);
-		elif i == ord('q'):
-			msg.speed = 150;
-			msg.direction = 5;
-		elif i == ord('e'):
-			msg.speed = 150;
-			msg.direction = 4;	
-		elif i == ord('f'):
+		msg.direction = keyToDirection[i]
+		msg.speed = 150;
+		
+		if (i == ord('f')):
 			msg.speed = 0;
-			msg.direction = 0;
-			#pub.publish(msg);	
 			
 		pub.publish(msg);
 		rospy.sleep(.001);
-
+		
+	curses.endwin()
+	
 if __name__ == '__main__':
 
 	try:
-
-		stdscr = curses.initscr();
-		stdscr.nodelay(1);
-		curses.noecho()
-		curses.cbreak()
-		print("W: Forward, S: Backward, A: left, D: right, Q: rotate left, E: rotate right, F: stop");
 		talker()
 	except rospy.ROSInterruptException:
-		curses.nocbreak(); stdscr.keypad(0); curses.echo()
+		curses.nonl()
+		#stdscr.keypad(0);
+		curses.echo()
 		curses.endwin()
 		pass
