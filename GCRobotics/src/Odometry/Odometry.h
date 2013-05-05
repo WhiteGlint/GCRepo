@@ -10,8 +10,8 @@ class Odometry
 private:
 
 	double en1, en2, en3, en4;
-	bool direction1, direction2, direction3, direction4;
-	
+
+	// Random constants, not sure if their 100% correct	
 	float wheelCircumference; // in centimeters per revolution
 	float wheelRadius; // in centimeters
 	int CPR; // counts per revolution
@@ -21,10 +21,7 @@ private:
 	int motorGearing;
 
 	void processMotion();
-	double moveStraight (double EC1, double EC2, double EC3, double EC4);
-	double moveStrafe (double EC1, double EC2, double EC3, double EC4);
-	double moveRotate (double EC1, double EC2, double EC3, double EC4);
-	
+
 	double XConversion;
 	double YConversion;
 	double frameWidth;
@@ -33,7 +30,7 @@ public:
 	double X;
 	double Y;
 	double heading;
-	//double velocityDistance, velocityHeading;
+
 	
 	// Ros things
 	ros::NodeHandle n;

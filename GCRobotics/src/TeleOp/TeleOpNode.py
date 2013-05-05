@@ -1,3 +1,20 @@
+
+#		NAME 	 - Tele Op Node 
+#		DESIGN - Josh Galicic
+# 	PRIORITY - Utility - Likely required for testing purposes
+	
+#		--------OVERVIEW--------
+# This node takes in keyboard input and generates velocity messages at a set speed.
+# WASD are used to specify direction, pressing them once will continue that motion
+# until 'f' is pressed. Since our motor controllers are not designed to require constant
+# messages to continue, this node will send 1 velocity message, and stop until you input
+# a different one. Closing this node while the bot is running will not stop it, it will
+# just keep going until it runs into a wall and you make an impressive, daring dive after it.
+#
+#		--------FUTURE WORK--------
+# This node should be able to control speed, but it does not seem to work fully. there is
+# also no visual feedback for what is going on, that may be helpful.
+
 #!/usr/bin/env python
 import roslib; roslib.load_manifest('GCRobotics')
 import rospy

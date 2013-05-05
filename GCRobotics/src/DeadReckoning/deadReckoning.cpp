@@ -1,3 +1,22 @@
+/*
+
+		NAME 	 - Dead Reckoning Node 
+		DESIGN - Josh Galicic
+		PRIORITY - Diagnostic - Not required for functionality
+	
+		--------OVERVIEW--------
+This node takes in velocity data and creates a 3D pose based only off of this data.
+The idea is to show the ideal position of the bot, and be able to compare it to
+the actual position created by odometry. Use this to test for the accuracy of the
+bot's travel path & motor configuration.
+
+		--------FUTURE WORK--------
+This node has no ability to process rotation, therefore only pure X or Y movement
+Will be calculated, I dunno what rotation will do it right now. If you fix it,
+please remove this message.
+
+*/
+
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "GCRobotics/i2cData.h"
@@ -48,18 +67,16 @@ void callback(const GCRobotics::simpleVelocity::ConstPtr& data)
 		msg.pose.position.x = msg.pose.position.x +0;
 		msg.pose.position.y = msg.pose.position.y + (vy1*(ros::Time::now().toSec()-t1));
 	}
-		
-	//vx1 = data->linear.x;  // FIX HERE!!!!!!!!!!!1
-	//vy1 = data->linear.y;
+	
 	t1 = ros::Time::now().toSec();
 	
 	pub.publish(msg);
 	
 	tf::TransformBroadcaster br;
 	tf::Transform transform;
-  	transform.setOrigin( tf::Vector3(msg.pose.position.x, msg.pose.position.y, 0.0) );
-  	transform.setRotation(tf::Quaternion(0,0,0));
-  	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "base_link"));
+ 	transform.setOrigin( tf::Vector3(msg.pose.position.x, msg.pose.position.y, 0.0) );
+ 	transform.setRotation(tf::Quaternion(0,0,0));
+ 	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "odom", "ideal_base_link"));
 	
 	
 }
