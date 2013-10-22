@@ -10,7 +10,7 @@
 <!-- <node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" /> -->
 
 <!-- Openni - Kinect pointcloud generation, from openni package -->
-<include file="$(find openni_launch)/launch/openni.launch" />
+<include file="$(find freenect_launch)/launch/freenect.launch" />
 
 <!-- PUT REAL DATA FOR THIS TRANSFORM!!!!!!!!!!! -->
 <node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0 0 0 0 0 0 /base_link /camera_depth_frame 100" />
