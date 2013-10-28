@@ -25,6 +25,7 @@ private:
 	double XConversion;
 	double YConversion;
 	double frameWidth;
+
 public:
 	
 	double X;

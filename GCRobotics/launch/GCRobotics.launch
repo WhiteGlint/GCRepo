@@ -33,7 +33,7 @@
 
 
 <!-- GMapping - generate occ grid from laserscan -->
-<!-- <include file="$(find GCRobotics)/launch/gmapping.launch" /> -->
+<include file="$(find GCRobotics)/launch/gmapping.launch" />
 
 <!-- Global Path Planning -->
 <!-- <node name="GlobalPlanner" pkg="GCRobotics" type="GlobalPlanner" /> -->

@@ -363,7 +363,7 @@ void motorControl::create_message1()
 {
 	create_address(0x02);
 	create_type(0);
-	create_data(motor1_direction, motor1_speed);
+	create_data(motor1_direction, motor1_speed); 
 }
 
 void motorControl::create_message2()
@@ -437,17 +437,4 @@ void motorControl::push_i2c()
 		<< message[3] << " "
 		<< message[4]
 		<< message[5]
-		<< message[6]
-		<< message[7] << " | "
-		<< message[8]
-		<< message[9]
-		<< message[10]
-		<< message[11] << " "
-		<< message[12]
-		<< message[13]
-		<< message[14]
-		<< message[15];
-	
-	cout << endl;
-	*/
-}
+		<< message[6

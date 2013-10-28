@@ -123,7 +123,7 @@ void gpioCallback( const std_msgs::UInt16& msg)
 }
 
 void Read() {
-  sei(); // enable interrupts inside of this interrrupt, allowing wire fucntion calls to still function instead of blocking
+  sei(); // enable interrupts inside of this interrrupt, allowing wire function calls to still function instead of blocking
   digitalWrite(13,HIGH);
   encoders.encoder1 = ReadOne (0x2); // these need to be the right address
   encoders.encoder2 = ReadOne (0x4); // these need to be the right address
@@ -138,7 +138,7 @@ void Read() {
 int ReadOne(char address) { // pass in the motor you want to read
   unsigned int encoder[2] = {0,0};
   int encoderCountTotal = 0;
-  Wire.requestFrom(address>>1, 2,0);    // request 2 bytes from address
+  Wire.requestFrom(address>>1, 2);    // request 2 bytes from address
    // digitalWrite(13,LOW);
    int i = 0;
   while(Wire.available())   // slave may send less than requested

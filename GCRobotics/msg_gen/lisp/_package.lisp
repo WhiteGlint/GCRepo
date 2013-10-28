@@ -1,10 +1,10 @@
 (cl:defpackage GCRobotics-msg
   (:use )
   (:export
-   "<ENCODER_MSG>"
-   "ENCODER_MSG"
    "<I2CDATA>"
    "I2CDATA"
+   "<ENCODER_MSG>"
+   "ENCODER_MSG"
    "<SIMPLEVELOCITY>"
    "SIMPLEVELOCITY"
    "<POSE_MSG>"
