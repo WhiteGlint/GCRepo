@@ -246,8 +246,8 @@ void motorControl::set_direction_forward()
 void motorControl::set_direction_right()
 {
 	movement_direction = 1;
-	motor1_direction = 0;
-	motor2_direction = 1;
+	motor1_direction = 1;
+	motor2_direction = 0;
 	motor3_direction = 1;
 	motor4_direction = 0;
 }	
