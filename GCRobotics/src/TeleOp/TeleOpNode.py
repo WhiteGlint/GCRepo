@@ -24,12 +24,13 @@ import curses
 
 teleop_set = {'w', 'a', 's', 'd', 'q', 'e', 'f', 'g', 'h', 'j', 'k'}
 directional_set = {'w', 'a', 's', 'd', 'q', 'e'}
+command_set = {'z'}
 diagnostic_set = {'c', 'i', 'v'}
 
-MAX_VELOCITY = 120
-MED_VELOCITY = 90
+MAX_VELOCITY = 65
+MED_VELOCITY = 30
 MIN_VELOCITY = 0
-VELOCITY_INCR = 20
+VELOCITY_INCR = 5
 
 rospy.init_node('TeleOp')
 stdscr = curses.initscr()
@@ -41,6 +42,7 @@ global sub
 global current_subscriber
 sub = None
 current_subscriber = None
+stdscr.nodelay(1)
 
 def encoder_callback(data):
 	stdscr.erase()
@@ -65,6 +67,7 @@ def display_startup_info():
 		stdscr.addstr('\n-----------------------------------------\n')
 		stdscr.addstr('W: Forward, S: Backward, A: Left, D: Right, Q: Rotate left, E: Rotate right\n')
 		stdscr.addstr('F: Stop, G: Middle Speed, H: Max Speed, J: Speed Up, K: Slow Down\n')
+		stdscr.addstr('Z: Enter commands')
 		stdscr.addstr('\nDiagnostic commands (mutually exclusive)')
 		stdscr.addstr('\n-----------------------------------------\n')
 		stdscr.addstr('C: Display encoder counts, V: Toggle velocity display\n\n')
@@ -84,6 +87,8 @@ def loop():
 
 		if i in teleop_set:
 			teleop(i)
+		elif i in command_set:
+			command(i)
 		elif i in diagnostic_set:
 			diagnostics(i)
 
@@ -123,6 +128,12 @@ def teleop(i):
 	velocity_pub.publish(velocity_msg)
 	rospy.sleep(.001)
 
+def command(i):
+	if i == 'z':
+		stdscr.clear()
+		stdscr.addstr('Syntax: [DIRECTION][SPEED][TIME][DIRECTION][SPEED]...\n\n')
+		#stdscr.
+
 def diagnostics(i):
 	global sub
 	global current_subscriber
@@ -157,6 +168,7 @@ if __name__ == '__main__':
 	try:
 		display_startup_info()
 		loop()
+		stdscr.nodelay(0)
 		curses.endwin()
 	except rospy.ROSInterruptException:
 		curses.nonl()
