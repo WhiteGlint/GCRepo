@@ -264,8 +264,8 @@ void motorControl::set_direction_backward()
 void motorControl::set_direction_left()
 {
 	movement_direction = 3;
-	motor1_direction = 1;
-	motor2_direction = 0;
+	motor1_direction = 0;
+	motor2_direction = 1;
 	motor3_direction = 0;
 	motor4_direction = 1;
 }
@@ -437,4 +437,17 @@ void motorControl::push_i2c()
 		<< message[3] << " "
 		<< message[4]
 		<< message[5]
-		<< message[6
+		<< message[6]
+                << message[7] << " | "
+                << message[8]
+                << message[9]
+                << message[10]
+                << message[11] << " "
+                << message[12]
+                << message[13]
+                << message[14]
+                << message[15];
+        
+        cout << endl;
+        */
+}
