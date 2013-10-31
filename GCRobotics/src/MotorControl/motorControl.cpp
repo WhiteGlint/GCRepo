@@ -43,6 +43,18 @@ void motorControl::velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& 
 		 case 5:
 		 	rotate_counterclockwise(msg->speed);
 		 	break;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+			motor_n(msg->speed, msg->direction, msg->direction - 10);
+			break;
+		case 15:
+		case 16:
+		case 17:
+		case 18:
+			motor_n(msg->speed, msg->direction, msg->direction - 14);
+			break;
 	}
 	
 
@@ -176,10 +188,20 @@ void motorControl::rotate_counterclockwise(int speed)
 	movement_direction = 5;
 	goto_speed(speed, movement_direction);
 }
+
 void motorControl::stop()
 {
 	goto_speed(0, movement_direction);
 	movement_direction = 6;
+}
+
+void motorControl::motor_n(int speed, int direction, int motor)
+{
+	if (movement_direction != 0)
+		stop();
+
+	movement_direction = direction;
+	goto_speed_isolated(speed, movement_direction, motor);
 }
 
 // Inside jobs
@@ -206,6 +228,43 @@ void motorControl::goto_speed(int speed, int direction)
 	send_message();
 	//wait();
 	//goto_speed(speed, direction); // go again until the speed is reached
+}
+
+void motorControl::goto_speed_isolated(int speed, int direction, int motor)
+{
+	// if it is already going at the requested speed then stop
+	if (speed == travel_speed)
+		return;
+
+	if (direction >= 11 && direction <= 14)
+		set_direction(0);
+	else
+		set_direction(1);
+
+	travel_speed = speed;
+
+	motor1_speed = 0;
+	motor2_speed = 0;
+	motor3_speed = 0;
+	motor4_speed = 0;
+
+	switch (motor)
+	{
+		case 1:
+			motor1_speed = speed;
+			break;
+		case 2:
+			motor2_speed = speed;
+			break;
+		case 3:
+			motor3_speed = speed;
+			break;
+		case 4:
+			motor4_speed = speed;
+			break;
+	}
+	
+	send_message();
 }
 
 // low level controllers

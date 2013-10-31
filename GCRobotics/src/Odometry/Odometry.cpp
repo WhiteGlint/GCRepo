@@ -10,25 +10,22 @@ void Odometry::init(int argc, char **argv)
 	
 	sub = n.subscribe("EncoderData", 100, &Odometry::odometryCallback, this);
 	
-	// Random constants, not sure if their 100% correct
-	wheelCircumference = 0.1695; // in centimeters per revolution
+	// Measurements are in cm and deg
+	// "Circle" refers to the circle made by the rotation of the robot about its axis of rotation (which should be dead center)
 	wheelRadius = 2.699; // in centimeters
-	CPR = 360; // counts per revolution
+	wheelCircumference = 16.958 ; // in centimeters
+	CPR = 650; // encoder counts per revolution of the wheel
 	degreesPerCircle = 360;
-	circleCircumference = 88.175081008304729835; // in centimeters... close enough
-	/*	degreesPerCount = (CPR * wheelCircumference) / (circleCircumference * degreesPerCircle); // how far around the circle we've traveled in deg/count 
-		units don't make sense	*/
+	circleCircumference = 113; // in centimeters (approximate)
 	degreesPerCount = (degreesPerCircle * wheelCircumference) / (CPR * circleCircumference);
 	motorGearing = 10;
 	
-	XConversion=250; // these two conversions were measured experimentally, they are probably not very accurate.
-	YConversion =250;
-	frameWidth = 0.3048;
+	XConversion= 1; // these two conversions were measured experimentally, they are probably not very accurate.
+	YConversion = 1;
+	frameWidth = 30.48;
 	X = 0;
 	Y = 0;
 	heading = 0;
-
-	return;
 }
 
 void Odometry::odometryCallback(const GCRobotics::Encoder_msg::ConstPtr& msg)
@@ -38,9 +35,7 @@ void Odometry::odometryCallback(const GCRobotics::Encoder_msg::ConstPtr& msg)
 	en3 = msg->encoder3;
 	en4 = msg->encoder4;
 	
-	processMotion();
-
-	return;				
+	processMotion();			
 }
 
 void Odometry::processMotion()

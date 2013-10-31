@@ -12,11 +12,11 @@ private:
 	double en1, en2, en3, en4;
 
 	// Random constants, not sure if their 100% correct	
-	float wheelCircumference; // in centimeters per revolution
+	float wheelCircumference; // in centimeters
 	float wheelRadius; // in centimeters
 	int CPR; // counts per revolution
 	int degreesPerCircle;
-	float circleCircumference; // in centimeters... close enough
+	float circleCircumference; // in centimeters
 	double degreesPerCount; // how far around the circle we've traveled in deg/count
 	int motorGearing;
 

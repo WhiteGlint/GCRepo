@@ -10,7 +10,7 @@ class motorControl
 {
 private:
 
-	static int const wait_time = 50; // wait time between motor speed steps in milleseconds
+	static int const wait_time = 50; // wait time between motor speed steps in milliseconds
 	int motor1_speed, // directionless, 0-10
 		motor2_speed,
 		motor3_speed,
@@ -19,7 +19,7 @@ private:
 		motor2_direction,
 		motor3_direction,
 		motor4_direction;
-	int movement_direction, // overal direction of movement
+	int movement_direction, // overall direction of movement
 		travel_speed; // directionless, 0-10
 	unsigned char message[3]; // will hold the literal I^2C message
 	unsigned char message_address; // will hold the I^2C address
@@ -27,6 +27,7 @@ private:
 	// top level inside jobs
 	void set_speed(int, int, int);
 	void goto_speed(int, int);
+	void goto_speed_isolated(int, int, int);
 
 	// low level controllers
 	void set_direction(int);
@@ -84,6 +85,7 @@ public:
 	void rotate_counterclockwise(int);
 	void stop();
 	void emergency_stop();
+	void motor_n(int, int, int);
 
 };
 
