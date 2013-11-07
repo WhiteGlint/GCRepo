@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "LocalPlannerNode");
 	
 	LocalPlanner planner;
-	GCRobotics::simpleVelocity data;
+	geometry_msgs::Twist data;
 	
 	planner.init(argc, argv);
 
@@ -37,8 +37,29 @@ int main(int argc, char **argv)
 		ros::spinOnce();
 		
 		planner.move_to_point();
-		data.speed = planner.velocity_out;
-		data.direction = planner.direction_out;
+		
+		data.linear.x = 0;
+		data.linear.y = 0;
+		data.linear.z = 0;
+		data.angular.x = 0;
+		data.angular.y = 0;
+		data.angular.z = 0;
+		
+		switch (planner.direction_out)
+		{
+		case 0:
+		    data.linear.x = planner.velocity_out;
+		case 2:
+		    data.linear.x = -planner.velocity_out;
+		case 3:
+		    data.linear.y = planner.velocity_out;
+		case 1:
+		    data.linear.y = -planner.velocity_out;
+		case 5:
+		    data.angular.z = planner.velocity_out;
+	    case 4:
+		    data.angular.z = -planner.velocity_out;
+		}
 		
 		planner.pub.publish(data);
 		r.sleep();

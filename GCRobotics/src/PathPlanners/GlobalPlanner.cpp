@@ -11,7 +11,7 @@ void GlobalPlanner::init(int argc, char **argv)
 	
 	CurrentPoseSub = n.subscribe("CurrentPose", 100, &GlobalPlanner::CurrentPositionCallback, this);
 	GoalPoseSub = n.subscribe("GoalPose", 100, &GlobalPlanner::GoalPositionCallback, this);
-	MapSub = n.subscribe("Map", 100, &GlobalPlanner::MapCallback, this);
+	MapSub = n.subscribe("map", 100, &GlobalPlanner::MapCallback, this);
 	return;
 }
 

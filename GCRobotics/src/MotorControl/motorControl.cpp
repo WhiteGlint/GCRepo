@@ -1,13 +1,11 @@
 
 // object for motor control library
 #include <iostream>
-//#include <Windows.h>
 #include <unistd.h>
 #include "../include/motorControl.h"
 #include "GCRobotics/i2cData.h"
 #include "std_msgs/String.h"
-#include "GCRobotics/simpleVelocity.h"
-
+#include "geometry_msgs/Twist.h"
 #include "ros/ros.h"
 
 using namespace std;
@@ -16,44 +14,71 @@ void motorControl::init(int argc, char **argv)
 {
 	pub = n.advertise<GCRobotics::i2cData>("i2cSend",100);
 	
-	sub = n.subscribe("Velocity", 100, &motorControl::velocityCallback, this);
+	sub = n.subscribe("cmd_vel", 100, &motorControl::velocityCallback, this);
 	return;
 }
 
-void motorControl::velocityCallback(const GCRobotics::simpleVelocity::ConstPtr& msg)
+char get_direction(const geometry_msgs::Twist::ConstPtr& msg) {
+    if (msg->linear.x > 0)
+        return 'w';
+    else if (msg->linear.x < 0)
+        return 's';
+    else if (msg->linear.y > 0)
+        return 'a';
+    else if (msg->linear.y < 0)
+        return 'd';
+    else if (msg->angular.z > 0)
+        return 'q';
+    else if (msg->angular.z < 0)
+        return 'e';
+    return 'f';
+}
+
+int get_velocity(const geometry_msgs::Twist::ConstPtr& msg) {
+    if (msg->linear.x != 0)
+        return int(msg->linear.x);
+    else if (msg->linear.y != 0)
+        return int(msg->linear.y);
+    else if (msg->angular.z != 0)
+        return int(msg->angular.z);
+    return 0;
+}
+
+void motorControl::velocityCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {	
 	
-	switch (msg->direction)
+	switch (get_direction(msg))
 	{
-		 case 0:  
-		 	move_forward(msg->speed);
-			break;
-		 case 1:
-		 	move_right(msg->speed);
-			break;
-		 case 2:  
-		 	move_backward(msg->speed);
-		 	break;
-		 case 3:
-		 	move_left(msg->speed);
-		 	break;
-		 case 4:  
-		 	rotate_clockwise(msg->speed);
-		 	break;
-		 case 5:
-		 	rotate_counterclockwise(msg->speed);
-		 	break;
+        case 'f':
+        case 'w':  
+            move_forward(get_velocity(msg));
+            break;
+        case 'd':
+            move_right(-get_velocity(msg));
+            break;
+        case 's':  
+            move_backward(-get_velocity(msg));
+            break;
+        case 'a':
+            move_left(get_velocity(msg));
+            break;
+        case 'e':  
+            rotate_clockwise(-get_velocity(msg));
+            break;
+        case 'q':
+            rotate_counterclockwise(get_velocity(msg));
+            break;
 		case 11:
 		case 12:
 		case 13:
 		case 14:
-			motor_n(msg->speed, msg->direction, msg->direction - 10);
+			motor_n(get_velocity(msg), get_direction(msg), get_direction(msg) - 10);
 			break;
 		case 15:
 		case 16:
 		case 17:
 		case 18:
-			motor_n(msg->speed, msg->direction, msg->direction - 14);
+			motor_n(get_velocity(msg), get_direction(msg), get_direction(msg) - 14);
 			break;
 	}
 	

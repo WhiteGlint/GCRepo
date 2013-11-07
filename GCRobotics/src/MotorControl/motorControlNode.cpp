@@ -18,7 +18,7 @@ steamlining for effeciency/readability could be done but is not required.
 
 using namespace std;
 
-// Takes in velocity and direciton,
+// Takes in velocity and direction,
 // Publishes messages for indiv motor control to i2cSend topic.
 
 

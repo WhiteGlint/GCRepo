@@ -1,7 +1,5 @@
 #include "LocalPlanner.h"
 #include "ros/ros.h"
-#include "GCRobotics/simpleVelocity.h"
-//#include "GCRobotics/Pose_msg.h"
 #include "geometry_msgs/Twist.h"
 
 
@@ -11,7 +9,7 @@ LocalPlanner::LocalPlanner(){
 
 void LocalPlanner::init(int argc, char **argv)
 {
-	pub = n.advertise<GCRobotics::simpleVelocity>("Velocity",100);
+	pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 100);
 	
 	CurrentPoseSub = n.subscribe("CurrentPose", 100, &LocalPlanner::CurrentPositionCallback, this);
 	NextPoseSub = n.subscribe("NextPose", 100, &LocalPlanner::NextPositionCallback, this);
@@ -95,7 +93,7 @@ void LocalPlanner::get_current_location(){
 	cin >> current_heading;
 
 	// Converts input heading from degrees into radians
-	current_heading = (current_heading) * ((2 * PI) / 360);
+	current_heading *= PI / 180;
 }
 
 void LocalPlanner::get_current_velocity(){

@@ -5,7 +5,6 @@
 #include <fstream>
 #include "ros/ros.h"
 #include "Cell.h"
-//#include "GCRobotics/Pose_msg.h"
 #include "geometry_msgs/Twist.h"
 #include "nav_msgs/OccupancyGrid.h"
 

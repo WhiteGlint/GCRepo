@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <cmath>
-#include "GCRobotics/simpleVelocity.h"
-//#include "GCRobotics/Pose_msg.h"
 #include "geometry_msgs/Twist.h"
 #include "ros/ros.h"
 #define PI 3.14159265
@@ -47,7 +45,7 @@ public:
 
 	// Published variables
 	int velocity_out;
-	float direction_out;
+	int direction_out;
 	/***********************
 	0 = forward
 	1 = right

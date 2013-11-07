@@ -19,7 +19,8 @@
 import roslib; roslib.load_manifest('GCRobotics')
 import rospy
 from std_msgs.msg import String
-from GCRobotics.msg import simpleVelocity, Encoder_msg
+from GCRobotics.msg import Encoder_msg
+from geometry_msgs.msg import Twist
 from time import sleep
 import curses
 
@@ -29,23 +30,80 @@ isolated_set = {'1', '2', '3', '4', '!', '@', '#', '$'}
 command_set = {'z','Z'}
 diagnostic_set = {'c', 'i', 'v'}
 
-MAX_VELOCITY = 65
-MED_VELOCITY = 30
-MIN_VELOCITY = 1
-STOP_VELOCITY = 0
-VELOCITY_INCR = 5
+MAX_SPEED = 65.0
+MED_SPEED = 30.0
+MIN_SPEED = 1.0
+STOP_VELOCITY = 0.0
+VELOCITY_INCR = 5.0
 
 rospy.init_node('TeleOp')
 stdscr = curses.initscr()
 curses.noecho()
 stdscr.nodelay(1)
-velocity_pub = rospy.Publisher('Velocity', simpleVelocity)
-velocity_msg = simpleVelocity()
-velocity_msg.speed = 0
+velocity_pub = rospy.Publisher('cmd_vel', Twist)
+velocity_msg = Twist()
 global sub
 global current_subscriber
 sub = None
 current_subscriber = None
+
+def stop():
+    velocity_msg.linear.x = 0
+    velocity_msg.linear.y = 0
+    velocity_msg.linear.z = 0
+    velocity_msg.angular.x = 0
+    velocity_msg.angular.y = 0
+    velocity_msg.angular.z = 0
+    
+def current_direction():
+    X = velocity_msg.linear.x
+    Y = velocity_msg.linear.y
+    W = velocity_msg.angular.z
+    
+    if X > 0:
+        return 'w'
+    elif X < 0:
+        return 's'
+    elif Y > 0:
+        return 'a'
+    elif Y < 0:
+        return 'd'
+    elif W > 0:
+        return 'q'
+    elif W < 0:
+        return 'e'
+    return 'f'
+    
+def current_velocity():
+    X = velocity_msg.linear.x
+    Y = velocity_msg.linear.y
+    W = velocity_msg.angular.z
+    
+    if X != 0:
+        return X
+    elif Y != 0:
+        return Y
+    elif W != 0:
+        return W
+    return 0
+    
+def current_speed():
+    return abs(current_velocity())
+    
+def set_max_speed():
+    curr_dir = current_direction()
+    if curr_dir == 'w':
+        velocity_msg.linear.x = MAX_SPEED
+    elif curr_dir == 's':
+        velocity_msg.linear.x = -MAX_SPEED
+    elif curr_dir == 'a':
+        velocity_msg.linear.y = MAX_SPEED
+    elif curr_dir == 'd':
+        velocity_msg.linear.y = -MAX_SPEED
+    elif curr_dir == 'q':
+        velocity_msg.angular.z = MAX_SPEED
+    elif curr_dir == 'e':
+        velocity_msg.angular.z = -MAX_SPEED
 
 def encoder_callback(data):
 	stdscr.erase()
@@ -59,9 +117,11 @@ def encoder_callback(data):
 	stdscr.addstr(str(data.encoder4))
 
 def velocity_callback(data):
-	stdscr.erase()
-	stdscr.addstr('Velocity: ')
-	stdscr.addstr(str(data.speed))
+    stdscr.erase()
+    stdscr.addstr('Linear: ')
+    stdscr.addstr(str(max(abs(data.linear.x), abs(data.linear.y))))
+    stdscr.addstr('\nAngular: ')
+    stdscr.addstr(str(data.angular.z))
 
 def display_startup_info():
 	try:
@@ -71,17 +131,17 @@ def display_startup_info():
 		stdscr.addstr('\n-----------------------------------------\n')
 		stdscr.addstr('w: Forward, s: Backward, a: Left, d: Right, q: Rotate left, e: Rotate right\n')
 		stdscr.addstr('f: Stop, t: Min Speed, g: Middle Speed, h: Max Speed, j: Speed Up, k: Slow Down\n')
-		stdscr.addstr('z: Run script file, Z: Enter commands\n')
+		'''stdscr.addstr('z: Run script file, Z: Enter commands\n')
 
 		stdscr.addstr('\nIsolated motor control (Shift + Number goes backwards)')
 		stdscr.addstr('\n-----------------------------------------\n')
 		stdscr.addstr('1: Motor 1, 2: Motor 2, 3: Motor 3, 4: Motor 4\n')
-		stdscr.addstr('!: Motor 1, @: Motor 2, #: Motor 3, $: Motor 4\n')
+		stdscr.addstr('!: Motor 1, @: Motor 2, #: Motor 3, $: Motor 4\n')'''
 
 		stdscr.addstr('\nDiagnostic commands (mutually exclusive)')
 		stdscr.addstr('\n-----------------------------------------\n')
 		stdscr.addstr('c: Display encoder counts, v: Toggle velocity display\n\n')
-		#stdscr.addstr('i: Display key commands\n\n')
+		stdscr.addstr('i: Display key commands\n\n')
 	except curses.error:
 		pass
 
@@ -99,6 +159,9 @@ def read_script_file(fn):
 	return s
 
 def run_commands(s):
+    pass
+'''	key_to_direction = {'w':0, 'a':3, 's':2, 'd':1, 'q':5, 'e':4, 'f':0}
+
 	s = s.lower()
 	s = s.split(',')
 
@@ -117,7 +180,11 @@ def run_commands(s):
 				direction = char
 
 		velocity_msg.speed = int(speed)
-		velocity_msg.direction = direction
+		try:
+			velocity_msg.direction = key_to_direction[i]
+		except:
+			velocity_msg.direction = 0
+
 		sleep(float(duration))
 		velocity_pub.publish(velocity_msg)
 		rospy.sleep(.001)
@@ -125,7 +192,7 @@ def run_commands(s):
 	velocity_msg.speed = STOP_VELOCITY
 	velocity_msg.direction = 0
 	velocity_pub.publish(velocity_msg)
-	rospy.sleep(.001)
+	rospy.sleep(.001)'''
 
 
 
@@ -149,59 +216,130 @@ def loop():
 			diagnostics(i)
 
 def teleop(i):
-	
-	keyToDirection = {'w':0, 'a':3, 's':2, 'd':1, 'q':5, 'e':4, 'f':0}
-
-	try:
-		velocity_msg.direction = keyToDirection[i]
-	except:
-		pass
-
-	if velocity_msg.speed == STOP_VELOCITY and i in directional_set:
-		velocity_msg.speed = MED_VELOCITY
+    if i in directional_set:
+        if current_velocity() == STOP_VELOCITY:
+            if i == 'w':
+                velocity_msg.linear.x = MED_SPEED
+            elif i == 's':
+                velocity_msg.linear.x = -MED_SPEED
+            elif i == 'a':
+                velocity_msg.linear.y = MED_SPEED
+            elif i == 'd':
+                velocity_msg.linear.y = -MED_SPEED
+            elif i == 'q':
+                velocity_msg.angular.z = MED_SPEED
+            elif i == 'e':
+                velocity_msg.angular.z = -MED_SPEED
+        else:
+            curr_speed = current_speed()
+            stop()
+            if i == 'w':
+                velocity_msg.linear.x = curr_speed
+            elif i == 's':
+                velocity_msg.linear.x = -curr_speed
+            elif i == 'a':
+                velocity_msg.linear.y = curr_speed
+            elif i == 'd':
+                velocity_msg.linear.y = -curr_speed
+            elif i == 'q':
+                velocity_msg.angular.z = curr_speed
+            elif i == 'e':
+                velocity_msg.angular.z = -curr_speed
 		
-	if i == 'f':
-		velocity_msg.speed = STOP_VELOCITY
+    if i == 'f':
+        stop()
 
-	if i == 't':
-		velocity_msg.speed = MIN_VELOCITY
+    if i == 't':
+        curr_dir = current_direction()
+        if curr_dir == 'w':
+            velocity_msg.linear.x = MIN_SPEED
+        elif curr_dir == 's':
+            velocity_msg.linear.x = -MIN_SPEED
+        elif curr_dir == 'a':
+            velocity_msg.linear.y = MIN_SPEED
+        elif curr_dir == 'd':
+            velocity_msg.linear.y = -MIN_SPEED
+        elif curr_dir == 'q':
+            velocity_msg.angular.z = MIN_SPEED
+        elif curr_dir == 'e':
+            velocity_msg.angular.z = -MIN_SPEED
 
-	if i == 'g':
-		velocity_msg.speed = MED_VELOCITY
+    if i == 'g':
+        curr_dir = current_direction()
+        if curr_dir == 'w':
+            velocity_msg.linear.x = MED_SPEED
+        elif curr_dir == 's':
+            velocity_msg.linear.x = -MED_SPEED
+        elif curr_dir == 'a':
+            velocity_msg.linear.y = MED_SPEED
+        elif curr_dir == 'd':
+            velocity_msg.linear.y = -MED_SPEED
+        elif curr_dir == 'q':
+            velocity_msg.angular.z = MED_SPEED
+        elif curr_dir == 'e':
+            velocity_msg.angular.z = -MED_SPEED
 
-	if i == 'h':
-		velocity_msg.speed = MAX_VELOCITY
+    if i == 'h':
+        curr_dir = current_direction()
+        if curr_dir == 'w':
+            velocity_msg.linear.x = MAX_SPEED
+        elif curr_dir == 's':
+            velocity_msg.linear.x = -MAX_SPEED
+        elif curr_dir == 'a':
+            velocity_msg.linear.y = MAX_SPEED
+        elif curr_dir == 'd':
+            velocity_msg.linear.y = -MAX_SPEED
+        elif curr_dir == 'q':
+            velocity_msg.angular.z = MAX_SPEED
+        elif curr_dir == 'e':
+            velocity_msg.angular.z = -MAX_SPEED
 			
-	if i == 'j':
-		if velocity_msg.speed + VELOCITY_INCR <= MAX_VELOCITY:
-			velocity_msg.speed += VELOCITY_INCR
-		else:
-			velocity_msg.speed = MAX_VELOCITY
+    if i == 'j':
+        next_velocity = current_velocity() + VELOCITY_INCR
+        if next_velocity <= MAX_SPEED:
+            curr_dir = current_direction()
+            if curr_dir in {'w', 's'}:
+                velocity_msg.linear.x = next_velocity
+            elif curr_dir in {'a', 'd'}:
+                velocity_msg.linear.y = next_velocity
+            elif curr_dir in {'q', 'w'}:
+                velocity_msg.angular.z = next_velocity
+        else:
+            set_max_speed()
 		
-	if i == 'k':
-		if velocity_msg.speed - VELOCITY_INCR >= STOP_VELOCITY:
-			velocity_msg.speed -= VELOCITY_INCR
-		else:
-			velocity_msg.speed = STOP_VELOCITY
+    if i == 'k':
+        next_velocity = current_velocity() - VELOCITY_INCR
+        if abs(next_velocity) <= MAX_SPEED:
+            curr_dir = current_direction()
+            if curr_dir in {'w', 's'}:
+                velocity_msg.linear.x = next_velocity
+            elif curr_dir in {'a', 'd'}:
+                velocity_msg.linear.y = next_velocity
+            elif curr_dir in {'q', 'w'}:
+                velocity_msg.angular.z = next_velocity
+        else:
+            set_max_speed()
 			
-	velocity_pub.publish(velocity_msg)
-	rospy.sleep(.001)
+    velocity_pub.publish(velocity_msg)
+    rospy.sleep(.001)
 
 def isolated(i):
-	keyToDirection = {'1':11, '2':12, '3':13, '4':14, '!': 15, '@':16, '#':17, '$':18}
+    pass
+'''	key_to_direction = {'1':11, '2':12, '3':13, '4':14, '!': 15, '@':16, '#':17, '$':18}
 
 	try:
-		velocity_msg.direction = keyToDirection[i]
+		velocity_msg.direction = key_to_direction[i]
 	except:
 		pass
 
-	velocity_msg.speed = MED_VELOCITY
+	velocity_msg.speed = MED_SPEED
 
 	velocity_pub.publish(velocity_msg)
-	rospy.sleep(.001)
+	rospy.sleep(.001)'''
 
 def command(i):
-	stdscr.nodelay(0)
+    pass
+'''	stdscr.nodelay(0)
 	curses.echo()
 	if i == 'z':
 		stdscr.clear()
@@ -219,7 +357,7 @@ def command(i):
 		run_commands(s)
 	curses.noecho()
 	stdscr.nodelay(1)
-	display_startup_info()
+	display_startup_info()'''
 
 def diagnostics(i):
 	global sub
@@ -238,17 +376,19 @@ def diagnostics(i):
 		else:
 			sub.unregister()
 			sub = None
+			display_startup_info()
 	elif i == 'v':
 		if sub == None:
-			sub = rospy.Subscriber('Velocity', simpleVelocity, velocity_callback)
+			sub = rospy.Subscriber('cmd_vel', Twist, velocity_callback)
 			current_subscriber = 'v'
 		elif current_subscriber != 'v':
 			sub.unregister()
-			sub = rospy.Subscriber('Velocity', simpleVelocity, velocity_callback)
+			sub = rospy.Subscriber('cmd_vel', Twist, velocity_callback)
 			current_subscriber = 'v'
 		else:
 			sub.unregister()
 			sub = None
+			display_startup_info()
 
 
 if __name__ == '__main__':
