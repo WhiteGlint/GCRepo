@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "GlobalPlannerNode");
 	
 	GlobalPlanner planner;
-	GCRobotics::Pose_msg data;
+	geometry_msgs::Twist data;
 	
 	planner.init(argc, argv);
 
@@ -37,8 +37,8 @@ int main(int argc, char **argv)
 	{
 		ros::spinOnce();
 		planner.send_next_step();
-		data.x = planner.next_step[1];
-		data.y = planner.next_step[0];
+		data.linear.x = planner.next_step[1];
+		data.linear.y = planner.next_step[0];
 		planner.pub.publish(data);
 		r.sleep();
 	}

@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "odometryNode");
 	Odometry controller;
 	controller.init(argc, argv);
-	GCRobotics::Pose_msg data;
+	geometry_msgs::Twist data;
 	tf::TransformBroadcaster br;
 	tf::Transform transform;
 	tf::Quaternion q;
@@ -43,10 +43,10 @@ int main(int argc, char **argv)
 	ros::Rate r(10); // 10 hz
 	while (ros::ok())
 	{
-		data.x = controller.X;
-		data.y = controller.Y;
-		data.z = 0;
-		data.heading = controller.heading;
+		data.linear.x = controller.X;
+		data.linear.y = controller.Y;
+		data.linear.z = 0;
+		data.angular.z = controller.heading;
 
 		controller.pub.publish(data);
 

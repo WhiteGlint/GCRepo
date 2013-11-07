@@ -5,7 +5,8 @@
 #include <fstream>
 #include "ros/ros.h"
 #include "Cell.h"
-#include "GCRobotics/Pose_msg.h"
+//#include "GCRobotics/Pose_msg.h"
+#include "geometry_msgs/Twist.h"
 #include "nav_msgs/OccupancyGrid.h"
 
 using namespace std;
@@ -63,8 +64,8 @@ public:
 	ros::Subscriber MapSub;
 	ros::Publisher pub;
 	void init(int argc, char **argv);
-	void CurrentPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg);
-	void GoalPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg);
+	void CurrentPositionCallback(const geometry_msgs::Twist::ConstPtr& msg);
+	void GoalPositionCallback(const geometry_msgs::Twist::ConstPtr& msg);
 	void MapCallback(const nav_msgs::OccupancyGrid::ConstPtr& msg);
 	
 	int next_step[2]; // y,x

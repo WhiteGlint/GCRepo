@@ -1,7 +1,8 @@
 #include "LocalPlanner.h"
 #include "ros/ros.h"
 #include "GCRobotics/simpleVelocity.h"
-#include "GCRobotics/Pose_msg.h"
+//#include "GCRobotics/Pose_msg.h"
+#include "geometry_msgs/Twist.h"
 
 
 LocalPlanner::LocalPlanner(){
@@ -17,18 +18,18 @@ void LocalPlanner::init(int argc, char **argv)
 	return;
 }
 
-void LocalPlanner::CurrentPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+void LocalPlanner::CurrentPositionCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
-	current_location[0] = msg->x;
-	current_location[1] = msg->y;
-	current_heading = msg->heading;	
+	current_location[0] = msg->linear.x;
+	current_location[1] = msg->linear.y;
+	current_heading = msg->angular.z;	
 	return;
 }
 
-void LocalPlanner::NextPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+void LocalPlanner::NextPositionCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
-	destination[0] = msg->x;
-	destination[1] = msg->y;
+	destination[0] = msg->linear.x;
+	destination[1] = msg->linear.y;
 	return;
 }
 

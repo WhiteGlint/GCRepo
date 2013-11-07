@@ -7,7 +7,7 @@ GlobalPlanner::GlobalPlanner(){
 //ros code initialization
 void GlobalPlanner::init(int argc, char **argv)
 {
-	pub = n.advertise<GCRobotics::Pose_msg>("NextPose",100);
+	pub = n.advertise<geometry_msgs::Twist>("NextPose",100);
 	
 	CurrentPoseSub = n.subscribe("CurrentPose", 100, &GlobalPlanner::CurrentPositionCallback, this);
 	GoalPoseSub = n.subscribe("GoalPose", 100, &GlobalPlanner::GoalPositionCallback, this);
@@ -15,17 +15,17 @@ void GlobalPlanner::init(int argc, char **argv)
 	return;
 }
 
-void GlobalPlanner::CurrentPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+void GlobalPlanner::CurrentPositionCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
-	current_location[0] = msg->y;
-	current_location[1] = msg->x;	
+	current_location[0] = msg->linear.y;
+	current_location[1] = msg->linear.x;	
 	return;
 }
 
-void GlobalPlanner::GoalPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg)
+void GlobalPlanner::GoalPositionCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {
-	destination[0] = msg->y;
-	destination[1] = msg->x;
+	destination[0] = msg->linear.y;
+	destination[1] = msg->linear.x;
 	return;
 }
 

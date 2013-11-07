@@ -2,7 +2,8 @@
 #define ODOMETRY_GCR
 
 #include "ros/ros.h"
-#include "GCRobotics/Pose_msg.h"
+//#include "GCRobotics/Pose_msg.h"
+#include "geometry_msgs/Twist.h"
 #include "GCRobotics/Encoder_msg.h"
 
 class Odometry

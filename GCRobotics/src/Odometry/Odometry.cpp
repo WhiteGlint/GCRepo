@@ -1,12 +1,12 @@
 #include "Odometry.h"
-#include "GCRobotics/Pose_msg.h"
+//#include "GCRobotics/Pose_msg.h"
+#include "geometry_msgs/Twist.h"
 #include "GCRobotics/Encoder_msg.h"
-#include <iostream>
 
 
 void Odometry::init(int argc, char **argv)
 {
-	pub = n.advertise<GCRobotics::Pose_msg>("CurrentPose",100);
+	pub = n.advertise<geometry_msgs::Twist>("CurrentPose", 100); // Changed Pose_msg to Twist
 	
 	sub = n.subscribe("EncoderData", 100, &Odometry::odometryCallback, this);
 	

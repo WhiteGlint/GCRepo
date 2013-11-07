@@ -4,7 +4,8 @@
 #include <iostream>
 #include <cmath>
 #include "GCRobotics/simpleVelocity.h"
-#include "GCRobotics/Pose_msg.h"
+//#include "GCRobotics/Pose_msg.h"
+#include "geometry_msgs/Twist.h"
 #include "ros/ros.h"
 #define PI 3.14159265
 using namespace std;
@@ -62,8 +63,8 @@ public:
 	ros::Subscriber NextPoseSub;
 	ros::Publisher pub;
 	void init(int argc, char **argv);
-	void CurrentPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg);
-	void NextPositionCallback(const GCRobotics::Pose_msg::ConstPtr& msg);
+	void CurrentPositionCallback(const geometry_msgs::Twist::ConstPtr& msg);
+	void NextPositionCallback(const geometry_msgs::Twist::ConstPtr& msg);
 	
 	
 	LocalPlanner();
