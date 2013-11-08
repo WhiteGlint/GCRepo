@@ -17,10 +17,6 @@ that the battery is not drained too low.
 
 
 		--------FUTURE WORK--------
-the 2 second request rate for encoder data is waaaaaaaaaay too low to provide useful position data.
-Ideally, we should be able to request this data every ~100ms. testing will have to be done to see
-if this is possible (make sure the arduino can leave the interrupt before it occurs again).
-
 The battery voltage code is not currently implemented, but it has been verified as working correctly.
 It is connected to a voltage divider on the regulator board to limit it to the 5 volt range. Refine
 the conversion factor from analog input to battery voltage, because it isnt super accurate, maybe
@@ -77,7 +73,7 @@ void setup(){
   //DDRD = B11111111;
   
   errorCode.data = 0;
-  Timer1.initialize(2000000); // 2000 ms between interrupts
+  Timer1.initialize(100000); // 100 ms between interrupts
   Timer1.attachInterrupt(Read);
  // Timer1.attachInterrupt(sendVoltage);
 
