@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   enclib.h
  * Author: Alan
  *
@@ -12,9 +12,9 @@
 extern "C" {
 #endif
 
-    
+
     // Function that initialises Timer0 as a timer and Timer1 as a counter
-    void BeginEncoder();
+    void beginEncoder();
 
 
     // Function that takes in two pointers and sets one equal to TMR0 and
@@ -22,7 +22,7 @@ extern "C" {
     void EncUpdate(int *t1);
 
 
-    
+
 
 
 

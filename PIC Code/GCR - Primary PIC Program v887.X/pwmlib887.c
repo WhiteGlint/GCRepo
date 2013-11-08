@@ -5,7 +5,7 @@
  * Alan, 2012/12/08
  *
  * COPIED FROM THE PIC16F917 DATASHEET
- * 
+ *
 15.3.7 SETUP FOR PWM OPERATION
 The following steps should be taken when configuring
 the CCP module for PWM operation:
@@ -37,7 +37,7 @@ clearing the associated TRIS bit.
 
 //Function that configures the CCP module for PWM mode,
 //configure Timer2 to run
-void BeginPWM()
+void beginPWM()
 {
     //Disable PWM pin (CCP2) by setting associated TRIS bit;
     //  in this case, set RC1 as input, or TRISCbits.TRISC1 = 1
@@ -101,7 +101,7 @@ void SetPR2(int length)
 //   If this does not give us the resolution we need, we will have to
 //   add a function that takes "length" and parses the 2 LSBs off in
 //   order to set them.  In other words, it would be harder to implement.
-void SetPulse(int length)
+void setPWM(int length)
 {
     int temp = length;  //set intermediate variable to length value
     if (temp > 255)     //error test length
