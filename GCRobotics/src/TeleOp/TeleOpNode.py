@@ -263,6 +263,8 @@ def teleop(i):
             velocity_msg.angular.z = MIN_SPEED
         elif curr_dir == 'e':
             velocity_msg.angular.z = -MIN_SPEED
+        elif curr_dir == 'f':
+            velocity_msg.linear.x = MIN_SPEED
 
     if i == 'g':
         curr_dir = current_direction()
@@ -278,6 +280,8 @@ def teleop(i):
             velocity_msg.angular.z = MED_SPEED
         elif curr_dir == 'e':
             velocity_msg.angular.z = -MED_SPEED
+        elif curr_dir == 'f':
+            velocity_msg.linear.x = MED_SPEED
 
     if i == 'h':
         curr_dir = current_direction()
@@ -293,12 +297,14 @@ def teleop(i):
             velocity_msg.angular.z = MAX_SPEED
         elif curr_dir == 'e':
             velocity_msg.angular.z = -MAX_SPEED
+        elif curr_dir == 'f':
+            velocity_msg.linear.x = MAX_SPEED
 			
     if i == 'j':
         next_velocity = current_velocity() + VELOCITY_INCR
         if next_velocity <= MAX_SPEED:
             curr_dir = current_direction()
-            if curr_dir in {'w', 's'}:
+            if curr_dir in {'w', 's', 'f'}:
                 velocity_msg.linear.x = next_velocity
             elif curr_dir in {'a', 'd'}:
                 velocity_msg.linear.y = next_velocity
@@ -311,7 +317,7 @@ def teleop(i):
         next_velocity = current_velocity() - VELOCITY_INCR
         if abs(next_velocity) <= MAX_SPEED:
             curr_dir = current_direction()
-            if curr_dir in {'w', 's'}:
+            if curr_dir in {'w', 's', 'f'}:
                 velocity_msg.linear.x = next_velocity
             elif curr_dir in {'a', 'd'}:
                 velocity_msg.linear.y = next_velocity
