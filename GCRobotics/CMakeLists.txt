@@ -30,7 +30,7 @@ rosbuild_genmsg()
 #target_link_libraries(example ${PROJECT_NAME})
 
 
-rosbuild_add_executable(odometryNode src/Odometry/odometryNode.cpp src/Odometry/Odometry.cpp)
+rosbuild_add_executable(odometryNode src/Odometry/odometryNode.cpp)
 rosbuild_add_executable(motorControlNode src/MotorControl/motorControlNode.cpp src/MotorControl/motorControl.cpp)
 rosbuild_add_executable(DeadReckoner src/DeadReckoning/deadReckoning.cpp)
 rosbuild_add_executable(GlobalPlanner src/PathPlanners/GlobalPlannerNode.cpp src/PathPlanners/GlobalPlanner.cpp src/PathPlanners/Cell.cpp)
