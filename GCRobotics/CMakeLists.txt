@@ -35,3 +35,6 @@ rosbuild_add_executable(motorControlNode src/MotorControl/motorControlNode.cpp s
 rosbuild_add_executable(DeadReckoner src/DeadReckoning/deadReckoning.cpp)
 rosbuild_add_executable(GlobalPlanner src/PathPlanners/GlobalPlannerNode.cpp src/PathPlanners/GlobalPlanner.cpp src/PathPlanners/Cell.cpp)
 rosbuild_add_executable(LocalPlanner src/PathPlanners/LocalPlannerNode.cpp src/PathPlanners/LocalPlanner.cpp)
+rosbuild_add_executable(transform_bc_node src/Transforms/transform_bc_node.cpp)
+rosbuild_add_executable(nav_test src/nav_test/nav_test.cpp)
+target_link_libraries(nav_test ${catkin_LIBRARIES})

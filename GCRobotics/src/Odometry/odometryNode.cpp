@@ -132,6 +132,7 @@ int main(int argc, char **argv)
         odom.child_frame_id = "base_link";
         odom.twist.twist.linear.x = current_velocity.linear.x;
         odom.twist.twist.linear.y = current_velocity.linear.y;
+        odom.twist.twist.linear.z = current_velocity.linear.z;
         odom.twist.twist.angular.z = current_velocity.angular.z;
         
         odom_pub.publish(odom);

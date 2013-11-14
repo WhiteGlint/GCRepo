@@ -12,7 +12,12 @@
   <depend package="rospy"/>
   <depend package="roscpp"/>
   <depend package="geometry_msgs"/>
+  <depend package="sensor_msgs" />
   <depend package="tf"/>
+  <depend package="nav_msgs"/>
+  <depend package="move_base"/>
+  <depend package="move_base_msgs"/>
+  <depend package="actionlib"/>
   
 </package>
 

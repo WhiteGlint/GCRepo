@@ -185,7 +185,7 @@ def run_commands(s):
 		except:
 			velocity_msg.direction = 0
 
-		sleep(float(duration))
+		rospy.sleep(float(duration))
 		velocity_pub.publish(velocity_msg)
 		rospy.sleep(.001)
 

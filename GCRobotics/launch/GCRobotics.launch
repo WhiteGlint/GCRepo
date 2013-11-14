@@ -1,33 +1,35 @@
 <launch>
 
 <node pkg="nodelet" type="nodelet" name="openni_manager" output="screen" respawn="true" args="manager"/>
-  
-  
+
+
 <!-- Motion Control node - Convert Velocity message to i2c messages for i2cNode to send -->
 <node name="motorControlNode" pkg="GCRobotics" type="motorControlNode" />
 
-<!-- Dead Reakoning - Create Pose based only off of /Velocity topic (dead reckoning) -->
+<!-- Dead Reckoning - Create Pose based only off of /Velocity topic (dead reckoning) -->
 <!-- <node name="DeadReckoner" pkg="GCRobotics" type="DeadReckoner" /> -->
 
 <!-- Openni - Kinect pointcloud generation, from openni package -->
 <include file="$(find freenect_launch)/launch/freenect.launch" />
 
 <!-- PUT REAL DATA FOR THIS TRANSFORM!!!!!!!!!!! -->
-<node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0 0 0 0 0 0 /base_link /camera_depth_frame 100" />
+<node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0.15 0 0.065 0 0 0 /base_link /camera_link 100" />
 
 
 <!-- Prep for laser scan -->
 <node pkg="nodelet" type="nodelet" name="pointcloud_throttle" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet openni_manager" respawn="true">
-  <param name="max_rate" value="20"/>
-  <remap from="cloud_in" to="/camera/depth/points"/>
-    <param name="output_frame_id" value="/base_link"/>
-    <remap from="image" to="/camera/depth/image_raw"/>
+    <param name="max_rate" value="20"/>
+    <remap from="cloud_in" to="/camera/depth/points"/>
+        <param name="output_frame_id" value="/base_link"/>
+        <remap from="image" to="/camera/depth/image_raw"/>
 </node>
- 
+
 
 <!-- Odometry - Generate position data from encoders -->
 <node name="odometryNode" pkg="GCRobotics" type="odometryNode" />
 
+<!-- TF data -->
+<node name="transform_bc_node" pkg="GCRobotics" type="transform_bc_node" />
 
 <!-- rosserial - take in arduino data -->
 
@@ -41,5 +43,12 @@
 <!-- Local Path Planning -->
 <!-- <node name="LocalPlanner" pkg="GCRobotics" type="LocalPlanner" /> -->
 
+<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find GCRobotics)/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find GCRobotics)/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find GCRobotics)/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find GCRobotics)/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find GCRobotics)/base_local_planner_params.yaml" command="load" />
+</node>
 
 </launch>
