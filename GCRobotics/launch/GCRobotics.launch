@@ -27,17 +27,8 @@
 <!-- TF data -->
 <node name="transform_bc_node" pkg="GCRobotics" type="transform_bc_node" />
 
-<!-- Run AMCL -->
-<include file="$(find amcl)/examples/amcl_omni.launch" />
-
 <!-- GMapping - generate occ grid from laserscan -->
-<!-- <include file="$(find GCRobotics)/launch/gmapping.launch" /> -->
-
-<!-- Global Path Planning -->
-<!-- <node name="GlobalPlanner" pkg="GCRobotics" type="GlobalPlanner" /> -->
-	
-<!-- Local Path Planning -->
-<!-- <node name="LocalPlanner" pkg="GCRobotics" type="LocalPlanner" /> -->
+<include file="$(find GCRobotics)/launch/gmapping.launch" />
 
 <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find GCRobotics)/costmap_common_params.yaml" command="load" ns="global_costmap" />

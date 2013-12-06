@@ -47,7 +47,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "odometryNode");
 
     ros::NodeHandle n;
-    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 100);
+    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("/odom", 100);
     ros::Subscriber odom_sub = n.subscribe("EncoderData", 100, odometryCallback);
     ros::Subscriber vel_sub = n.subscribe("cmd_vel", 100, velocityCallback);
     tf::TransformBroadcaster odom_broadcaster;
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     float y = 0;
     float w = 0;
     
-    // Measurements are in m
+    // Measurements are in meters
 	// "Circle" refers to the circle made by the rotation of the
 	// robot about its axis of rotation (which should be dead center)
 	float x_conversion = 1.0; // efficiency scalar. how much of a revolution is actually converted to linear x motion
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
         
         geometry_msgs::TransformStamped odom_trans;
         odom_trans.header.stamp = current_time;
-        odom_trans.header.frame_id = "odom";
+        odom_trans.header.frame_id = "/odom";
         odom_trans.child_frame_id = "base_link";
         
         odom_trans.transform.translation.x = x;
@@ -122,7 +122,7 @@ int main(int argc, char **argv)
         
         nav_msgs::Odometry odom;
         odom.header.stamp = current_time;
-        odom.header.frame_id = "odom";
+        odom.header.frame_id = "/odom";
         
         odom.pose.pose.position.x = x;
         odom.pose.pose.position.y = y;
