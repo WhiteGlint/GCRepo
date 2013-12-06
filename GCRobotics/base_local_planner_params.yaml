@@ -9,3 +9,6 @@ TrajectoryPlannerROS:
   acc_lim_y: 10
 
   holonomic_robot: true
+
+  meter_scoring: true
+

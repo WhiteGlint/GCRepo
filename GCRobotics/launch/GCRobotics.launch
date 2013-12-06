@@ -12,10 +12,6 @@
 <!-- Openni - Kinect pointcloud generation, from openni package -->
 <include file="$(find freenect_launch)/launch/freenect.launch" />
 
-<!-- PUT REAL DATA FOR THIS TRANSFORM!!!!!!!!!!! -->
-<node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0.15 0 0.065 0 0 0 /base_link /camera_link 100" />
-
-
 <!-- Prep for laser scan -->
 <node pkg="nodelet" type="nodelet" name="pointcloud_throttle" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet openni_manager" respawn="true">
     <param name="max_rate" value="20"/>
@@ -31,11 +27,11 @@
 <!-- TF data -->
 <node name="transform_bc_node" pkg="GCRobotics" type="transform_bc_node" />
 
-<!-- rosserial - take in arduino data -->
-
+<!-- Run AMCL -->
+<include file="$(find amcl)/examples/amcl_omni.launch" />
 
 <!-- GMapping - generate occ grid from laserscan -->
-<include file="$(find GCRobotics)/launch/gmapping.launch" />
+<!-- <include file="$(find GCRobotics)/launch/gmapping.launch" /> -->
 
 <!-- Global Path Planning -->
 <!-- <node name="GlobalPlanner" pkg="GCRobotics" type="GlobalPlanner" /> -->
@@ -52,3 +48,4 @@
 </node>
 
 </launch>
+
