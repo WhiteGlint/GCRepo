@@ -18,67 +18,86 @@ void motorControl::init(int argc, char **argv)
 	return;
 }
 
-char get_direction(const geometry_msgs::Twist::ConstPtr& msg) {
-    if (msg->linear.x > 0)
+char get_direction(geometry_msgs::Twist msg) {
+    if (msg.linear.x > 0)
         return 'w';
-    else if (msg->linear.x < 0)
+    else if (msg.linear.x < 0)
         return 's';
-    else if (msg->linear.y > 0)
+    else if (msg.linear.y > 0)
         return 'a';
-    else if (msg->linear.y < 0)
+    else if (msg.linear.y < 0)
         return 'd';
-    else if (msg->angular.z > 0)
+    else if (msg.angular.z > 0)
         return 'q';
-    else if (msg->angular.z < 0)
+    else if (msg.angular.z < 0)
         return 'e';
     return 'f';
 }
 
-int get_velocity(const geometry_msgs::Twist::ConstPtr& msg) {
-    if (msg->linear.x != 0)
-        return int(msg->linear.x);
-    else if (msg->linear.y != 0)
-        return int(msg->linear.y);
-    else if (msg->angular.z != 0)
-        return int(msg->angular.z);
+int get_velocity(geometry_msgs::Twist msg) {
+    if (msg.linear.x != 0)
+        return int(msg.linear.x);
+    else if (msg.linear.y != 0)
+        return int(msg.linear.y);
+    else if (msg.angular.z != 0)
+        return int(msg.angular.z);
     return 0;
+}
+
+// Transforms m/s and rad/s into the units/s used by the arduino
+geometry_msgs::Twist transform_velocity(const geometry_msgs::Twist::ConstPtr& msg)
+{
+    float standard_conversion = 260; // Max velocity is 0.25 m/s and max u/s is 65 u/s.
+    float angular_conversion = 2 * 3.14159265359 / 1.13; // 2PI / robot circumference
+    geometry_msgs::Twist transformed_velocity;
+
+    transformed_velocity.linear.x = standard_conversion * msg->linear.x;
+    transformed_velocity.linear.y = standard_conversion * msg->linear.y;
+    transformed_velocity.angular.z = standard_conversion * msg->angular.z / angular_conversion;
+
+    return transformed_velocity;
 }
 
 void motorControl::velocityCallback(const geometry_msgs::Twist::ConstPtr& msg)
 {	
+    geometry_msgs::Twist transformed_velocity = transform_velocity(msg);
 	
-	switch (get_direction(msg))
+	switch (get_direction(transformed_velocity))
 	{
         case 'f':
         case 'w':  
-            move_forward(get_velocity(msg));
+            move_forward(get_velocity(transformed_velocity));
             break;
         case 'd':
-            move_right(-get_velocity(msg));
+            move_right(-get_velocity(transformed_velocity));
             break;
         case 's':  
-            move_backward(-get_velocity(msg));
+            move_backward(-get_velocity(transformed_velocity));
             break;
         case 'a':
-            move_left(get_velocity(msg));
+            move_left(get_velocity(transformed_velocity));
             break;
         case 'e':  
-            rotate_clockwise(-get_velocity(msg));
+            rotate_clockwise(-get_velocity(transformed_velocity));
             break;
         case 'q':
-            rotate_counterclockwise(get_velocity(msg));
+            rotate_counterclockwise(get_velocity(transformed_velocity));
             break;
 		case 11:
 		case 12:
 		case 13:
 		case 14:
-			motor_n(get_velocity(msg), get_direction(msg), get_direction(msg) - 10);
+			motor_n(get_velocity(transformed_velocity),
+                    get_direction(transformed_velocity),
+                    get_direction(transformed_velocity) - 10);
 			break;
 		case 15:
 		case 16:
 		case 17:
 		case 18:
-			motor_n(get_velocity(msg), get_direction(msg), get_direction(msg) - 14);
+			motor_n(get_velocity(transformed_velocity),
+                    get_direction(transformed_velocity),
+                    get_direction(transformed_velocity) - 14);
 			break;
 	}
 	
