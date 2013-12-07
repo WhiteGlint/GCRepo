@@ -30,11 +30,21 @@ isolated_set = {'1', '2', '3', '4', '!', '@', '#', '$'}
 command_set = {'z','Z'}
 diagnostic_set = {'c', 'i', 'v'}
 
-MAX_SPEED = 65.0
-MED_SPEED = 30.0
-MIN_SPEED = 1.0
+# Fun fact: arduino accepts values between 0 and 65, but cmd_vel is
+# in m/s and rad/s.
+
+PI = 3.14159265359
+
+MAX_LINEAR = 0.25
+MED_LINEAR = 0.15
+MIN_LINEAR = 0.02
+LINEAR_INCR = 0.02
 STOP_VELOCITY = 0.0
-VELOCITY_INCR = 5.0
+ANGULAR_CONVERSION = 2 * PI / 1.13 # 2PI / robot circumference
+MAX_ANGULAR = ANGULAR_CONVERSION * MAX_LINEAR
+MED_ANGULAR = ANGULAR_CONVERSION * MED_LINEAR
+MIN_ANGULAR = ANGULAR_CONVERSION * MIN_LINEAR
+
 
 rospy.init_node('TeleOp')
 stdscr = curses.initscr()
@@ -93,17 +103,17 @@ def current_speed():
 def set_max_speed():
     curr_dir = current_direction()
     if curr_dir == 'w':
-        velocity_msg.linear.x = MAX_SPEED
+        velocity_msg.linear.x = MAX_LINEAR
     elif curr_dir == 's':
-        velocity_msg.linear.x = -MAX_SPEED
+        velocity_msg.linear.x = -MAX_LINEAR
     elif curr_dir == 'a':
-        velocity_msg.linear.y = MAX_SPEED
+        velocity_msg.linear.y = MAX_LINEAR
     elif curr_dir == 'd':
-        velocity_msg.linear.y = -MAX_SPEED
+        velocity_msg.linear.y = -MAX_LINEAR
     elif curr_dir == 'q':
-        velocity_msg.angular.z = MAX_SPEED
+        velocity_msg.angular.z = MAX_ANGULAR
     elif curr_dir == 'e':
-        velocity_msg.angular.z = -MAX_SPEED
+        velocity_msg.angular.z = -MAX_ANGULAR
 
 def encoder_callback(data):
 	stdscr.erase()
@@ -217,114 +227,105 @@ def loop():
 
 def teleop(i):
     if i in directional_set:
-        if current_velocity() == STOP_VELOCITY:
-            if i == 'w':
-                velocity_msg.linear.x = MED_SPEED
-            elif i == 's':
-                velocity_msg.linear.x = -MED_SPEED
-            elif i == 'a':
-                velocity_msg.linear.y = MED_SPEED
-            elif i == 'd':
-                velocity_msg.linear.y = -MED_SPEED
-            elif i == 'q':
-                velocity_msg.angular.z = MED_SPEED
-            elif i == 'e':
-                velocity_msg.angular.z = -MED_SPEED
-        else:
-            curr_speed = current_speed()
-            stop()
-            if i == 'w':
-                velocity_msg.linear.x = curr_speed
-            elif i == 's':
-                velocity_msg.linear.x = -curr_speed
-            elif i == 'a':
-                velocity_msg.linear.y = curr_speed
-            elif i == 'd':
-                velocity_msg.linear.y = -curr_speed
-            elif i == 'q':
-                velocity_msg.angular.z = curr_speed
-            elif i == 'e':
-                velocity_msg.angular.z = -curr_speed
+        if i == 'w':
+            velocity_msg.linear.x = MED_LINEAR
+        elif i == 's':
+            velocity_msg.linear.x = -MED_LINEAR
+        elif i == 'a':
+            velocity_msg.linear.y = MED_LINEAR
+        elif i == 'd':
+            velocity_msg.linear.y = -MED_LINEAR
+        elif i == 'q':
+            velocity_msg.angular.z = MED_ANGULAR
+        elif i == 'e':
+            velocity_msg.angular.z = -MED_ANGULAR
 		
     if i == 'f':
         stop()
 
+    curr_dir = current_direction()
+
     if i == 't':
-        curr_dir = current_direction()
         if curr_dir == 'w':
-            velocity_msg.linear.x = MIN_SPEED
+            velocity_msg.linear.x = MIN_LINEAR
         elif curr_dir == 's':
-            velocity_msg.linear.x = -MIN_SPEED
+            velocity_msg.linear.x = -MIN_LINEAR
         elif curr_dir == 'a':
-            velocity_msg.linear.y = MIN_SPEED
+            velocity_msg.linear.y = MIN_LINEAR
         elif curr_dir == 'd':
-            velocity_msg.linear.y = -MIN_SPEED
+            velocity_msg.linear.y = -MIN_LINEAR
         elif curr_dir == 'q':
-            velocity_msg.angular.z = MIN_SPEED
+            velocity_msg.angular.z = MIN_ANGULAR
         elif curr_dir == 'e':
-            velocity_msg.angular.z = -MIN_SPEED
+            velocity_msg.angular.z = -MIN_ANGULAR
         elif curr_dir == 'f':
-            velocity_msg.linear.x = MIN_SPEED
+            velocity_msg.linear.x = MIN_LINEAR
 
     if i == 'g':
-        curr_dir = current_direction()
         if curr_dir == 'w':
-            velocity_msg.linear.x = MED_SPEED
+            velocity_msg.linear.x = MED_LINEAR
         elif curr_dir == 's':
-            velocity_msg.linear.x = -MED_SPEED
+            velocity_msg.linear.x = -MED_LINEAR
         elif curr_dir == 'a':
-            velocity_msg.linear.y = MED_SPEED
+            velocity_msg.linear.y = MED_LINEAR
         elif curr_dir == 'd':
-            velocity_msg.linear.y = -MED_SPEED
+            velocity_msg.linear.y = -MED_LINEAR
         elif curr_dir == 'q':
-            velocity_msg.angular.z = MED_SPEED
+            velocity_msg.angular.z = MED_ANGULAR
         elif curr_dir == 'e':
-            velocity_msg.angular.z = -MED_SPEED
+            velocity_msg.angular.z = -MED_ANGULAR
         elif curr_dir == 'f':
-            velocity_msg.linear.x = MED_SPEED
+            velocity_msg.linear.x = MED_LINEAR
 
     if i == 'h':
-        curr_dir = current_direction()
         if curr_dir == 'w':
-            velocity_msg.linear.x = MAX_SPEED
+            velocity_msg.linear.x = MAX_LINEAR
         elif curr_dir == 's':
-            velocity_msg.linear.x = -MAX_SPEED
+            velocity_msg.linear.x = -MAX_LINEAR
         elif curr_dir == 'a':
-            velocity_msg.linear.y = MAX_SPEED
+            velocity_msg.linear.y = MAX_LINEAR
         elif curr_dir == 'd':
-            velocity_msg.linear.y = -MAX_SPEED
+            velocity_msg.linear.y = -MAX_LINEAR
         elif curr_dir == 'q':
-            velocity_msg.angular.z = MAX_SPEED
+            velocity_msg.angular.z = MAX_ANGULAR
         elif curr_dir == 'e':
-            velocity_msg.angular.z = -MAX_SPEED
+            velocity_msg.angular.z = -MAX_ANGULAR
         elif curr_dir == 'f':
-            velocity_msg.linear.x = MAX_SPEED
+            velocity_msg.linear.x = MAX_LINEAR
 			
     if i == 'j':
-        next_velocity = current_velocity() + VELOCITY_INCR
-        if next_velocity <= MAX_SPEED:
-            curr_dir = current_direction()
-            if curr_dir in {'w', 's', 'f'}:
-                velocity_msg.linear.x = next_velocity
-            elif curr_dir in {'a', 'd'}:
-                velocity_msg.linear.y = next_velocity
-            elif curr_dir in {'q', 'w'}:
-                velocity_msg.angular.z = next_velocity
+        if curr_dir in {'w', 's', 'f', 'a', 'd'}:
+            next_velocity = current_velocity() + LINEAR_INCR
+            if next_velocity <= MAX_LINEAR:
+                if curr_dir in {'w', 's', 'f'}:
+                    velocity_msg.linear.x = current_velocity() + LINEAR_INCR
+                elif curr_dir in {'a', 'd'}:
+                    velocity_msg.linear.y = current_velocity() + LINEAR_INCR
+            else:
+                set_max_speed()
         else:
-            set_max_speed()
+            next_velocity = current_velocity() + ANGULAR_INCR
+            if next_velocity <= MAX_ANGULAR:
+                velocity_msg.angular.z = next_velocity
+            else:
+                set_max_speed()
 		
     if i == 'k':
-        next_velocity = current_velocity() - VELOCITY_INCR
-        if abs(next_velocity) <= MAX_SPEED:
-            curr_dir = current_direction()
-            if curr_dir in {'w', 's', 'f'}:
-                velocity_msg.linear.x = next_velocity
-            elif curr_dir in {'a', 'd'}:
-                velocity_msg.linear.y = next_velocity
-            elif curr_dir in {'q', 'w'}:
-                velocity_msg.angular.z = next_velocity
+        if curr_dir in {'w', 's', 'f', 'a', 'd'}:
+            next_velocity = current_velocity() - LINEAR_INCR
+            if next_velocity <= -MAX_LINEAR:
+                if curr_dir in {'w', 's', 'f'}:
+                    velocity_msg.linear.x = current_velocity() + LINEAR_INCR
+                elif curr_dir in {'a', 'd'}:
+                    velocity_msg.linear.y = current_velocity() + LINEAR_INCR
+            else:
+                set_max_speed()
         else:
-            set_max_speed()
+            next_velocity = current_velocity() - ANGULAR_INCR
+            if next_velocity <= -MAX_ANGULAR:
+                velocity_msg.angular.z = next_velocity
+            else:
+                set_max_speed()
 			
     velocity_pub.publish(velocity_msg)
     rospy.sleep(.001)
@@ -338,7 +339,7 @@ def isolated(i):
 	except:
 		pass
 
-	velocity_msg.speed = MED_SPEED
+	velocity_msg.speed = MED_LINEAR
 
 	velocity_pub.publish(velocity_msg)
 	rospy.sleep(.001)'''
