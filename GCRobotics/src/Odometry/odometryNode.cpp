@@ -19,7 +19,7 @@ bot and checking encoder counts. They can always be made more precise.
 Incorporate gyroscope data.
 
 Simply averaging the encoder counts is subject to erroneous encoder data (i.e. outliers).
-This could be improved to disregard outliers.
+This could be improved to detect and disregard outliers.
 
 A lot of the conversion factors should be setup as ros parameters so that recompiling isnt necessary for
 minor changes. Checkout how to do this on the ros wiki, there are also tutorials on how to do this. 
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 	float y_conversion = 0.667; // efficiency scalar. how much of a revolution is actually converted to linear y motion
 	float w_conversion = 0.93; // efficiency scalar. how much of a revolution is actually converted to rotational motion
 	float wheel_radius = 0.02699;
-	float wheel_circumference = 0.16958;
+	float wheel_circumference = 2 * PI * wheel_radius;
 	float cpr = 780.0; // encoder counts per revolution of the wheel
 	float degrees_per_circle = 360.0;
 	float radians_per_degree = PI / 180.0;
