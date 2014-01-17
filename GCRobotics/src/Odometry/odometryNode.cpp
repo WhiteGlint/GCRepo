@@ -8,7 +8,7 @@
 		--------OVERVIEW--------
 This node takes encoder data from the arduino and calculates the 3D position of the bot.
 This position is broadcast through tf as well as odom. The tf transform goes between
-'odom', the frame that is fixed to the world; and 'base_link', the frame that is attached
+'odom', the frame that is fixed to the world and 'base_link', the frame that is attached
 to the bot frame.
 
 
