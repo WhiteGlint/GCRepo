@@ -50,7 +50,7 @@ int ODOM1 = 0, ODOM2 = 0, ODOM3 = 0, ODOM4 = 0;
 
 void setup(){
   Wire.begin(); // join i2c bus
-  Serial.begin(4800);
+  Serial.begin(9600);
   pinMode(13, OUTPUT);
   Serial.print ("Press W to go forward.               "); Serial.println ("Press S to go backward");
   Serial.print ("Press A to strafe left.              "); Serial.println ("Press D to strafe right");

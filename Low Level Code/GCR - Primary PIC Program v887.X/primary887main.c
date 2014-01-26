@@ -75,26 +75,25 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
 
 /************** Right side PICs **************
 /////////////// PIC's address for I2C //////////////////
- //#define I2C_ADDRESS 0x02        // FRONT RIGHT motor address
- #define I2C_ADDRESS 0x04        // BACK RIGHT motor addres
+ #define I2C_ADDRESS 0x02        // FRONT RIGHT motor address
+ //#define I2C_ADDRESS 0x04        // BACK RIGHT motor addres
 
 /////////////// PIC specific depending on wheel orientation //////////
  #define MOTOR_DIRECTION i2cDirection
  #define FORWARD     1
  #define BACKWARD !FORWARD
-**********************************************/
+//**********************************************/
 
 //************** Left side PICs **************
           /////////////// PIC's address for I2C //////////////////
-//#define I2C_ADDRESS 0x06        // BACK LEFT motor address
-#define I2C_ADDRESS 0x08        // FRONT LEFT motor address
+#define I2C_ADDRESS 0x06        // BACK LEFT motor address
+//#define I2C_ADDRESS 0x08        // FRONT LEFT motor address
 
           /////////////// PIC specific depending on wheel orientation //////////
  #define MOTOR_DIRECTION i2cDirection
  #define FORWARD     0
  #define BACKWARD !FORWARD
 //**********************************************/
-
 
 #define PWM_OFFSET  80          // Motor won't spin until a certain amount of voltage
                                 // is applied to it.
@@ -186,7 +185,7 @@ int main()
         if (F.DIR == 1)
         {
             // Update counts before updating direction
-            EncUpdate(&EncoderCounts);                  //This will put the value of TMR1 into counts and then clear TMR0
+            encUpdate(&EncoderCounts);                  //This will put the value of TMR1 into counts and then clear TMR0
             updateData(EncoderCounts);			// This will add counts to OdometryCounts (which is the total distanced traveled so far.)
 
             // Update direction
@@ -200,7 +199,7 @@ int main()
         if (F.T0 == 1)
         {
             // Update to most recent encoder counts
-            EncUpdate(&EncoderCounts);
+            encUpdate(&EncoderCounts);
             updateData(EncoderCounts);
 /****** I'm keeping this in here just incase I change my mind and want to implement ***
 *        it later on. PID is perfectly function right now

@@ -19,7 +19,7 @@ extern "C" {
 
     // Function that takes in two pointers and sets one equal to TMR0 and
     //  the other equal to TMR1.  The values of TMR0 and TMR1 are then reset.
-    void EncUpdate(int *t1);
+    void encUpdate(int *t1);
 
 
 

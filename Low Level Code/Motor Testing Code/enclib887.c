@@ -18,7 +18,7 @@
 
 
 // Function that initialises Timer0 as a timer and Timer1 as a counter
-void BeginEncoder()
+void beginEncoder()
 {
     // Timer0 Setup
     //  Timer0 is controlled by the OPTION_REG (shared by WDT)
@@ -37,7 +37,7 @@ void BeginEncoder()
 
 // Function that takes in two pointers and sets one equal to TMR0 and
 //  the other equal to TMR1.  The values of TMR0 and TMR1 are then reset.
-void EncUpdate(int *t1)
+void encUpdate(int *t1)
 {
     *t1 = TMR1;
     TMR1 = 0;
