@@ -48,7 +48,7 @@ NewPing sonar2 (10, 9, MAX_DISTANCE);
 NewPing sonar3 (7, 6, MAX_DISTANCE);
 
 signed int SensorData[3];         // Where the ping distances are stored.
-                                  // The index of the array follow the pattern described in the figure below
+                                  // The index of the array follows the pattern described in the figure below
 
                     /*****************************
                     *          Front             *
@@ -111,18 +111,23 @@ void loop() {
   
   // Making sure both sides are parallel
   if (StateMachine == 0)
-  {    
-    if ( ((SensorData[SENSOR_RIGHT_1] - SensorData[SENSOR_RIGHT_2]) > SENSOR_TOLERANCE) || ((SensorData[SENSOR_RIGHT_1] - SensorData[SENSOR_RIGHT_2]) < -SENSOR_TOLERANCE) )
-//    if ( (SensorDifference > SENSOR_TOLERANCE) || (SensorDifference < -SENSOR_TOLERANCE) )
+  {  
+    // If the difference of the 2 right sensors are greater than the tolerance  
+    if ( ((SensorData[SENSOR_RIGHT_1] - SensorData[SENSOR_RIGHT_2]) > SENSOR_TOLERANCE) 
+                                     || 
+       ((SensorData[SENSOR_RIGHT_1] - SensorData[SENSOR_RIGHT_2]) < -SENSOR_TOLERANCE) )
     {
+      // Determining if robot needs to rotate CW or CCW
       if (SensorData[SENSOR_RIGHT_1] > SensorData[SENSOR_RIGHT_2])
       {
         robotCW(MediumSpeed);
       }
-      else {
+      else 
+      {
         robotCCW(MediumSpeed);
       }
     }
+    // Stop the robot and move to the next state if the robot parallel
     else {
       robotStop();
       StateMachine++;
@@ -133,8 +138,13 @@ void loop() {
   // Making sure the robot reaches the x-axis target
   if (StateMachine == 1)
   {
-    if ((SensorData[SENSOR_RIGHT_1] < (SensorTargetRight - SENSOR_TOLERANCE)) || (SensorData[SENSOR_RIGHT_1] > (SensorTargetRight + SENSOR_TOLERANCE)))
+    // If the Front right sensor is greater than the X-Target
+    // We are only using one of the sensor to check for distance
+    if ((SensorData[SENSOR_RIGHT_1] < (SensorTargetRight - SENSOR_TOLERANCE)) 
+                                    || 
+       (SensorData[SENSOR_RIGHT_1] > (SensorTargetRight + SENSOR_TOLERANCE)))
     {
+      // Determining if the robot needs to strafe left or right
       if (SensorData[SENSOR_RIGHT_1] < (SensorTargetRight - SENSOR_TOLERANCE))
       {
         robotLeft(MediumSpeed);
@@ -144,9 +154,10 @@ void loop() {
         robotRight(MediumSpeed);
       }
     }
+    // The robot is at the x-axis target
     else 
     {
-      // if the robot is at the x-axis target
+      // Determine if the robot is at the x-axis target && is parallel to the wall
       if ((SensorData[SENSOR_RIGHT_1] >= (SensorTargetRight - SENSOR_TOLERANCE)) && (SensorData[SENSOR_RIGHT_1] <= (SensorTargetRight + SENSOR_TOLERANCE))
                                                                          &&
           (SensorData[SENSOR_RIGHT_2] >= (SensorTargetRight - SENSOR_TOLERANCE)) && (SensorData[SENSOR_RIGHT_2] <= (SensorTargetRight + SENSOR_TOLERANCE)))
@@ -163,11 +174,15 @@ void loop() {
     }
   }
   
-  // Make sure the robot reaches the y-axis
+  // Making sure the robot reaches the y-axis
   if (StateMachine == 2)
   {
-    if ((SensorData[SENSOR_BACK_1] < (SensorTargetBack - SENSOR_TOLERANCE)) || (SensorData[SENSOR_BACK_1] > (SensorTargetBack + SENSOR_TOLERANCE)))
+    // Making sure the back sensor is outside the target value
+    if ((SensorData[SENSOR_BACK_1] < (SensorTargetBack - SENSOR_TOLERANCE)) 
+                                   || 
+       (SensorData[SENSOR_BACK_1] > (SensorTargetBack + SENSOR_TOLERANCE)))
     {
+      // Deciding if the robot needs to move forward or backward
       if (SensorData[SENSOR_BACK_1] < (SensorTargetBack - SENSOR_TOLERANCE))
       {
         robotForward(MediumSpeed);
@@ -177,9 +192,10 @@ void loop() {
         robotBackward(MediumSpeed);
       }
     }
+    // The robot is at the y-axis target
     else 
     {
-      // if the robot is at the x-axis target
+      // Determining if the robot is (parallel to the wall) && (at the x-axis target) && (at the y-axis target)
       if (
       (SensorData[SENSOR_RIGHT_1] >= (SensorTargetRight - SENSOR_TOLERANCE)) &&
       (SensorData[SENSOR_RIGHT_1] <= (SensorTargetRight + SENSOR_TOLERANCE)) &&
@@ -190,12 +206,12 @@ void loop() {
       {
         //stop the robot and go to the next state
         robotStop();
-        StateMachine = 0;
+        StateMachine++;
       }
       // else the robot needs to go back to state 0 and try to get it self parallel to the wall
       else
       {
-        StateMachine--;
+        StateMachine = 0;
       }
     }
   }
