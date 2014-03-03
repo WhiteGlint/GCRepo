@@ -73,7 +73,7 @@ void setup(){
   //DDRD = B11111111;
   
   errorCode.data = 0;
-  Timer1.initialize(100000); // 100 ms between interrupts
+  Timer1.initialize(300000); // 300 ms between interrupts
   Timer1.attachInterrupt(Read);
  // Timer1.attachInterrupt(sendVoltage);
 

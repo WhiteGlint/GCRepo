@@ -62,8 +62,8 @@ int main(int argc, char **argv)
 	// robot about its axis of rotation (which should be dead center)
 	float x_conversion = 1.0; // efficiency scalar. how much of a revolution is actually converted to linear x motion
 	float y_conversion = 0.667; // efficiency scalar. how much of a revolution is actually converted to linear y motion
-	float w_conversion = 0.93; // efficiency scalar. how much of a revolution is actually converted to rotational motion
-	float wheel_radius = 0.02699;
+	float w_conversion = 0.9; // efficiency scalar. how much of a revolution is actually converted to rotational motion
+	float wheel_radius = 0.026615;
 	float wheel_circumference = 2 * PI * wheel_radius;
 	float cpr = 780.0; // encoder counts per revolution of the wheel
 	float degrees_per_circle = 360.0;
@@ -102,9 +102,9 @@ int main(int argc, char **argv)
             y -= average_encoder_counts * linear_y_distance_per_count * sin(w + PI / 2.0);
         }
         else if (direction == 'q')
-            w += average_encoder_counts * radians_per_count;
+            w += average_encoder_counts * radians_per_count;// replace with gyro
         else if (direction == 'e')
-            w -= average_encoder_counts * radians_per_count;
+            w -= average_encoder_counts * radians_per_count;// replace with gyro
             
         geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(w);
         
