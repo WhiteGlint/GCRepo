@@ -20,9 +20,10 @@ extern "C" void __cxa_pure_virtual() {;}
 
 //
 //
+void ultraInterrupt();
 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\arduino.h"
-#include "C:\Users\Quang\Documents\GitHub\SeniorDesign\Ultrasonic\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors.ino"
-#include "C:\Users\Quang\Documents\GitHub\SeniorDesign\Ultrasonic\UltrasonicSensors\UltrasonicSensors\Ultrasonic.cpp"
-#include "C:\Users\Quang\Documents\GitHub\SeniorDesign\Ultrasonic\UltrasonicSensors\UltrasonicSensors\Ultrasonic.h"
+#include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors.ino"
+#include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\Ultrasonic.cpp"
+#include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\Ultrasonic.h"
