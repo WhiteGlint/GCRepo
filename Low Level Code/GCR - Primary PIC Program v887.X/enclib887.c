@@ -40,6 +40,6 @@ void beginEncoder()
 void encUpdate(int *t1)
 {
     *t1 = TMR1;
-    TMR1 = 0;
+//    TMR1 = 0;
 }
 

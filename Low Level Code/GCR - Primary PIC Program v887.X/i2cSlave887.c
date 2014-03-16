@@ -77,6 +77,7 @@ void i2cIsrHandler(){
 
    // Bit 3 of SSPSTAT = R/W bit
    // Bit 5 of SSPSTAT = D/A bit
+    int OdomTemp = 0;
 
     if ((SSPSTAT & 0b00100100) == 0b00100000){ // D_A high, R_W low, write w/ data in buffer
         i2cBuffer[i2cBufferVal] = SSPBUF;
@@ -90,6 +91,7 @@ void i2cIsrHandler(){
 		// Not sure why, but the first char of data is being sent in this statement
         if (i2cWriteInt == 0)
         {
+            OdomTemp = OdometryCounts;
             i2cWriteInt = 1;
             i2cSend(OdometryCounts);
         }
@@ -100,6 +102,7 @@ void i2cIsrHandler(){
         {
             i2cWriteInt = 0;
             i2cSend(OdometryCounts >> 8);
+            OdometryCounts = 0;
         }
     }else
 	{
@@ -107,6 +110,7 @@ void i2cIsrHandler(){
 	}
 
     SSPIF = 0;
+
 
     if (i2cBufferVal >= 3){
         i2cBufferVal = 0;
