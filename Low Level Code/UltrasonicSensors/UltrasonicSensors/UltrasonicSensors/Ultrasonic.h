@@ -9,16 +9,14 @@
 #ifndef __ULTRASONIC_H__
 #define __ULTRASONIC_H__
 
-
-
-
 class Ultrasonic
 {
 	//variables
 	public:
 	volatile unsigned long PreviousTime, InterruptEchoTime;
 	volatile int Select, Edge;
-	unsigned long EchoTime[6];	// Array containing the time of the ultrasonic sensors
+	unsigned long EchoDistance[6];	// Array containing the time of the ultrasonic sensors
+	int FullSet;
 
 	//functions
 	public:

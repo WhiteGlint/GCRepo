@@ -17,6 +17,15 @@
 // default constructor
 Ultrasonic::Ultrasonic()
 {
+	// Initializing everything with zero
+	PreviousTime =0;
+	InterruptEchoTime = 0;
+	Select = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		EchoDistance[i] = 0;		
+	}
+	FullSet = 0;
 } //Ultrasonic
 
 // default destructor
@@ -60,13 +69,19 @@ void Ultrasonic::spinOnce()
 			// Ex.
 			// We want to store of the first ultrasonic sensor, which is at Select = 2
 			// index = (2/2) - 1 = 0  <-- that's is the index that we want
-			EchoTime[((Select/2) - 1)] = InterruptEchoTime;
+			// 
+			// Distance (in cm) = Time / 58   <--  According to the datasheet
+			//EchoDistance[((Select/2) - 1)] = InterruptEchoTime / 58;
+			EchoDistance[((Select/2) - 1)] = InterruptEchoTime;
 		}
 		
 		// Reset to zero at the value of 12
 		if (Select >= 12)
 		{
 			Select = 0;
+			// Set FullSet high to indicate that we have now filled the complete array
+			// this variable is so that the robot doesn't start moving with the array not completed
+			FullSet = 1; 
 		}
 		
 		// Set the address pins to the correct address
@@ -81,18 +96,17 @@ void Ultrasonic::spinOnce()
 void Ultrasonic::interrupt()
 {
 	// If it just went from lOW to HIGH, then this is the beginning of the echo cycle
-	if (digitalRead(ECHO_PIN) == 1) {
-		//if (Edge == 0) {
+	if (digitalRead(ECHO_PIN) == 1) 
+	{
 		PreviousTime = micros();
-		Edge = 1;
 	}
+	
 	// If it just went from HIGH to LOW, then this is the end of the echo cycle
-	else if (digitalRead(ECHO_PIN) == 0){
-		//else if (Edge == 1) {
+	else if (digitalRead(ECHO_PIN) == 0)
+	{
 		InterruptEchoTime = micros() - PreviousTime;
 		//Increment the select variable to even
 		Select++;
-		Edge = 0;
 	}
 }
 
