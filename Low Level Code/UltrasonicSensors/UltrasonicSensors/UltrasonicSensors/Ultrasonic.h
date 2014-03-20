@@ -15,7 +15,7 @@ class Ultrasonic
 	public:
 	volatile unsigned long PreviousTime, InterruptEchoTime;
 	volatile int Select, Edge;
-	unsigned long EchoDistance[6];	// Array containing the time of the ultrasonic sensors
+	int EchoDistance[6];	// Array containing the time of the ultrasonic sensors
 	int FullSet;
 
 	//functions

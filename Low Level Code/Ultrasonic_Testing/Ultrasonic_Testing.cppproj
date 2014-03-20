@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
-    <ProjectGuid>{e9e214e4-c7aa-4453-8702-8dc5a5aad8b5}</ProjectGuid>
+    <ProjectGuid>{07b459b4-8d76-4638-bc6d-a459ba2d616b}</ProjectGuid>
     <avrdevice>atmega328p</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>UltrasonicSensors</AssemblyName>
-    <Name>UltrasonicSensors</Name>
-    <RootNamespace>UltrasonicSensors</RootNamespace>
+    <AssemblyName>Ultrasonic_Testing</AssemblyName>
+    <Name>Ultrasonic_Testing</Name>
+    <RootNamespace>Ultrasonic_Testing</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -27,16 +27,16 @@
     <UncachedRange />
     <BootSegment>0</BootSegment>
     <AsfFrameworkConfig>
-      <framework-data xmlns="">
-        <options />
-        <configurations />
-        <files />
-        <documentation help="" />
-        <offline-documentation help="" />
-        <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.15.0" />
-        </dependencies>
-      </framework-data>
+      <framework-data>
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.6.0" />
+  </dependencies>
+</framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -50,20 +50,14 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
-            <Value>_VMDEBUG=1</Value>
-            <Value>ARDUINO=101</Value>
-            <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=16000000L</Value>
-            <Value>__AVR__</Value>
-            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
             <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
@@ -82,20 +76,18 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
+            <Value>ARDUINO=103</Value>
             <Value>__AVR_ATmega328P__</Value>
-            <Value>_VMDEBUG=1</Value>
-            <Value>ARDUINO=101</Value>
-            <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
-            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
             <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
@@ -116,11 +108,6 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
-    <VisualMicroSettings>
-      <VisualMicroSettings>
-        <arduino.upload.port>COM6</arduino.upload.port>
-      </VisualMicroSettings>
-    </VisualMicroSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
@@ -133,20 +120,14 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
-            <Value>_VMDEBUG=1</Value>
-            <Value>ARDUINO=101</Value>
-            <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=16000000L</Value>
-            <Value>__AVR__</Value>
-            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
             <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
@@ -165,20 +146,18 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
+            <Value>ARDUINO=103</Value>
             <Value>__AVR_ATmega328P__</Value>
-            <Value>_VMDEBUG=1</Value>
-            <Value>ARDUINO=101</Value>
-            <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
-            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing</Value>
+            <Value>C:\Program Files (x86)\Arduino\libraries\NewPing\utility</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire</Value>
             <Value>C:\Program Files (x86)\Arduino\libraries\Wire\utility</Value>
             <Value>c:\program files (x86)\arduino\hardware\tools\avr\avr\include\</Value>
@@ -199,34 +178,11 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
-    <VisualMicroSettings>
-      <VisualMicroSettings>
-        <arduino.upload.port>COM6</arduino.upload.port>
-      </VisualMicroSettings>
-    </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Motors.cpp">
+    <None Include="Ultrasonic_Testing.ino">
       <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Motors.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Ultrasonic.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Ultrasonic.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="UltrasonicSensors.ino">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Visual Micro\.UltrasonicSensors.vsarduino.h">
-      <SubType>compile</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Visual Micro\" />
+    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

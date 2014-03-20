@@ -23,7 +23,7 @@ Ultrasonic::Ultrasonic()
 	Select = 0;
 	for (int i = 0; i < 6; i++)
 	{
-		EchoDistance[i] = 0;		
+		EchoDistance[i] = 0;
 	}
 	FullSet = 0;
 } //Ultrasonic
@@ -71,8 +71,7 @@ void Ultrasonic::spinOnce()
 			// index = (2/2) - 1 = 0  <-- that's is the index that we want
 			// 
 			// Distance (in cm) = Time / 58   <--  According to the datasheet
-			//EchoDistance[((Select/2) - 1)] = InterruptEchoTime / 58;
-			EchoDistance[((Select/2) - 1)] = InterruptEchoTime;
+			EchoDistance[((Select/2) - 1)] = InterruptEchoTime / 58;
 		}
 		
 		// Reset to zero at the value of 12

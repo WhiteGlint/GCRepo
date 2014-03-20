@@ -16,7 +16,7 @@
 #define SENSOR_RIGHT_1 0
 #define SENSOR_RIGHT_2 1
 #define SENSOR_BACK_1  2
-#define SENSOR_TOLERANCE 2
+#define SENSOR_TOLERANCE 5
 #define MAX_DISTANCE 200
 
 #define _A_ Ultra.EchoDistance[0]
@@ -28,7 +28,7 @@
 
 
 
-int StateMachine = 0;        // This is a State Machine that tells the robot what it should do
+int StateMachine;        // This is a State Machine that tells the robot what it should do
 // with the ultrasonic data
 // 0 -> The robot is trying to make it self parallel to the wall by rotating CW/CCW
 // 1 -> The robot is trying to reach the x-axis target by strafing
@@ -51,7 +51,9 @@ Motors Robot;
 **********************************************************/
 void setup()
 {
+	StateMachine = 0;
 	Ultra.initialize();
+	Wire.begin();
 	
 	// Attach int.0 interrupt at pin 2
 	attachInterrupt(0,ultraInterrupt,CHANGE);
@@ -64,12 +66,13 @@ void setup()
 **********************************************************/
 void loop()
 {
+	int temp = StateMachine;
 	// Code for the break message:
 	// {Ultra.EchoDistance[0]},{Ultra.EchoDistance[1]}, {Ultra.EchoDistance[2]},{Ultra.EchoDistance[3]},{Ultra.EchoDistance[4]},{Ultra.EchoDistance[5]}
 	Ultra.spinOnce();
 	
 	// If we have finally collect the first set of the ultrasonic data
-	/* if (Ultra.FullSet == 1)
+	if (Ultra.FullSet == 1)
 	{
 		// All the conditional Statements goes in here.
 		// Making sure both sides are parallel
@@ -82,10 +85,12 @@ void loop()
 				if (_A_ > _B_)
 				{
 					Robot.cw(MediumSpeed);
+					delay(1);
 				}
 				else
 				{
 					Robot.ccw(MediumSpeed);
+					delay(1);
 				}
 			}
 			// Stop the robot and move to the next state if the robot parallel
@@ -172,9 +177,7 @@ void loop()
 			}
 		}
 	}
-	
-	*/
-	delay(200);
+	delay(10);
 }
 
 /*********************************************************
