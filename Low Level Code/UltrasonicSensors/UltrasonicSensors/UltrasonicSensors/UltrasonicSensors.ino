@@ -6,6 +6,7 @@
  * Author: Quang
  */ 
 #include "Ultrasonic.h"
+<<<<<<< HEAD
 #include <Wire.h>
 #include "Motors.h"
 	
@@ -55,6 +56,15 @@ void setup()
 	Ultra.initialize();
 	Wire.begin();
 	
+=======
+	
+// Create instance of the class Ultrasonic
+Ultrasonic Ultra;
+
+void setup()
+{
+	Ultra.initialize();
+>>>>>>> 92e1f8ff50a0d843e86e01b864d500fcccdff2dd
 	// Attach int.0 interrupt at pin 2
 	attachInterrupt(0,ultraInterrupt,CHANGE);
 }
@@ -66,6 +76,7 @@ void setup()
 **********************************************************/
 void loop()
 {
+<<<<<<< HEAD
 	int temp = StateMachine;
 	// Code for the break message:
 	// {Ultra.EchoDistance[0]},{Ultra.EchoDistance[1]}, {Ultra.EchoDistance[2]},{Ultra.EchoDistance[3]},{Ultra.EchoDistance[4]},{Ultra.EchoDistance[5]}
@@ -185,6 +196,14 @@ void loop()
 *				Ultrasonic Interrupt Routine
 *
 **********************************************************/
+=======
+	// Code for the break message:
+	// {Ultra.EchoTime[0]},{Ultra.EchoTime[1]}, {Ultra.Echotime[2]},{Ultra.Echotime[3]},{Ultra.Echotime[4]},{Ultra.Echotime[5]}
+	Ultra.spinOnce();
+	delay(100);
+}
+
+>>>>>>> 92e1f8ff50a0d843e86e01b864d500fcccdff2dd
 void ultraInterrupt()
 {
 	Ultra.interrupt();
