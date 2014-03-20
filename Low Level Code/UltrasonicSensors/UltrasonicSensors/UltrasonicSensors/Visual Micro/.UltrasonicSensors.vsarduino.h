@@ -11,7 +11,6 @@
 
 #define __AVR_ATmega328p__
 #define __AVR_ATmega328P__
-#define _VMDEBUG 1
 #define ARDUINO 101
 #define ARDUINO_MAIN
 #define F_CPU 16000000L
@@ -26,10 +25,7 @@ void ultraInterrupt();
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors.ino"
-<<<<<<< HEAD
 #include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\Motors.cpp"
 #include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\Motors.h"
-=======
->>>>>>> 92e1f8ff50a0d843e86e01b864d500fcccdff2dd
 #include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\Ultrasonic.cpp"
 #include "C:\Users\Quang\Documents\GitHub\GCRepo\Low Level Code\UltrasonicSensors\UltrasonicSensors\UltrasonicSensors\Ultrasonic.h"
