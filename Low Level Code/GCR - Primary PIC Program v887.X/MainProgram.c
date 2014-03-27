@@ -125,7 +125,7 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
 //      This configuration allows for the same code to be used even though
 //      motor direction and PIC's addresses are not the same
 
-/************** Right side PICs **************
+/************** Right side PICs **************/
 /////////////// PIC's address for I2C //////////////////
  //#define I2C_ADDRESS 0x02        // FRONT RIGHT motor address
  #define I2C_ADDRESS 0x04        // BACK RIGHT motor addres
@@ -136,7 +136,11 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
  #define BACKWARD !FORWARD
 **********************************************/
 
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
 /************** Left side PICs **************/
+=======
+/************** Left side PICs **************
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
           /////////////// PIC's address for I2C //////////////////
 //#define I2C_ADDRESS 0x06        // BACK LEFT motor address
 #define I2C_ADDRESS 0x08        // FRONT LEFT motor address
@@ -145,8 +149,12 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
  #define MOTOR_DIRECTION i2cDirection
  #define FORWARD     0
  #define BACKWARD !FORWARD
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
 /**********************************************/
 
+=======
+**********************************************/
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
 
 #define PWM_OFFSET  80          // Motor won't spin until a certain amount of voltage
                                 // is applied to it.
@@ -158,6 +166,7 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
 #define KI 1.7                  // PID I coefficient
 #define KD 1.7                  // PID D coefficient
 
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
 /*******************************************************************************
  *
  *                      Global Variable Declarations
@@ -165,6 +174,16 @@ __CONFIG(BOR4V_BOR40V & WRT_OFF);
  *******************************************************************************/
 //          Yes, I realized that I shouldn't use global variable...What can I
 //          say...I'm lazy...
+=======
+// Function Prototypes
+void Initialise();              // contains all initializing functions
+void interrupt isr();           // general interrupt vector
+void updateOdometry();
+void updateEncoder();
+
+void setDirection(int dir);     // Sets the direction bit (PORTB bit 3)
+
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
 
 int Target              = 0;                // target speed passed down from CPU
 int DirectionRead       = FORWARD;          // value read from encoder flip-flop used
@@ -176,9 +195,12 @@ int TMR0OverflowCounter = 0;                // This will keep track of the numbe
                                             // This is how often our PID loop will run
 
   int OdometryCounts      = 0;              // TMR1 encoder counts --> passed to CPU
+  int temp = 0, PreviousOdometryCounts = 0;
 
   int PID                 = 0;              // This will contain the result of PID algorithm
   int EncoderCounts       = 0;              // number of counts since last PID loop
+  int PreviousEncoderCounts = 0;
+
   int Error               = 0;              // How far we from target speed
   int AccumulatedError    = 0;              // Sum of errors
   int DeltaError          = 0;              // Difference in current error and previous error
@@ -254,11 +276,16 @@ int main() {
         }
         if (F.DIR == 1)
         {
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
 //            // Update counts before updating direction
 //            encUpdate(&EncoderCounts);                  //This will put the value of TMR1 into counts and then clear TMR0
 //            updateData(EncoderCounts);			// This will add counts to OdometryCounts (which is the total distanced traveled so far.)
 
              updateOdometry();
+=======
+            // Update counts before updating direction
+            updateOdometry();
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
 
             // Update direction
             DirectionRead = PORTBbits.RB5;
@@ -270,6 +297,7 @@ int main() {
         //  PID Loop occurs at regular time intervals
         if (F.T0 == 1)
         {
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
 //            // Update to most recent encoder counts
 //            encUpdate(&EncoderCounts);
 //            updateData(EncoderCounts);
@@ -284,6 +312,10 @@ int main() {
 //                PORTBbits.RB3 = DirectionRead;
 //            }
 /**************************************************************************************/
+=======
+            // Update to most recent encoder counts
+            updateEncoder();
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
 
 /*************** Calculate stuff for PID **********************************************/
             Error               = Target - EncoderCounts;
@@ -371,9 +403,15 @@ void interrupt isr()
         updateData(EncoderCounts);			// This will add counts to OdometryCounts (which is the total distanced traveled so far.)
 
         F.I2C = 1;              // set i2c flag bit
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
         // Update to the newest odometry incase the master request the odometry data
         updateOdometry();
 
+=======
+        //Update OdometryCounts
+        updateOdometry();
+        //Go to the i2cisrhandler
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
         i2cIsrHandler();	// interrupt flag was cleared in this function
     } else if (T0IF == 1)       // overflow of timer 0
     {                           // TMR0 overflows every 10 ms
@@ -402,6 +440,7 @@ void interrupt isr()
 ;                               // Not sure if we need to do anything right now
     }
 }       // end interrupt function
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
 /*******************************************************************************
  *
  *                      Other Functions
@@ -410,13 +449,39 @@ void interrupt isr()
 // Takes in variables holding the most recent time read and count read and adds
 //  (or subtracsts, depending on the direction) those to the current totals
 void updateData(int c)
+=======
+
+
+void updateEncoder()
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
 {
+    // if TMR1 hasn't overflown yet
+    if (PreviousEncoderCounts <= TMR1)
+         EncoderCounts = TMR1 - PreviousEncoderCounts;
+    // if TMR1 has overflown
+    else EncoderCounts = ( 65535 - PreviousEncoderCounts)+ 1 + TMR1;
+    // Update PreviousOdomertryCounts
+    PreviousEncoderCounts = TMR1;
+}
+
+void updateOdometry()
+{
+    int Temp;
+    // if TMR1 hasn't overflown yet
+    if (PreviousOdometryCounts <= TMR1)
+         Temp = TMR1 - PreviousOdometryCounts;
+    // if TMR1 has overflown
+    else Temp = ( 65535 - PreviousOdometryCounts)+ 1 + TMR1;
+    // Update PreviousOdomertryCounts
+    PreviousOdometryCounts = TMR1;
+
+    //Update Odometry
     if (DirectionRead == FORWARD)
     {
-        OdometryCounts += c;
+        OdometryCounts += Temp;
     } else
     {
-        OdometryCounts -= c;
+        OdometryCounts -= Temp;
     }
 }
 
@@ -464,3 +529,7 @@ void setDirection(int dir)
     else
         PORTBbits.RB3 = FORWARD;        // default to motor forward
 }
+<<<<<<< HEAD:Low Level Code/GCR - Primary PIC Program v887.X/MainProgram.c
+=======
+
+>>>>>>> origin/Odometry-fix:Low Level Code/GCR - Primary PIC Program v887.X/primary887main.c
