@@ -2,7 +2,7 @@
 /*
 
 		NAME 	 - Odometry Node 
-		DESIGN - Josh Galicic - David Mine - Scott Caldwell - influenced by ROS's odometry tutorial
+		DESIGN - Josh Galicic - David Mine - Scott Caldwell - WhiteGlint - influenced by ROS's odometry tutorial
 		PRIORITY - Required - Required for deriving position from encoders
 	
 		--------OVERVIEW--------
@@ -16,10 +16,10 @@ to the bot frame.
 The efficiency scalars are very rough approximations that were found experimentally by driving the
 bot and checking encoder counts. They can always be made more precise.
 
-Incorporate gyroscope data.
+Incorporate gyroscope data. hopfully one day
 
 Simply averaging the encoder counts is subject to erroneous encoder data (i.e. outliers).
-This could be improved to detect and disregard outliers.
+This could be improved to detect and disregard outliers. 
 
 A lot of the conversion factors should be setup as ros parameters so that recompiling isnt necessary for
 minor changes. Checkout how to do this on the ros wiki, there are also tutorials on how to do this. 
